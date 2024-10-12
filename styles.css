@@ -38,6 +38,7 @@ body {
     color: #fff;
     line-height: 1.5; /* Adjust the number to increase or decrease line spacing */
     letter-spacing: 0.07em; /* Adjust the number for character spacing (em is a good unit) */
+    opacity: 0; /* Set opacity to 0 for full transparency */
 }
 
 button {
