@@ -17,7 +17,7 @@ h1 {
     color: #ccb37c;
 }
 .logo {
-    max-width: 200px; /* Adjust this to fit your needs */
+    max-width: 300px; /* Adjust this to fit your needs */
     height: auto;
     display: block;
     margin: 0 auto 20px; /* Centers the logo and adds space below */
