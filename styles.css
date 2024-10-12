@@ -1,10 +1,10 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Gotham, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background-color: #8B0000;
     margin: 0;
 }
 
@@ -19,7 +19,7 @@ h1 {
 
 .card {
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: 20px;
     margin-bottom: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
