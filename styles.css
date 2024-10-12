@@ -6,6 +6,11 @@ body {
     height: 100vh;
     background-color: #6a1414;
     margin: 0;
+    background-image: url('background.jpg'); /* Path to your background image */
+    background-size: cover; /* Ensures the image covers the entire page */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat; /* Prevents the background from repeating */
+    background-attachment: fixed; /* Keeps the background in place when scrolling */
 }
 
 .container {
