@@ -99,7 +99,7 @@ const questions = [
     "If we could be part of a BDSM-themed movie or show, which roles would we play?",
     "What’s the most intense form of humiliation play we’ve tried, or would you want to try it?",
     "How do you feel about sharing me with someone else during a group play session?",
-    "What’s your favorite way for us to explore anal play, and why?"
+    "What’s your favorite way for us to explore anal play, and why?",
     "How do you feel when you see me playing with someone else at a kink event?",
     "Would you want us to explore group play more often? Why or why not?",
     "What’s something you’d like to try with me in a group setting that we haven’t done yet?",
