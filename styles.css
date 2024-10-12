@@ -36,6 +36,8 @@ h1 {
     justify-content: center;
     align-items: center;
     color: #fff;
+    line-height: 1.5; /* Adjust the number to increase or decrease line spacing */
+    letter-spacing: 0.1em; /* Adjust the number for character spacing (em is a good unit) */
 }
 
 button {
