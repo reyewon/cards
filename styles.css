@@ -11,11 +11,6 @@ body {
 .container {
     text-align: center;
 }
-
-h1 {
-    margin-bottom: 20px;
-    color: #ccb37c;
-}
 .logo {
     max-width: 300px; /* Adjust this to fit your needs */
     height: auto;
