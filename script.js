@@ -88,7 +88,7 @@ const questions = [
     "How does it feel when I give you a command versus when you give me one?",
     "What’s your favorite type of edging play with me, and how long do you think you could last?",
     "Have we ever tried sensory deprivation (e.g., blindfolds)? How did it feel for you?",
-    "Do you prefer when I wear leather or latex, and why?",
+    "Do you prefer leather or latex, and why?",
     "What’s your favorite scene dynamic for us: teacher/student, master/pet, or something else?",
     "What’s your favorite thing about watching me dominate someone else?",
     "What’s the kinkiest request you’ve ever received from me?",
