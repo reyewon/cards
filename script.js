@@ -121,14 +121,48 @@ const questions = [
 ];
 
 
+let currentPlayer = 1;  // To track whose turn it is
+let player1Name = "Player 1";
+let player2Name = "Player 2";
+
 // Function to get a random question
 function getRandomQuestion() {
     const randomIndex = Math.floor(Math.random() * questions.length);
     return questions[randomIndex];
 }
 
-// Set up event listener for the "Next" button
+// Function to update the turn indicator
+function updateTurnIndicator() {
+    const turnIndicator = document.getElementById('turnIndicator');
+    
+    if (currentPlayer === 1) {
+        turnIndicator.textContent = `${player1Name}'s turn!`;
+        currentPlayer = 2;  // Switch to player 2
+    } else {
+        turnIndicator.textContent = `${player2Name}'s turn!`;
+        currentPlayer = 1;  // Switch back to player 1
+    }
+}
+
+// Start the game after players enter their names
+document.getElementById('startGameButton').addEventListener('click', function() {
+    // Get player names from input fields
+    player1Name = document.getElementById('player1').value || "Player 1";
+    player2Name = document.getElementById('player2').value || "Player 2";
+
+    // Hide the name input form and show the game container
+    document.getElementById('nameFormContainer').style.display = 'none';
+    document.getElementById('gameContainer').style.display = 'block';
+
+    // Set the initial turn indicator
+    updateTurnIndicator();
+});
+
+// Handle "Next" button click
 document.getElementById('nextButton').addEventListener('click', function() {
     const questionCard = document.getElementById('questionCard');
     questionCard.textContent = getRandomQuestion();
+    
+    // Update turn indicator
+    updateTurnIndicator();
 });
