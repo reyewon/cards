@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+    <!-- Logo is now on the first page -->
     <div class="container" id="nameFormContainer">
-        <h1>Welcome to Kink & Tell</h1>
+        <img src="KNT.svg" alt="Kink and Tell Logo" class="logo">
         <p>Enter your names to start playing!</p>
         <input type="text" id="player1" placeholder="Player 1 Name">
         <input type="text" id="player2" placeholder="Player 2 Name">
@@ -16,15 +18,14 @@
     </div>
 
     <div class="container" id="gameContainer" style="display: none;">
-        <img src="KNT.svg" alt="Kink and Tell Logo" class="logo">
-        
-        <!-- This is the new section for displaying whose turn it is -->
+        <!-- Turn indicator to show whose turn it is -->
         <div id="turnIndicator" class="turn-indicator">
             It's Player 1's turn!
         </div>
         
+        <!-- Question card to show questions -->
         <div id="questionCard" class="card">
-            Click 'Next' to start!
+            <!-- The first question will appear here -->
         </div>
         <button id="nextButton">Next</button>
     </div>
