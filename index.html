@@ -5,18 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kink & Tell Game by Rysta</title>
     <link rel="stylesheet" href="styles.css">
-    <meta property="og:title" content="Kink & Tell Game by Rysta">
-    <meta property="og:description" content="A devilishly fun question game for kinky partners and those in ENM relationships!">
-    <meta property="og:image" content="https://github.com/reyewon/cards/blob/9c2b44c18cbd8fcec85fcef92fd35080bac16fad/preview.jpgg">
-    <meta property="og:url" content="https://kinkandtell.co.uk">
-    <meta property="og:type" content="website">
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="nameFormContainer">
+        <p>Welcome to this devilish little question game, designed specially for kinky partners who live an ENM lifestyle.<br><br>Enter your names to start playing!</p>
+        <input type="text" id="player1" placeholder="Player 1 Name">
+        <input type="text" id="player2" placeholder="Player 2 Name">
+        <button id="startGameButton">Start Game</button>
+    </div>
+
+    <div class="container" id="gameContainer" style="display: none;">
         <img src="KNT.svg" alt="Kink and Tell Logo" class="logo">
+        
+        <!-- This is the new section for displaying whose turn it is -->
+        <div id="turnIndicator" class="turn-indicator">
+            It's Player 1's turn!
+        </div>
+        
         <div id="questionCard" class="card">
-            Welcome to this devilish little question game, designed specially for kinky partners who live an ENM lifestyle. 
-            <br><br>I hope you're ready to learn a lot more about each other, and feel free to turn it into a drinking game! Click next to begin.
+            Click 'Next' to start!
         </div>
         <button id="nextButton">Next</button>
     </div>
@@ -27,3 +34,4 @@
     <p>Created by <a href="https://www.instagram.com/rystadom" target="_blank">Rysta</a></p>
 </footer>
 </html>
+Welcome to this devilish little question game, designed specially for kinky partners who live an ENM lifestyle.
