@@ -156,6 +156,10 @@ document.getElementById('startGameButton').addEventListener('click', function() 
 
     // Set the initial turn indicator
     updateTurnIndicator();
+
+    // Display the first question immediately
+    const questionCard = document.getElementById('questionCard');
+    questionCard.textContent = getRandomQuestion();
 });
 
 // Handle "Next" button click
