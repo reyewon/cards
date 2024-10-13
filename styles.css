@@ -62,6 +62,16 @@ button:hover {
     color: #ccb37c;
 }
 
+input[type="text"] {
+    padding: 10px; /* Adjust the padding value to your preference */
+    margin: 10px 0; /* Adds some space between the inputs */
+    font-size: 16px; /* Adjust the font size if needed */
+    width: 100%; /* Makes the input take up the full width of the container */
+    box-sizing: border-box; /* Ensures the padding and width are calculated together */
+    border-radius: 5px; /* Rounds the corners for a cleaner look */
+    border: 1px solid #ccc; /* Adds a subtle border */
+}
+
 footer {
     position: fixed;
     bottom: 25px;
