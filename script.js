@@ -117,6 +117,8 @@ const questions = [
     "Is there anyone we’ve played with in the past that you’d like to invite for another group session?",
     "How would you feel if I organized a private session with someone else and invited you to watch?",
     "How would you feel about us performing a kink demo together at a public event?",
+    "Pick two celebrities, one male and one female, to join us for a hot and steamy evening together",
+
     "If we played separately at an event, how would you want us to reconnect afterward?"
 ];
 
