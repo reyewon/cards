@@ -138,10 +138,10 @@ function updateTurnIndicator() {
     const turnIndicator = document.getElementById('turnIndicator');
     
     if (currentPlayer === 1) {
-        turnIndicator.textContent = `${player1Name} answers`;
+        turnIndicator.textContent = `${player1Name} asks ${player2Name}`;
         currentPlayer = 2;  // Switch to player 2
     } else {
-        turnIndicator.textContent = `${player2Name}answers`;
+        turnIndicator.textContent = `${player2Name} asks ${player1Name}`;
         currentPlayer = 1;  // Switch back to player 1
     }
 }
