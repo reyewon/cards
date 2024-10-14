@@ -127,8 +127,18 @@ let currentPlayer = 1;  // To track whose turn it is
 let player1Name = "Player 1";
 let player2Name = "Player 2";
 let currentIndex = 0;  // To keep track of the current question index
+let currentForfeitIndex = 0;  // To keep track of the current forfeit index
 
-// Function to shuffle the questions array using Fisher-Yates algorithm
+// List of forfeits
+const forfeits = [
+    "Player 1 must take a drink.",
+    "Player 2 must remove an item of clothing.",
+    "Player 1 must kiss Player 2's neck.",
+    "Player 2 must do 10 push-ups."
+    // Add more forfeits here...
+];
+
+// Function to shuffle an array (used for both questions and forfeits)
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -137,10 +147,27 @@ function shuffle(array) {
     return array;
 }
 
+// Function to get the next question without repeating until all are used
+function getNextQuestion() {
+    if (currentIndex >= questions.length) {
+        shuffle(questions);  // Reshuffle questions when all are used
+        currentIndex = 0;
+    }
+    return questions[currentIndex++];
+}
+
+// Function to get the next forfeit without repeating until all are used
+function getNextForfeit() {
+    if (currentForfeitIndex >= forfeits.length) {
+        shuffle(forfeits);  // Reshuffle forfeits when all are used
+        currentForfeitIndex = 0;
+    }
+    return forfeits[currentForfeitIndex++];
+}
+
 // Function to update the turn indicator
 function updateTurnIndicator() {
     const turnIndicator = document.getElementById('turnIndicator');
-    
     if (currentPlayer === 1) {
         turnIndicator.textContent = `${player1Name} asks ${player2Name}`;
         currentPlayer = 2;  // Switch to player 2
@@ -148,17 +175,6 @@ function updateTurnIndicator() {
         turnIndicator.textContent = `${player2Name} asks ${player1Name}`;
         currentPlayer = 1;  // Switch back to player 1
     }
-}
-
-// Function to get the next question without repeating until all are used
-function getNextQuestion() {
-    if (currentIndex >= questions.length) {
-        // If we've gone through all questions, shuffle them again and reset
-        shuffle(questions);
-        currentIndex = 0;
-    }
-    // Return the next question and increment the index
-    return questions[currentIndex++];
 }
 
 // Start the game after players enter their names
@@ -174,8 +190,9 @@ document.getElementById('startGameButton').addEventListener('click', function() 
     // Set the initial turn indicator
     updateTurnIndicator();
 
-    // Shuffle the questions and display the first question immediately
+    // Shuffle the questions and forfeits, and display the first question
     shuffle(questions);
+    shuffle(forfeits);
     const questionCard = document.getElementById('questionCard');
     questionCard.textContent = getNextQuestion();
 });
@@ -183,8 +200,15 @@ document.getElementById('startGameButton').addEventListener('click', function() 
 // Handle the "Next" button click to show the next question
 document.getElementById('nextButton').addEventListener('click', function() {
     const questionCard = document.getElementById('questionCard');
+    const forfeitCard = document.getElementById('forfeitCard');
     questionCard.textContent = getNextQuestion();
-    
-    // Update turn indicator
     updateTurnIndicator();
+    forfeitCard.style.display = 'none';  // Hide the forfeit area when moving to the next question
+});
+
+// Handle the "Forfeit" button click to show a forfeit
+document.getElementById('forfeitButton').addEventListener('click', function() {
+    const forfeitCard = document.getElementById('forfeitCard');
+    forfeitCard.textContent = getNextForfeit();
+    forfeitCard.style.display = 'block';  // Show the forfeit area
 });
