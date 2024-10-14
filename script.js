@@ -126,11 +126,15 @@ const questions = [
 let currentPlayer = 1;  // To track whose turn it is
 let player1Name = "Player 1";
 let player2Name = "Player 2";
+let currentIndex = 0;  // To keep track of the current question index
 
-// Function to get a random question
-function getRandomQuestion() {
-    const randomIndex = Math.floor(Math.random() * questions.length);
-    return questions[randomIndex];
+// Function to shuffle the questions array using Fisher-Yates algorithm
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
 }
 
 // Function to update the turn indicator
@@ -146,6 +150,17 @@ function updateTurnIndicator() {
     }
 }
 
+// Function to get the next question without repeating until all are used
+function getNextQuestion() {
+    if (currentIndex >= questions.length) {
+        // If we've gone through all questions, shuffle them again and reset
+        shuffle(questions);
+        currentIndex = 0;
+    }
+    // Return the next question and increment the index
+    return questions[currentIndex++];
+}
+
 // Start the game after players enter their names
 document.getElementById('startGameButton').addEventListener('click', function() {
     // Get player names from input fields
@@ -159,15 +174,16 @@ document.getElementById('startGameButton').addEventListener('click', function() 
     // Set the initial turn indicator
     updateTurnIndicator();
 
-    // Display the first question immediately
+    // Shuffle the questions and display the first question immediately
+    shuffle(questions);
     const questionCard = document.getElementById('questionCard');
-    questionCard.textContent = getRandomQuestion();
+    questionCard.textContent = getNextQuestion();
 });
 
-// Handle "Next" button click
+// Handle the "Next" button click to show the next question
 document.getElementById('nextButton').addEventListener('click', function() {
     const questionCard = document.getElementById('questionCard');
-    questionCard.textContent = getRandomQuestion();
+    questionCard.textContent = getNextQuestion();
     
     // Update turn indicator
     updateTurnIndicator();
