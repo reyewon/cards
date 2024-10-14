@@ -112,6 +112,13 @@ const questions = [
     "Pick two celebrities, one male and one female, to join us for a hot and steamy evening together",
     "Would you describe me as a good kisser? Just good, or great?",
     "If we played separately at an event, how would you want us to reconnect afterward?",
+    "Name a sexual activity that someone else does notably better than I do",
+    "Do you have an ex partner that you fantastise about playing with again?",
+    "In what ways do I need to work on my foreplay game?",
+    "How would you rate the most recent play we had out of 10?",
+    "How would you rate the most recent play you had with someone else, out of 10?",
+    "In your opinion, which is more important? Length or girth? (Can be for a toy or penis)",
+    "Which every day outfit do you find me most attractive in?",
     "Do you want me to send you pics and videos from scenes with other people?"
 
 ];
@@ -140,6 +147,16 @@ const forfeits = [
     "You must perform your best slut drop",
     "You must enthusiastically mime what you most enjoy doing with/to your partner's private parts",
     "You must let your partner go and choose a sex toy to use on you for at least 20 seconds",
+    "You must do a mating ritual dance for your partner",
+    "You must seductively eat something phallic shaped. Bonus points if you put on Marvin Gaye's 'Let's Get It On' in the background",
+    "You must show your partner the latest porn video you watched",
+    "You must discuss 'why ducks are better than us' for 30 seconds",
+    "You must message game creator Rysta (linked below) to let him know you're playing this game",
+    "You must lick your partner's elbow or knee (your choice) until they answer their next question",
+    "Your partner has 10 seconds to choose any forfeit for you",
+    "You must act out your favourite porn genre in a charades style for your partner to guess",
+    "Choose someone to message that has a partner, and tell them you think their partner is attractive",
+    "Tease your own bare nipples and say 'These make milk like moo moo cows'",
     "You must post to a social media of your choice, saying how needy you feel tonight, with a devil emoji"
     // Add more forfeits here...
 ];
