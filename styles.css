@@ -1,5 +1,4 @@
 body {
-    font-family: Gotham, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,6 +10,77 @@ body {
     background-position: center; /* Centers the background image */
     background-repeat: no-repeat; /* Prevents the background from repeating */
     background-attachment: fixed; /* Keeps the background in place when scrolling */
+}
+
+/* Importing the Inter font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* Apply the Inter font globally to the body */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0; /* Optional: Ensures no default margin around the body */
+    padding: 0; /* Optional: Ensures no default padding around the body */
+}
+
+/* Style for cards (questions and forfeits) */
+.card {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400; /* Regular weight for readable text */
+    font-size: 18px; /* Default font size, adjust as needed */
+    line-height: 1.5; /* Better readability */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the turn indicator */
+.turn-indicator {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700; /* Bold weight for emphasis */
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Style for input fields */
+input[type="text"] {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Style for buttons */
+button {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500; /* Medium weight for buttons */
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+/* Optional hover effects for buttons */
+button:hover {
+    background-color: #e0e0e0; /* Adjust to fit your color scheme */
+}
+
+// <uniquifier>: Use a unique and descriptive class name
+// <weight>: Use a value from 100 to 900
+
+.inter-<uniquifier> {
+  font-family: "Inter", serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
 }
 
 .container {
