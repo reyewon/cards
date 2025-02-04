@@ -1,54 +1,73 @@
-/* Updated CSS */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background: linear-gradient(135deg, #1a1a2b 0%, #2a2a4b 100%);
     font-family: 'Inter', sans-serif;
     color: #ffffff;
-    position: relative;
-    padding: 20px;
+    font-size: 16px;
+    background: linear-gradient(315deg, #1a1a2b 0%, #2a2a4b 25%, #1a1a2b 50%, #2a2a4b 75%, #1a1a2b 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
 
 .container {
-    text-align: center;
-    max-width: 600px;
-    width: 90%;
+    width: 800px;
     padding: 30px;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 15px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    margin: 20px;
 }
 
 .logo {
-    max-width: 280px;
+    max-width: 300px;
+    height: auto;
     margin: 0 auto 30px;
     filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.4));
 }
 
-.instruction-text {
-    font-size: 1.2rem;
-    margin-bottom: 25px;
-    color: #00F3FF;
-    text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
-}
-
-.input-group {
-    display: grid;
-    gap: 15px;
-    margin-bottom: 30px;
-}
-
 input[type="text"] {
-    padding: 12px 20px;
-    font-size: 1rem;
+    padding: 15px;
+    font-size: 16px;
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid #00F3FF;
     border-radius: 8px;
     color: #ffffff;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 10px 0;
     transition: all 0.3s ease;
 }
 
@@ -58,30 +77,21 @@ input[type="text"]:focus {
     box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
 }
 
-.button-group {
-    display: grid;
-    gap: 15px;
-    margin-top: 25px;
-}
-
-.gradient-button {
+button {
     padding: 15px 30px;
-    font-size: 1.1rem;
+    font-size: 16px;
     font-weight: 700;
-    border: none;
-    border-radius: 8px;
     background: linear-gradient(45deg, #FF6B6B, #6B6BFF);
     color: white;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
+    margin: 10px 0;
 }
 
-.gradient-button.alt {
-    background: linear-gradient(45deg, #6B6BFF, #FF6B6B);
-}
-
-.gradient-button:hover {
+button:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(107, 107, 255, 0.4);
 }
@@ -92,18 +102,19 @@ input[type="text"]:focus {
     border-radius: 12px;
     padding: 25px;
     margin: 20px 0;
-    font-size: 1.1rem;
+    font-size: 18px;
     line-height: 1.6;
     box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+    min-height: 100px;
 }
 
 .forfeit-card {
-    background: rgba(255, 107, 107, 0.1);
     border-color: #FF6B6B;
+    background: rgba(255, 107, 107, 0.1);
 }
 
 .turn-indicator {
-    font-size: 1.3rem;
+    font-size: 20px;
     font-weight: 700;
     margin-bottom: 25px;
     color: #00F3FF;
@@ -115,7 +126,9 @@ footer {
     bottom: 20px;
     width: 100%;
     text-align: center;
-    font-size: 0.9rem;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    z-index: 1;
 }
 
 footer a {
