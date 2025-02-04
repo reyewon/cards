@@ -1,57 +1,56 @@
+<!-- Updated HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-EMK8Q5QN8S"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-EMK8Q5QN8S');
-</script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EMK8Q5QN8S"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-EMK8Q5QN8S');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kink & Tell Game by Rysta</title>
     <link rel="stylesheet" href="styles.css">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <!-- Logo is now on the first page -->
     <div class="container" id="nameFormContainer">
-        <img src="KNT.svg" alt="Kink and Tell Logo." class="logo">
-        <p>Enter your names to start playing!</p>
-        <input type="text" id="player1" placeholder="Player 1 Name">
-        <input type="text" id="player2" placeholder="Player 2 Name"><br><br>
-        <button id="startGameButton">Start Game</button>
+        <img src="KNT.svg" alt="Kink and Tell Logo" class="logo">
+        <p class="instruction-text">Enter your names to start playing!</p>
+        <div class="input-group">
+            <input type="text" id="player1" placeholder="Player 1 Name">
+            <input type="text" id="player2" placeholder="Player 2 Name">
+        </div>
+        <button id="startGameButton" class="gradient-button">Start Game</button>
     </div>
 
     <div class="container" id="gameContainer" style="display: none;">
-        <!-- Turn indicator to show whose turn it is -->
         <div id="turnIndicator" class="turn-indicator">
             It's Player 1's turn!
         </div>
         
-        <!-- Question card to show questions -->
         <div id="questionCard" class="card">
-            <!-- The first question will appear here -->
+            <!-- Question will appear here -->
         </div>
-    <!-- Forfeit text area (hidden initially) -->
-    <div id="forfeitCard" class="card" style="display: none;">
-        <!-- Forfeit will be displayed here -->
+
+        <div id="forfeitCard" class="card forfeit-card" style="display: none;">
+            <!-- Forfeit will appear here -->
+        </div>
+
+        <div class="button-group">
+            <button id="nextButton" class="gradient-button">Next Question</button>
+            <button id="forfeitButton" class="gradient-button alt">Take a Forfeit</button>
+        </div>
     </div>
 
-    <button id="nextButton">Next Question</button><br><br>
-    <button id="forfeitButton">Take a Forfeit</button>    
-    </div>
-
+    <footer>
+        <p>Created by <a href="https://www.instagram.com/rystadom" target="_blank">Rysta</a></p>
+    </footer>
     <script src="script.js"></script>
 </body>
-    <footer>
-    <p>Created by <a href="https://www.instagram.com/rystadom" target="_blank">Rysta</a></p>
-</footer>
 </html>
