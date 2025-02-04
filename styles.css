@@ -5,36 +5,25 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    background: linear-gradient(135deg, #1a1a2b 0%, #2a2a4b 100%);
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    height: 100vh;
     font-family: 'Inter', sans-serif;
     color: #ffffff;
     position: relative;
     padding: 20px;
 }
 
-/* Animated radial gradients in the background */
-body::before {
-    content: "";
-    position: fixed;
-    width: 200%;
-    height: 200%;
-    top: -50%;
-    left: -50%;
-    background: radial-gradient(circle at 30% 30%, #1a1a2b, transparent 70%), 
-                radial-gradient(circle at 70% 70%, #2a2a4b, transparent 70%);
-    animation: moveBackground 30s ease-in-out infinite;
-    z-index: -1;
-}
-
-@keyframes moveBackground {
+@keyframes gradient {
     0% {
-        transform: translate(0, 0) rotate(0deg);
+        background-position: 0% 50%;
     }
     50% {
-        transform: translate(25%, 25%) rotate(180deg);
+        background-position: 100% 50%;
     }
     100% {
-        transform: translate(0, 0) rotate(360deg);
+        background-position: 0% 50%;
     }
 }
 
@@ -43,7 +32,7 @@ body::before {
     max-width: 600px;
     width: 90%;
     padding: 30px;  /* Note: This value is adjustable on mobile via the control panel */
-    background: rgba(0, 0, 0, 0.5);  /* Changed from 0.4 to 0.5 for 50% transparency */
+    background: rgba(0, 0, 0, 0.5);  /* 50% transparency */
     border-radius: 15px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -198,7 +187,7 @@ footer a:hover {
     #mobileControls label {
         display: block;
         margin-bottom: 5px;
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     #mobileControls input[type="range"] {
         width: 100%;
