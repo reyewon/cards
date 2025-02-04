@@ -1,87 +1,56 @@
+<!-- Updated HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EMK8Q5QN8S"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-EMK8Q5QN8S');
+    </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>Kink &amp; Tell Game by Rysta</title> <!-- Fixed ampersand encoding -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kink & Tell Game by Rysta</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --scale-factor: calc(1vw + 1vh + 0.5vmin);
-            --base-padding: clamp(15px, 2vw, 30px);
-        }
-
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #1a1a2b 0%, #2a2a4b 100%);
-            font-family: 'Inter', sans-serif;
-            color: #ffffff;
-            font-size: calc(16px + 0.25vw);
-        }
-
-        .container {
-            width: min(90%, 800px);
-            padding: var(--base-padding);
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin: 20px;
-        }
-
-        .logo {
-            width: min(80%, 300px);
-            margin: 0 auto 30px;
-            filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.4));
-        }
-
-        .card {
-            padding: var(--base-padding);
-            margin: calc(var(--base-padding) * 0.8) 0;
-            font-size: calc(1.1rem + 0.3vw);
-            line-height: 1.6;
-        }
-
-        button {
-            padding: calc(var(--base-padding) * 0.8) calc(var(--base-padding) * 1.2);
-            font-size: calc(1rem + 0.3vw);
-        }
-
-        @media (min-width: 1600px) {
-            :root {
-                --base-padding: clamp(20px, 2.5vw, 50px);
-            }
-            
-            body {
-                font-size: calc(18px + 0.3vw);
-            }
-            
-            .container {
-                width: min(80%, 1200px);
-            }
-        }
-
-        @media (min-width: 2560px) { /* 4K screens */
-            :root {
-                --base-padding: clamp(25px, 3vw, 60px);
-            }
-            
-            body {
-                font-size: calc(20px + 0.4vw);
-            }
-            
-            .container {
-                width: min(70%, 1400px);
-            }
-        }
-    </style>
 </head>
 <body>
-    <!-- Keep existing body content unchanged -->
+    <div class="container" id="nameFormContainer">
+        <img src="KNT.svg" alt="Kink and Tell Logo" class="logo">
+        <p class="instruction-text">Enter your names to start playing!</p>
+        <div class="input-group">
+            <input type="text" id="player1" placeholder="Player 1 Name">
+            <input type="text" id="player2" placeholder="Player 2 Name">
+        </div>
+        <button id="startGameButton" class="gradient-button">Start Game</button>
+    </div>
+
+    <div class="container" id="gameContainer" style="display: none;">
+        <div id="turnIndicator" class="turn-indicator">
+            It's Player 1's turn!
+        </div>
+        
+        <div id="questionCard" class="card">
+            <!-- Question will appear here -->
+        </div>
+
+        <div id="forfeitCard" class="card forfeit-card" style="display: none;">
+            <!-- Forfeit will appear here -->
+        </div>
+
+        <div class="button-group">
+            <button id="nextButton" class="gradient-button">Next Question</button>
+            <button id="forfeitButton" class="gradient-button alt">Take a Forfeit</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Created by <a href="https://www.instagram.com/rystadom" target="_blank">Rysta</a></p>
+    </footer>
+    <script src="script.js"></script>
 </body>
 </html>
