@@ -6,10 +6,9 @@ body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     color: #ffffff;
-    background: linear-gradient(145deg, #ff69b4 0%, #9400d3 50%, #4834d4 100%);
+    background: linear-gradient(145deg, #4834d4 0%, #9400d3 50%, #ff69b4 100%);
     background-size: 400% 400%;
     animation: gradientShift 12s ease infinite;
-    padding: 20px;
 }
 
 @keyframes gradientShift {
@@ -31,9 +30,15 @@ body {
     animation: pulse 4s ease-in-out infinite;
 }
 
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
 .container {
     width: 800px;
-    padding: 30px;
+    padding: 40px;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 15px;
     backdrop-filter: blur(10px);
@@ -48,54 +53,94 @@ body {
     max-width: 300px;
     height: auto;
     margin: 0 auto 30px;
-    filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.4));
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
 }
 
-.input-container {
-    max-width: 400px;
-    margin: 0 auto;
+.instruction-text {
+    font-size: 16px;
+    margin-bottom: 25px;
+    color: rgba(255, 255, 255, 0.9);
 }
 
 input[type="text"] {
     width: 100%;
     padding: 15px;
-    margin: 10px 0;
     font-size: 16px;
     background: rgba(255, 255, 255, 0.1);
-    border: 2px solid #00F3FF;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
     color: #ffffff;
+    margin: 8px 0;
     box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.15);
 }
 
 button {
-    width: 100%;
-    padding: 15px;
+    padding: 15px 30px;
     font-size: 16px;
-    font-weight: 700;
-    background: linear-gradient(45deg, #ff69b4, #4834d4);
+    font-weight: 600;
+    background: linear-gradient(90deg, #ff69b4, #4834d4);
     color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    margin: 10px 0;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin: 20px 0 10px;
+}
+
+button:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
 }
 
 .card {
     background: rgba(255, 255, 255, 0.1);
-    border: 2px solid #00F3FF;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
     padding: 25px;
     margin: 20px 0;
     font-size: 18px;
     line-height: 1.6;
-    min-height: 100px;
 }
 
-/* Mobile-specific styles */
+.turn-indicator {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+footer {
+    position: fixed;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    z-index: 1;
+}
+
+footer a {
+    color: #ff69b4;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #4834d4;
+}
+
 @media (max-width: 768px) {
     body {
         padding: 0;
+        background: linear-gradient(145deg, #4834d4 0%, #9400d3 50%, #ff69b4 100%);
+        background-attachment: fixed;
     }
 
     .container {
@@ -106,47 +151,54 @@ button {
         border-radius: 0;
         display: flex;
         flex-direction: column;
-    }
-
-    .input-container {
-        width: 85%;
-        max-width: 300px;
-    }
-
-    input[type="text"] {
-        font-size: 18px;
-        padding: 12px;
+        align-items: center;
+        justify-content: center;
     }
 
     .logo {
-        width: 70%;
-        max-width: 250px;
-        margin: 20px auto;
+        width: 60%;
+        max-width: 200px;
+        margin: 0 auto 40px;
     }
 
-    .card {
-        font-size: 20px;
-        padding: 20px;
-        margin: 15px 0;
-        flex-grow: 1;
+    .input-container {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
     }
 
-    .button-container {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin-top: auto;
+    input[type="text"] {
+        font-size: 16px;
+        padding: 12px;
+        margin: 6px 0;
     }
 
     button {
-        max-width: none;
-        padding: 16px;
-        font-size: 18px;
-        margin: 5px 0;
+        width: 280px;
+        padding: 12px;
+        font-size: 16px;
+        margin: 20px auto 10px;
     }
 
-    .turn-indicator {
-        font-size: 18px;
-        margin: 15px 0;
+    .card {
+        width: 280px;
+        font-size: 16px;
+        padding: 20px;
+        margin: 15px auto;
+    }
+
+    .button-container {
+        width: 280px;
+        margin: 0 auto;
+    }
+
+    .button-container button {
+        margin: 6px 0;
+    }
+
+    footer {
+        position: relative;
+        padding: 20px 0;
+        font-size: 12px;
     }
 }
