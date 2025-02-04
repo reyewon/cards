@@ -1,23 +1,15 @@
-:root {
-    --primary-purple: #662D91;
-    --accent-pink: #E6007E;
-    --text-color: #FFFFFF;
-    --input-bg: rgba(255, 255, 255, 0.1);
-}
-
 body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
+    min-height: 100vh;
+    margin: 0;
     font-family: 'Inter', sans-serif;
+    color: #ffffff;
     background: linear-gradient(145deg, #662D91 0%, #9400d3 50%, #E6007E 100%);
     background-size: 400% 400%;
-    animation: gradientShift 8s ease infinite;
-    color: var(--text-color);
+    animation: gradientShift 12s ease infinite;
 }
 
 @keyframes gradientShift {
@@ -26,48 +18,81 @@ body {
     100% { background-position: 0% 50%; }
 }
 
-.game-container {
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    flex-grow: 1;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    animation: pulse 4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.container {
+    width: 800px;
+    padding: 40px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.content-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    padding: 20px;
-    box-sizing: border-box;
+    gap: 20px;
 }
 
 .logo {
-    width: 65%;
-    max-width: 300px;
-    margin-bottom: 40px;
+    width: 300px;
+    height: auto;
+    margin-bottom: 30px;
 }
 
-h1 {
+.instruction-text {
     font-size: 24px;
     font-weight: 500;
-    margin: 0 0 40px 0;
+    margin: 0;
     text-align: center;
 }
 
-.input-group {
-    width: 85%;
-    max-width: 340px;
+.input-wrapper {
+    width: 100%;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-bottom: 20px;
 }
 
 input[type="text"] {
     width: 100%;
     height: 60px;
-    background: var(--input-bg);
-    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 15px;
     padding: 0 20px;
     font-size: 20px;
-    color: var(--text-color);
+    color: #ffffff;
     box-sizing: border-box;
 }
 
@@ -75,75 +100,134 @@ input[type="text"]::placeholder {
     color: rgba(255, 255, 255, 0.6);
 }
 
-input[type="text"]:focus {
-    outline: none;
-    background: rgba(255, 255, 255, 0.15);
-}
-
 button {
-    width: 85%;
-    max-width: 340px;
+    width: 100%;
     height: 60px;
-    background: var(--accent-pink);
+    background: #E6007E;
     border: none;
     border-radius: 15px;
-    color: var(--text-color);
+    color: #ffffff;
     font-size: 20px;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 20px;
+    transition: opacity 0.2s;
 }
 
-footer {
-    width: 100%;
-    padding: 20px 0;
-    text-align: center;
-    font-size: 16px;
-    color: var(--text-color);
+button:hover {
+    opacity: 0.9;
 }
 
-footer span {
-    color: var(--accent-pink);
-}
-
-/* Game container styles */
-#gameContainer {
-    display: none;
-    width: 100%;
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 25px;
+    margin: 20px 0;
+    font-size: 20px;
+    line-height: 1.5;
 }
 
 .turn-indicator {
     font-size: 20px;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
 }
 
-.card {
-    width: 85%;
-    max-width: 340px;
-    background: var(--input-bg);
-    border-radius: 15px;
-    padding: 20px;
-    margin: 20px 0;
-    font-size: 20px;
-    line-height: 1.5;
-    box-sizing: border-box;
-}
-
-.button-container {
-    width: 85%;
-    max-width: 340px;
+.button-stack {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    width: 100%;
+    max-width: 400px;
 }
 
-@media (min-width: 1024px) {
-    .game-container {
-        width: 800px;
-        margin: 0 auto;
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 16px;
+    z-index: 1;
+}
+
+footer a {
+    color: #E6007E;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 0;
     }
-    
-    .input-group, button, .card, .button-container {
-        max-width: 400px;
+
+    main {
+        min-height: 100vh;
+    }
+
+    .container {
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        border-radius: 0;
+        display: flex;
+        justify-content: center;
+        background: transparent;
+        box-shadow: none;
+    }
+
+    .content-wrapper {
+        width: 85%;
+        max-width: 340px;
+        margin: auto;
+        gap: 25px;
+    }
+
+    .logo {
+        width: 70%;
+        max-width: 280px;
+        margin: 0;
+    }
+
+    .instruction-text {
+        font-size: 24px;
+    }
+
+    .input-wrapper {
+        width: 100%;
+        max-width: none;
+    }
+
+    input[type="text"] {
+        height: 65px;
+        font-size: 20px;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        mix-blend-mode: overlay;
+    }
+
+    button {
+        height: 65px;
+        font-size: 22px;
+        background: #E6007E;
+        mix-blend-mode: normal;
+    }
+
+    .card {
+        width: 100%;
+        font-size: 22px;
+        background: rgba(255, 255, 255, 0.15);
+        mix-blend-mode: overlay;
+    }
+
+    .button-stack {
+        width: 100%;
+        max-width: none;
+    }
+
+    footer {
+        position: fixed;
+        bottom: 0;
+        padding: 15px 0;
+        font-size: 14px;
+        background: transparent;
     }
 }
