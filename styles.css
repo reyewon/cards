@@ -1,163 +1,129 @@
+/* Updated CSS */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #6a1414;
+    min-height: 100vh;
     margin: 0;
-    background-image: url('background.jpg'); /* Path to your background image */
-    background-size: cover; /* Ensures the image covers the entire page */
-    background-position: center; /* Centers the background image */
-    background-repeat: no-repeat; /* Prevents the background from repeating */
-    background-attachment: fixed; /* Keeps the background in place when scrolling */
-}
-
-/* Importing the Inter font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-/* Apply the Inter font globally to the body */
-body {
+    background: linear-gradient(135deg, #1a1a2b 0%, #2a2a4b 100%);
     font-family: 'Inter', sans-serif;
-    margin: 0; /* Optional: Ensures no default margin around the body */
-    padding: 0; /* Optional: Ensures no default padding around the body */
-}
-
-/* Style for cards (questions and forfeits) */
-.card {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400; /* Regular weight for readable text */
-    font-size: 18px; /* Default font size, adjust as needed */
-    line-height: 1.5; /* Better readability */
+    color: #ffffff;
+    position: relative;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Style for the turn indicator */
-.turn-indicator {
-    font-family: 'Inter', sans-serif;
-    font-weight: 700; /* Bold weight for emphasis */
-    font-size: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* Style for input fields */
-input[type="text"] {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    padding: 10px;
-    margin: 10px 0;
-    font-size: 16px;
-    width: 100%;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-/* Style for buttons */
-button {
-    font-family: 'Inter', sans-serif;
-    font-weight: 500; /* Medium weight for buttons */
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.3s;
-}
-
-/* Optional hover effects for buttons */
-button:hover {
-    background-color: #e0e0e0; /* Adjust to fit your color scheme */
-}
-
-// <uniquifier>: Use a unique and descriptive class name
-// <weight>: Use a value from 100 to 900
-
-.inter-<uniquifier> {
-  font-family: "Inter", serif;
-  font-optical-sizing: auto;
-  font-weight: <weight>;
-  font-style: normal;
 }
 
 .container {
     text-align: center;
-    color: #fff;
-
+    max-width: 600px;
+    width: 90%;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 .logo {
-    max-width: 300px; /* Adjust this to fit your needs */
-    height: auto;
-    display: block;
-    margin: 0 auto 20px; /* Centers the logo and adds space below */
+    max-width: 280px;
+    margin: 0 auto 30px;
+    filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.4));
 }
 
-.card {
-    background-color: rgba(255, 255, 255, 0); /* Set background color with opacity 0 (fully transparent) */
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 0px 0px rgba(0, 0, 0, 0.0);
-    font-size: 20px;
-    max-width: 500px;
-    min-height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    line-height: 1.5; /* Adjust the number to increase or decrease line spacing */
-    letter-spacing: 0.07em; /* Adjust the number for character spacing (em is a good unit) */
+.instruction-text {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    color: #00F3FF;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
 }
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #ccb37c;
-    color: #000;
-    border: none;
-    border-radius: 2px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #ccb37c;
-}
-
-.turn-indicator {
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #ccb37c;
+.input-group {
+    display: grid;
+    gap: 15px;
+    margin-bottom: 30px;
 }
 
 input[type="text"] {
-    padding: 10px; /* Adjust the padding value to your preference */
-    margin: 10px 0; /* Adds some space between the inputs */
-    font-size: 16px; /* Adjust the font size if needed */
-    width: 100%; /* Makes the input take up the full width of the container */
-    box-sizing: border-box; /* Ensures the padding and width are calculated together */
-    border-radius: 5px; /* Rounds the corners for a cleaner look */
-    border: 1px solid #ccc; /* Adds a subtle border */
+    padding: 12px 20px;
+    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #00F3FF;
+    border-radius: 8px;
+    color: #ffffff;
+    transition: all 0.3s ease;
+}
+
+input[type="text"]:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
+}
+
+.button-group {
+    display: grid;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.gradient-button {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(45deg, #FF6B6B, #6B6BFF);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.gradient-button.alt {
+    background: linear-gradient(45deg, #6B6BFF, #FF6B6B);
+}
+
+.gradient-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(107, 107, 255, 0.4);
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #00F3FF;
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
+}
+
+.forfeit-card {
+    background: rgba(255, 107, 107, 0.1);
+    border-color: #FF6B6B;
+}
+
+.turn-indicator {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #00F3FF;
+    text-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
 }
 
 footer {
     position: fixed;
-    bottom: 25px;
+    bottom: 20px;
     width: 100%;
     text-align: center;
-    font-size: 10px;
-    color: #FFF;
+    font-size: 0.9rem;
 }
 
 footer a {
-    color: #ccb37c;
+    color: #00F3FF;
     text-decoration: none;
+    transition: all 0.3s ease;
 }
 
 footer a:hover {
-    text-decoration: underline;
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
 }
