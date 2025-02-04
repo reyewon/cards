@@ -218,7 +218,9 @@ footer a {
     }
 
     button {
+        width: 100%;
         height: 75px;
+        gap: 20px;
         font-size: 28px;
         border-radius: 20px;
     }
