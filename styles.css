@@ -6,7 +6,7 @@ body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     color: #ffffff;
-    background: linear-gradient(145deg, #4834d4 0%, #9400d3 50%, #ff69b4 100%);
+    background: linear-gradient(145deg, #2b1d5c 0%, #6b1d89 50%, #b4237c 100%);
     background-size: 400% 400%;
     animation: gradientShift 12s ease infinite;
 }
@@ -85,7 +85,7 @@ button {
     padding: 15px 30px;
     font-size: 16px;
     font-weight: 600;
-    background: linear-gradient(90deg, #ff69b4, #4834d4);
+    background: linear-gradient(90deg, #b4237c, #6b1d89);
     color: white;
     border: none;
     border-radius: 8px;
@@ -127,19 +127,18 @@ footer {
 }
 
 footer a {
-    color: #ff69b4;
+    color: #b4237c;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 footer a:hover {
-    color: #4834d4;
+    color: #6b1d89;
 }
 
 @media (max-width: 768px) {
     body {
         padding: 0;
-        background: linear-gradient(145deg, #4834d4 0%, #9400d3 50%, #ff69b4 100%);
         background-attachment: fixed;
     }
 
@@ -152,19 +151,17 @@ footer a:hover {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
     }
 
     .logo {
         width: 60%;
         max-width: 200px;
-        margin: 0 auto 40px;
+        margin: 40px auto;
     }
 
     .input-container {
-        width: 100%;
-        max-width: 280px;
-        margin: 0 auto;
+        width: 85%;
+        max-width: 240px;
     }
 
     input[type="text"] {
@@ -174,31 +171,35 @@ footer a:hover {
     }
 
     button {
-        width: 280px;
+        width: 240px;
         padding: 12px;
         font-size: 16px;
         margin: 20px auto 10px;
     }
 
     .card {
-        width: 280px;
-        font-size: 16px;
+        width: 240px;
+        font-size: 18px;
         padding: 20px;
         margin: 15px auto;
     }
 
     .button-container {
-        width: 280px;
+        width: 240px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
         margin: 0 auto;
     }
 
-    .button-container button {
-        margin: 6px 0;
+    .instruction-text {
+        font-size: 18px;
+        margin: 20px 0;
+        max-width: 240px;
     }
 
     footer {
         position: relative;
         padding: 20px 0;
-        font-size: 12px;
     }
 }
