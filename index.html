@@ -1,8 +1,7 @@
-<!-- Updated HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
+    <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EMK8Q5QN8S"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -10,6 +9,7 @@
         gtag('js', new Date());
         gtag('config', 'G-EMK8Q5QN8S');
     </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kink and Tell Game by Rysta</title>
@@ -19,6 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Name Input Form -->
     <div class="container" id="nameFormContainer">
         <img src="KNT.svg" alt="Kink and Tell Logo" class="logo">
         <p class="instruction-text">Enter your names to start playing!</p>
@@ -29,28 +30,40 @@
         <button id="startGameButton" class="gradient-button">Start Game</button>
     </div>
 
+    <!-- Game Container -->
     <div class="container" id="gameContainer" style="display: none;">
-        <div id="turnIndicator" class="turn-indicator">
-            It's Player 1's turn!
-        </div>
-        
-        <div id="questionCard" class="card">
-            <!-- Question will appear here -->
-        </div>
+        <!-- Turn Indicator -->
+        <div id="turnIndicator" class="turn-indicator">It's Player 1's turn!</div>
 
-        <div id="forfeitCard" class="card forfeit-card" style="display: none;">
-            <!-- Forfeit will appear here -->
-        </div>
+        <!-- Question Card -->
+        <div id="questionCard" class="card"></div>
 
+        <!-- Forfeit Card -->
+        <div id="forfeitCard" class="card forfeit-card" style="display: none;"></div>
+
+        <!-- Buttons -->
         <div class="button-group">
             <button id="nextButton" class="gradient-button">Next Question</button>
             <button id="forfeitButton" class="gradient-button alt">Take a Forfeit</button>
         </div>
     </div>
 
+    <!-- Mobile View Controls (Visible on Mobile Only) -->
+    <div id="mobileControls">
+        <h2>Mobile View Settings</h2>
+        <label for="uiScale">UI Scale:</label>
+        <input type="range" id="uiScale" min="1" max="2" step="0.1" value="1">
+
+        <label for="paddingScale">Padding Scale:</label>
+        <input type="range" id="paddingScale" min="1" max="3" step="0.1" value="1.5">
+    </div>
+
+    <!-- Footer -->
     <footer>
-        <p>Created by <a href="https://www.instagram.com/rystadom" target="_blank">Rysta</a></p>
+        <p>Created by <a href="#" target="_blank">Rysta</a></p>
     </footer>
-    <script src="script.js"></script>
+
+    <!-- JavaScript -->
+    <script src="./script.js"></script>
 </body>
 </html>
