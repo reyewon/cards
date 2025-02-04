@@ -1,7 +1,7 @@
 :root {
     --primary-purple: #662D91;
-    --secondary-purple: #9B3B8C;
     --accent-pink: #E6007E;
+    --neon-blue: #00F3FF;
     --text-white: #ffffff;
 }
 
@@ -14,75 +14,9 @@ body {
     margin: 0;
     font-family: 'Inter', sans-serif;
     color: var(--text-white);
-    background: var(--primary-purple);
-    overflow: hidden;
-    position: relative;
-}
-
-.gradient-orbs {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-}
-
-.orb {
-    position: absolute;
-    width: 150vh;
-    height: 150vh;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.5;
-    animation: orbFloat 20s infinite;
-}
-
-.orb:nth-child(1) {
-    background: var(--accent-pink);
-    top: -50%;
-    left: -25%;
-    animation-delay: 0s;
-}
-
-.orb:nth-child(2) {
-    background: var(--secondary-purple);
-    top: 50%;
-    right: -25%;
-    animation-delay: -5s;
-}
-
-.orb:nth-child(3) {
-    background: var(--primary-purple);
-    bottom: -25%;
-    left: 50%;
-    animation-delay: -10s;
-}
-
-@keyframes orbFloat {
-    0% {
-        transform: translate(0, 0) scale(1);
-    }
-    33% {
-        transform: translate(5%, 5%) scale(1.1);
-    }
-    66% {
-        transform: translate(-5%, -5%) scale(0.9);
-    }
-    100% {
-        transform: translate(0, 0) scale(1);
-    }
-}
-
-main {
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: linear-gradient(145deg, #2B0B3A 0%, #662D91 50%, #9B3B8C 100%);
+    background-size: 300% 300%;
+    animation: gradientShift 15s ease infinite;
 }
 
 .container {
@@ -92,19 +26,26 @@ main {
     border-radius: 15px;
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.content-wrapper {
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+}
+
+.content-wrapper {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
 }
 
 .logo {
     width: 300px;
     height: auto;
     margin-bottom: 30px;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.4));
 }
 
 .instruction-text {
@@ -112,11 +53,12 @@ main {
     font-weight: 500;
     margin: 0;
     text-align: center;
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
 }
 
 .input-wrapper {
     width: 100%;
-    max-width: 400px;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -124,55 +66,48 @@ main {
 
 input[type="text"] {
     width: 100%;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    height: 65px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid var(--neon-blue);
     border-radius: 15px;
     padding: 0 20px;
     font-size: 20px;
     color: var(--text-white);
     box-sizing: border-box;
+    transition: all 0.3s ease;
 }
 
-input[type="text"]::placeholder {
-    color: rgba(255, 255, 255, 0.6);
+input[type="text"]:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
 }
 
 button {
     width: 100%;
-    height: 60px;
-    background: var(--accent-pink);
+    height: 65px;
+    background: linear-gradient(45deg, var(--accent-pink), var(--primary-purple));
     border: none;
     border-radius: 15px;
     color: var(--text-white);
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 600;
     cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
 }
 
-.card {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    padding: 25px;
-    margin: 20px 0;
-    font-size: 20px;
-    line-height: 1.5;
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(230, 0, 126, 0.4);
 }
 
-footer {
-    position: fixed;
-    bottom: 25px;
+.button-stack {
     width: 100%;
-    text-align: center;
-    font-size: 16px;
-    color: rgba(255, 255, 255, 0.8);
-    z-index: 1;
-}
-
-footer a {
-    color: var(--accent-pink);
-    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
 }
 
 @media (max-width: 1024px) {
@@ -180,63 +115,43 @@ footer a {
         width: 100%;
         height: 100vh;
         margin: 0;
-        padding: 0;
+        padding: 20px;
         border-radius: 0;
-        background: transparent;
-        display: flex;
-        align-items: center;
+        justify-content: center;
     }
 
     .content-wrapper {
         width: 85%;
-        max-width: 560px;
-        margin: 0 auto;
-        gap: 35px;
+        max-width: 340px;
+        gap: 25px;
     }
 
     .logo {
         width: 85%;
-        max-width: 560px;
+        max-width: 300px;
         margin: 0 0 20px;
     }
 
     .instruction-text {
-        font-size: 32px;
-        margin: 0 0 20px;
-    }
-
-    .input-wrapper {
-        width: 100%;
-        gap: 20px;
+        font-size: 28px;
     }
 
     input[type="text"] {
-        height: 75px;
-        font-size: 26px;
+        height: 70px;
+        font-size: 24px;
         border-radius: 20px;
-        background: rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.15);
+        border: 2px solid var(--neon-blue);
     }
 
     button {
-        width: 100%;
-        height: 75px;
+        height: 70px;
+        font-size: 24px;
+        border-radius: 20px;
+        margin: 5px 0;
+    }
+
+    .button-stack {
         gap: 20px;
-        font-size: 28px;
-        border-radius: 20px;
-    }
-
-    .card {
-        font-size: 26px;
-        padding: 30px;
-        border-radius: 20px;
-    }
-
-    .turn-indicator {
-        font-size: 28px;
-    }
-
-    footer {
-        padding: 20px;
-        font-size: 18px;
     }
 }
