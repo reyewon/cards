@@ -11,37 +11,50 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Kink and Tell Game by Rysta</title>
+    <title>Kink & Tell Game by Rysta</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="game-wrapper">
-        <div class="game-container" id="nameFormContainer">
-            <img src="KNT.svg" alt="Kink & Tell Logo" class="logo">
-            <h1>Enter your names to start playing!</h1>
-            <div class="input-group">
-                <input type="text" id="player1" placeholder="Player 1">
-                <input type="text" id="player2" placeholder="Player 2">
+    <div class="background-animation"></div>
+    <main>
+        <div class="container" id="nameFormContainer">
+            <div class="content-wrapper">
+                <img src="KNT.svg" alt="Kink and Tell Logo" class="logo">
+                <p class="instruction-text">Enter your names to start playing!</p>
+                <div class="input-wrapper">
+                    <input type="text" id="player1" placeholder="Player 1">
+                    <input type="text" id="player2" placeholder="Player 2">
+                </div>
+                <div class="button-wrapper">
+                    <button id="startGameButton">Start Game</button>
+                </div>
             </div>
-            <button id="startGameButton">Start Game</button>
         </div>
 
-        <div class="game-container" id="gameContainer" style="display: none;">
-            <div id="turnIndicator" class="turn-indicator"></div>
-            <div id="questionCard" class="card"></div>
-            <div id="forfeitCard" class="card" style="display: none;"></div>
-            <div class="button-group">
-                <button id="nextButton">Next Question</button>
-                <button id="forfeitButton">Take a Forfeit</button>
+        <div class="container" id="gameContainer" style="display: none;">
+            <div class="content-wrapper">
+                <div id="turnIndicator" class="turn-indicator"></div>
+                <div class="card-wrapper">
+                    <div id="questionCard" class="card">
+                        <!-- Question will appear here -->
+                    </div>
+                    <div id="forfeitCard" class="card" style="display: none;">
+                        <!-- Forfeit will appear here -->
+                    </div>
+                </div>
+                <div class="button-stack">
+                    <button id="nextButton">Next Question</button>
+                    <button id="forfeitButton">Take a Forfeit</button>
+                </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <footer>
-        <p>Created by <span>Rysta</span></p>
+        <p>Created by <a href="https://www.instagram.com/rystadom" target="_blank">Rysta</a></p>
     </footer>
     <script src="script.js"></script>
 </body>
