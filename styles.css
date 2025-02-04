@@ -7,9 +7,9 @@ body {
     font-family: 'Inter', sans-serif;
     color: #ffffff;
     font-size: 16px;
-    background: linear-gradient(315deg, #1a1a2b 0%, #2a2a4b 25%, #1a1a2b 50%, #2a2a4b 75%, #1a1a2b 100%);
+    background: linear-gradient(315deg, #ff69b4 0%, #4b0082 25%, #9400d3 50%, #4b0082 75%, #ff69b4 100%);
     background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
+    animation: gradientShift 12s ease infinite;
 }
 
 @keyframes gradientShift {
