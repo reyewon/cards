@@ -7,7 +7,7 @@ body {
     font-family: 'Inter', sans-serif;
     color: #ffffff;
     background: linear-gradient(145deg, #ff69b4 0%, #9400d3 50%, #4834d4 100%);
-    background-size: 300% 300%;
+    background-size: 400% 400%;
     animation: gradientShift 12s ease infinite;
     padding: 20px;
 }
@@ -18,6 +18,19 @@ body {
     100% { background-position: 0% 50%; }
 }
 
+.background-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.3;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    animation: pulse 4s ease-in-out infinite;
+}
+
 .container {
     width: 800px;
     padding: 30px;
@@ -26,6 +39,8 @@ body {
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    position: relative;
+    z-index: 1;
     text-align: center;
 }
 
@@ -36,13 +51,7 @@ body {
     filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.4));
 }
 
-.instruction-text {
-    font-size: 18px;
-    margin-bottom: 25px;
-    color: #ffffff;
-}
-
-.input-wrapper {
+.input-container {
     max-width: 400px;
     margin: 0 auto;
 }
@@ -50,12 +59,12 @@ body {
 input[type="text"] {
     width: 100%;
     padding: 15px;
+    margin: 10px 0;
     font-size: 16px;
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid #00F3FF;
     border-radius: 8px;
     color: #ffffff;
-    margin: 10px 0;
     box-sizing: border-box;
 }
 
@@ -70,11 +79,6 @@ button {
     border-radius: 8px;
     cursor: pointer;
     margin: 10px 0;
-    transition: transform 0.3s ease;
-}
-
-button:hover {
-    transform: translateY(-2px);
 }
 
 .card {
@@ -88,27 +92,7 @@ button:hover {
     min-height: 100px;
 }
 
-.turn-indicator {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 25px;
-    color: #00F3FF;
-}
-
-footer {
-    position: fixed;
-    bottom: 20px;
-    width: 100%;
-    text-align: center;
-    font-size: 12px;
-    color: rgba(255, 255, 255, 0.7);
-}
-
-footer a {
-    color: #00F3FF;
-    text-decoration: none;
-}
-
+/* Mobile-specific styles */
 @media (max-width: 768px) {
     body {
         padding: 0;
@@ -116,64 +100,53 @@ footer a {
 
     .container {
         width: 100%;
-        min-height: 100vh;
+        height: 100vh;
         margin: 0;
         padding: 20px;
         border-radius: 0;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
     }
 
-    .logo {
-        max-width: 70%;
-        margin: 20px auto;
-    }
-
-    .input-wrapper {
-        width: 80%;
+    .input-container {
+        width: 85%;
+        max-width: 300px;
     }
 
     input[type="text"] {
-        font-size: 20px;
-        padding: 20px;
+        font-size: 18px;
+        padding: 12px;
     }
 
-    .instruction-text {
-        font-size: 24px;
+    .logo {
+        width: 70%;
+        max-width: 250px;
+        margin: 20px auto;
     }
 
     .card {
-        font-size: 22px;
-        padding: 30px 20px;
+        font-size: 20px;
+        padding: 20px;
         margin: 15px 0;
         flex-grow: 1;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
-    .turn-indicator {
-        font-size: 24px;
-        padding: 15px 0;
-    }
-
-    .button-group {
+    .button-container {
         display: flex;
         flex-direction: column;
-        gap: 15px;
+        gap: 10px;
         margin-top: auto;
     }
 
     button {
-        font-size: 20px;
-        padding: 20px;
+        max-width: none;
+        padding: 16px;
+        font-size: 18px;
         margin: 5px 0;
     }
 
-    footer {
-        position: relative;
-        padding: 20px 0;
-        font-size: 14px;
+    .turn-indicator {
+        font-size: 18px;
+        margin: 15px 0;
     }
 }
