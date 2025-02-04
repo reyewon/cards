@@ -10,6 +10,7 @@ body {
     background: linear-gradient(315deg, #ff69b4 0%, #4b0082 25%, #9400d3 50%, #4b0082 75%, #ff69b4 100%);
     background-size: 400% 400%;
     animation: gradientShift 12s ease infinite;
+    padding: 15px;
 }
 
 @keyframes gradientShift {
@@ -38,8 +39,9 @@ body {
 }
 
 .container {
-    width: 800px;
-    padding: 30px;
+    width: 100%;
+    max-width: 800px;
+    padding: 20px;
     background: rgba(0, 0, 0, 0.4);
     border-radius: 15px;
     backdrop-filter: blur(10px);
@@ -48,37 +50,35 @@ body {
     position: relative;
     z-index: 1;
     text-align: center;
-    margin: 20px;
+    margin: 10px;
+    box-sizing: border-box;
 }
 
 .logo {
+    width: 80%;
     max-width: 300px;
     height: auto;
-    margin: 0 auto 30px;
+    margin: 0 auto 20px;
     filter: drop-shadow(0 0 15px rgba(0, 243, 255, 0.4));
 }
 
 input[type="text"] {
-    padding: 15px;
+    width: 100%;
+    padding: 12px;
     font-size: 16px;
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid #00F3FF;
     border-radius: 8px;
     color: #ffffff;
-    width: 100%;
     box-sizing: border-box;
-    margin: 10px 0;
+    margin: 8px 0;
     transition: all 0.3s ease;
 }
 
-input[type="text"]:focus {
-    outline: none;
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
-}
-
 button {
-    padding: 15px 30px;
+    width: 100%;
+    max-width: 300px;
+    padding: 15px;
     font-size: 16px;
     font-weight: 700;
     background: linear-gradient(45deg, #FF6B6B, #6B6BFF);
@@ -88,55 +88,65 @@ button {
     cursor: pointer;
     transition: all 0.3s ease;
     text-transform: uppercase;
-    margin: 10px 0;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(107, 107, 255, 0.4);
+    margin: 10px auto;
 }
 
 .card {
+    width: 100%;
     background: rgba(255, 255, 255, 0.1);
     border: 2px solid #00F3FF;
     border-radius: 12px;
-    padding: 25px;
-    margin: 20px 0;
-    font-size: 18px;
-    line-height: 1.6;
+    padding: 20px;
+    margin: 15px 0;
+    font-size: 16px;
+    line-height: 1.5;
     box-shadow: 0 0 20px rgba(0, 243, 255, 0.2);
-    min-height: 100px;
-}
-
-.forfeit-card {
-    border-color: #FF6B6B;
-    background: rgba(255, 107, 107, 0.1);
+    min-height: auto;
+    box-sizing: border-box;
 }
 
 .turn-indicator {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
-    margin-bottom: 25px;
+    margin: 15px 0;
     color: #00F3FF;
     text-shadow: 0 0 15px rgba(0, 243, 255, 0.3);
 }
 
 footer {
     position: fixed;
-    bottom: 20px;
+    bottom: 10px;
+    left: 0;
     width: 100%;
     text-align: center;
     font-size: 12px;
     color: rgba(255, 255, 255, 0.7);
     z-index: 1;
+    padding: 0 15px;
+    box-sizing: border-box;
 }
 
-footer a {
-    color: #00F3FF;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-footer a:hover {
-    text-shadow: 0 0 10px rgba(0, 243, 255, 0.4);
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 15px;
+        margin: 5px;
+    }
+    
+    .card {
+        padding: 15px;
+        font-size: 15px;
+    }
+    
+    button {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .turn-indicator {
+        font-size: 16px;
+    }
 }
