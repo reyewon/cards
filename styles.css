@@ -5,52 +5,58 @@ body {
     align-items: center;
     min-height: 100vh;
     margin: 0;
+    padding: 0;
     font-family: 'Inter', sans-serif;
     color: #ffffff;
     background: #4a0082;
 }
 
 .container {
-    width: 100%;
-    max-width: 400px;
-    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    min-height: 85vh;
+    padding: 40px 20px;
     background: rgba(0, 0, 0, 0.2);
-    border-radius: 12px;
+    border-radius: 20px;
     backdrop-filter: blur(10px);
-    text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    justify-content: center;
+    gap: 25px;
+    margin: 20px auto;
 }
 
 .logo {
-    width: 200px;
+    width: 70%;
+    max-width: 300px;
     height: auto;
     margin: 0 auto 20px;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
 }
 
 .instruction-text {
-    font-size: 20px;
-    margin: 0 0 20px;
+    font-size: 24px;
+    margin: 10px 0 30px;
     color: rgba(255, 255, 255, 0.9);
+    text-align: center;
 }
 
 .input-container {
-    width: 100%;
-    max-width: 280px;
+    width: 85%;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 15px;
 }
 
 input[type="text"] {
     width: 100%;
-    padding: 15px;
-    font-size: 16px;
+    padding: 18px 20px;
+    font-size: 18px;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
+    border-radius: 12px;
     color: #ffffff;
     box-sizing: border-box;
 }
@@ -66,78 +72,82 @@ input[type="text"]:focus {
 }
 
 button {
-    width: 280px;
-    padding: 15px;
-    font-size: 16px;
+    width: 85%;
+    max-width: 400px;
+    padding: 18px;
+    font-size: 20px;
     font-weight: 600;
-    background: linear-gradient(90deg, #ff1493, #9400d3);
+    background: #b4237c;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
-    margin: 10px 0;
+    margin: 15px 0;
 }
 
 .card {
-    width: 280px;
+    width: 85%;
+    max-width: 400px;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
-    padding: 20px;
+    border-radius: 15px;
+    padding: 25px;
     margin: 15px 0;
-    font-size: 18px;
+    font-size: 22px;
     line-height: 1.6;
 }
 
 .turn-indicator {
-    font-size: 20px;
+    font-size: 22px;
     margin: 15px 0;
     color: rgba(255, 255, 255, 0.9);
+    text-align: center;
 }
 
 .button-container {
-    width: 280px;
+    width: 85%;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+    margin-top: 20px;
 }
 
 footer {
     width: 100%;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
     color: rgba(255, 255, 255, 0.7);
     padding: 20px 0;
-    position: fixed;
-    bottom: 0;
+    margin-top: auto;
 }
 
 footer a {
-    color: #ff1493;
+    color: #ff69b4;
     text-decoration: none;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1024px) {
     .container {
         width: 800px;
         max-width: 800px;
-        padding: 40px;
+        padding: 50px;
+        min-height: auto;
     }
 
     .input-container {
-        max-width: 400px;
+        max-width: 500px;
     }
 
     button {
-        width: 400px;
+        max-width: 500px;
     }
 
     .card {
-        width: 100%;
         max-width: 600px;
     }
 
     .button-container {
-        width: 400px;
+        max-width: 500px;
     }
 }
