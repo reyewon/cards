@@ -146,7 +146,7 @@ const questions = [
     "What normal body part feels weirdly taboo to you?",
     "What's the worst possible time to get a booty call text?",
     "If you had to explain polyamory to a Victorian ghost, how would you start?",
-    "What completely non-sexual item have you fantasized about using in bed?",
+    "What completely non-sexual item have you fantasised about using in bed?",
     "What childhood game would make the kinkiest drinking game?",
     "If our relationship was a Tinder bio, what emojis would we need?",
     "What's the worst possible pet name for a Dom?",
@@ -170,7 +170,7 @@ const questions = [
     "What's your ultimate free-use fantasy scenario involving me and someone else?",
     "How would you want me to mark you before sending you to play with someone else?",
     "Describe your ideal scenario of being shared at a kink event - who watches? Who participates?",
-    "What's the most intense CNC (consensual non-consent) scenario you've fantasized about?",
+    "What's the most intense CNC (consensual non-consent) scenario you've fantasised about?",
     "How would you feel about us livestreaming our play session?",
     "How should I punish you if you cum without permission while with someone else?",
     "What's the most explicit photo/video you'd let me take to share with others?",
@@ -179,7 +179,7 @@ const questions = [
     "How would you feel about me negotiating your limits with a new play partner?",
     "Describe in detail how you'd want me to pimp you out or big you up to others for an evening",
     "What's your ultimate orgasm torture scenario? Edging duration? Overstim methods?",
-    "How should we memorialize your best kink moments? Tattoos? Photo wall? Trophy case?",
+    "How should we memorialise your best kink moments? Tattoos? Photo wall? Trophy case?",
     "Which previous partner had the most memorable oral technique and what made it special?",
     "What's something you learned from a past lover that you now use in our play?",
     "Describe the most skilled handjob/fingering technique you've ever received from someone else",
@@ -191,9 +191,7 @@ const questions = [
     "Describe the most creative use of furniture you've experienced with someone else",
     "Which past partner had the best aftercare routine and what made it exceptional?",
     "If you could choose one real person (not a celebrity) to watch me have sex with, who would it be?"
-
 ];
-
 
 let currentPlayer = 1;  // To track whose turn it is
 let player1Name = "Player 1";
@@ -239,7 +237,6 @@ const forfeits = [
     "Demonstrate your favourite restraint technique",
     "Let your partner attach clothespins or similar to 5 body parts",
     "Find something food-based and turn it sexual"
-
     // Add more forfeits here...
 ];
 
@@ -317,3 +314,25 @@ document.getElementById('forfeitButton').addEventListener('click', function() {
     forfeitCard.textContent = getNextForfeit();
     forfeitCard.style.display = 'block';  // Show the forfeit area
 });
+
+/* Mobile UI Controls */
+if (window.matchMedia("(max-width: 600px)").matches) {
+    const mobileFontSizeInput = document.getElementById('mobileFontSize');
+    const mobilePaddingInput = document.getElementById('mobilePadding');
+
+    // Update font size for various UI elements on input
+    mobileFontSizeInput.addEventListener('input', function() {
+        const newFontSize = mobileFontSizeInput.value + "rem";
+        document.querySelectorAll('.container, .instruction-text, input[type="text"], .gradient-button, .card, .turn-indicator').forEach(function(el) {
+            el.style.fontSize = newFontSize;
+        });
+    });
+
+    // Update container padding on input
+    mobilePaddingInput.addEventListener('input', function() {
+        const newPadding = mobilePaddingInput.value + "px";
+        document.querySelectorAll('.container').forEach(function(el) {
+            el.style.padding = newPadding;
+        });
+    });
+}
