@@ -18,7 +18,8 @@
     --forfeit-card-border: var(--accent1-color);
     --link-color: var(--accent2-color);
     --link-hover-color: var(--text-color);
-    --font-primary: 'Montserrat', sans-serif; /* Bolder font */
+    /* --- Font Change Here --- */
+    --font-primary: 'Inter', sans-serif; /* Switched back to Inter */
     --border-radius-main: 4px; /* Sharper corners */
     --border-radius-small: 2px;
 }
@@ -31,7 +32,7 @@
 
 body {
     font-family: var(--font-primary);
-    background-color: var(--bg-color); /* Solid dark background */
+    background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
     flex-direction: column;
@@ -39,43 +40,40 @@ body {
     justify-content: center;
     min-height: 100vh;
     padding: 1rem;
+    font-weight: 400; /* Default weight */
 }
 
 /* --- Containers --- */
 #nameFormContainer,
 #gameContainer {
     width: 100%;
-    max-width: 36rem; /* Slightly wider */
+    max-width: 36rem;
     padding: 1.5rem;
-    background-color: var(--container-bg-color); /* Solid container background */
+    background-color: var(--container-bg-color);
     border-radius: var(--border-radius-main);
-    /* Optional: Subtle border */
-    /* border: 1px solid var(--input-border-color); */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Adjusted shadow for dark bg */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
-    position: relative; /* Needed for absolute positioning of persistent logo */
+    position: relative;
 }
 
 #gameContainer {
-    display: none; /* hidden by default */
-    padding-top: 4rem; /* Add padding to prevent overlap with persistent logo */
+    display: none;
+    padding-top: 4rem;
 }
 
 /* --- Logo & Text --- */
 #logo {
     width: 12rem;
     margin: 0 auto 1.5rem auto;
-    /* Removed drop shadow - keeping it simple */
 }
 
-/* Persistent Logo / Home Button */
 #homeLogoLink {
     position: absolute;
     top: 1rem;
     left: 1rem;
     z-index: 10;
-    display: block; /* Ensure it takes up space */
-    line-height: 0; /* Prevent extra space */
+    display: block;
+    line-height: 0;
     transition: transform 0.2s ease;
 }
 #homeLogoLink:hover {
@@ -83,26 +81,25 @@ body {
 }
 
 #persistentLogo {
-    width: 40px; /* Small size */
+    width: 40px;
     height: auto;
     display: block;
 }
-
 
 #instructionText {
     font-size: 1.125rem;
     line-height: 1.75rem;
     margin-bottom: 1.5rem;
-    color: var(--accent2-color); /* Use accent color */
-    font-weight: 700;
+    color: var(--accent2-color);
+    font-weight: 700; /* Bold instruction */
 }
 
 #turnIndicator {
     font-size: 1.25rem;
     line-height: 1.75rem;
-    font-weight: 900; /* Bolder */
+    font-weight: 700; /* Bold turn indicator */
     margin-bottom: 1.5rem;
-    color: var(--accent2-color); /* Use accent color */
+    color: var(--accent2-color);
 }
 
 /* --- Input Group & Form Elements --- */
@@ -123,7 +120,7 @@ body {
 .form-row label {
     color: var(--text-muted-color);
     text-align: left;
-    font-weight: 700;
+    font-weight: 700; /* Bold labels */
 }
 
 input[type="text"],
@@ -132,10 +129,11 @@ select {
     padding: 0.75rem 1rem;
     background-color: var(--input-bg-color);
     border: 1px solid var(--input-border-color);
-    border-radius: var(--border-radius-small); /* Sharper corners */
+    border-radius: var(--border-radius-small);
     color: var(--text-color);
     font-size: 1rem;
     font-family: var(--font-primary);
+    font-weight: 400; /* Regular weight for inputs */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -147,11 +145,10 @@ input[type="text"]:focus,
 select:focus {
     border-color: var(--input-focus-border);
     outline: none;
-    box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.3); /* Subtle cyan focus ring */
+    box-shadow: 0 0 0 2px rgba(0, 255, 255, 0.3);
 }
 
 select {
-    /* Basic arrow using SVG for dark mode compatibility */
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23CCCCCC' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 0.7rem center;
@@ -163,7 +160,7 @@ select {
 }
 
 select option {
-     background: var(--input-bg-color); /* Match input background */
+     background: var(--input-bg-color);
      color: var(--text-color);
 }
 
@@ -172,12 +169,12 @@ select option {
 #nextButton,
 #forfeitButton {
     width: 100%;
-    padding: 0.85rem 1.5rem; /* Slightly taller */
+    padding: 0.85rem 1.5rem;
     font-size: 1rem;
-    font-weight: 900; /* Bolder */
+    font-weight: 700; /* Bold button text */
     text-transform: uppercase;
     border: none;
-    border-radius: var(--border-radius-small); /* Sharper corners */
+    border-radius: var(--border-radius-small);
     color: var(--button-text-color);
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.1s ease;
@@ -185,32 +182,29 @@ select option {
     letter-spacing: 0.5px;
 }
 
-/* Flat background colors */
 #startGameButton { background-color: var(--button1-bg); }
 #startGameButton:hover { background-color: var(--button1-hover-bg); }
 
-#nextButton { background-color: var(--button2-bg); color: #1a1a1a; /* Dark text on light cyan */}
+#nextButton { background-color: var(--button2-bg); color: #1a1a1a; }
 #nextButton:hover { background-color: var(--button2-hover-bg); }
 
-#forfeitButton { background-color: var(--button1-bg); } /* Use accent 1 */
+#forfeitButton { background-color: var(--button1-bg); }
 #forfeitButton:hover { background-color: var(--button1-hover-bg); }
 
-/* Subtle press effect */
 #startGameButton:active,
 #nextButton:active,
 #forfeitButton:active {
     transform: scale(0.98);
 }
 
-/* Focus ring */
 #startGameButton:focus,
 #nextButton:focus,
 #forfeitButton:focus {
      outline: none;
-     box-shadow: 0 0 0 3px rgba(255, 20, 147, 0.4); /* Pink focus ring */
+     box-shadow: 0 0 0 3px rgba(255, 20, 147, 0.4);
 }
 #nextButton:focus {
-    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.4); /* Cyan focus ring */
+    box-shadow: 0 0 0 3px rgba(0, 255, 255, 0.4);
 }
 
 .button-group {
@@ -222,47 +216,47 @@ select option {
 /* --- Cards --- */
 #questionCard,
 #forfeitCard {
-    background-color: var(--input-bg-color); /* Consistent dark bg */
+    background-color: var(--input-bg-color);
     border: 1px solid var(--input-border-color);
-    border-left: 5px solid var(--accent2-color); /* Accent border on the left */
+    border-left: 5px solid var(--accent2-color);
     border-radius: var(--border-radius-small);
     padding: 1.25rem;
     margin-bottom: 1.5rem;
-    font-size: 1.1rem; /* Slightly larger text */
+    font-size: 1.1rem;
     line-height: 1.6;
     min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center; /* Center text within card */
+    text-align: center;
     color: var(--text-color);
-    font-weight: 400; /* Regular weight for readability */
+    font-weight: 400; /* Regular weight for card text */
 }
 
 #forfeitCard {
-    border-left-color: var(--accent1-color); /* Pink accent for forfeit */
+    border-left-color: var(--accent1-color);
     background-color: var(--forfeit-card-bg);
-    border-color: var(--forfeit-card-border); /* Match border color */
-    border-width: 1px; /* Reset border width */
-    border-left-width: 5px; /* Keep thick left border */
-    display: none; /* hidden by default */
-    font-weight: 700; /* Make forfeit text bolder */
+    border-color: var(--forfeit-card-border);
+    border-width: 1px;
+    border-left-width: 5px;
+    display: none;
+    font-weight: 700; /* Bold forfeit text */
 }
 
 /* --- Footer --- */
 footer {
-    margin-top: 2rem; /* Add some space above footer */
+    margin-top: 2rem;
     text-align: center;
     width: 100%;
     font-size: 0.875rem;
-    color: var(--text-muted-color); /* Muted color */
-    padding-bottom: 1rem; /* Ensure padding at bottom */
+    color: var(--text-muted-color);
+    padding-bottom: 1rem;
 }
 
 footer a {
     color: var(--link-color);
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 700; /* Bold link */
     transition: color 0.3s ease;
 }
 
@@ -271,11 +265,11 @@ footer a:hover {
 }
 
 /* --- Responsiveness --- */
-@media (min-width: 768px) { /* md breakpoint */
+@media (min-width: 768px) {
     #nameFormContainer,
     #gameContainer {
         padding: 2rem;
-        padding-top: 5rem; /* Ensure enough top padding on game container */
+        padding-top: 5rem;
     }
 
     #persistentLogo { width: 50px; }
@@ -286,7 +280,7 @@ footer a:hover {
     #instructionText { font-size: 1.25rem; }
     #turnIndicator { font-size: 1.5rem; }
 
-    .form-row { grid-template-columns: 100px 1fr; /* Fixed label width */ gap: 1rem;}
+    .form-row { grid-template-columns: 100px 1fr; gap: 1rem;}
     .form-row label { text-align: right; }
 
     input[type="text"],
