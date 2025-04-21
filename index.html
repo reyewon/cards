@@ -1,65 +1,80 @@
-<!-- Updated HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EMK8Q5QN8S"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-EMK8Q5QN8S');
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kink and Tell Game by Rysta</title>
-    <link rel="stylesheet" href="styles.css">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* CSS styles would go here */
+    </style>
+
+     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EMK8Q5QN8S"></script>
+     <script>
+         // Analytics setup code
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-EMK8Q5QN8S');
+     </script>
 </head>
-<body>
-    <div class="container" id="nameFormContainer">
-        <img src="KNT.svg" alt="Kink and Tell Logo" class="logo">
-        <p class="instruction-text">Enter your names to start playing!</p>
-        <div class="input-group">
-            <input type="text" id="player1" placeholder="Player 1 Name">
-            <input type="text" id="player2" placeholder="Player 2 Name">
+<body class="flex flex-col items-center justify-center min-h-screen text-white p-4">
+
+    <div id="nameFormContainer" class="w-full max-w-lg p-6 md:p-8 bg-black/50 backdrop-blur-md rounded-xl border border-white/10 shadow-lg text-center">
+        <img src="https://raw.githubusercontent.com/Rysta101/kink-and-tell/main/KNT.svg" alt="Kink and Tell Logo" class="logo w-48 md:w-64 mx-auto mb-6">
+        <p class="text-lg md:text-xl mb-6 text-cyan-300 text-shadow">Enter names and select roles!</p>
+        <div class="space-y-4 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                <label for="player1" class="md:col-span-1 text-left md:text-right pr-2 text-cyan-200">Player 1:</label>
+                <input type="text" id="player1" placeholder="Name" class="md:col-span-2 w-full px-4 py-3 bg-white/10 border-2 border-cyan-400 rounded-lg text-white text-base md:text-lg placeholder-white/60 transition duration-300 ease-in-out focus:bg-white/20 focus:border-cyan-300">
+            </div>
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                 <label for="player1Role" class="md:col-span-1 text-left md:text-right pr-2 text-cyan-200">Role:</label>
+                 <select id="player1Role" class="md:col-span-2 w-full px-4 py-3 bg-white/10 border-2 border-cyan-400 rounded-lg text-white text-base md:text-lg transition duration-300 ease-in-out focus:bg-white/20 focus:border-cyan-300">
+                     <option value="switch">Switch</option>
+                     <option value="Dom">Dom</option>
+                     <option value="sub">sub</option>
+                 </select>
+             </div>
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                 <label for="player2" class="md:col-span-1 text-left md:text-right pr-2 text-cyan-200">Player 2:</label>
+                 <input type="text" id="player2" placeholder="Name" class="md:col-span-2 w-full px-4 py-3 bg-white/10 border-2 border-cyan-400 rounded-lg text-white text-base md:text-lg placeholder-white/60 transition duration-300 ease-in-out focus:bg-white/20 focus:border-cyan-300">
+             </div>
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-2 items-center">
+                 <label for="player2Role" class="md:col-span-1 text-left md:text-right pr-2 text-cyan-200">Role:</label>
+                 <select id="player2Role" class="md:col-span-2 w-full px-4 py-3 bg-white/10 border-2 border-cyan-400 rounded-lg text-white text-base md:text-lg transition duration-300 ease-in-out focus:bg-white/20 focus:border-cyan-300">
+                     <option value="switch">Switch</option>
+                     <option value="Dom">Dom</option>
+                     <option value="sub">sub</option>
+                 </select>
+             </div>
         </div>
-        <button id="startGameButton" class="gradient-button">Start Game</button>
+        <button id="startGameButton" class="w-full px-6 py-3 text-base md:text-lg font-bold uppercase bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-pink-400 focus:ring-opacity-50">Start Game</button>
     </div>
 
-    <div class="container" id="gameContainer" style="display: none;">
-        <div id="turnIndicator" class="turn-indicator">
-            It's Player 1's turn!
-        </div>
-        
-        <div id="questionCard" class="card">
-            <!-- Question will appear here -->
-        </div>
-
-        <div id="forfeitCard" class="card forfeit-card" style="display: none;">
-            <!-- Forfeit will appear here -->
-        </div>
-
-        <div class="button-group">
-            <button id="nextButton" class="gradient-button">Next Question</button>
-            <button id="forfeitButton" class="gradient-button alt">Take a Forfeit</button>
+    <div id="gameContainer" class="w-full max-w-lg p-6 md:p-8 bg-black/50 backdrop-blur-md rounded-xl border border-white/10 shadow-lg text-center hidden">
+        <div id="turnIndicator" class="text-xl md:text-2xl font-bold mb-6 text-cyan-300 text-shadow"></div>
+        <div id="questionCard" class="card bg-white/10 border-2 border-cyan-400 rounded-lg p-5 md:p-6 mb-6 text-base md:text-lg min-h-[100px] flex items-center justify-center shadow-md"></div>
+        <div id="forfeitCard" class="card bg-red-900/30 border-2 border-red-400 rounded-lg p-5 md:p-6 mb-6 text-base md:text-lg min-h-[100px] flex items-center justify-center shadow-md hidden"></div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <button id="nextButton" class="w-full px-6 py-3 text-base md:text-lg font-bold uppercase bg-gradient-to-r from-green-500 to-cyan-500 hover:from-green-600 hover:to-cyan-600 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50">Next Question</button>
+            <button id="forfeitButton" class="w-full px-6 py-3 text-base md:text-lg font-bold uppercase bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50">Take a Forfeit</button>
         </div>
     </div>
 
-    <footer>
-        <p>Created by <a href="https://www.instagram.com/rystadom" target="_blank">Rysta</a></p>
+    <footer class="absolute bottom-4 text-center w-full text-sm text-white/80">
+        Created by <a href="https://www.instagram.com/rystadom" target="_blank" class="text-cyan-300 hover:text-cyan-100 transition duration-300">Rysta</a>
     </footer>
 
-    <!-- Mobile controls for adjusting UI elements (visible only on mobile) -->
-    <div id="mobileControls">
-        <label for="mobileFontSize">Font Size:</label>
-        <input type="range" id="mobileFontSize" min="1" max="3" step="0.1" value="1">
-        <label for="mobilePadding">Container Padding:</label>
-        <input type="range" id="mobilePadding" min="10" max="50" step="1" value="30">
-    </div>
+    <script>
+        // JavaScript logic would go here
+    </script>
 
-    <script src="script.js"></script>
 </body>
 </html>
