@@ -6,6 +6,7 @@ let player1Role = "switch"; // Default role
 let player2Role = "switch"; // Default role
 
 // --- DOM Elements ---
+// Ensure these IDs match your index.html file
 const nameFormContainer = document.getElementById('nameFormContainer');
 const gameContainer = document.getElementById('gameContainer');
 const player1Input = document.getElementById('player1');
@@ -20,14 +21,13 @@ const nextButton = document.getElementById('nextButton');
 const forfeitButton = document.getElementById('forfeitButton');
 
 // --- localStorage Keys ---
-const USED_QUESTIONS_KEY = 'kinkAndTellUsedQuestions_v2'; // Added _v2 to reset for new structure
-const USED_FORFEITS_KEY = 'kinkAndTellUsedForfeits'; // Forfeits don't need role tagging
+const USED_QUESTIONS_KEY = 'kinkAndTellUsedQuestions_v2'; // Key for storing used question indices
+const USED_FORFEITS_KEY = 'kinkAndTellUsedForfeits'; // Key for storing used forfeit indices
 
 // --- Content Arrays ---
 
 // Questions now as objects with 'text' and 'type'
 // Types: 'neutral', 'D_asks_S', 'S_asks_D'
-// NOTE: Tagging is interpretive and may need refinement.
 const questions = [
     // --- Neutral Questions (Suitable for most dynamics) ---
     { text: "Have you ever wanted to explore a kink or fetish with me but haven't yet?", type: "neutral" },
@@ -295,7 +295,7 @@ const questions = [
     // *** NEW S_asks_D Questions End Here ***
 ];
 
-// Forfeits remain unchanged for now, not role-specific
+// Forfeits (List remains the same as previous version)
 const forfeits = [
     // --- Original Forfeits ---
     "You must head to the bathroom, take a naughty photo and send it to the other player",
@@ -610,11 +610,27 @@ function updateTurnIndicator() {
  * Displays the next unique question based on roles.
  */
 function displayNextQuestion() {
+    // Ensure the game container is visible and name form is hidden
+    if (gameContainer.style.display === 'none') {
+        nameFormContainer.style.display = 'none';
+        gameContainer.style.display = 'block';
+    }
+
     const nextQObject = getNextUniqueQuestion();
-    questionCard.textContent = nextQObject.text; // Display only the text property
-    questionCard.style.display = 'flex'; // Show question card
-    forfeitCard.style.display = 'none'; // Hide forfeit card
-    updateTurnIndicator(); // Update turn indicator
+    // Check if we received a valid question object
+    if (nextQObject && typeof nextQObject.text === 'string') {
+        questionCard.textContent = nextQObject.text; // Display only the text property
+        questionCard.style.display = 'flex'; // Show question card
+        forfeitCard.style.display = 'none'; // Hide forfeit card
+        updateTurnIndicator(); // Update turn indicator
+    } else {
+        // Handle potential error case where getNextUniqueQuestion failed
+        console.error("Failed to get a valid question object:", nextQObject);
+        questionCard.textContent = "Error loading question. Please try 'Next Question' again.";
+        questionCard.style.display = 'flex';
+        forfeitCard.style.display = 'none';
+        // Optionally update turn indicator with an error message or leave as is
+    }
 }
 
 /**
@@ -643,21 +659,40 @@ function switchPlayer() {
  * Reads names and roles, hides setup, shows game, displays first question.
  */
 startGameButton.addEventListener('click', () => {
-    // Get names, provide defaults if empty
-    player1Name = player1Input.value.trim() || "Player 1";
-    player2Name = player2Input.value.trim() || "Player 2";
-    // Get selected roles
-    player1Role = player1RoleSelect.value;
-    player2Role = player2RoleSelect.value;
+    console.log("Start Game button clicked"); // Debugging line
+    try {
+        // Get names, provide defaults if empty
+        player1Name = player1Input.value.trim() || "Player 1";
+        player2Name = player2Input.value.trim() || "Player 2";
+        // Get selected roles
+        player1Role = player1RoleSelect.value;
+        player2Role = player2RoleSelect.value;
 
-    // Hide setup form, show game container
-    nameFormContainer.style.display = 'none';
-    gameContainer.style.display = 'block';
+        console.log(`Player 1: ${player1Name} (${player1Role})`); // Debugging line
+        console.log(`Player 2: ${player2Name} (${player2Role})`); // Debugging line
 
-    // Set player 1 to start
-    currentPlayer = 1;
-    // Display the first question using the role-aware logic
-    displayNextQuestion();
+        // Hide setup form, show game container - Check if elements exist
+        if (nameFormContainer && gameContainer) {
+            nameFormContainer.style.display = 'none';
+            gameContainer.style.display = 'block'; // Make sure this is 'block' or 'flex', not 'flex' if it should be block-level
+            console.log("Containers visibility toggled"); // Debugging line
+        } else {
+            console.error("Name form or game container element not found!");
+            return; // Stop execution if elements are missing
+        }
+
+
+        // Set player 1 to start
+        currentPlayer = 1;
+        // Display the first question using the role-aware logic
+        displayNextQuestion();
+        console.log("First question displayed"); // Debugging line
+
+    } catch (error) {
+        console.error("Error in startGameButton listener:", error);
+        // Optionally display an error message to the user
+        alert("An error occurred starting the game. Please check the console (F12).");
+    }
 });
 
 /**
@@ -665,8 +700,14 @@ startGameButton.addEventListener('click', () => {
  * Switches player turn, displays the next appropriate question.
  */
 nextButton.addEventListener('click', () => {
-    switchPlayer(); // Switch turn first
-    displayNextQuestion(); // Then display question for the new player
+    console.log("Next Question button clicked"); // Debugging line
+    try {
+        switchPlayer(); // Switch turn first
+        displayNextQuestion(); // Then display question for the new player
+    } catch (error) {
+        console.error("Error in nextButton listener:", error);
+        alert("An error occurred getting the next question. Please check the console (F12).");
+    }
 });
 
 /**
@@ -675,6 +716,20 @@ nextButton.addEventListener('click', () => {
  * Does NOT automatically switch the turn.
  */
 forfeitButton.addEventListener('click', () => {
-    displayNextForfeit();
-    // The turn remains with the same asker for the *next* question click.
+    console.log("Forfeit button clicked"); // Debugging line
+    try {
+        displayNextForfeit();
+        // The turn remains with the same asker for the *next* question click.
+    } catch (error) {
+        console.error("Error in forfeitButton listener:", error);
+        alert("An error occurred getting the forfeit. Please check the console (F12).");
+    }
 });
+
+// --- Initial Setup ---
+// Ensure game container is hidden initially (can also be done via CSS)
+if (gameContainer) {
+    gameContainer.style.display = 'none';
+} else {
+    console.error("Game container element not found on initial load!");
+}
