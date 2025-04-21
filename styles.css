@@ -19,7 +19,6 @@
     --link-color: var(--accent2-color);
     --link-hover-color: var(--text-color);
     --font-primary: 'Inter', sans-serif; /* Use Inter font */
-    /* --- Updated Border Radius --- */
     --border-radius-main: 8px; /* Slightly more rounded container */
     --border-radius-small: 4px; /* Slightly rounded buttons/inputs */
 }
@@ -34,34 +33,39 @@ body {
     font-family: var(--font-primary);
     background-color: var(--bg-color); /* Solid dark background */
     color: var(--text-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 1rem;
-    font-weight: 400; /* Default weight */
-    /* Removed position: relative; */
-    overflow-x: hidden; /* Prevent horizontal scroll from particles */
+ /* display: flex; <--- REMOVE */
+ /* flex-direction: column; <--- REMOVE */
+ /* align-items: center; <--- REMOVE */
+ /* justify-content: center; <--- REMOVE */
+    min-height: 100vh; /* Keep this */
+    padding: 1rem; /* Keep this */
+    font-weight: 400;
+    overflow-x: hidden;
 }
 
 /* --- Containers --- */
 #nameFormContainer,
 #gameContainer {
     width: 100%;
-    max-width: 36rem; /* Slightly wider */
+    max-width: 36rem;
     padding: 1.5rem; /* Default padding */
-    background-color: var(--container-bg-color); /* Solid container background */
-    border-radius: var(--border-radius-main); /* Use main radius */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Adjusted shadow for dark bg */
+    background-color: var(--container-bg-color);
+    border-radius: var(--border-radius-main);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
     text-align: center;
-    position: relative; /* Needed for absolute positioning of persistent logo */
-    z-index: 1; /* Ensure containers are above background particles */
+    position: relative;
+    z-index: 1;
+    /* --- Add margin for horizontal centering & vertical spacing --- */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2rem; /* Add some space from the top */
+    margin-bottom: 2rem; /* Add some space before footer */
 }
 
 #gameContainer {
-    display: none; /* hidden by default */
-    padding-top: 4rem; /* Add padding to prevent overlap with persistent logo (mobile) */
+    display: none;
+    padding-top: 4rem; /* Mobile padding for logo */
+    /* margin-top / margin-bottom inherited */
 }
 
 /* --- Logo & Text --- */
@@ -75,7 +79,7 @@ body {
     position: absolute;
     top: 1rem;
     left: 1rem;
-    z-index: 10; /* Ensure logo is above other container content */
+    z-index: 10;
     display: block;
     line-height: 0;
     transition: transform 0.2s ease;
@@ -249,13 +253,13 @@ select option {
 
 /* --- Footer --- */
 footer {
-    margin-top: 2rem;
+    /* margin-top: 2rem; <--- Removed, margin-bottom on containers handles space */
     text-align: center;
     width: 100%;
     font-size: 0.875rem;
     color: var(--text-muted-color);
     padding-bottom: 1rem;
-    position: relative; /* Ensure footer is above particles */
+    position: relative;
     z-index: 1;
 }
 
@@ -271,20 +275,17 @@ footer a:hover {
 }
 
 /* --- Responsiveness --- */
-@media (min-width: 768px) { /* md breakpoint */
-
-    /* Apply general padding increase to both */
+@media (min-width: 768px) {
     #nameFormContainer,
     #gameContainer {
-        padding: 2rem; /* Reset padding first */
+        padding: 2rem;
+        /* Margin already handles spacing and centering */
     }
 
-    /* Apply EXTRA top padding ONLY to the game container */
     #gameContainer {
-        padding-top: 5rem; /* Ensure enough top padding for persistent logo */
+        padding-top: 5rem; /* Keep extra top padding for logo space */
     }
 
-    /* Rest of the media query styles */
     #persistentLogo { width: 50px; }
     #homeLogoLink { top: 1.5rem; left: 1.5rem; }
 
@@ -293,7 +294,7 @@ footer a:hover {
     #instructionText { font-size: 1.25rem; }
     #turnIndicator { font-size: 1.5rem; }
 
-    .form-row { grid-template-columns: 100px 1fr; /* Fixed label width */ gap: 1rem;}
+    .form-row { grid-template-columns: 100px 1fr; gap: 1rem;}
     .form-row label { text-align: right; }
 
     input[type="text"],
@@ -312,27 +313,26 @@ footer a:hover {
 
 /* --- Background Particle Animation --- */
 #background-particles {
-    position: fixed; /* Cover viewport */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Hide particles going off-screen */
-    z-index: 0; /* Behind main content */
-    pointer-events: none; /* Allow clicks through */
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .particle {
     position: absolute;
-    border-radius: 50%; /* Make them circles */
-    opacity: 0; /* Start invisible */
-    animation: float 20s infinite linear; /* Animation properties */
+    border-radius: 50%;
+    opacity: 0;
+    animation: float 20s infinite linear;
 }
 
 .particle.pink { background-color: var(--accent1-color); }
 .particle.cyan { background-color: var(--accent2-color); }
 
-/* Define random positions, sizes, delays, and durations */
 .particle:nth-child(1) { width: 10px; height: 10px; left: 15%; animation-delay: 0s; animation-duration: 18s; }
 .particle:nth-child(2) { width: 6px; height: 6px; left: 30%; animation-delay: 2s; animation-duration: 22s; }
 .particle:nth-child(3) { width: 8px; height: 8px; left: 45%; animation-delay: 5s; animation-duration: 20s; }
@@ -341,24 +341,22 @@ footer a:hover {
 .particle:nth-child(6) { width: 9px; height: 9px; left: 90%; animation-delay: 3s; animation-duration: 19s; }
 .particle:nth-child(7) { width: 7px; height: 7px; left: 5%; animation-delay: 6s; animation-duration: 21s; }
 .particle:nth-child(8) { width: 11px; height: 11px; left: 20%; animation-delay: 4s; animation-duration: 23s; }
-/* Add more :nth-child rules if you add more particles in HTML */
 
 
-/* Keyframes for floating up and fading */
 @keyframes float {
     0% {
-        transform: translateY(100vh) scale(0.5); /* Start below screen, small */
+        transform: translateY(100vh) scale(0.5);
         opacity: 0;
     }
     10%, 90% {
-        opacity: 0.15; /* Fade in/out quickly at start/end, stay subtle */
+        opacity: 0.15;
     }
     50% {
-        opacity: 0.3; /* Slightly more visible mid-way */
-         transform: scale(1); /* Reach normal size */
+        opacity: 0.3;
+         transform: scale(1);
     }
     100% {
-        transform: translateY(-10vh) scale(0.7); /* Float just past top, slightly smaller */
+        transform: translateY(-10vh) scale(0.7);
         opacity: 0;
     }
 }
