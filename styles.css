@@ -1,4 +1,8 @@
 /* --- Global Styles & Body --- */
+* { /* Added global box-sizing rule */
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
@@ -280,4 +284,3 @@ footer a:hover {
          grid-template-columns: 1fr 1fr; /* md:grid-cols-2 */
     }
 }
-
