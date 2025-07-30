@@ -1,51 +1,4 @@
-// --- DOM Elements ---
-// Containers
-const welcomeContainer = document.getElementById('welcomeContainer');
-const coupleSetupContainer = document.getElementById('coupleSetupContainer');
-const groupSetupContainer = document.getElementById('groupSetupContainer');
-const gameContainer = document.getElementById('gameContainer');
-
-// Welcome Screen Buttons
-const groupModeBtn = document.getElementById('groupModeBtn');
-const coupleModeBtn = document.getElementById('coupleModeBtn');
-const friendsModeBtn = document.getElementById('friendsModeBtn');
-
-// Couple/Friends Setup
-const player1Input = document.getElementById('player1');
-const player2Input = document.getElementById('player2');
-const player1RoleSelect = document.getElementById('player1Role');
-const player2RoleSelect = document.getElementById('player2Role');
-const player1RoleRow = document.getElementById('player1RoleRow');
-const player2RoleRow = document.getElementById('player2RoleRow');
-const startCoupleGameButton = document.getElementById('startCoupleGameButton');
-
-// Group Setup
-const newPlayerNameInput = document.getElementById('newPlayerName');
-const addPlayerBtn = document.getElementById('addPlayerBtn');
-const playerList = document.getElementById('playerList');
-const startGroupGameButton = document.getElementById('startGroupGameButton');
-
-// Game Screen
-const turnIndicator = document.getElementById('turnIndicator');
-const questionCard = document.getElementById('questionCard');
-const forfeitCard = document.getElementById('forfeitCard');
-const nextButton = document.getElementById('nextButton');
-const forfeitButton = document.getElementById('forfeitButton');
-const homeLogoLink = document.getElementById('homeLogoLink');
-
-// --- Game State Variables ---
-let gameMode = ''; // 'group', 'couple', 'friends'
-let players = []; // Array of player objects {name: string, role?: string}
-let currentPlayerIndex = 0;
-let currentTargetIndex = null; // For group mode questions
-let currentQuestionType = 'target'; // For group mode 'target' vs 'group'
-
-// --- localStorage Keys ---
-const USED_QUESTIONS_KEY_PREFIX = 'kinkAndTellUsedQuestions_';
-const USED_FORFEITS_KEY_PREFIX = 'kinkAndTellUsedForfeits_';
-
-
-// --- CONTENT LIBRARIES ---
+// --- CONTENT LIBRARIES (Can be declared early as they don't need the page to be loaded) ---
 
 // --- Couple Mode Content (Original) ---
 const coupleQuestions = [
@@ -457,7 +410,7 @@ const friendsForfeits = [
     "Describe, in detail, what you would do to the other player if you were going to hook up right now.",
     "Let the other player lightly trace a word on your back with their finger. You have to guess the word. The word must be naughty.",
     "Give the other player a genuine, flirty compliment about a physical feature.",
-s   "You must sit on the floor at the other player's feet until your next turn.",
+    "You must sit on the floor at the other player's feet until your next turn.",
     "Show the other player the kinkiest thing you have saved on your phone (meme, photo, video).",
     "Write the other player's name somewhere on your body (e.g., arm, leg) with a pen.",
     "Enthusiastically mime your favourite sexual position.",
@@ -513,7 +466,7 @@ const groupQuestions = [
     { text: "Point to the person you think has the best ass in the room.", type: 'target' },
     { text: "Who in the group would you want to be your 'sub' for an evening?", type: 'target' },
     { text: "If you had to watch porn with one person in this room, who would it be?", type: 'target' },
-    { text: "Who here do you think has had sex most recently?", type: 'target' },
+    { text: "Who here do you think has had sex most recently?", type: "target" },
     { text: "Point to the person you'd most like to bite (gently!).", type: 'target' },
     { text: "Everyone goes around the circle and says who in the group they'd most like to kiss.", type: 'group' },
     { text: "Everyone reveals their biggest sexual turn-on.", type: 'group' },
@@ -561,320 +514,361 @@ const groupForfeits = [
     "For the next 3 rounds, you must address everyone with a kinky title (e.g., 'Yes, Sir', 'Of course, Mistress').",
 ];
 
-// --- Utility Functions ---
-
-/**
- * Shows a specific container and hides the others.
- * @param {string} containerId The ID of the container to show.
- */
-function showContainer(containerId) {
-    const containers = [welcomeContainer, coupleSetupContainer, groupSetupContainer, gameContainer];
-    containers.forEach(container => {
-        container.style.display = container.id === containerId ? 'block' : 'none';
-    });
-}
-
-/**
- * Safely retrieves an array of used indices from localStorage.
- * @param {string} key The localStorage key.
- * @returns {number[]} An array of used indices.
- */
-function getUsedIndices(key) {
-    try {
-        const stored = localStorage.getItem(key);
-        return stored ? JSON.parse(stored) : [];
-    } catch (e) {
-        console.error("Error reading from localStorage:", e);
-        return [];
-    }
-}
-
-/**
- * Safely saves an array of used indices to localStorage.
- * @param {string} key The localStorage key.
- * @param {number[]} indices The array of indices to save.
- */
-function saveUsedIndices(key, indices) {
-    try {
-        localStorage.setItem(key, JSON.stringify(indices));
-    } catch (e) {
-        console.error("Error writing to localStorage:", e);
-    }
-}
-
-/**
- * Gets the next unique item (question or forfeit) from a given array.
- * @param {Array} contentArray The array to pick from (e.g., coupleQuestions).
- * @param {string} storageKey The localStorage key for tracking used indices.
- * @returns {object|string} The selected item.
- */
-function getNextUniqueItem(contentArray, storageKey) {
-    let usedIndices = getUsedIndices(storageKey);
-    const totalItems = contentArray.length;
-
-    if (totalItems === 0) return "No content available!";
-
-    // Find all available (unused) indices
-    let availableIndices = [];
-    for (let i = 0; i < totalItems; i++) {
-        if (!usedIndices.includes(i)) {
-            availableIndices.push(i);
-        }
-    }
-
-    // If no available indices, reset the cycle
-    if (availableIndices.length === 0) {
-        console.log(`All items for ${storageKey} used. Resetting cycle.`);
-        usedIndices = [];
-        saveUsedIndices(storageKey, []);
-        // All indices are now available again
-        for (let i = 0; i < totalItems; i++) {
-            availableIndices.push(i);
-        }
-    }
-    
-    // Select a random index from the available ones
-    const randomIndexFromArray = Math.floor(Math.random() * availableIndices.length);
-    const selectedItemIndex = availableIndices[randomIndexFromArray];
-
-    // Record the used index and save
-    usedIndices.push(selectedItemIndex);
-    saveUsedIndices(storageKey, usedIndices);
-
-    return contentArray[selectedItemIndex];
-}
-
-// --- Game Mode Setup ---
-
-// Event listeners for mode selection
-groupModeBtn.addEventListener('click', () => setupMode('group'));
-coupleModeBtn.addEventListener('click', () => setupMode('couple'));
-friendsModeBtn.addEventListener('click', () => setupMode('friends'));
-
-function setupMode(mode) {
-    gameMode = mode;
-    if (mode === 'group') {
-        showContainer('groupSetupContainer');
-    } else {
-        // Couple and Friends use the same setup screen
-        player1RoleRow.style.display = mode === 'couple' ? 'grid' : 'none';
-        player2RoleRow.style.display = mode === 'couple' ? 'grid' : 'none';
-        instructionTextCouple.textContent = mode === 'couple' ? 'Enter names and select roles!' : 'Enter player names!';
-        showContainer('coupleSetupContainer');
-    }
-}
-
-// --- Group Setup Logic ---
-addPlayerBtn.addEventListener('click', () => {
-    const name = newPlayerNameInput.value.trim();
-    if (name && !players.some(p => p.name === name)) {
-        players.push({ name });
-        renderPlayerList();
-        newPlayerNameInput.value = '';
-        newPlayerNameInput.focus();
-    } else if (!name) {
-        alert("Please enter a name.");
-    } else {
-        alert("That player name already exists.");
-    }
-});
-
-newPlayerNameInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-        addPlayerBtn.click();
-    }
-});
-
-function renderPlayerList() {
-    playerList.innerHTML = '';
-    players.forEach((player, index) => {
-        const li = document.createElement('li');
-        li.textContent = player.name;
-        const removeBtn = document.createElement('button');
-        removeBtn.textContent = '×';
-        removeBtn.className = 'remove-player-btn';
-        removeBtn.onclick = () => {
-            players.splice(index, 1);
-            renderPlayerList();
-        };
-        li.appendChild(removeBtn);
-        playerList.appendChild(li);
-    });
-}
-
-// --- Start Game Logic ---
-startCoupleGameButton.addEventListener('click', () => {
-    const p1Name = player1Input.value.trim() || 'Player 1';
-    const p2Name = player2Input.value.trim() || 'Player 2';
-    
-    if (gameMode === 'couple') {
-        players = [
-            { name: p1Name, role: player1RoleSelect.value },
-            { name: p2Name, role: player2RoleSelect.value }
-        ];
-    } else { // friends mode
-        players = [
-            { name: p1Name },
-            { name: p2Name }
-        ];
-    }
-    startGame();
-});
-
-startGroupGameButton.addEventListener('click', () => {
-    if (players.length < 2) {
-        alert("You need at least 2 players to start the game.");
-        return;
-    }
-    startGame();
-});
-
-function startGame() {
-    currentPlayerIndex = 0;
-    showContainer('gameContainer');
-    displayNextQuestion();
-}
-
-// --- Core Game Logic ---
-
-function switchPlayer() {
-    currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
-}
-
-function updateTurnIndicator() {
-    const asker = players[currentPlayerIndex];
-    let indicatorText = '';
-
-    if (gameMode === 'group') {
-        if (currentQuestionType === 'group') {
-            indicatorText = `${asker.name} asks the group:`;
-            currentTargetIndex = null; // No single target for group questions
-        } else { // 'target'
-            // Find a target that is not the current player
-            let targetIdx;
-            if (players.length > 1) {
-                do {
-                    targetIdx = Math.floor(Math.random() * players.length);
-                } while (targetIdx === currentPlayerIndex);
-            } else {
-                targetIdx = 0; // Should not happen with start game check
-            }
-            currentTargetIndex = targetIdx;
-            const target = players[currentTargetIndex];
-            indicatorText = `${asker.name} asks ${target.name}:`;
-        }
-    } else { // Couple or Friends
-        const answerer = players[(currentPlayerIndex + 1) % 2];
-        indicatorText = `${asker.name} asks ${answerer.name}:`;
-    }
-    turnIndicator.textContent = indicatorText;
-}
-
-function displayNextQuestion() {
-    let question;
-    let questionKey = USED_QUESTIONS_KEY_PREFIX + gameMode;
-
-    if (gameMode === 'couple') {
-        const askerRole = players[currentPlayerIndex].role;
-        const answererRole = players[(currentPlayerIndex + 1) % 2].role;
-        
-        let allowedTypes = ['neutral'];
-        if (askerRole === 'Dom' && (answererRole === 'sub' || answererRole === 'switch')) allowedTypes.push('D_asks_S');
-        else if ((askerRole === 'sub' || askerRole === 'switch') && answererRole === 'Dom') allowedTypes.push('S_asks_D');
-        else if (askerRole === 'switch' && answererRole === 'sub') allowedTypes.push('D_asks_S');
-        else if (askerRole === 'sub' && answererRole === 'switch') allowedTypes.push('S_asks_D');
-
-        let usedIndices = getUsedIndices(questionKey);
-        let availableQuestions = coupleQuestions.filter((q, i) => !usedIndices.includes(i) && allowedTypes.includes(q.type));
-
-        if (availableQuestions.length === 0) {
-            availableQuestions = coupleQuestions.filter((q, i) => !usedIndices.includes(i) && q.type === 'neutral');
-        }
-        if (availableQuestions.length === 0) {
-             console.log(`All suitable couple questions used. Resetting cycle.`);
-             saveUsedIndices(questionKey, []);
-             availableQuestions = coupleQuestions.filter(q => allowedTypes.includes(q.type));
-        }
-
-        const selectedQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
-        
-        if(selectedQuestion) {
-            const originalIndex = coupleQuestions.indexOf(selectedQuestion);
-            let used = getUsedIndices(questionKey);
-            if (!used.includes(originalIndex)) {
-                used.push(originalIndex);
-                saveUsedIndices(questionKey, used);
-            }
-            question = selectedQuestion.text;
-        } else {
-            question = "No suitable questions found. Click next to try again.";
-        }
-    } else if (gameMode === 'group') {
-        const selectedQuestion = getNextUniqueItem(groupQuestions, questionKey);
-        question = selectedQuestion.text;
-        currentQuestionType = selectedQuestion.type; // Set the type for the turn indicator
-    } else { // friends mode
-        const questionBank = friendsQuestions;
-        question = getNextUniqueItem(questionBank, questionKey);
-    }
-    
-    questionCard.innerHTML = question;
-    questionCard.style.display = 'flex';
-    forfeitCard.style.display = 'none';
-    updateTurnIndicator(); // Update indicator after setting question type
-}
-
-function displayNextForfeit() {
-    const forfeitKey = USED_FORFEITS_KEY_PREFIX + gameMode;
-    const forfeitBank = gameMode === 'couple' ? coupleForfeits : (gameMode === 'friends' ? friendsForfeits : groupForfeits);
-    const forfeit = getNextUniqueItem(forfeitBank, forfeitKey);
-
-    let performerName;
-    if (gameMode === 'group') {
-        // In group, the person who was asked (the target) takes the forfeit.
-        // If it was a group question, the asker takes the forfeit.
-        performerName = currentTargetIndex !== null ? players[currentTargetIndex].name : players[currentPlayerIndex].name;
-    } else { // Couple or Friends
-        // In 2-player, the person who ISN'T the current player takes the forfeit
-        performerName = players[(currentPlayerIndex + 1) % 2].name;
-    }
-
-    forfeitCard.innerHTML = `<strong>${performerName}'s Forfeit:</strong><br>${forfeit}`;
-    forfeitCard.style.display = 'flex';
-    questionCard.style.display = 'none';
-}
-
-function resetGame() {
-    gameMode = '';
-    players = [];
-    currentPlayerIndex = 0;
-    currentTargetIndex = null;
-    playerList.innerHTML = '';
-    player1Input.value = '';
-    player2Input.value = '';
-    newPlayerNameInput.value = '';
-    showContainer('welcomeContainer');
-}
-
-// --- Event Listeners for Game Screen ---
-nextButton.addEventListener('click', () => {
-    switchPlayer();
-    displayNextQuestion();
-});
-
-forfeitButton.addEventListener('click', () => {
-    displayNextForfeit();
-});
-
-homeLogoLink.addEventListener('click', (event) => {
-    event.preventDefault();
-    if (window.confirm("Are you sure you want to end this game and return to the main menu?")) {
-        resetGame();
-    }
-});
-
-// --- Initial Page Load ---
+// --- This listener ensures the script runs only after the page is fully loaded ---
 document.addEventListener('DOMContentLoaded', () => {
+    // --- DOM Elements ---
+    // Containers
+    const welcomeContainer = document.getElementById('welcomeContainer');
+    const coupleSetupContainer = document.getElementById('coupleSetupContainer');
+    const groupSetupContainer = document.getElementById('groupSetupContainer');
+    const gameContainer = document.getElementById('gameContainer');
+
+    // Welcome Screen Buttons
+    const groupModeBtn = document.getElementById('groupModeBtn');
+    const coupleModeBtn = document.getElementById('coupleModeBtn');
+    const friendsModeBtn = document.getElementById('friendsModeBtn');
+
+    // Couple/Friends Setup
+    const player1Input = document.getElementById('player1');
+    const player2Input = document.getElementById('player2');
+    const player1RoleSelect = document.getElementById('player1Role');
+    const player2RoleSelect = document.getElementById('player2Role');
+    const player1RoleRow = document.getElementById('player1RoleRow');
+    const player2RoleRow = document.getElementById('player2RoleRow');
+    const startCoupleGameButton = document.getElementById('startCoupleGameButton');
+
+    // Group Setup
+    const newPlayerNameInput = document.getElementById('newPlayerName');
+    const addPlayerBtn = document.getElementById('addPlayerBtn');
+    const playerList = document.getElementById('playerList');
+    const startGroupGameButton = document.getElementById('startGroupGameButton');
+
+    // Game Screen
+    const turnIndicator = document.getElementById('turnIndicator');
+    const questionCard = document.getElementById('questionCard');
+    const forfeitCard = document.getElementById('forfeitCard');
+    const nextButton = document.getElementById('nextButton');
+    const forfeitButton = document.getElementById('forfeitButton');
+    const homeLogoLink = document.getElementById('homeLogoLink');
+
+    // --- Game State Variables ---
+    let gameMode = ''; // 'group', 'couple', 'friends'
+    let players = []; // Array of player objects {name: string, role?: string}
+    let currentPlayerIndex = 0;
+    let currentTargetIndex = null; // For group mode questions
+    let currentQuestionType = 'target'; // For group mode 'target' vs 'group'
+
+    // --- localStorage Keys ---
+    const USED_QUESTIONS_KEY_PREFIX = 'kinkAndTellUsedQuestions_';
+    const USED_FORFEITS_KEY_PREFIX = 'kinkAndTellUsedForfeits_';
+
+    // --- Utility Functions ---
+
+    /**
+     * Shows a specific container and hides the others.
+     * @param {string} containerId The ID of the container to show.
+     */
+    function showContainer(containerId) {
+        const containers = [welcomeContainer, coupleSetupContainer, groupSetupContainer, gameContainer];
+        containers.forEach(container => {
+            if (container) {
+                container.style.display = container.id === containerId ? 'block' : 'none';
+            }
+        });
+    }
+
+    /**
+     * Safely retrieves an array of used indices from localStorage.
+     * @param {string} key The localStorage key.
+     * @returns {number[]} An array of used indices.
+     */
+    function getUsedIndices(key) {
+        try {
+            const stored = localStorage.getItem(key);
+            return stored ? JSON.parse(stored) : [];
+        } catch (e) {
+            console.error("Error reading from localStorage:", e);
+            return [];
+        }
+    }
+
+    /**
+     * Safely saves an array of used indices to localStorage.
+     * @param {string} key The localStorage key.
+     * @param {number[]} indices The array of indices to save.
+     */
+    function saveUsedIndices(key, indices) {
+        try {
+            localStorage.setItem(key, JSON.stringify(indices));
+        } catch (e) {
+            console.error("Error writing to localStorage:", e);
+        }
+    }
+
+    /**
+     * Gets the next unique item (question or forfeit) from a given array.
+     * @param {Array} contentArray The array to pick from (e.g., coupleQuestions).
+     * @param {string} storageKey The localStorage key for tracking used indices.
+     * @returns {object|string} The selected item.
+     */
+    function getNextUniqueItem(contentArray, storageKey) {
+        let usedIndices = getUsedIndices(storageKey);
+        const totalItems = contentArray.length;
+
+        if (totalItems === 0) return "No content available!";
+
+        let availableIndices = [];
+        for (let i = 0; i < totalItems; i++) {
+            if (!usedIndices.includes(i)) {
+                availableIndices.push(i);
+            }
+        }
+
+        if (availableIndices.length === 0) {
+            console.log(`All items for ${storageKey} used. Resetting cycle.`);
+            usedIndices = [];
+            saveUsedIndices(storageKey, []);
+            for (let i = 0; i < totalItems; i++) {
+                availableIndices.push(i);
+            }
+        }
+        
+        const randomIndexFromArray = Math.floor(Math.random() * availableIndices.length);
+        const selectedItemIndex = availableIndices[randomIndexFromArray];
+
+        usedIndices.push(selectedItemIndex);
+        saveUsedIndices(storageKey, usedIndices);
+
+        return contentArray[selectedItemIndex];
+    }
+
+    // --- Game Mode Setup ---
+    function setupMode(mode) {
+        gameMode = mode;
+        if (mode === 'group') {
+            showContainer('groupSetupContainer');
+        } else {
+            player1RoleRow.style.display = mode === 'couple' ? 'grid' : 'none';
+            player2RoleRow.style.display = mode === 'couple' ? 'grid' : 'none';
+            instructionTextCouple.textContent = mode === 'couple' ? 'Enter names and select roles!' : 'Enter player names!';
+            showContainer('coupleSetupContainer');
+        }
+    }
+
+    // --- Group Setup Logic ---
+    function renderPlayerList() {
+        playerList.innerHTML = '';
+        players.forEach((player, index) => {
+            const li = document.createElement('li');
+            li.textContent = player.name;
+            const removeBtn = document.createElement('button');
+            removeBtn.textContent = '×';
+            removeBtn.className = 'remove-player-btn';
+            removeBtn.onclick = () => {
+                players.splice(index, 1);
+                renderPlayerList();
+            };
+            li.appendChild(removeBtn);
+            playerList.appendChild(li);
+        });
+    }
+
+    // --- Start Game Logic ---
+    function startGame() {
+        currentPlayerIndex = 0;
+        showContainer('gameContainer');
+        displayNextQuestion();
+    }
+
+    // --- Core Game Logic ---
+    function switchPlayer() {
+        currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
+    }
+
+    function updateTurnIndicator() {
+        const asker = players[currentPlayerIndex];
+        let indicatorText = '';
+
+        if (gameMode === 'group') {
+            if (currentQuestionType === 'group') {
+                indicatorText = `${asker.name} asks the group:`;
+                currentTargetIndex = null; // No single target for group questions
+            } else { // 'target'
+                let targetIdx;
+                if (players.length > 1) {
+                    do {
+                        targetIdx = Math.floor(Math.random() * players.length);
+                    } while (targetIdx === currentPlayerIndex);
+                } else {
+                    targetIdx = 0;
+                }
+                currentTargetIndex = targetIdx;
+                const target = players[currentTargetIndex];
+                indicatorText = `${asker.name} asks ${target.name}:`;
+            }
+        } else { // Couple or Friends
+            const answerer = players[(currentPlayerIndex + 1) % 2];
+            indicatorText = `${asker.name} asks ${answerer.name}:`;
+        }
+        turnIndicator.textContent = indicatorText;
+    }
+
+    function displayNextQuestion() {
+        let question;
+        let questionKey = USED_QUESTIONS_KEY_PREFIX + gameMode;
+
+        if (gameMode === 'couple') {
+            const askerRole = players[currentPlayerIndex].role;
+            const answererRole = players[(currentPlayerIndex + 1) % 2].role;
+            
+            let allowedTypes = ['neutral'];
+            if (askerRole === 'Dom' && (answererRole === 'sub' || answererRole === 'switch')) allowedTypes.push('D_asks_S');
+            else if ((askerRole === 'sub' || askerRole === 'switch') && answererRole === 'Dom') allowedTypes.push('S_asks_D');
+            else if (askerRole === 'switch' && answererRole === 'sub') allowedTypes.push('D_asks_S');
+            else if (askerRole === 'sub' && answererRole === 'switch') allowedTypes.push('S_asks_D');
+
+            let usedIndices = getUsedIndices(questionKey);
+            let availableQuestions = coupleQuestions.filter((q, i) => !usedIndices.includes(i) && allowedTypes.includes(q.type));
+
+            if (availableQuestions.length === 0) {
+                availableQuestions = coupleQuestions.filter((q, i) => !usedIndices.includes(i) && q.type === 'neutral');
+            }
+            if (availableQuestions.length === 0) {
+                 console.log(`All suitable couple questions used. Resetting cycle.`);
+                 saveUsedIndices(questionKey, []);
+                 availableQuestions = coupleQuestions.filter(q => allowedTypes.includes(q.type));
+            }
+
+            const selectedQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
+            
+            if(selectedQuestion) {
+                const originalIndex = coupleQuestions.indexOf(selectedQuestion);
+                let used = getUsedIndices(questionKey);
+                if (!used.includes(originalIndex)) {
+                    used.push(originalIndex);
+                    saveUsedIndices(questionKey, used);
+                }
+                question = selectedQuestion.text;
+            } else {
+                question = "No suitable questions found. Click next to try again.";
+            }
+        } else if (gameMode === 'group') {
+            const selectedQuestion = getNextUniqueItem(groupQuestions, questionKey);
+            question = selectedQuestion.text;
+            currentQuestionType = selectedQuestion.type;
+        } else { // friends mode
+            const questionBank = friendsQuestions;
+            question = getNextUniqueItem(questionBank, questionKey);
+        }
+        
+        questionCard.innerHTML = question;
+        questionCard.style.display = 'flex';
+        forfeitCard.style.display = 'none';
+        updateTurnIndicator();
+    }
+
+    function displayNextForfeit() {
+        const forfeitKey = USED_FORFEITS_KEY_PREFIX + gameMode;
+        const forfeitBank = gameMode === 'couple' ? coupleForfeits : (gameMode === 'friends' ? friendsForfeits : groupForfeits);
+        const forfeit = getNextUniqueItem(forfeitBank, forfeitKey);
+
+        let performerName;
+        if (gameMode === 'group') {
+            performerName = currentTargetIndex !== null ? players[currentTargetIndex].name : players[currentPlayerIndex].name;
+        } else {
+            performerName = players[(currentPlayerIndex + 1) % 2].name;
+        }
+
+        forfeitCard.innerHTML = `<strong>${performerName}'s Forfeit:</strong><br>${forfeit}`;
+        forfeitCard.style.display = 'flex';
+        questionCard.style.display = 'none';
+    }
+
+    function resetGame() {
+        gameMode = '';
+        players = [];
+        currentPlayerIndex = 0;
+        currentTargetIndex = null;
+        playerList.innerHTML = '';
+        player1Input.value = '';
+        player2Input.value = '';
+        newPlayerNameInput.value = '';
+        showContainer('welcomeContainer');
+    }
+
+    // --- ATTACH ALL EVENT LISTENERS ---
+
+    // Welcome Screen
+    groupModeBtn.addEventListener('click', () => setupMode('group'));
+    coupleModeBtn.addEventListener('click', () => setupMode('couple'));
+    friendsModeBtn.addEventListener('click', () => setupMode('friends'));
+
+    // Couple/Friends Setup
+    startCoupleGameButton.addEventListener('click', () => {
+        const p1Name = player1Input.value.trim() || 'Player 1';
+        const p2Name = player2Input.value.trim() || 'Player 2';
+        
+        if (gameMode === 'couple') {
+            players = [
+                { name: p1Name, role: player1RoleSelect.value },
+                { name: p2Name, role: player2RoleSelect.value }
+            ];
+        } else { // friends mode
+            players = [
+                { name: p1Name },
+                { name: p2Name }
+            ];
+        }
+        startGame();
+    });
+
+    // Group Setup
+    addPlayerBtn.addEventListener('click', () => {
+        const name = newPlayerNameInput.value.trim();
+        if (name && !players.some(p => p.name === name)) {
+            players.push({ name });
+            renderPlayerList();
+            newPlayerNameInput.value = '';
+            newPlayerNameInput.focus();
+        } else if (!name) {
+            alert("Please enter a name.");
+        } else {
+            alert("That player name already exists.");
+        }
+    });
+
+    newPlayerNameInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            addPlayerBtn.click();
+        }
+    });
+
+    startGroupGameButton.addEventListener('click', () => {
+        if (players.length < 2) {
+            alert("You need at least 2 players to start the game.");
+            return;
+        }
+        startGame();
+    });
+
+    // Game Screen
+    nextButton.addEventListener('click', () => {
+        switchPlayer();
+        displayNextQuestion();
+    });
+
+    forfeitButton.addEventListener('click', () => {
+        displayNextForfeit();
+    });
+
+    homeLogoLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        if (window.confirm("Are you sure you want to end this game and return to the main menu?")) {
+            resetGame();
+        }
+    });
+
+    // --- Initial Page State ---
     const originalAlert = window.alert;
     window.alert = function(message) {
         console.warn("Alert called: ", message);
