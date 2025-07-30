@@ -380,6 +380,7 @@ select option {
     border-left-width: 5px;
     display: none;
     font-weight: 700;
+    flex-direction: column; /* FIX: Stack text vertically */
 }
 
 /* --- Footer --- */
