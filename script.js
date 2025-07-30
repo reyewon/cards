@@ -284,7 +284,6 @@ const coupleForfeits = [
     "You must do a mating ritual dance for your partner",
     "You must seductively eat something phallic shaped. Bonus points if you put on Marvin Gaye's 'Let's Get It On' in the background",
     "You must show your partner the latest porn video you watched",
-    "You must message game creator Rysta to let him know you're playing this game",
     "You must lick your partner's elbow or knee (your choice) until they answer their next question",
     "Your partner has 10 seconds to choose any forfeit for you",
     "You must act out your favourite porn genre in a charades style for your partner to guess",
@@ -350,7 +349,8 @@ const coupleForfeits = [
     "Let the other player whisper instructions in your ear for the next minute, which you must follow.",
     "Confess one rule you'd secretly love for the other player to impose on you.",
     "Let the other player put you in light bondage (e.g., scarf around wrists) for the next question.",
-    "Describe the other player's smell in a sensual way."
+    "Describe the other player's smell in a sensual way.",
+    "EASTER EGG: Message Rysta, the game creator, on Fetlife (RYSTA) or Instagram (@rystadom). Your message must be a confession of the naughtiest thing you've thought about doing with your partner. Be creative."
 ];
 
 // --- Friends Mode Content (REVISED & EXPANDED) ---
@@ -434,6 +434,7 @@ const friendsForfeits = [
     "Let the other player choose a new, kinky nickname for you for the rest of the game.",
     "Confess the last thing you masturbated to.",
     "Hold intense, seductive eye contact with the other player for 60 seconds without breaking it.",
+    "EASTER EGG: Message Rysta, the game creator, on Fetlife (RYSTA) or Instagram (@rystadom). Your message must be a confession of the naughtiest thing you've thought about doing with your friend here. Be creative."
 ];
 
 // --- Group Mode Content (REVISED & EXPANDED) ---
@@ -542,6 +543,7 @@ const groupForfeits = [
     "Let the group choose an object in the room. You must describe, in detail, how you would use it sexually.",
     "You must take a body shot off a person of your choice (if applicable and consensual).",
     "For the next 3 rounds, you must address everyone with a kinky title (e.g., 'Yes, Sir', 'Of course, Mistress').",
+    "EASTER EGG: Message Rysta, the game creator, on Fetlife (RYSTA) or Instagram (@rystadom). Your message must be a confession of the naughtiest thing you've thought about doing with someone in this room. Be creative."
 ];
 
 // --- This listener ensures the script runs only after the page is fully loaded ---
