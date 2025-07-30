@@ -4,88 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kink and Tell Game by Rysta</title>
+
     <link rel="stylesheet" href="styles.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EMK8Q5QN8S"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-EMK8Q5QN8S');
+    </script>
 </head>
 <body>
     <!-- Background particle effect -->
-    <div id="background-particles"></div>
+    <div id="background-particles">
+        <div class="particle pink"></div>
+        <div class="particle cyan"></div>
+        <div class="particle pink"></div>
+        <div class="particle cyan"></div>
+        <div class="particle pink"></div>
+        <div class="particle cyan"></div>
+        <div class="particle pink"></div>
+        <div class="particle cyan"></div>
+    </div>
 
-    <!-- Welcome Screen: Choose Play Style -->
-    <div id="welcomeContainer" class="container">
+    <!-- Welcome Screen: Choose Game Mode -->
+    <div id="welcomeContainer">
         <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" id="logo">
-        <p class="instruction-text">How do you want to play?</p>
-        <div class="button-group-vertical">
-            <button id="showCreateGameBtn" class="mode-btn">Create Online Game</button>
-            <button id="showJoinGameBtn" class="mode-btn">Join Online Game</button>
-            <button id="showLocalPlayBtn" class="mode-btn">Play Locally (Pass Device)</button>
-        </div>
-    </div>
-
-    <!-- Local Play Setup Screen -->
-    <div id="localSetupContainer" class="container setup-container">
-        <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" class="logo-small">
-        <p class="instruction-text">Choose your adventure...</p>
+        <p id="instructionText">Choose your adventure...</p>
         <div class="mode-selection">
-             <button class="mode-btn" data-mode="group"><h3>Group</h3></button>
-             <button class="mode-btn" data-mode="couple"><h3>Couple</h3></button>
-             <button class="mode-btn" data-mode="friends"><h3>Friends</h3></button>
+            <button id="groupModeBtn" class="mode-btn">
+                <h3>Group</h3>
+                <p>Kinky secrets and devious tasks for a group of friends.</p>
+            </button>
+            <button id="coupleModeBtn" class="mode-btn">
+                <h3>Couple</h3>
+                <p>The original game, designed for ENM / Kink couples.</p>
+            </button>
+            <button id="friendsModeBtn" class="mode-btn">
+                <h3>Friends</h3>
+                <p>Honest revelations and sex-positive chats for two friends.</p>
+            </button>
         </div>
-        <!-- Player setup will be dynamically added here by JS -->
-        <div id="localPlayerSetup"></div>
-        <button id="startLocalGameBtn">Start Game</button>
-        <button class="back-btn" data-target="welcomeContainer">Back</button>
     </div>
 
-    <!-- Create Online Game Screen -->
-    <div id="createGameContainer" class="container setup-container">
-        <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" class="logo-small">
-        <p class="instruction-text">Choose your adventure...</p>
-        <div class="mode-selection">
-            <button class="mode-btn" data-mode="group"><h3>Group</h3><p>Kinky secrets for a group of friends.</p></button>
-            <button class="mode-btn" data-mode="couple"><h3>Couple</h3><p>The original game for ENM couples.</p></button>
-            <button class="mode-btn" data-mode="friends"><h3>Friends</h3><p>Revealing chats for two friends.</p></button>
-        </div>
+    <!-- Setup for Couple / Friends Mode -->
+    <div id="coupleSetupContainer" class="setup-container">
+        <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" id="logo-small">
+        <p id="instructionTextCouple">Enter names and select roles!</p>
         <div class="input-group">
-            <input type="text" id="hostNameInput" placeholder="Enter Your Name...">
+            <div class="form-row">
+                <label for="player1">Player 1:</label>
+                <input type="text" id="player1" placeholder="Name">
+            </div>
+             <div class="form-row" id="player1RoleRow">
+                 <label for="player1Role">Role:</label>
+                 <select id="player1Role">
+                     <option value="switch">Switch</option>
+                     <option value="Dom">Dom</option>
+                     <option value="sub">sub</option>
+                 </select>
+             </div>
+             <div class="form-row">
+                 <label for="player2">Player 2:</label>
+                 <input type="text" id="player2" placeholder="Name">
+             </div>
+             <div class="form-row" id="player2RoleRow">
+                 <label for="player2Role">Role:</label>
+                 <select id="player2Role">
+                     <option value="switch">Switch</option>
+                     <option value="Dom">Dom</option>
+                     <option value="sub">sub</option>
+                 </select>
+             </div>
         </div>
-        <button id="createGameBtn">Create Online Game</button>
-        <button class="back-btn" data-target="welcomeContainer">Back</button>
+        <button id="startCoupleGameButton">Start Game</button>
     </div>
 
-    <!-- Join Online Game Screen -->
-    <div id="joinGameContainer" class="container setup-container">
-        <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" class="logo-small">
-        <p class="instruction-text">Enter the code to join the game!</p>
+    <!-- Setup for Group Mode -->
+    <div id="groupSetupContainer" class="setup-container">
+        <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" id="logo-small">
+        <p id="instructionTextGroup">Add players to the group!</p>
         <div class="input-group">
-            <input type="text" id="gameCodeInput" placeholder="Enter 5-Digit Game Code" maxlength="5" autocapitalize="characters">
-            <input type="text" id="playerNameInput" placeholder="Enter Your Name">
+            <div class="add-player-form">
+                <input type="text" id="newPlayerName" placeholder="Enter player name...">
+                <button id="addPlayerBtn">+</button>
+            </div>
+            <ul id="playerList"></ul>
         </div>
-        <button id="joinGameBtn">Join Game</button>
-        <p id="joinErrorText" class="error-text"></p>
-        <button class="back-btn" data-target="welcomeContainer">Back</button>
+        <button id="startGroupGameButton">Start Game</button>
     </div>
 
-    <!-- Online Lobby Screen -->
-    <div id="lobbyContainer" class="container">
-        <p class="instruction-text">Waiting for players...</p>
-        <p>Share this Game Code:</p>
-        <div id="lobbyGameCode" class="game-code-display"></div>
-        <p>Players in the lobby:</p>
-        <ul id="lobbyPlayerList"></ul>
-        <button id="startGameBtn" class="host-only">Start Game</button>
-        <button id="leaveGameBtn">Leave Game</button>
-    </div>
 
     <!-- Main Game Screen -->
-    <div id="gameContainer" class="container">
+    <div id="gameContainer">
         <a href="#" id="homeLogoLink" title="Restart Game">
             <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Home" id="persistentLogo">
         </a>
+
         <div id="turnIndicator"></div>
-        <div id="questionCard"></div>
+        <div id="questionCard">Click 'Next Question' to begin!</div>
         <div id="forfeitCard"></div>
         <div class="button-group">
             <button id="nextButton">Next Question</button>
@@ -94,21 +117,18 @@
     </div>
     
     <!-- Interstitial "Pass Device" Screen -->
-    <div id="interstitialContainer" class="container">
+    <div id="interstitialContainer">
         <h3 id="interstitialMessage"></h3>
         <p>You're asking the next question!</p>
         <button id="readyButton">Ready!</button>
     </div>
 
+
     <footer>
         Created by <a href="https://www.instagram.com/rystadom" target="_blank">Rysta</a>
     </footer>
 
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-    
-    <!-- Game Logic -->
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
+
 </body>
 </html>
