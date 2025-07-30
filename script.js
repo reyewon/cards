@@ -437,7 +437,7 @@ const groupQuestions = [
     { text: "Point to the person you think would be the most fun at a sex party.", type: 'target' },
     { text: "Who here do you think has the most sex toys?", type: 'target' },
     { text: "If you had to give someone here a lap dance, who would you choose?", type: 'target' },
-    { text: "Who in the group do you think is the best kisser? What makes you think so?", type: 'target' },
+    { text: "Who in the group do you think is the best kisser? What makes you think so?", type: "target" },
     { text: "If you had 'one free pass' to sleep with someone in this room, who would you pick?", type: 'target' },
     { text: "Who here do you think has sent the most nudes?", type: 'target' },
     { text: "Point to the person you'd most like to spank.", type: 'target' },
@@ -517,18 +517,16 @@ const groupForfeits = [
 // --- This listener ensures the script runs only after the page is fully loaded ---
 document.addEventListener('DOMContentLoaded', () => {
     // --- DOM Elements ---
-    // Containers
     const welcomeContainer = document.getElementById('welcomeContainer');
     const coupleSetupContainer = document.getElementById('coupleSetupContainer');
     const groupSetupContainer = document.getElementById('groupSetupContainer');
     const gameContainer = document.getElementById('gameContainer');
-
-    // Welcome Screen Buttons
+    const interstitialContainer = document.getElementById('interstitialContainer');
+    const interstitialMessage = document.getElementById('interstitialMessage');
+    const readyButton = document.getElementById('readyButton');
     const groupModeBtn = document.getElementById('groupModeBtn');
     const coupleModeBtn = document.getElementById('coupleModeBtn');
     const friendsModeBtn = document.getElementById('friendsModeBtn');
-
-    // Couple/Friends Setup
     const player1Input = document.getElementById('player1');
     const player2Input = document.getElementById('player2');
     const player1RoleSelect = document.getElementById('player1Role');
@@ -536,14 +534,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const player1RoleRow = document.getElementById('player1RoleRow');
     const player2RoleRow = document.getElementById('player2RoleRow');
     const startCoupleGameButton = document.getElementById('startCoupleGameButton');
-
-    // Group Setup
     const newPlayerNameInput = document.getElementById('newPlayerName');
     const addPlayerBtn = document.getElementById('addPlayerBtn');
     const playerList = document.getElementById('playerList');
     const startGroupGameButton = document.getElementById('startGroupGameButton');
-
-    // Game Screen
     const turnIndicator = document.getElementById('turnIndicator');
     const questionCard = document.getElementById('questionCard');
     const forfeitCard = document.getElementById('forfeitCard');
@@ -552,24 +546,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const homeLogoLink = document.getElementById('homeLogoLink');
 
     // --- Game State Variables ---
-    let gameMode = ''; // 'group', 'couple', 'friends'
-    let players = []; // Array of player objects {name: string, role?: string}
+    let gameMode = '';
+    let players = [];
     let currentPlayerIndex = 0;
-    let currentTargetIndex = null; // For group mode questions
-    let currentQuestionType = 'target'; // For group mode 'target' vs 'group'
+    let currentTargetIndex = null;
+    let currentQuestionType = 'target';
 
     // --- localStorage Keys ---
     const USED_QUESTIONS_KEY_PREFIX = 'kinkAndTellUsedQuestions_';
     const USED_FORFEITS_KEY_PREFIX = 'kinkAndTellUsedForfeits_';
 
     // --- Utility Functions ---
-
-    /**
-     * Shows a specific container and hides the others.
-     * @param {string} containerId The ID of the container to show.
-     */
     function showContainer(containerId) {
-        const containers = [welcomeContainer, coupleSetupContainer, groupSetupContainer, gameContainer];
+        const containers = [welcomeContainer, coupleSetupContainer, groupSetupContainer, gameContainer, interstitialContainer];
         containers.forEach(container => {
             if (container) {
                 container.style.display = container.id === containerId ? 'block' : 'none';
@@ -577,11 +566,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /**
-     * Safely retrieves an array of used indices from localStorage.
-     * @param {string} key The localStorage key.
-     * @returns {number[]} An array of used indices.
-     */
     function getUsedIndices(key) {
         try {
             const stored = localStorage.getItem(key);
@@ -592,11 +576,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /**
-     * Safely saves an array of used indices to localStorage.
-     * @param {string} key The localStorage key.
-     * @param {number[]} indices The array of indices to save.
-     */
     function saveUsedIndices(key, indices) {
         try {
             localStorage.setItem(key, JSON.stringify(indices));
@@ -605,40 +584,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /**
-     * Gets the next unique item (question or forfeit) from a given array.
-     * @param {Array} contentArray The array to pick from (e.g., coupleQuestions).
-     * @param {string} storageKey The localStorage key for tracking used indices.
-     * @returns {object|string} The selected item.
-     */
     function getNextUniqueItem(contentArray, storageKey) {
         let usedIndices = getUsedIndices(storageKey);
         const totalItems = contentArray.length;
-
         if (totalItems === 0) return "No content available!";
-
-        let availableIndices = [];
-        for (let i = 0; i < totalItems; i++) {
-            if (!usedIndices.includes(i)) {
-                availableIndices.push(i);
-            }
-        }
-
+        let availableIndices = Array.from({ length: totalItems }, (_, i) => i).filter(i => !usedIndices.includes(i));
         if (availableIndices.length === 0) {
             console.log(`All items for ${storageKey} used. Resetting cycle.`);
             usedIndices = [];
             saveUsedIndices(storageKey, []);
-            for (let i = 0; i < totalItems; i++) {
-                availableIndices.push(i);
-            }
+            availableIndices = Array.from({ length: totalItems }, (_, i) => i);
         }
-        
         const randomIndexFromArray = Math.floor(Math.random() * availableIndices.length);
         const selectedItemIndex = availableIndices[randomIndexFromArray];
-
         usedIndices.push(selectedItemIndex);
         saveUsedIndices(storageKey, usedIndices);
-
         return contentArray[selectedItemIndex];
     }
 
@@ -676,8 +636,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- Start Game Logic ---
     function startGame() {
         currentPlayerIndex = 0;
-        showContainer('gameContainer');
-        displayNextQuestion();
+        if (gameMode === 'group') {
+            const firstPlayerName = players[currentPlayerIndex].name;
+            interstitialMessage.textContent = `Pass the device to ${firstPlayerName}`;
+            showContainer('interstitialContainer');
+        } else {
+            showContainer('gameContainer');
+            displayNextQuestion();
+        }
     }
 
     // --- Core Game Logic ---
@@ -688,12 +654,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateTurnIndicator() {
         const asker = players[currentPlayerIndex];
         let indicatorText = '';
-
         if (gameMode === 'group') {
             if (currentQuestionType === 'group') {
                 indicatorText = `${asker.name} asks the group:`;
-                currentTargetIndex = null; // No single target for group questions
-            } else { // 'target'
+                currentTargetIndex = null;
+            } else {
                 let targetIdx;
                 if (players.length > 1) {
                     do {
@@ -706,7 +671,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const target = players[currentTargetIndex];
                 indicatorText = `${asker.name} asks ${target.name}:`;
             }
-        } else { // Couple or Friends
+        } else {
             const answerer = players[(currentPlayerIndex + 1) % 2];
             indicatorText = `${asker.name} asks ${answerer.name}:`;
         }
@@ -716,20 +681,17 @@ document.addEventListener('DOMContentLoaded', () => {
     function displayNextQuestion() {
         let question;
         let questionKey = USED_QUESTIONS_KEY_PREFIX + gameMode;
-
         if (gameMode === 'couple') {
+            // Couple logic remains the same
             const askerRole = players[currentPlayerIndex].role;
             const answererRole = players[(currentPlayerIndex + 1) % 2].role;
-            
             let allowedTypes = ['neutral'];
             if (askerRole === 'Dom' && (answererRole === 'sub' || answererRole === 'switch')) allowedTypes.push('D_asks_S');
             else if ((askerRole === 'sub' || askerRole === 'switch') && answererRole === 'Dom') allowedTypes.push('S_asks_D');
             else if (askerRole === 'switch' && answererRole === 'sub') allowedTypes.push('D_asks_S');
             else if (askerRole === 'sub' && answererRole === 'switch') allowedTypes.push('S_asks_D');
-
             let usedIndices = getUsedIndices(questionKey);
             let availableQuestions = coupleQuestions.filter((q, i) => !usedIndices.includes(i) && allowedTypes.includes(q.type));
-
             if (availableQuestions.length === 0) {
                 availableQuestions = coupleQuestions.filter((q, i) => !usedIndices.includes(i) && q.type === 'neutral');
             }
@@ -738,9 +700,7 @@ document.addEventListener('DOMContentLoaded', () => {
                  saveUsedIndices(questionKey, []);
                  availableQuestions = coupleQuestions.filter(q => allowedTypes.includes(q.type));
             }
-
             const selectedQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
-            
             if(selectedQuestion) {
                 const originalIndex = coupleQuestions.indexOf(selectedQuestion);
                 let used = getUsedIndices(questionKey);
@@ -756,11 +716,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const selectedQuestion = getNextUniqueItem(groupQuestions, questionKey);
             question = selectedQuestion.text;
             currentQuestionType = selectedQuestion.type;
-        } else { // friends mode
+        } else {
             const questionBank = friendsQuestions;
             question = getNextUniqueItem(questionBank, questionKey);
         }
-        
         questionCard.innerHTML = question;
         questionCard.style.display = 'flex';
         forfeitCard.style.display = 'none';
@@ -771,14 +730,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const forfeitKey = USED_FORFEITS_KEY_PREFIX + gameMode;
         const forfeitBank = gameMode === 'couple' ? coupleForfeits : (gameMode === 'friends' ? friendsForfeits : groupForfeits);
         const forfeit = getNextUniqueItem(forfeitBank, forfeitKey);
-
         let performerName;
         if (gameMode === 'group') {
             performerName = currentTargetIndex !== null ? players[currentTargetIndex].name : players[currentPlayerIndex].name;
         } else {
             performerName = players[(currentPlayerIndex + 1) % 2].name;
         }
-
         forfeitCard.innerHTML = `<strong>${performerName}'s Forfeit:</strong><br>${forfeit}`;
         forfeitCard.style.display = 'flex';
         questionCard.style.display = 'none';
@@ -797,32 +754,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- ATTACH ALL EVENT LISTENERS ---
-
-    // Welcome Screen
     groupModeBtn.addEventListener('click', () => setupMode('group'));
     coupleModeBtn.addEventListener('click', () => setupMode('couple'));
     friendsModeBtn.addEventListener('click', () => setupMode('friends'));
 
-    // Couple/Friends Setup
     startCoupleGameButton.addEventListener('click', () => {
         const p1Name = player1Input.value.trim() || 'Player 1';
         const p2Name = player2Input.value.trim() || 'Player 2';
-        
         if (gameMode === 'couple') {
-            players = [
-                { name: p1Name, role: player1RoleSelect.value },
-                { name: p2Name, role: player2RoleSelect.value }
-            ];
-        } else { // friends mode
-            players = [
-                { name: p1Name },
-                { name: p2Name }
-            ];
+            players = [{ name: p1Name, role: player1RoleSelect.value }, { name: p2Name, role: player2RoleSelect.value }];
+        } else {
+            players = [{ name: p1Name }, { name: p2Name }];
         }
         startGame();
     });
 
-    // Group Setup
     addPlayerBtn.addEventListener('click', () => {
         const name = newPlayerNameInput.value.trim();
         if (name && !players.some(p => p.name === name)) {
@@ -838,9 +784,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     newPlayerNameInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            addPlayerBtn.click();
-        }
+        if (e.key === 'Enter') addPlayerBtn.click();
     });
 
     startGroupGameButton.addEventListener('click', () => {
@@ -851,9 +795,19 @@ document.addEventListener('DOMContentLoaded', () => {
         startGame();
     });
 
-    // Game Screen
     nextButton.addEventListener('click', () => {
         switchPlayer();
+        if (gameMode === 'group') {
+            const nextPlayerName = players[currentPlayerIndex].name;
+            interstitialMessage.textContent = `Pass the device to ${nextPlayerName}`;
+            showContainer('interstitialContainer');
+        } else {
+            displayNextQuestion();
+        }
+    });
+    
+    readyButton.addEventListener('click', () => {
+        showContainer('gameContainer');
         displayNextQuestion();
     });
 
@@ -869,10 +823,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- Initial Page State ---
-    const originalAlert = window.alert;
-    window.alert = function(message) {
-        console.warn("Alert called: ", message);
-        originalAlert(message);
-    };
     showContainer('welcomeContainer');
 });
