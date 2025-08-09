@@ -507,6 +507,13 @@ const groupQuestions = [
     { text: "The group must invent a new, kinky rule that applies for the next 5 rounds.", type: 'group' },
     { text: "Everyone writes down a secret fantasy on a piece of paper. Shuffle them, and read them aloud. The group has to guess who wrote which fantasy.", type: 'group' },
 ];
+
+// Determine the starting index of more explicit (kinkier) questions in the group list.  
+// We search for the first occurrence of a known explicit keyword.  If not found, all questions are treated as tame.
+const explicitStartIndex = groupQuestions.findIndex(q => q.text && q.text.toLowerCase().includes('anal play'));
+
+// Category toggles for group questions. Both categories are enabled by default.
+let categoriesEnabled = { tame: true, explicit: true };
 const groupForfeits = [
     "Remove one item of clothing.",
     "Let the person to your right blindfold you for the next two rounds.",
@@ -577,12 +584,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const forfeitButton = document.getElementById('forfeitButton');
     const homeLogoLink = document.getElementById('homeLogoLink');
 
+    // Category toggle elements and additional controls
+    const tameToggle = document.getElementById('tameToggle');
+    const explicitToggle = document.getElementById('explicitToggle');
+    const skipButton = document.getElementById('skipButton');
+    const newGameBtn = document.getElementById('newGameBtn');
+
     // --- Game State Variables ---
     let gameMode = '';
     let players = [];
     let currentPlayerIndex = 0;
     let currentTargetIndex = null;
     let currentQuestionType = 'target';
+
+    // Fairness: track which players have been targeted in the current cycle in group mode
+    let playersAskedInCycle = [];
+
+    // Track whether the last displayed card was a forfeit or question (used by skip button)
+    let showingForfeit = false;
+
+    // Persistent storage keys
+    const PLAYERS_KEY = 'kinkAndTellPlayers';
+    const CATEGORIES_KEY = 'kinkAndTellCategories';
 
     // --- localStorage Keys ---
     const USED_QUESTIONS_KEY_PREFIX = 'kinkAndTellUsedQuestions_';
@@ -620,18 +643,99 @@ document.addEventListener('DOMContentLoaded', () => {
         let usedIndices = getUsedIndices(storageKey);
         const totalItems = contentArray.length;
         if (totalItems === 0) return "No content available!";
+        // Determine which indices have not been used
         let availableIndices = Array.from({ length: totalItems }, (_, i) => i).filter(i => !usedIndices.includes(i));
+        // If no available indices remain, reset cycle and optionally notify the user
         if (availableIndices.length === 0) {
             console.log(`All items for ${storageKey} used. Resetting cycle.`);
             usedIndices = [];
             saveUsedIndices(storageKey, []);
             availableIndices = Array.from({ length: totalItems }, (_, i) => i);
+            // Notify players that the game will loop the same content
+            try {
+                // Determine whether this message relates to questions or forfeits for user clarity
+                const isQuestion = storageKey.includes('UsedQuestions');
+                const typeLabel = isQuestion ? 'questions' : 'forfeits';
+                alert(`All ${typeLabel} have been used. The game will now loop the same ${typeLabel}, but they may be allocated to different people if you wish to continue.`);
+            } catch (e) {
+                console.error('Error displaying cycle reset alert', e);
+            }
         }
+        // Select a random unused index
         const randomIndexFromArray = Math.floor(Math.random() * availableIndices.length);
         const selectedItemIndex = availableIndices[randomIndexFromArray];
+        // Record the selected index in usedIndices and persist it
         usedIndices.push(selectedItemIndex);
         saveUsedIndices(storageKey, usedIndices);
         return contentArray[selectedItemIndex];
+    }
+
+    /**
+     * Build a filtered list of group questions based on the state of category toggles.
+     * Questions that include 'EASTER EGG' are always included, regardless of toggle state.
+     */
+    function getFilteredGroupQuestions() {
+        return groupQuestions.filter((q, idx) => {
+            if (q.text && q.text.includes('EASTER EGG')) {
+                return true;
+            }
+            if (explicitStartIndex !== -1 && idx >= explicitStartIndex) {
+                return categoriesEnabled.explicit;
+            }
+            return categoriesEnabled.tame;
+        });
+    }
+
+    /**
+     * Persist current players and category settings to localStorage.
+     */
+    function savePersistentData() {
+        try {
+            localStorage.setItem(PLAYERS_KEY, JSON.stringify(players));
+            localStorage.setItem(CATEGORIES_KEY, JSON.stringify(categoriesEnabled));
+        } catch (e) {
+            console.error('Error saving data to localStorage', e);
+        }
+    }
+
+    /**
+     * Remove all persistent game data (player names, categories and used question/forfeit trackers).
+     */
+    function clearPersistentData() {
+        try {
+            localStorage.removeItem(PLAYERS_KEY);
+            localStorage.removeItem(CATEGORIES_KEY);
+            ['couple','friends','group'].forEach(mode => {
+                localStorage.removeItem(USED_QUESTIONS_KEY_PREFIX + mode);
+                localStorage.removeItem(USED_FORFEITS_KEY_PREFIX + mode);
+            });
+        } catch (e) {
+            console.error('Error clearing data from localStorage', e);
+        }
+    }
+
+    /**
+     * Render the initials of all players in the initialsDisplay container.  The current asker is highlighted.
+     */
+    function updateInitialsDisplay() {
+        const container = document.getElementById('initialsDisplay');
+        if (!container) return;
+        container.innerHTML = '';
+        players.forEach((player, idx) => {
+            const div = document.createElement('div');
+            div.classList.add('initial-chip');
+            // Compute up to two-letter initials from the player's name
+            let initials = '';
+            const parts = player.name.split(/\s+/).filter(Boolean);
+            for (let i = 0; i < parts.length && initials.length < 2; i++) {
+                initials += parts[i].charAt(0).toUpperCase();
+            }
+            div.textContent = initials || '?';
+            if (idx === currentPlayerIndex) {
+                div.classList.add('current');
+            }
+            container.appendChild(div);
+        });
     }
 
     // --- Game Mode Setup ---
@@ -639,6 +743,9 @@ document.addEventListener('DOMContentLoaded', () => {
         gameMode = mode;
         if (mode === 'group') {
             showContainer('groupSetupContainer');
+            // Reflect persisted category settings when entering group setup
+            if (tameToggle) tameToggle.checked = categoriesEnabled.tame;
+            if (explicitToggle) explicitToggle.checked = categoriesEnabled.explicit;
         } else {
             player1RoleRow.style.display = mode === 'couple' ? 'grid' : 'none';
             player2RoleRow.style.display = mode === 'couple' ? 'grid' : 'none';
@@ -663,11 +770,16 @@ document.addEventListener('DOMContentLoaded', () => {
             li.appendChild(removeBtn);
             playerList.appendChild(li);
         });
+        // Update the initials display whenever the player list changes
+        updateInitialsDisplay();
     }
 
     // --- Start Game Logic ---
     function startGame() {
         currentPlayerIndex = 0;
+        // Reset fairness and skip state for new sessions
+        playersAskedInCycle = [];
+        showingForfeit = false;
         if (gameMode === 'group') {
             const firstPlayerName = players[currentPlayerIndex].name;
             interstitialMessage.textContent = `Pass the device to ${firstPlayerName}`;
@@ -676,6 +788,10 @@ document.addEventListener('DOMContentLoaded', () => {
             showContainer('gameContainer');
             displayNextQuestion();
         }
+        // Persist players and categories at the beginning of a session
+        savePersistentData();
+        // Draw initials now that the game has started and players are defined
+        updateInitialsDisplay();
     }
 
     // --- Core Game Logic ---
@@ -690,16 +806,19 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentQuestionType === 'group') {
                 indicatorText = `${asker.name} asks the group:`;
                 currentTargetIndex = null;
+                // Reset fairness cycle when the question targets the entire group
+                playersAskedInCycle = [];
             } else {
-                let targetIdx;
-                if (players.length > 1) {
-                    do {
-                        targetIdx = Math.floor(Math.random() * players.length);
-                    } while (targetIdx === currentPlayerIndex);
-                } else {
-                    targetIdx = 0;
+                // Fairly choose a target: each other player should be selected once before repeating
+                let eligibleTargets = players.map((_, idx) => idx).filter(idx => idx !== currentPlayerIndex && !playersAskedInCycle.includes(idx));
+                if (eligibleTargets.length === 0) {
+                    // Reset the cycle when everyone has been asked
+                    playersAskedInCycle = [];
+                    eligibleTargets = players.map((_, idx) => idx).filter(idx => idx !== currentPlayerIndex);
                 }
-                currentTargetIndex = targetIdx;
+                const randomIdx = Math.floor(Math.random() * eligibleTargets.length);
+                currentTargetIndex = eligibleTargets[randomIdx];
+                playersAskedInCycle.push(currentTargetIndex);
                 const target = players[currentTargetIndex];
                 indicatorText = `${asker.name} asks ${target.name}:`;
             }
@@ -708,6 +827,8 @@ document.addEventListener('DOMContentLoaded', () => {
             indicatorText = `${asker.name} asks ${answerer.name}:`;
         }
         turnIndicator.textContent = indicatorText;
+        // Highlight the current asker in the initials display
+        updateInitialsDisplay();
     }
 
     function displayNextQuestion() {
@@ -745,9 +866,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 question = "No suitable questions found. Click next to try again.";
             }
         } else if (gameMode === 'group') {
-            const selectedQuestion = getNextUniqueItem(groupQuestions, questionKey);
-            question = selectedQuestion.text;
-            currentQuestionType = selectedQuestion.type;
+            // Filter group questions based on category toggles
+            const filtered = getFilteredGroupQuestions();
+            const selectedQuestion = getNextUniqueItem(filtered, questionKey);
+            // getNextUniqueItem returns either a string (if no objects) or an object with text/type
+            if (typeof selectedQuestion === 'string') {
+                question = selectedQuestion;
+                currentQuestionType = 'group';
+            } else {
+                question = selectedQuestion.text;
+                currentQuestionType = selectedQuestion.type;
+            }
         } else {
             const questionBank = friendsQuestions;
             question = getNextUniqueItem(questionBank, questionKey);
@@ -755,6 +884,8 @@ document.addEventListener('DOMContentLoaded', () => {
         questionCard.innerHTML = question;
         questionCard.style.display = 'flex';
         forfeitCard.style.display = 'none';
+        // Mark that a question is being shown
+        showingForfeit = false;
         updateTurnIndicator();
     }
 
@@ -771,6 +902,8 @@ document.addEventListener('DOMContentLoaded', () => {
         forfeitCard.innerHTML = `<strong>${performerName}'s Forfeit:</strong><br>${forfeit}`;
         forfeitCard.style.display = 'flex';
         questionCard.style.display = 'none';
+        // Mark that a forfeit card is being shown
+        showingForfeit = true;
     }
 
     function resetGame() {
@@ -782,6 +915,8 @@ document.addEventListener('DOMContentLoaded', () => {
         player1Input.value = '';
         player2Input.value = '';
         newPlayerNameInput.value = '';
+        playersAskedInCycle = [];
+        showingForfeit = false;
         showContainer('welcomeContainer');
     }
 
@@ -799,6 +934,7 @@ document.addEventListener('DOMContentLoaded', () => {
             players = [{ name: p1Name }, { name: p2Name }];
         }
         startGame();
+        updateInitialsDisplay();
     });
 
     addPlayerBtn.addEventListener('click', () => {
@@ -825,6 +961,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         startGame();
+        updateInitialsDisplay();
     });
 
     nextButton.addEventListener('click', () => {
@@ -847,12 +984,84 @@ document.addEventListener('DOMContentLoaded', () => {
         displayNextForfeit();
     });
 
+    // Small skip button: allow players to skip a question or forfeit if not applicable
+    if (skipButton) {
+        skipButton.addEventListener('click', () => {
+            if (showingForfeit) {
+                displayNextForfeit();
+            } else {
+                displayNextQuestion();
+            }
+        });
+    }
+
+    // Category toggles: update enabled categories and persist settings
+    if (tameToggle) {
+        tameToggle.addEventListener('change', () => {
+            categoriesEnabled.tame = tameToggle.checked;
+            savePersistentData();
+        });
+    }
+    if (explicitToggle) {
+        explicitToggle.addEventListener('change', () => {
+            categoriesEnabled.explicit = explicitToggle.checked;
+            savePersistentData();
+        });
+    }
+
+    // New game button: reset all progress and persistent data
+    if (newGameBtn) {
+        newGameBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (window.confirm('Are you sure you want to start a new game? This will clear all saved progress.')) {
+                clearPersistentData();
+                resetGame();
+            }
+        });
+    }
+
     homeLogoLink.addEventListener('click', (event) => {
         event.preventDefault();
         if (window.confirm("Are you sure you want to end this game and return to the main menu?")) {
             resetGame();
         }
     });
+
+    // Load persisted players and categories from previous sessions
+    (function loadPersistedData() {
+        try {
+            const storedPlayers = localStorage.getItem(PLAYERS_KEY);
+            const storedCats = localStorage.getItem(CATEGORIES_KEY);
+            if (storedPlayers) {
+                const parsedPlayers = JSON.parse(storedPlayers);
+                if (Array.isArray(parsedPlayers) && parsedPlayers.length > 0) {
+                    players = parsedPlayers;
+                    // Pre-fill couple setup inputs if there are exactly two players
+                    if (players.length === 2) {
+                        player1Input.value = players[0].name;
+                        player2Input.value = players[1].name;
+                    }
+                    // Render group list if there are more than two players
+                    if (players.length >= 2) {
+                        renderPlayerList();
+                    }
+                    // Update initials display with persisted players
+                    updateInitialsDisplay();
+                }
+            }
+            if (storedCats) {
+                const parsedCats = JSON.parse(storedCats);
+                if (parsedCats && typeof parsedCats === 'object') {
+                    categoriesEnabled = { ...categoriesEnabled, ...parsedCats };
+                    // Update toggle UI if elements exist
+                    if (tameToggle) tameToggle.checked = categoriesEnabled.tame;
+                    if (explicitToggle) explicitToggle.checked = categoriesEnabled.explicit;
+                }
+            }
+        } catch (e) {
+            console.error('Error loading persisted data', e);
+        }
+    })();
 
     // --- Initial Page State ---
     showContainer('welcomeContainer');
