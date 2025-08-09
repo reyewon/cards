@@ -158,6 +158,35 @@ body {
     color: var(--accent2-color);
 }
 
+/* --- Player initials display --- */
+.initials-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.initial-chip {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    background-color: var(--input-bg-color);
+    border: 2px solid var(--accent2-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Highlight the current asker */
+.initial-chip.current {
+    background-color: var(--accent2-color);
+    color: #1a1a1a;
+}
+
 /* --- Mode Selection (Welcome Screen) --- */
 .mode-selection {
     display: flex;
@@ -344,6 +373,42 @@ select option {
 
 #forfeitButton { background-color: var(--button1-bg); }
 #forfeitButton:hover { background-color: var(--button1-hover-bg); }
+
+/* --- Small action button (skip) --- */
+.small-action {
+    background-color: var(--button1-bg);
+    color: var(--button-text-color);
+    border: none;
+    border-radius: var(--border-radius-small);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.small-action:hover {
+    background-color: var(--button1-hover-bg);
+}
+
+/* --- Category toggles --- */
+.category-toggles {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-muted-color);
+}
+.category-toggles label {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    cursor: pointer;
+}
+.category-toggles input[type="checkbox"] {
+    accent-color: var(--accent2-color);
+}
 
 #startCoupleGameButton:active,
 #startGroupGameButton:active,
