@@ -1,135 +1,255 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kink and Tell Game by Rysta</title>
-
-    <link rel="stylesheet" href="styles.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EMK8Q5QN8S"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-EMK8Q5QN8S');
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kink and Tell</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Background particle effect -->
-    <div id="background-particles">
-        <div class="particle pink"></div>
-        <div class="particle cyan"></div>
-        <div class="particle pink"></div>
-        <div class="particle cyan"></div>
-        <div class="particle pink"></div>
-        <div class="particle cyan"></div>
-        <div class="particle pink"></div>
-        <div class="particle cyan"></div>
-    </div>
+  <!-- Background particle effect -->
+  <div id="background-particles" aria-hidden="true">
+    <div class="particle pink"></div>
+    <div class="particle cyan"></div>
+    <div class="particle pink"></div>
+    <div class="particle cyan"></div>
+    <div class="particle pink"></div>
+    <div class="particle cyan"></div>
+    <div class="particle pink"></div>
+    <div class="particle cyan"></div>
+  </div>
 
-    <!-- Welcome Screen: Choose Game Mode -->
-    <div id="welcomeContainer">
-        <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" id="logo">
-        <p id="instructionText">Choose your adventure...</p>
-        <div class="mode-selection">
-            <button id="groupModeBtn" class="mode-btn">
-                <h3>Group</h3>
-                <p>Kinky secrets and devious tasks for a group of friends.</p>
-            </button>
-            <button id="coupleModeBtn" class="mode-btn">
-                <h3>Couple</h3>
-                <p>The original game, designed for ENM / Kink couples.</p>
-            </button>
-            <button id="friendsModeBtn" class="mode-btn">
-                <h3>Friends</h3>
-                <p>Honest revelations and sex-positive chats for two friends.</p>
-            </button>
+  <!-- Welcome Screen -->
+  <div id="welcomeContainer" class="card-surface">
+    <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" id="logo" />
+    <p id="instructionText">Choose your adventure...</p>
+
+    <div class="welcome-row">
+      <div class="mode-selection">
+        <button id="groupModeBtn" class="mode-btn" data-mode="group">
+          <h3>Group</h3>
+          <p>Kinky secrets and devious tasks for a group of friends.</p>
+        </button>
+        <button id="coupleModeBtn" class="mode-btn" data-mode="couple">
+          <h3>Couple</h3>
+          <p>Designed for ENM and kink couples, with role-aware prompts.</p>
+        </button>
+        <button id="friendsModeBtn" class="mode-btn" data-mode="friends">
+          <h3>Friends</h3>
+          <p>Honest revelations and sex-positive chats for two friends.</p>
+        </button>
+      </div>
+
+      <div class="welcome-controls">
+        <div class="control-block">
+          <h4>Spiciness</h4>
+          <label class="toggle"><input type="checkbox" id="spiceTame" checked> Tame</label>
+          <label class="toggle"><input type="checkbox" id="spiceSpicy" checked> Spicy</label>
+          <label class="toggle"><input type="checkbox" id="spiceFilthy" checked> Filthy</label>
+          <small>Filters apply to questions and forfeits.</small>
         </div>
-    </div>
 
-    <!-- Setup for Couple / Friends Mode -->
-    <div id="coupleSetupContainer" class="setup-container">
-        <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" id="logo-small">
-        <p id="instructionTextCouple">Enter names and select roles!</p>
-        <div class="input-group">
-            <div class="form-row">
-                <label for="player1">Player 1:</label>
-                <input type="text" id="player1" placeholder="Name">
-            </div>
-             <div class="form-row" id="player1RoleRow">
-                 <label for="player1Role">Role:</label>
-                 <select id="player1Role">
-                     <option value="switch">Switch</option>
-                     <option value="Dom">Dom</option>
-                     <option value="sub">sub</option>
-                 </select>
-             </div>
-             <div class="form-row">
-                 <label for="player2">Player 2:</label>
-                 <input type="text" id="player2" placeholder="Name">
-             </div>
-             <div class="form-row" id="player2RoleRow">
-                 <label for="player2Role">Role:</label>
-                 <select id="player2Role">
-                     <option value="switch">Switch</option>
-                     <option value="Dom">Dom</option>
-                     <option value="sub">sub</option>
-                 </select>
-             </div>
+        <div class="control-block">
+          <h4>External actions</h4>
+          <label class="switch">
+            <input type="checkbox" id="allowExternal" checked>
+            <span class="slider"></span>
+          </label>
+          <small>Includes cards that suggest messaging, social posts or photos.</small>
         </div>
-        <button id="startCoupleGameButton">Start Game</button>
-    </div>
 
-    <!-- Setup for Group Mode -->
-    <div id="groupSetupContainer" class="setup-container">
-        <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" id="logo-small">
-        <p id="instructionTextGroup">Add players to the group!</p>
-        <div class="input-group">
-            <div class="add-player-form">
-                <input type="text" id="newPlayerName" placeholder="Enter player name...">
-                <button id="addPlayerBtn">+</button>
-            </div>
-            <ul id="playerList"></ul>
+        <div class="control-block">
+          <h4>Sound</h4>
+          <label class="switch">
+            <input type="checkbox" id="soundEnabled" checked>
+            <span class="slider"></span>
+          </label>
+          <small>Play soft clicks for card draws.</small>
         </div>
-        <button id="startGroupGameButton">Start Game</button>
+
+        <a href="#" id="tutorialLink">How to play</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Couple / Friends Setup -->
+  <div id="coupleSetupContainer" class="setup-container card-surface">
+    <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" id="logo-small" />
+    <p id="instructionTextCouple">Enter names and select roles.</p>
+
+    <div class="input-group">
+      <div class="form-row">
+        <label for="player1">Player 1</label>
+        <input type="text" id="player1" placeholder="Name" />
+      </div>
+      <div class="form-row" id="player1RoleRow">
+        <label for="player1Role">Role</label>
+        <select id="player1Role">
+          <option value="switch">Switch</option>
+          <option value="Dom">Dom</option>
+          <option value="sub">Sub</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label for="player2">Player 2</label>
+        <input type="text" id="player2" placeholder="Name" />
+      </div>
+      <div class="form-row" id="player2RoleRow">
+        <label for="player2Role">Role</label>
+        <select id="player2Role">
+          <option value="switch">Switch</option>
+          <option value="Dom">Dom</option>
+          <option value="sub">Sub</option>
+        </select>
+      </div>
     </div>
 
-
-    <!-- Main Game Screen -->
-    <div id="gameContainer">
-        <a href="#" id="homeLogoLink" title="Restart Game">
-            <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Home" id="persistentLogo">
-        </a>
-
-        <div id="turnIndicator"></div>
-        <div id="questionCard">Click 'Next Question' to begin!</div>
-        <div id="forfeitCard"></div>
-        <div class="button-group">
-            <button id="nextButton">Next Question</button>
-            <button id="forfeitButton">Take a Forfeit</button>
-        </div>
+    <div class="inline-controls">
+      <button id="addCustomBtn" class="ghost">Add custom card</button>
+      <button id="startCoupleGameButton" class="primary">Start game</button>
     </div>
-    
-    <!-- Interstitial "Pass Device" Screen -->
-    <div id="interstitialContainer">
-        <h3 id="interstitialMessage"></h3>
-        <p>You're asking the next question!</p>
-        <button id="readyButton">Ready!</button>
+  </div>
+
+  <!-- Group Setup -->
+  <div id="groupSetupContainer" class="setup-container card-surface">
+    <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" id="logo-small" />
+    <p id="instructionTextGroup">Add players to the group.</p>
+
+    <div class="input-group">
+      <div class="add-player-form">
+        <input type="text" id="newPlayerName" placeholder="Enter player name..." />
+        <button id="addPlayerBtn" title="Add">+</button>
+      </div>
+      <ul id="playerList"></ul>
     </div>
 
+    <div class="inline-controls">
+      <button id="addCustomBtnGroup" class="ghost">Add custom card</button>
+      <button id="startGroupGameButton" class="primary">Start game</button>
+    </div>
+  </div>
 
-    <footer>
-        Created by <a href="https://www.instagram.com/rystadom" target="_blank">Rysta</a>
-    </footer>
+  <!-- Game Screen -->
+  <div id="gameContainer" class="card-surface">
+    <a href="#" id="homeLogoLink" title="Save and exit">
+      <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Home" id="persistentLogo" />
+    </a>
 
-    <script src="script.js" defer></script>
+    <div class="game-header">
+      <span id="modeBadge" class="mode-badge">Mode</span>
+      <span id="turnIndicator"></span>
+      <span id="progressBadge" class="progress-badge" title="Cards used in this deck">0 used</span>
+    </div>
 
+    <div id="cardMeta">
+      <span id="cardTypeLabel" class="chip">—</span>
+      <span id="repeatNotice" class="chip warn" hidden>Deck exhausted, repeats may appear</span>
+    </div>
+
+    <div id="questionCard" class="content-card" aria-live="polite">Tap Next to begin.</div>
+    <div id="forfeitCard" class="content-card forfeit" hidden></div>
+
+    <div id="timerBar" class="timer" hidden>
+      <span id="timerDisplay">00:00</span>
+      <button id="timerStart" class="timer-btn">Start</button>
+      <button id="timerPause" class="timer-btn">Pause</button>
+      <button id="timerReset" class="timer-btn">Reset</button>
+    </div>
+
+    <div class="sticky-controls">
+      <button id="undoButton" class="secondary" title="Undo last">Undo</button>
+      <button id="skipButton" class="secondary" title="Skip this card">Skip</button>
+      <button id="forfeitButton" class="accent" title="Take a forfeit">Forfeit</button>
+      <button id="nextButton" class="primary" title="Next question">Next</button>
+      <button id="newGameButton" class="ghost" title="New game">New game</button>
+      <button id="muteButton" class="ghost" title="Toggle sound">🔊</button>
+    </div>
+
+    <div id="swipeHint">Swipe right for Next, up for Forfeit</div>
+  </div>
+
+  <!-- Interstitial Screen -->
+  <div id="interstitialContainer" class="card-surface" hidden>
+    <h3 id="interstitialMessage">Pass the device</h3>
+    <p>You're asking the next question.</p>
+    <button id="readyButton" class="primary">Ready</button>
+  </div>
+
+  <footer>
+    <span>Created by <a href="https://www.instagram.com/rystadom" target="_blank" rel="noopener">Rysta</a></span>
+  </footer>
+
+  <!-- Tutorial Modal -->
+  <dialog id="tutorialModal">
+    <h3>How to play</h3>
+    <ol>
+      <li>Pick a mode and set spiciness and external actions.</li>
+      <li>Enter names, then pass the device between players.</li>
+      <li>Draw questions, take forfeits, add your own cards if you like.</li>
+    </ol>
+    <button id="closeTutorial" class="primary">Close</button>
+  </dialog>
+
+  <!-- Custom Card Modal -->
+  <dialog id="customModal">
+    <h3>Add a custom card</h3>
+    <label>
+      <span>Card type</span>
+      <select id="customKind">
+        <option value="question">Question</option>
+        <option value="forfeit">Forfeit</option>
+      </select>
+    </label>
+
+    <label id="customSubtypeWrap">
+      <span>Subtype (Couple mode only)</span>
+      <select id="customSubtype">
+        <option value="neutral">Neutral</option>
+        <option value="D_asks_S">Dom asks Sub</option>
+        <option value="S_asks_D">Sub asks Dom</option>
+      </select>
+    </label>
+
+    <label>
+      <span>Spiciness</span>
+      <select id="customSpice">
+        <option value="tame">Tame</option>
+        <option value="spicy">Spicy</option>
+        <option value="filthy">Filthy</option>
+      </select>
+    </label>
+
+    <label class="row">
+      <span>External action</span>
+      <input type="checkbox" id="customExternal" />
+    </label>
+
+    <label>
+      <span>Text</span>
+      <textarea id="customText" rows="4" placeholder="Write your card text..."></textarea>
+    </label>
+
+    <div class="inline-controls">
+      <button id="cancelCustom" class="ghost">Cancel</button>
+      <button id="saveCustom" class="primary">Save</button>
+    </div>
+  </dialog>
+
+  <!-- Reset Modal -->
+  <dialog id="resetModal">
+    <h3>New game</h3>
+    <p>Do you want to save and exit, or hard reset everything?</p>
+    <div class="inline-controls">
+      <button id="resetCancel" class="ghost">Cancel</button>
+      <button id="saveExit" class="secondary">Save and exit</button>
+      <button id="hardReset" class="primary">Hard reset</button>
+    </div>
+  </dialog>
+
+  <script src="script.js" defer></script>
 </body>
 </html>
