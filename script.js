@@ -1,6 +1,12 @@
-// --- CONTENT LIBRARIES (Can be declared early as they don't need the page to be loaded) ---
+/* Kink and Tell vNext (JS only)
+ * Implements: spiciness filters, local save/resume, new game button,
+ * repeat notice, skip/undo, mode badge, type label, fair targeting,
+ * on-card timer (manual start), custom cards, soft SFX with mute,
+ * swipe gestures, sticky controls, save and exit modal, content tidy,
+ * debounce to prevent double taps, external actions toggle, visual polish.
+ */
 
-// --- Couple Mode Content (Original) ---
+/* === Full content decks (as supplied) === */
 const coupleQuestions = [
     // --- Neutral Questions (Suitable for most dynamics) ---
     { text: "Have you ever wanted to explore a kink or fetish with me but haven't yet?", type: "neutral" },
@@ -265,6 +271,7 @@ const coupleQuestions = [
     { text: "Is there anything you hesitate to ask for when you're dominant, fearing it might be 'too much'?", type: "S_asks_D" },
     { text: "How do you feel about negotiating scenes beforehand versus more spontaneous play?", type: "S_asks_D" }
 ];
+
 const coupleForfeits = [
     "You must head to the bathroom, take a naughty photo and send it to the other player",
     "You must remove one item of clothing",
@@ -353,7 +360,6 @@ const coupleForfeits = [
     "EASTER EGG: Message Rysta, the game creator, on Fetlife (RYSTA) or Instagram (@rystadom). Your message must be a confession of the naughtiest thing you've thought about doing with your partner. Be creative."
 ];
 
-// --- Friends Mode Content (REVISED & EXPANDED) ---
 const friendsQuestions = [
     // Original, more conversational questions
     "What's a misconception you think I might have about your sex life?",
@@ -413,6 +419,7 @@ const friendsQuestions = [
     "Do you prefer giving or receiving oral sex?",
     "If we were to experiment sexually, what's the first thing you'd want to try?",
 ];
+
 const friendsForfeits = [
     "Describe your ideal dirty talk to the other player.",
     "Show the other player your 'O' face.",
@@ -437,7 +444,6 @@ const friendsForfeits = [
     "EASTER EGG: Message Rysta, the game creator, on Fetlife (RYSTA) or Instagram (@rystadom). Your message must be a confession of the naughtiest thing you've thought about doing with your friend here. Be creative."
 ];
 
-// --- Group Mode Content (REVISED & EXPANDED) ---
 const groupQuestions = [
     // Original, tamer questions (converted to new format)
     { text: "Who in this group do you think has the wildest, unspoken fantasy?", type: 'target' },
@@ -508,12 +514,6 @@ const groupQuestions = [
     { text: "Everyone writes down a secret fantasy on a piece of paper. Shuffle them, and read them aloud. The group has to guess who wrote which fantasy.", type: 'group' },
 ];
 
-// Determine the starting index of more explicit (kinkier) questions in the group list.  
-// We search for the first occurrence of a known explicit keyword.  If not found, all questions are treated as tame.
-const explicitStartIndex = groupQuestions.findIndex(q => q.text && q.text.toLowerCase().includes('anal play'));
-
-// Category toggles for group questions. Both categories are enabled by default.
-let categoriesEnabled = { tame: true, explicit: true };
 const groupForfeits = [
     "Remove one item of clothing.",
     "Let the person to your right blindfold you for the next two rounds.",
@@ -553,516 +553,556 @@ const groupForfeits = [
     "EASTER EGG: Message Rysta, the game creator, on Fetlife (RYSTA) or Instagram (@rystadom). Your message must be a confession of the naughtiest thing you've thought about doing with someone in this room. Be creative."
 ];
 
-// --- This listener ensures the script runs only after the page is fully loaded ---
-document.addEventListener('DOMContentLoaded', () => {
-    // --- DOM Elements ---
-    const welcomeContainer = document.getElementById('welcomeContainer');
-    const coupleSetupContainer = document.getElementById('coupleSetupContainer');
-    const groupSetupContainer = document.getElementById('groupSetupContainer');
-    const gameContainer = document.getElementById('gameContainer');
-    const interstitialContainer = document.getElementById('interstitialContainer');
-    const interstitialMessage = document.getElementById('interstitialMessage');
-    const readyButton = document.getElementById('readyButton');
-    const groupModeBtn = document.getElementById('groupModeBtn');
-    const coupleModeBtn = document.getElementById('coupleModeBtn');
-    const friendsModeBtn = document.getElementById('friendsModeBtn');
-    const player1Input = document.getElementById('player1');
-    const player2Input = document.getElementById('player2');
-    const player1RoleSelect = document.getElementById('player1Role');
-    const player2RoleSelect = document.getElementById('player2Role');
-    const player1RoleRow = document.getElementById('player1RoleRow');
-    const player2RoleRow = document.getElementById('player2RoleRow');
-    const startCoupleGameButton = document.getElementById('startCoupleGameButton');
-    const newPlayerNameInput = document.getElementById('newPlayerName');
-    const addPlayerBtn = document.getElementById('addPlayerBtn');
-    const playerList = document.getElementById('playerList');
-    const startGroupGameButton = document.getElementById('startGroupGameButton');
-    const turnIndicator = document.getElementById('turnIndicator');
-    const questionCard = document.getElementById('questionCard');
-    const forfeitCard = document.getElementById('forfeitCard');
-    const nextButton = document.getElementById('nextButton');
-    const forfeitButton = document.getElementById('forfeitButton');
-    const homeLogoLink = document.getElementById('homeLogoLink');
+/* === Additional cards appended for spiciness balance === */
+const extraCards = {
+  couple: {
+    tame: [
+      { text: "What non-sexual thing do I do that makes you feel desired?", type: "neutral" },
+      { text: "What song always puts you in the mood with me?", type: "neutral" },
+    ],
+    spicy: [
+      { text: "Describe exactly how you'd want our next makeout to start.", type: "neutral" },
+      { text: "What praise from me hits the hardest?", type: "S_asks_D" },
+    ],
+    filthy: [
+      { text: "Describe the dirtiest thing you want me to whisper before you cum.", type: "D_asks_S" },
+      { text: "What would our most intense threesome look like?", type: "neutral" },
+    ],
+    forfeits: {
+      tame: [ "Massage the other player's shoulders for one minute." ],
+      spicy: [ "Whisper three filthy promises in the other player's ear." ],
+      filthy: [ "Make orgasm noises on command for 15 seconds." ],
+      externalTame: [ "Let your partner choose your outfit for tomorrow." ],
+      externalSpicy: [ "Send a flirty voice note to the other player." ],
+      externalFilthy: [ "Take a naughty selfie and show only to the other player." ],
+    },
+  },
+  friends: {
+    tame: [
+      { text: "What's a film that shaped your idea of romance?" },
+      { text: "What outfit makes you feel most confident?" },
+    ],
+    spicy: [
+      { text: "If we experimented, what's the first thing you'd want to try?" },
+      { text: "What kind of kiss do you think I'd give?" },
+    ],
+    filthy: [
+      { text: "Tell me one fantasy involving the two of us, no holding back." },
+      { text: "Would you rather pin me down or be pinned?" },
+    ],
+    forfeits: {
+      tame: [ "Give a genuine flirty compliment." ],
+      spicy: [ "Describe, in detail, how you'd undress the other player." ],
+      filthy: [ "Mimic your best 'I'm about to cum' face." ],
+      externalTame: [ "Send a cute emoji-only text to the other player." ],
+      externalSpicy: [ "Send a flirty text to the other player as if seducing them." ],
+      externalFilthy: [ "Record a 5 second naughty whisper and send it to the other player." ],
+    },
+  },
+  group: {
+    tame: [
+      { text: "Who here has the best laugh? Make them prove it.", type: "target" },
+      { text: "If this group was a band, who plays what?", type: "group" },
+    ],
+    spicy: [
+      { text: "Point to the person you think gives the best kiss.", type: "target" },
+      { text: "Everyone says one flirty compliment to the person on their right.", type: "group" },
+    ],
+    filthy: [
+      { text: "If you had to give a lap dance to one person here, who is it?", type: "target" },
+      { text: "Who here would you most like to watch during sex?", type: "target" },
+    ],
+  },
+};
 
-    // Category toggle elements and additional controls
-    const tameToggle = document.getElementById('tameToggle');
-    const explicitToggle = document.getElementById('explicitToggle');
-    const skipButton = document.getElementById('skipButton');
-    const newGameBtn = document.getElementById('newGameBtn');
+/* === DOM === */
+const els = {
+  welcome: document.getElementById('welcomeContainer'),
+  coupleSetup: document.getElementById('coupleSetupContainer'),
+  groupSetup: document.getElementById('groupSetupContainer'),
+  game: document.getElementById('gameContainer'),
+  interstitial: document.getElementById('interstitialContainer'),
 
-    // --- Game State Variables ---
-    let gameMode = '';
-    let players = [];
-    let currentPlayerIndex = 0;
-    let currentTargetIndex = null;
-    let currentQuestionType = 'target';
+  groupModeBtn: document.getElementById('groupModeBtn'),
+  coupleModeBtn: document.getElementById('coupleModeBtn'),
+  friendsModeBtn: document.getElementById('friendsModeBtn'),
 
-    // Fairness: track which players have been targeted in the current cycle in group mode
-    let playersAskedInCycle = [];
+  startCouple: document.getElementById('startCoupleGameButton'),
+  startGroup: document.getElementById('startGroupGameButton'),
 
-    // Track whether the last displayed card was a forfeit or question (used by skip button)
-    let showingForfeit = false;
+  player1: document.getElementById('player1'),
+  player2: document.getElementById('player2'),
+  player1Role: document.getElementById('player1Role'),
+  player2Role: document.getElementById('player2Role'),
+  player1RoleRow: document.getElementById('player1RoleRow'),
+  player2RoleRow: document.getElementById('player2RoleRow'),
 
-    // Persistent storage keys
-    const PLAYERS_KEY = 'kinkAndTellPlayers';
-    const CATEGORIES_KEY = 'kinkAndTellCategories';
+  newPlayerName: document.getElementById('newPlayerName'),
+  addPlayerBtn: document.getElementById('addPlayerBtn'),
+  playerList: document.getElementById('playerList'),
 
-    // --- localStorage Keys ---
-    const USED_QUESTIONS_KEY_PREFIX = 'kinkAndTellUsedQuestions_';
-    const USED_FORFEITS_KEY_PREFIX = 'kinkAndTellUsedForfeits_';
+  questionCard: document.getElementById('questionCard'),
+  forfeitCard: document.getElementById('forfeitCard'),
+  cardTypeLabel: document.getElementById('cardTypeLabel'),
+  turnIndicator: document.getElementById('turnIndicator'),
+  interstitialMessage: document.getElementById('interstitialMessage'),
+  readyButton: document.getElementById('readyButton'),
 
-    // --- Utility Functions ---
-    function showContainer(containerId) {
-        const containers = [welcomeContainer, coupleSetupContainer, groupSetupContainer, gameContainer, interstitialContainer];
-        containers.forEach(container => {
-            if (container) {
-                container.style.display = container.id === containerId ? 'block' : 'none';
-            }
-        });
+  nextButton: document.getElementById('nextButton'),
+  forfeitButton: document.getElementById('forfeitButton'),
+  skipButton: document.getElementById('skipButton'),
+  undoButton: document.getElementById('undoButton'),
+  newGameButton: document.getElementById('newGameButton'),
+  homeLogoLink: document.getElementById('homeLogoLink'),
+  muteButton: document.getElementById('muteButton'),
+
+  modeBadge: document.getElementById('modeBadge'),
+  progressBadge: document.getElementById('progressBadge'),
+  repeatNotice: document.getElementById('repeatNotice'),
+
+  timerBar: document.getElementById('timerBar'),
+  timerDisplay: document.getElementById('timerDisplay'),
+  timerStart: document.getElementById('timerStart'),
+  timerPause: document.getElementById('timerPause'),
+  timerReset: document.getElementById('timerReset'),
+
+  tutorialLink: document.getElementById('tutorialLink'),
+  tutorialModal: document.getElementById('tutorialModal'),
+  closeTutorial: document.getElementById('closeTutorial'),
+
+  customModal: document.getElementById('customModal'),
+  addCustomBtn: document.getElementById('addCustomBtn'),
+  addCustomBtnGroup: document.getElementById('addCustomBtnGroup'),
+  customKind: document.getElementById('customKind'),
+  customSubtype: document.getElementById('customSubtype'),
+  customSubtypeWrap: document.getElementById('customSubtypeWrap'),
+  customSpice: document.getElementById('customSpice'),
+  customExternal: document.getElementById('customExternal'),
+  customText: document.getElementById('customText'),
+  saveCustom: document.getElementById('saveCustom'),
+  cancelCustom: document.getElementById('cancelCustom'),
+
+  resetModal: document.getElementById('resetModal'),
+  resetCancel: document.getElementById('resetCancel'),
+  saveExit: document.getElementById('saveExit'),
+  hardReset: document.getElementById('hardReset'),
+
+  spiceTame: document.getElementById('spiceTame'),
+  spiceSpicy: document.getElementById('spiceSpicy'),
+  spiceFilthy: document.getElementById('spiceFilthy'),
+  allowExternal: document.getElementById('allowExternal'),
+  soundEnabled: document.getElementById('soundEnabled'),
+};
+
+/* === Audio (soft click) === */
+let audioCtx;
+function playClick() {
+  if (!state.sound) return;
+  try {
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const o = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    o.type = 'triangle'; o.frequency.value = 880; g.gain.value = 0.03;
+    o.connect(g); g.connect(audioCtx.destination);
+    o.start(); setTimeout(() => o.stop(), 60);
+  } catch {}
+}
+
+/* === Util === */
+const LSK = 'kinkandtell_v2_state';
+const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+const debounce = (fn, ms = 400) => { let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); }; };
+const rand = (n) => Math.floor(Math.random() * n);
+function shuffle(arr) { const a = arr.slice(); for (let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
+function classifySpice(text) {
+  const t = text.toLowerCase();
+  const filthy = /(cum|orgasm|watersport|knife|cnc|degradation|deepthroat|anal|double penetration|dp|fuck|cock|pussy|slut|choke|gag|vibrator|vibrating|collar|spank|whip|lap dance|threesome|sex club)/;
+  const spicy = /(kiss|makeout|undress|nipple|toy|roleplay|edge|deny|praise|porn|public|bondage|rope|cuffs|wax|mouth|strip|dirty talk|good boy|good girl)/;
+  if (filthy.test(t)) return 'filthy';
+  if (spicy.test(t)) return 'spicy';
+  return 'tame';
+}
+function normaliseQuestion(item, fallbackType = 'neutral') { return typeof item === 'string' ? ({ text: item, type: fallbackType }) : ({ text: item.text, type: item.type || fallbackType }); }
+function normaliseForfeit(item) { return typeof item === 'string' ? ({ text: item }) : ({ text: item.text }); }
+function isExternalForfeit(text) { const t = text.toLowerCase(); return /(message|dm|instagram|fetlife|post|social|selfie|photo|send|voice note)/.test(t); }
+
+/* === State === */
+const state = {
+  mode: null,
+  players: [],
+  askerIndex: 0,
+  askCounts: [],
+  used: { questions: new Set(), forfeits: new Set() },
+  history: [],
+  deck: { questions: [], forfeits: [] },
+  spice: { tame: true, spicy: true, filthy: true },
+  allowExternal: true,
+  sound: true,
+  repeatsShown: false,
+  timer: { start: 0, ms: 0, running: false, int: null },
+};
+
+// Fix Pythonic literals to JS later
+
+/* === Persistence === */
+function saveState() {
+  try {
+    const serialisable = {
+      ...state,
+      used: { questions: Array.from(state.used.questions), forfeits: Array.from(state.used.forfeits) },
+      history: state.history.slice(-20),
+      deck: undefined,
+    };
+    localStorage.setItem(LSK, JSON.stringify(serialisable));
+  } catch {}
+}
+function loadState() {
+  try {
+    const raw = localStorage.getItem(LSK);
+    if (!raw) return false;
+    const s = JSON.parse(raw);
+    Object.assign(state, s);
+    state.used.questions = new Set(s.used?.questions || []);
+    state.used.forfeits = new Set(s.used?.forfeits || []);
+    return true;
+  } catch { return false; }
+}
+function clearState() { localStorage.removeItem(LSK); }
+
+/* === Deck building === */
+function buildDecks() {
+  // Normalise original content
+  const CQ = (window.coupleQuestions || coupleQuestions).map(q => normaliseQuestion(q, 'neutral'));
+  const CF = (window.coupleForfeits || coupleForfeits).map(normaliseForfeit);
+  const FQ = (window.friendsQuestions || friendsQuestions).map(q => normaliseQuestion(q, 'neutral'));
+  const FF = (window.friendsForfeits || friendsForfeits).map(normaliseForfeit);
+  const GQ = (window.groupQuestions || groupQuestions).map(q => normaliseQuestion(q, 'target'));
+  const GF = (window.groupForfeits || groupForfeits).map(normaliseForfeit);
+
+  // Append extras
+  function addExtras() {
+    // Couple: q
+    CQ.push(...extraCards.couple.tame.map(q => ({ ...q, extra: true })),
+            ...extraCards.couple.spicy.map(q => ({ ...q, extra: true })),
+            ...extraCards.couple.filthy.map(q => ({ ...q, extra: true })));
+    // Couple: forfeits
+    CF.push(...extraCards.couple.forfeits.tame.map(text => ({ text, extra: true })),
+            ...extraCards.couple.forfeits.spicy.map(text => ({ text, extra: true })),
+            ...extraCards.couple.forfeits.filthy.map(text => ({ text, extra: true })),
+            ...extraCards.couple.forfeits.externalTame.map(text => ({ text, extra: true })),
+            ...extraCards.couple.forfeits.externalSpicy.map(text => ({ text, extra: true })),
+            ...extraCards.couple.forfeits.externalFilthy.map(text => ({ text, extra: true })));
+    // Friends
+    FQ.push(...extraCards.friends.tame.map(q => ({ ...q, extra: true })),
+            ...extraCards.friends.spicy.map(q => ({ ...q, extra: true })),
+            ...extraCards.friends.filthy.map(q => ({ ...q, extra: true })));
+    FF.push(...extraCards.friends.forfeits.tame.map(text => ({ text, extra: true })),
+            ...extraCards.friends.forfeits.spicy.map(text => ({ text, extra: true })),
+            ...extraCards.friends.forfeits.filthy.map(text => ({ text, extra: true })),
+            ...extraCards.friends.forfeits.externalTame.map(text => ({ text, extra: true })),
+            ...extraCards.friends.forfeits.externalSpicy.map(text => ({ text, extra: true })),
+            ...extraCards.friends.forfeits.externalFilthy.map(text => ({ text, extra: true })));
+    // Group (questions only have extras)
+    GQ.push(...extraCards.group.tame.map(q => ({ ...q, extra: true })),
+            ...extraCards.group.spicy.map(q => ({ ...q, extra: true })),
+            ...extraCards.group.filthy.map(q => ({ ...q, extra: true })));
+  }
+  addExtras();
+
+  // Build by mode
+  let qDeckRaw = [], fDeckRaw = [];
+  if (state.mode === 'couple') { qDeckRaw = CQ; fDeckRaw = CF; }
+  if (state.mode === 'friends') { qDeckRaw = FQ; fDeckRaw = FF; }
+  if (state.mode === 'group') { qDeckRaw = GQ; fDeckRaw = GF; }
+
+  // Annotate spice & external flags
+  const qDeck = qDeckRaw.map(q => ({ ...normaliseQuestion(q, 'neutral'), spice: q.spice || classifySpice(q.text) }));
+  const fDeck = fDeckRaw.map(f => ({ ...normaliseForfeit(f), spice: f.spice || classifySpice(f.text), external: isExternalForfeit(f.text) }));
+
+  // Apply filters
+  const allowedSpice = new Set([ state.spice.tame ? 'tame' : null, state.spice.spicy ? 'spicy' : null, state.spice.filthy ? 'filthy' : null ].filter(Boolean));
+  const filteredQ = qDeck.filter(q => allowedSpice.has(q.spice));
+  const filteredF = fDeck.filter(f => allowedSpice.has(f.spice) && (state.allowExternal || !f.external));
+
+  state.deck.questions = shuffle(filteredQ);
+  state.deck.forfeits = shuffle(filteredF);
+  state.used.questions.clear();
+  state.used.forfeits.clear();
+  state.repeatsShown = false;
+  updateProgress();
+}
+
+/* === UI helpers === */
+function setScreen(screen) {
+  els.welcome.style.display = screen === 'welcome' ? 'block' : 'none';
+  els.coupleSetup.style.display = screen === 'coupleSetup' ? 'block' : 'none';
+  els.groupSetup.style.display = screen === 'groupSetup' ? 'block' : 'none';
+  els.game.style.display = screen === 'game' ? 'block' : 'none';
+  els.interstitial.hidden = screen !== 'interstitial';
+}
+function updateModeBadge() {
+  els.modeBadge.textContent = state.mode ? state.mode[0].toUpperCase() + state.mode.slice(1) : 'Mode';
+  document.body.classList.remove('mode-couple','mode-friends','mode-group');
+  if (state.mode) document.body.classList.add(`mode-${state.mode}`);
+}
+function updateTurnIndicator() {
+  if (state.mode === 'group') {
+    const asker = state.players[state.askerIndex]?.name || 'Player';
+    els.turnIndicator.textContent = `${asker}, you are asking`;
+  } else {
+    const p1 = state.players[0]?.name || 'Player 1';
+    const p2 = state.players[1]?.name || 'Player 2';
+    els.turnIndicator.textContent = `${p1} and ${p2}`;
+  }
+}
+function updateProgress() { els.progressBadge.textContent = `${state.used.questions.size} used`; }
+function showRepeatNoticeIfNeeded(kind) {
+  const deck = state.deck[kind]; const used = state.used[kind];
+  if (!state.repeatsShown && used.size >= deck.length) {
+    state.repeatsShown = true; els.repeatNotice.hidden = false; setTimeout(() => { els.repeatNotice.hidden = true; }, 5000);
+  }
+}
+
+/* === Fair rotation (group) === */
+function nextAskerIndex() {
+  if (state.mode !== 'group') return state.askerIndex;
+  const counts = state.askCounts;
+  const min = Math.min(...counts);
+  const candidates = counts.map((c, i) => ({ c, i })).filter(o => o.c == min).map(o => o.i);
+  let chosen = candidates[Math.floor(Math.random() * candidates.length)];
+  if (chosen === state.askerIndex && candidates.length > 1) {
+    chosen = candidates[(candidates.indexOf(chosen) + 1) % candidates.length];
+  }
+  state.askerIndex = chosen;
+  state.askCounts[chosen] = (state.askCounts[chosen] || 0) + 1;
+  return chosen;
+}
+
+/* === Draws === */
+let drawLock = false;
+function guarded(fn) { if (drawLock) return; drawLock = true; fn(); setTimeout(() => { drawLock = false; }, 380); }
+
+function drawQuestion() {
+  guarded(() => {
+    playClick();
+    const deck = state.deck.questions;
+    if (deck.length === 0) { els.questionCard.textContent = 'No questions available with the current filters.'; return; }
+    let idx = Math.floor(Math.random() * deck.length);
+    let tries = 0;
+    while (state.used.questions.has(idx) && tries < deck.length) { idx = (idx + 1) % deck.length; tries++; }
+    const item = deck[idx];
+    els.cardTypeLabel.textContent = typeLabel(item.type);
+    els.questionCard.textContent = item.text;
+    els.forfeitCard.hidden = true; els.timerBar.hidden = true;
+    state.history.push({ kind: 'questions', index: idx, text: item.text, type: item.type });
+    state.used.questions.add(idx);
+    showRepeatNoticeIfNeeded('questions'); updateProgress(); saveState();
+    if (state.mode === 'group') {
+      setScreen('interstitial');
+      const nextIndex = nextAskerIndex();
+      const who = state.players[nextIndex]?.name || 'Player';
+      els.interstitialMessage.textContent = `${who}, your turn to ask`;
     }
+  });
+}
 
-    function getUsedIndices(key) {
-        try {
-            const stored = localStorage.getItem(key);
-            return stored ? JSON.parse(stored) : [];
-        } catch (e) {
-            console.error("Error reading from localStorage:", e);
-            return [];
-        }
-    }
+function drawForfeit() {
+  guarded(() => {
+    playClick();
+    const deck = state.deck.forfeits;
+    if (deck.length === 0) { els.forfeitCard.textContent = 'No forfeits available with the current filters.'; els.forfeitCard.hidden = false; return; }
+    let idx = Math.floor(Math.random() * deck.length);
+    let tries = 0;
+    while (state.used.forfeits.has(idx) && tries < deck.length) { idx = (idx + 1) % deck.length; tries++; }
+    const item = deck[idx];
+    els.cardTypeLabel.textContent = 'Forfeit';
+    els.forfeitCard.textContent = item.text;
+    els.forfeitCard.hidden = false; els.timerBar.hidden = false;
+    state.history.push({ kind: 'forfeits', index: idx, text: item.text, type: 'forfeit' });
+    state.used.forfeits.add(idx);
+    showRepeatNoticeIfNeeded('forfeits'); saveState();
+  });
+}
 
-    function saveUsedIndices(key, indices) {
-        try {
-            localStorage.setItem(key, JSON.stringify(indices));
-        } catch (e) {
-            console.error("Error writing to localStorage:", e);
-        }
-    }
+function typeLabel(t) {
+  if (!t) return 'Question';
+  if (t === 'group') return 'Group';
+  if (t === 'target') return 'Targeted';
+  if (t === 'D_asks_S') return 'Dom asks Sub';
+  if (t === 'S_asks_D') return 'Sub asks Dom';
+  return 'Question';
+}
 
-    function getNextUniqueItem(contentArray, storageKey) {
-        let usedIndices = getUsedIndices(storageKey);
-        const totalItems = contentArray.length;
-        if (totalItems === 0) return "No content available!";
-        // Determine which indices have not been used
-        let availableIndices = Array.from({ length: totalItems }, (_, i) => i).filter(i => !usedIndices.includes(i));
-        // If no available indices remain, reset cycle and optionally notify the user
-        if (availableIndices.length === 0) {
-            console.log(`All items for ${storageKey} used. Resetting cycle.`);
-            usedIndices = [];
-            saveUsedIndices(storageKey, []);
-            availableIndices = Array.from({ length: totalItems }, (_, i) => i);
-            // Notify players that the game will loop the same content
-            try {
-                // Determine whether this message relates to questions or forfeits for user clarity
-                const isQuestion = storageKey.includes('UsedQuestions');
-                const typeLabel = isQuestion ? 'questions' : 'forfeits';
-                alert(`All ${typeLabel} have been used. The game will now loop the same ${typeLabel}, but they may be allocated to different people if you wish to continue.`);
-            } catch (e) {
-                console.error('Error displaying cycle reset alert', e);
-            }
-        }
-        // Select a random unused index
-        const randomIndexFromArray = Math.floor(Math.random() * availableIndices.length);
-        const selectedItemIndex = availableIndices[randomIndexFromArray];
-        // Record the selected index in usedIndices and persist it
-        usedIndices.push(selectedItemIndex);
-        saveUsedIndices(storageKey, usedIndices);
-        return contentArray[selectedItemIndex];
-    }
+function skipCard() { if (state.history.length === 0) return; drawQuestion(); }
+function undoLast() {
+  const last = state.history.pop(); if (!last) return;
+  const usedSet = state.used[last.kind]; if (usedSet && usedSet.has(last.index)) usedSet.delete(last.index);
+  if (last.kind === 'questions') { els.questionCard.textContent = 'Undone. Tap Next to continue.'; }
+  else { els.forfeitCard.hidden = true; }
+  updateProgress(); saveState();
+}
 
-    /**
-     * Build a filtered list of group questions based on the state of category toggles.
-     * Questions that include 'EASTER EGG' are always included, regardless of toggle state.
-     */
-    function getFilteredGroupQuestions() {
-        return groupQuestions.filter((q, idx) => {
-            if (q.text && q.text.includes('EASTER EGG')) {
-                return true;
-            }
-            if (explicitStartIndex !== -1 && idx >= explicitStartIndex) {
-                return categoriesEnabled.explicit;
-            }
-            return categoriesEnabled.tame;
-        });
-    }
+/* === Timer === */
+function formatMs(ms) { const total = Math.max(0, Math.floor(ms / 1000)); const m = String(Math.floor(total / 60)).padStart(2,'0'); const s = String(total % 60).padStart(2,'0'); return `${m}:${s}`; }
+function timerTick() { els.timerDisplay.textContent = formatMs(state.timer.ms + (Date.now() - state.timer.start)); }
+function timerStart() { if (state.timer.running) return; state.timer.running = true; state.timer.start = Date.now(); state.timer.int = setInterval(timerTick, 200); }
+function timerPause() { if (!state.timer.running) return; state.timer.ms += Date.now() - state.timer.start; state.timer.running = false; clearInterval(state.timer.int); state.timer.int = null; timerTick(); }
+function timerReset() { state.timer.ms = 0; state.timer.start = Date.now(); if (!state.timer.running) state.timer.start = Date.now(); els.timerDisplay.textContent = '00:00'; }
 
-    /**
-     * Persist current players and category settings to localStorage.
-     */
-    function savePersistentData() {
-        try {
-            localStorage.setItem(PLAYERS_KEY, JSON.stringify(players));
-            localStorage.setItem(CATEGORIES_KEY, JSON.stringify(categoriesEnabled));
-        } catch (e) {
-            console.error('Error saving data to localStorage', e);
-        }
-    }
+/* === Setup flows === */
+function openSetup(mode) {
+  state.mode = mode; updateModeBadge();
+  state.spice.tame = els.spiceTame.checked;
+  state.spice.spicy = els.spiceSpicy.checked;
+  state.spice.filthy = els.spiceFilthy.checked;
+  state.allowExternal = els.allowExternal.checked;
+  state.sound = els.soundEnabled.checked;
+  if (mode === 'group') {
+    state.players = []; els.playerList.innerHTML = ''; setScreen('groupSetup');
+  } else {
+    const friends = mode === 'friends';
+    els.player1.value = ''; els.player2.value = '';
+    els.player1RoleRow.style.display = friends ? 'none' : 'grid';
+    els.player2RoleRow.style.display = friends ? 'none' : 'grid';
+    setScreen('coupleSetup');
+  }
+}
+function startCoupleOrFriends() {
+  const p1 = els.player1.value.trim() || 'Player 1';
+  const p2 = els.player2.value.trim() || 'Player 2';
+  const friends = state.mode === 'friends';
+  const r1 = friends ? 'switch' : els.player1Role.value;
+  const r2 = friends ? 'switch' : els.player2Role.value;
+  state.players = [ { name: p1, role: r1 }, { name: p2, role: r2 } ];
+  state.askerIndex = 0; state.askCounts = [0,0];
+  buildDecks(); updateModeBadge(); updateTurnIndicator(); setScreen('game'); saveState();
+}
+function addGroupPlayer() { const name = els.newPlayerName.value.trim(); if (!name) return; state.players.push({ name, role: 'switch' }); els.newPlayerName.value=''; renderGroupList(); }
+function removeGroupPlayer(i) { state.players.splice(i,1); renderGroupList(); }
+function renderGroupList() {
+  els.playerList.innerHTML = '';
+  state.players.forEach((p,i) => {
+    const li = document.createElement('li');
+    li.innerHTML = `<span>${p.name}</span><button class="remove-player-btn" title="Remove">×</button>`;
+    li.querySelector('button').addEventListener('click', () => removeGroupPlayer(i));
+    els.playerList.appendChild(li);
+  });
+}
+function startGroup() {
+  if (state.players.length < 3) { state.players = state.players.length ? state.players : [ {name:'A'}, {name:'B'}, {name:'C'} ]; }
+  state.askerIndex = 0; state.askCounts = new Array(state.players.length).fill(0);
+  buildDecks(); updateModeBadge(); updateTurnIndicator(); setScreen('game'); saveState();
+}
 
-    /**
-     * Remove all persistent game data (player names, categories and used question/forfeit trackers).
-     */
-    function clearPersistentData() {
-        try {
-            localStorage.removeItem(PLAYERS_KEY);
-            localStorage.removeItem(CATEGORIES_KEY);
-            ['couple','friends','group'].forEach(mode => {
-                localStorage.removeItem(USED_QUESTIONS_KEY_PREFIX + mode);
-                localStorage.removeItem(USED_FORFEITS_KEY_PREFIX + mode);
-            });
-        } catch (e) {
-            console.error('Error clearing data from localStorage', e);
-        }
-    }
+/* === Custom cards === */
+function openCustomModal() {
+  els.customSubtypeWrap.style.display = state.mode === 'couple' && els.customKind.value === 'question' ? 'grid' : 'none';
+  els.customText.value = ''; els.customExternal.checked = false; els.customSpice.value = 'tame'; els.customModal.showModal();
+}
+function saveCustomCard() {
+  const kind = els.customKind.value;
+  const text = els.customText.value.trim(); if (!text) return;
+  const spice = els.customSpice.value;
+  if (state.mode === 'couple' && kind === 'question') { const type = els.customSubtype.value; coupleQuestions.push({ text, type, spice }); }
+  else if (state.mode === 'friends' && kind === 'question') { friendsQuestions.push({ text, spice }); }
+  else if (state.mode === 'group' && kind === 'question') { groupQuestions.push({ text, type: 'target', spice }); }
+  else {
+    const external = els.customExternal.checked; const obj = { text, spice, external };
+    if (state.mode === 'couple') coupleForfeits.push(obj);
+    if (state.mode === 'friends') friendsForfeits.push(obj);
+    if (state.mode === 'group') groupForfeits.push(obj);
+  }
+  els.customModal.close(); buildDecks(); saveState();
+}
 
-    /**
-     * Render the initials of all players in the initialsDisplay container.  The current asker is highlighted.
-     */
-    function updateInitialsDisplay() {
-        const container = document.getElementById('initialsDisplay');
-        if (!container) return;
-        container.innerHTML = '';
-        players.forEach((player, idx) => {
-            const div = document.createElement('div');
-            div.classList.add('initial-chip');
-            // Compute up to two-letter initials from the player's name
-            let initials = '';
-            const parts = player.name.split(/\s+/).filter(Boolean);
-            for (let i = 0; i < parts.length && initials.length < 2; i++) {
-                initials += parts[i].charAt(0).toUpperCase();
-            }
-            div.textContent = initials || '?';
-            if (idx === currentPlayerIndex) {
-                div.classList.add('current');
-            }
-            container.appendChild(div);
-        });
-    }
+/* === Reset / Save & exit === */
+function openResetModal() { els.resetModal.showModal(); }
+function doSaveAndExit() { saveState(); setScreen('welcome'); els.resetModal.close(); }
+function doHardReset() {
+  clearState();
+  state.mode = null; state.players = []; state.askCounts = [];
+  state.used.questions.clear(); state.used.forfeits.clear();
+  state.history = []; state.deck.questions = []; state.deck.forfeits = [];
+  state.repeatsShown = false;
+  els.questionCard.textContent = 'Tap Next to begin.'; els.forfeitCard.hidden = true; els.timerBar.hidden = true;
+  setScreen('welcome'); els.resetModal.close();
+}
 
-    // --- Game Mode Setup ---
-    function setupMode(mode) {
-        gameMode = mode;
-        if (mode === 'group') {
-            showContainer('groupSetupContainer');
-            // Reflect persisted category settings when entering group setup
-            if (tameToggle) tameToggle.checked = categoriesEnabled.tame;
-            if (explicitToggle) explicitToggle.checked = categoriesEnabled.explicit;
-        } else {
-            player1RoleRow.style.display = mode === 'couple' ? 'grid' : 'none';
-            player2RoleRow.style.display = mode === 'couple' ? 'grid' : 'none';
-            instructionTextCouple.textContent = mode === 'couple' ? 'Enter names and select roles!' : 'Enter player names!';
-            showContainer('coupleSetupContainer');
-        }
-    }
+/* === Gestures === */
+let touchStart = null;
+function onTouchStart(e){ touchStart = e.changedTouches[0]; }
+function onTouchEnd(e){
+  if (!touchStart) return;
+  const end = e.changedTouches[0];
+  const dx = end.clientX - touchStart.clientX;
+  const dy = end.clientY - touchStart.clientY;
+  const ax = Math.abs(dx), ay = Math.abs(dy);
+  if (ax > 60 && ax > ay) { if (dx > 0) drawQuestion(); }
+  else if (ay > 60 && ay > ax) { if (dy < 0) drawForfeit(); }
+  touchStart = null;
+}
 
-    // --- Group Setup Logic ---
-    function renderPlayerList() {
-        playerList.innerHTML = '';
-        players.forEach((player, index) => {
-            const li = document.createElement('li');
-            li.textContent = player.name;
-            const removeBtn = document.createElement('button');
-            removeBtn.textContent = '×';
-            removeBtn.className = 'remove-player-btn';
-            removeBtn.onclick = () => {
-                players.splice(index, 1);
-                renderPlayerList();
-            };
-            li.appendChild(removeBtn);
-            playerList.appendChild(li);
-        });
-        // Update the initials display whenever the player list changes
-        updateInitialsDisplay();
-    }
+/* === Interstitial === */
+els.readyButton.addEventListener('click', () => setScreen('game'));
 
-    // --- Start Game Logic ---
-    function startGame() {
-        currentPlayerIndex = 0;
-        // Reset fairness and skip state for new sessions
-        playersAskedInCycle = [];
-        showingForfeit = false;
-        if (gameMode === 'group') {
-            const firstPlayerName = players[currentPlayerIndex].name;
-            interstitialMessage.textContent = `Pass the device to ${firstPlayerName}`;
-            showContainer('interstitialContainer');
-        } else {
-            showContainer('gameContainer');
-            displayNextQuestion();
-        }
-        // Persist players and categories at the beginning of a session
-        savePersistentData();
-        // Draw initials now that the game has started and players are defined
-        updateInitialsDisplay();
-    }
+/* === Wiring === */
+els.groupModeBtn.addEventListener('click', () => openSetup('group'));
+els.coupleModeBtn.addEventListener('click', () => openSetup('couple'));
+els.friendsModeBtn.addEventListener('click', () => openSetup('friends'));
 
-    // --- Core Game Logic ---
-    function switchPlayer() {
-        currentPlayerIndex = (currentPlayerIndex + 1) % players.length;
-    }
+els.startCouple.addEventListener('click', startCoupleOrFriends);
+els.startGroup.addEventListener('click', startGroup);
 
-    function updateTurnIndicator() {
-        const asker = players[currentPlayerIndex];
-        let indicatorText = '';
-        if (gameMode === 'group') {
-            if (currentQuestionType === 'group') {
-                indicatorText = `${asker.name} asks the group:`;
-                currentTargetIndex = null;
-                // Reset fairness cycle when the question targets the entire group
-                playersAskedInCycle = [];
-            } else {
-                // Fairly choose a target: each other player should be selected once before repeating
-                let eligibleTargets = players.map((_, idx) => idx).filter(idx => idx !== currentPlayerIndex && !playersAskedInCycle.includes(idx));
-                if (eligibleTargets.length === 0) {
-                    // Reset the cycle when everyone has been asked
-                    playersAskedInCycle = [];
-                    eligibleTargets = players.map((_, idx) => idx).filter(idx => idx !== currentPlayerIndex);
-                }
-                const randomIdx = Math.floor(Math.random() * eligibleTargets.length);
-                currentTargetIndex = eligibleTargets[randomIdx];
-                playersAskedInCycle.push(currentTargetIndex);
-                const target = players[currentTargetIndex];
-                indicatorText = `${asker.name} asks ${target.name}:`;
-            }
-        } else {
-            const answerer = players[(currentPlayerIndex + 1) % 2];
-            indicatorText = `${asker.name} asks ${answerer.name}:`;
-        }
-        turnIndicator.textContent = indicatorText;
-        // Highlight the current asker in the initials display
-        updateInitialsDisplay();
-    }
+els.addPlayerBtn.addEventListener('click', addGroupPlayer);
+els.newPlayerName.addEventListener('keydown', (e) => { if (e.key === 'Enter') addGroupPlayer(); });
 
-    function displayNextQuestion() {
-        let question;
-        let questionKey = USED_QUESTIONS_KEY_PREFIX + gameMode;
-        if (gameMode === 'couple') {
-            // Couple logic remains the same
-            const askerRole = players[currentPlayerIndex].role;
-            const answererRole = players[(currentPlayerIndex + 1) % 2].role;
-            let allowedTypes = ['neutral'];
-            if (askerRole === 'Dom' && (answererRole === 'sub' || answererRole === 'switch')) allowedTypes.push('D_asks_S');
-            else if ((askerRole === 'sub' || askerRole === 'switch') && answererRole === 'Dom') allowedTypes.push('S_asks_D');
-            else if (askerRole === 'switch' && answererRole === 'sub') allowedTypes.push('D_asks_S');
-            else if (askerRole === 'sub' && answererRole === 'switch') allowedTypes.push('S_asks_D');
-            let usedIndices = getUsedIndices(questionKey);
-            let availableQuestions = coupleQuestions.filter((q, i) => !usedIndices.includes(i) && allowedTypes.includes(q.type));
-            if (availableQuestions.length === 0) {
-                availableQuestions = coupleQuestions.filter((q, i) => !usedIndices.includes(i) && q.type === 'neutral');
-            }
-            if (availableQuestions.length === 0) {
-                 console.log(`All suitable couple questions used. Resetting cycle.`);
-                 saveUsedIndices(questionKey, []);
-                 availableQuestions = coupleQuestions.filter(q => allowedTypes.includes(q.type));
-            }
-            const selectedQuestion = availableQuestions[Math.floor(Math.random() * availableQuestions.length)];
-            if(selectedQuestion) {
-                const originalIndex = coupleQuestions.indexOf(selectedQuestion);
-                let used = getUsedIndices(questionKey);
-                if (!used.includes(originalIndex)) {
-                    used.push(originalIndex);
-                    saveUsedIndices(questionKey, used);
-                }
-                question = selectedQuestion.text;
-            } else {
-                question = "No suitable questions found. Click next to try again.";
-            }
-        } else if (gameMode === 'group') {
-            // Filter group questions based on category toggles
-            const filtered = getFilteredGroupQuestions();
-            const selectedQuestion = getNextUniqueItem(filtered, questionKey);
-            // getNextUniqueItem returns either a string (if no objects) or an object with text/type
-            if (typeof selectedQuestion === 'string') {
-                question = selectedQuestion;
-                currentQuestionType = 'group';
-            } else {
-                question = selectedQuestion.text;
-                currentQuestionType = selectedQuestion.type;
-            }
-        } else {
-            const questionBank = friendsQuestions;
-            question = getNextUniqueItem(questionBank, questionKey);
-        }
-        questionCard.innerHTML = question;
-        questionCard.style.display = 'flex';
-        forfeitCard.style.display = 'none';
-        // Mark that a question is being shown
-        showingForfeit = false;
-        updateTurnIndicator();
-    }
+els.nextButton.addEventListener('click', drawQuestion);
+els.forfeitButton.addEventListener('click', drawForfeit);
+els.skipButton.addEventListener('click', skipCard);
+els.undoButton.addEventListener('click', undoLast);
 
-    function displayNextForfeit() {
-        const forfeitKey = USED_FORFEITS_KEY_PREFIX + gameMode;
-        const forfeitBank = gameMode === 'couple' ? coupleForfeits : (gameMode === 'friends' ? friendsForfeits : groupForfeits);
-        const forfeit = getNextUniqueItem(forfeitBank, forfeitKey);
-        let performerName;
-        if (gameMode === 'group') {
-            performerName = currentTargetIndex !== null ? players[currentTargetIndex].name : players[currentPlayerIndex].name;
-        } else {
-            performerName = players[(currentPlayerIndex + 1) % 2].name;
-        }
-        forfeitCard.innerHTML = `<strong>${performerName}'s Forfeit:</strong><br>${forfeit}`;
-        forfeitCard.style.display = 'flex';
-        questionCard.style.display = 'none';
-        // Mark that a forfeit card is being shown
-        showingForfeit = true;
-    }
+els.timerStart.addEventListener('click', timerStart);
+els.timerPause.addEventListener('click', timerPause);
+els.timerReset.addEventListener('click', timerReset);
 
-    function resetGame() {
-        gameMode = '';
-        players = [];
-        currentPlayerIndex = 0;
-        currentTargetIndex = null;
-        playerList.innerHTML = '';
-        player1Input.value = '';
-        player2Input.value = '';
-        newPlayerNameInput.value = '';
-        playersAskedInCycle = [];
-        showingForfeit = false;
-        showContainer('welcomeContainer');
-    }
+els.homeLogoLink.addEventListener('click', (e) => { e.preventDefault(); openResetModal(); });
+els.newGameButton.addEventListener('click', openResetModal);
 
-    // --- ATTACH ALL EVENT LISTENERS ---
-    groupModeBtn.addEventListener('click', () => setupMode('group'));
-    coupleModeBtn.addEventListener('click', () => setupMode('couple'));
-    friendsModeBtn.addEventListener('click', () => setupMode('friends'));
+els.muteButton.addEventListener('click', () => { state.sound = !state.sound; els.muteButton.textContent = state.sound ? '🔊' : '🔈'; saveState(); });
 
-    startCoupleGameButton.addEventListener('click', () => {
-        const p1Name = player1Input.value.trim() || 'Player 1';
-        const p2Name = player2Input.value.trim() || 'Player 2';
-        if (gameMode === 'couple') {
-            players = [{ name: p1Name, role: player1RoleSelect.value }, { name: p2Name, role: player2RoleSelect.value }];
-        } else {
-            players = [{ name: p1Name }, { name: p2Name }];
-        }
-        startGame();
-        updateInitialsDisplay();
-    });
+els.tutorialLink.addEventListener('click', (e) => { e.preventDefault(); els.tutorialModal.showModal(); });
+els.closeTutorial.addEventListener('click', () => els.tutorialModal.close());
 
-    addPlayerBtn.addEventListener('click', () => {
-        const name = newPlayerNameInput.value.trim();
-        if (name && !players.some(p => p.name === name)) {
-            players.push({ name });
-            renderPlayerList();
-            newPlayerNameInput.value = '';
-            newPlayerNameInput.focus();
-        } else if (!name) {
-            alert("Please enter a name.");
-        } else {
-            alert("That player name already exists.");
-        }
-    });
+els.addCustomBtn.addEventListener('click', openCustomModal);
+els.addCustomBtnGroup.addEventListener('click', openCustomModal);
+els.customKind.addEventListener('change', () => { els.customSubtypeWrap.style.display = state.mode === 'couple' && els.customKind.value === 'question' ? 'grid' : 'none'; });
+els.saveCustom.addEventListener('click', saveCustomCard);
+els.cancelCustom.addEventListener('click', () => els.customModal.close());
 
-    newPlayerNameInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') addPlayerBtn.click();
-    });
+els.resetCancel.addEventListener('click', () => els.resetModal.close());
+els.saveExit.addEventListener('click', doSaveAndExit);
+els.hardReset.addEventListener('click', doHardReset);
 
-    startGroupGameButton.addEventListener('click', () => {
-        if (players.length < 2) {
-            alert("You need at least 2 players to start the game.");
-            return;
-        }
-        startGame();
-        updateInitialsDisplay();
-    });
-
-    nextButton.addEventListener('click', () => {
-        switchPlayer();
-        if (gameMode === 'group') {
-            const nextPlayerName = players[currentPlayerIndex].name;
-            interstitialMessage.textContent = `Pass the device to ${nextPlayerName}`;
-            showContainer('interstitialContainer');
-        } else {
-            displayNextQuestion();
-        }
-    });
-    
-    readyButton.addEventListener('click', () => {
-        showContainer('gameContainer');
-        displayNextQuestion();
-    });
-
-    forfeitButton.addEventListener('click', () => {
-        displayNextForfeit();
-    });
-
-    // Small skip button: allow players to skip a question or forfeit if not applicable
-    if (skipButton) {
-        skipButton.addEventListener('click', () => {
-            if (showingForfeit) {
-                displayNextForfeit();
-            } else {
-                displayNextQuestion();
-            }
-        });
-    }
-
-    // Category toggles: update enabled categories and persist settings
-    if (tameToggle) {
-        tameToggle.addEventListener('change', () => {
-            categoriesEnabled.tame = tameToggle.checked;
-            savePersistentData();
-        });
-    }
-    if (explicitToggle) {
-        explicitToggle.addEventListener('change', () => {
-            categoriesEnabled.explicit = explicitToggle.checked;
-            savePersistentData();
-        });
-    }
-
-    // New game button: reset all progress and persistent data
-    if (newGameBtn) {
-        newGameBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (window.confirm('Are you sure you want to start a new game? This will clear all saved progress.')) {
-                clearPersistentData();
-                resetGame();
-            }
-        });
-    }
-
-    homeLogoLink.addEventListener('click', (event) => {
-        event.preventDefault();
-        if (window.confirm("Are you sure you want to end this game and return to the main menu?")) {
-            resetGame();
-        }
-    });
-
-    // Load persisted players and categories from previous sessions
-    (function loadPersistedData() {
-        try {
-            const storedPlayers = localStorage.getItem(PLAYERS_KEY);
-            const storedCats = localStorage.getItem(CATEGORIES_KEY);
-            if (storedPlayers) {
-                const parsedPlayers = JSON.parse(storedPlayers);
-                if (Array.isArray(parsedPlayers) && parsedPlayers.length > 0) {
-                    players = parsedPlayers;
-                    // Pre-fill couple setup inputs if there are exactly two players
-                    if (players.length === 2) {
-                        player1Input.value = players[0].name;
-                        player2Input.value = players[1].name;
-                    }
-                    // Render group list if there are more than two players
-                    if (players.length >= 2) {
-                        renderPlayerList();
-                    }
-                    // Update initials display with persisted players
-                    updateInitialsDisplay();
-                }
-            }
-            if (storedCats) {
-                const parsedCats = JSON.parse(storedCats);
-                if (parsedCats && typeof parsedCats === 'object') {
-                    categoriesEnabled = { ...categoriesEnabled, ...parsedCats };
-                    // Update toggle UI if elements exist
-                    if (tameToggle) tameToggle.checked = categoriesEnabled.tame;
-                    if (explicitToggle) explicitToggle.checked = categoriesEnabled.explicit;
-                }
-            }
-        } catch (e) {
-            console.error('Error loading persisted data', e);
-        }
-    })();
-
-    // --- Initial Page State ---
-    showContainer('welcomeContainer');
+['questionCard','forfeitCard'].forEach(id => {
+  const el = document.getElementById(id);
+  el.addEventListener('touchstart', onTouchStart, { passive: true });
+  el.addEventListener('touchend', onTouchEnd, { passive: true });
 });
+
+/* === Init === */
+(function init() {
+  els.soundEnabled.checked = state.sound;
+  if (loadState() && state.mode) {
+    updateModeBadge(); buildDecks(); updateTurnIndicator(); setScreen('game');
+    els.muteButton.textContent = state.sound ? '🔊' : '🔈';
+    if (state.history.length) {
+      const last = state.history[state.history.length - 1];
+      els.cardTypeLabel.textContent = typeLabel(last.type);
+      if (last.kind === 'forfeits') { els.forfeitCard.textContent = last.text; els.forfeitCard.hidden = false; els.timerBar.hidden = false; }
+      else { els.questionCard.textContent = last.text; els.forfeitCard.hidden = true; els.timerBar.hidden = true; }
+      updateProgress();
+    }
+  } else {
+    setScreen('welcome');
+  }
+})();
