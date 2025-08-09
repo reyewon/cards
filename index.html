@@ -1,13 +1,17 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kink and Tell Game by Rysta</title>
+
     <link rel="stylesheet" href="styles.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-EMK8Q5QN8S"></script>
     <script>
@@ -19,143 +23,113 @@
 </head>
 <body>
     <!-- Background particle effect -->
-    <div id="background-particles"></div>
+    <div id="background-particles">
+        <div class="particle pink"></div>
+        <div class="particle cyan"></div>
+        <div class="particle pink"></div>
+        <div class="particle cyan"></div>
+        <div class="particle pink"></div>
+        <div class="particle cyan"></div>
+        <div class="particle pink"></div>
+        <div class="particle cyan"></div>
+    </div>
 
     <!-- Welcome Screen: Choose Game Mode -->
-    <div id="welcomeContainer" class="container">
+    <div id="welcomeContainer">
         <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" id="logo">
-        <p class="instruction-text">Choose your adventure...</p>
+        <p id="instructionText">Choose your adventure...</p>
         <div class="mode-selection">
             <button id="groupModeBtn" class="mode-btn">
                 <h3>Group</h3>
-                <p>Kinky secrets and devious tasks for friends.</p>
+                <p>Kinky secrets and devious tasks for a group of friends.</p>
             </button>
             <button id="coupleModeBtn" class="mode-btn">
                 <h3>Couple</h3>
-                <p>The original game for ENM / Kink couples.</p>
+                <p>The original game, designed for ENM / Kink couples.</p>
             </button>
             <button id="friendsModeBtn" class="mode-btn">
                 <h3>Friends</h3>
-                <p>Honest revelations for two friends.</p>
+                <p>Honest revelations and sex-positive chats for two friends.</p>
             </button>
         </div>
-        <div class="resume-game-prompt" id="resumeGamePrompt" style="display: none;">
-            <p>It looks like you have a game in progress.</p>
-            <button id="resumeGameBtn" class="btn btn-secondary">Resume Game</button>
-        </div>
     </div>
 
-    <!-- Setup Screens -->
-    <div id="coupleSetupContainer" class="container setup-container">
-        <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" class="logo-small">
-        <p id="instructionTextCouple" class="instruction-text">Enter names and select roles!</p>
+    <!-- Setup for Couple / Friends Mode -->
+    <div id="coupleSetupContainer" class="setup-container">
+        <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" id="logo-small">
+        <p id="instructionTextCouple">Enter names and select roles!</p>
         <div class="input-group">
-            <div class="form-row"><label for="player1">Player 1:</label><input type="text" id="player1" placeholder="Name"></div>
-            <div class="form-row" id="player1RoleRow"><label for="player1Role">Role:</label><select id="player1Role"><option value="switch">Switch</option><option value="Dom">Dom</option><option value="sub">sub</option></select></div>
-            <div class="form-row"><label for="player2">Player 2:</label><input type="text" id="player2" placeholder="Name"></div>
-            <div class="form-row" id="player2RoleRow"><label for="player2Role">Role:</label><select id="player2Role"><option value="switch">Switch</option><option value="Dom">Dom</option><option value="sub">sub</option></select></div>
+            <div class="form-row">
+                <label for="player1">Player 1:</label>
+                <input type="text" id="player1" placeholder="Name">
+            </div>
+             <div class="form-row" id="player1RoleRow">
+                 <label for="player1Role">Role:</label>
+                 <select id="player1Role">
+                     <option value="switch">Switch</option>
+                     <option value="Dom">Dom</option>
+                     <option value="sub">sub</option>
+                 </select>
+             </div>
+             <div class="form-row">
+                 <label for="player2">Player 2:</label>
+                 <input type="text" id="player2" placeholder="Name">
+             </div>
+             <div class="form-row" id="player2RoleRow">
+                 <label for="player2Role">Role:</label>
+                 <select id="player2Role">
+                     <option value="switch">Switch</option>
+                     <option value="Dom">Dom</option>
+                     <option value="sub">sub</option>
+                 </select>
+             </div>
         </div>
-        <button id="startCoupleGameButton" class="btn btn-primary">Start Game</button>
+        <button id="startCoupleGameButton">Start Game</button>
     </div>
 
-    <div id="groupSetupContainer" class="container setup-container">
-        <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" class="logo-small">
-        <p id="instructionTextGroup" class="instruction-text">Add players to the group!</p>
+    <!-- Setup for Group Mode -->
+    <div id="groupSetupContainer" class="setup-container">
+        <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" id="logo-small">
+        <p id="instructionTextGroup">Add players to the group!</p>
         <div class="input-group">
-            <div class="add-player-form"><input type="text" id="newPlayerName" placeholder="Enter player name..."><button id="addPlayerBtn" class="btn">+</button></div>
+            <div class="add-player-form">
+                <input type="text" id="newPlayerName" placeholder="Enter player name...">
+                <button id="addPlayerBtn">+</button>
+            </div>
             <ul id="playerList"></ul>
         </div>
-        <button id="startGroupGameButton" class="btn btn-primary">Start Game</button>
+        <button id="startGroupGameButton">Start Game</button>
     </div>
 
-    <!-- Spiciness Selection Screen -->
-    <div id="spicinessContainer" class="container">
-        <h2 class="spiciness-title">Set the Spiciness</h2>
-        <div class="spiciness-pills">
-            <button class="spiciness-btn" data-level="tame">Tame</button>
-            <button class="spiciness-btn active" data-level="spicy">Spicy</button>
-            <button class="spiciness-btn" data-level="filthy">Filthy</button>
-        </div>
-        <p class="spiciness-description">Choose the intensity for questions and forfeits.</p>
-        <button id="confirmSpicinessBtn" class="btn btn-primary">Let's Play</button>
-    </div>
 
     <!-- Main Game Screen -->
-    <div id="gameContainer" class="container">
-        <div class="game-header">
-            <div id="gameInfo">
-                <span id="modeBadge" class="badge"></span>
-                <span id="turnIndicator"></span>
-            </div>
-            <button id="menuButton" class="menu-btn">☰</button>
-        </div>
+    <div id="gameContainer">
+        <a href="#" id="homeLogoLink" title="Restart Game">
+            <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Home" id="persistentLogo">
+        </a>
 
-        <div id="card-area">
-            <div id="card-container">
-                <div id="questionCard" class="card">
-                    <div class="card-header">
-                        <span id="questionTypeLabel" class="card-type-label"></span>
-                        <div id="questionProgress" class="progress-container">
-                            <div class="progress-bar"></div>
-                            <span class="progress-text"></span>
-                        </div>
-                    </div>
-                    <p class="card-content">Click 'Next' to begin!</p>
-                </div>
-                <div id="forfeitCard" class="card forfeit">
-                     <div class="card-header">
-                        <span id="forfeitTypeLabel" class="card-type-label"></span>
-                        <div id="forfeitProgress" class="progress-container">
-                            <div class="progress-bar"></div>
-                            <span class="progress-text"></span>
-                        </div>
-                    </div>
-                    <div id="timerDisplay" style="display: none;">
-                        <span id="timerText">00:00</span>
-                        <div class="timer-controls">
-                            <button id="timerStartPause">Start</button>
-                            <button id="timerReset">Reset</button>
-                        </div>
-                    </div>
-                    <p class="card-content"></p>
-                </div>
-            </div>
-        </div>
-
-        <div class="game-controls">
-            <div class="main-actions">
-                <button id="nextButton" class="btn btn-primary btn-large">Next <span class="swipe-hint">(Swipe Right)</span></button>
-                <button id="forfeitButton" class="btn btn-secondary btn-large">Forfeit <span class="swipe-hint">(Swipe Up)</span></button>
-            </div>
-            <div class="sub-actions">
-                <button id="undoButton" class="btn btn-link">Undo</button>
-                <button id="skipButton" class="btn btn-link">Skip</button>
-            </div>
+        <div id="turnIndicator"></div>
+        <div id="questionCard">Click 'Next Question' to begin!</div>
+        <div id="forfeitCard"></div>
+        <div class="button-group">
+            <button id="nextButton">Next Question</button>
+            <button id="forfeitButton">Take a Forfeit</button>
         </div>
     </div>
-
+    
     <!-- Interstitial "Pass Device" Screen -->
-    <div id="interstitialContainer" class="container">
+    <div id="interstitialContainer">
         <h3 id="interstitialMessage"></h3>
         <p>You're asking the next question!</p>
-        <button id="readyButton" class="btn btn-primary">Ready!</button>
+        <button id="readyButton">Ready!</button>
     </div>
 
-    <!-- In-Game Menu Modal -->
-    <div id="menuModal" class="modal-overlay" style="display: none;">
-        <div class="modal-content">
-            <button class="close-modal-btn" id="closeMenuModal">&times;</button>
-            <h2>Menu</h2>
-            <button id="saveAndExitBtn" class="btn btn-secondary">Save & Exit</button>
-            <button id="newGameHardResetBtn" class="btn btn-danger">Start New Game (Reset)</button>
-        </div>
-    </div>
 
     <footer>
         Created by <a href="https://www.instagram.com/rystadom" target="_blank">Rysta</a>
     </footer>
 
-    <audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-modern-click-box-check-1120.mp3" preload="auto"></audio>
     <script src="script.js" defer></script>
+
 </body>
 </html>
