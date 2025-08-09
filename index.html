@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kink and Tell</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kink & Tell</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Background particle effect -->
+  <!-- Background particles -->
   <div id="background-particles" aria-hidden="true">
     <div class="particle pink"></div>
     <div class="particle cyan"></div>
@@ -22,9 +22,9 @@
     <div class="particle cyan"></div>
   </div>
 
-  <!-- Welcome Screen -->
+  <!-- Welcome -->
   <div id="welcomeContainer" class="card-surface">
-    <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" id="logo" />
+    <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell" id="logo" />
     <p id="instructionText">Choose your adventure...</p>
 
     <div class="welcome-row">
@@ -44,40 +44,23 @@
       </div>
 
       <div class="welcome-controls">
-        <div class="control-block">
+        <div class="control-block" id="spiceBlock">
           <h4>Spiciness</h4>
+          <!-- JS will replace these simple checkboxes with pill buttons -->
           <label class="toggle"><input type="checkbox" id="spiceTame" checked> Tame</label>
           <label class="toggle"><input type="checkbox" id="spiceSpicy" checked> Spicy</label>
           <label class="toggle"><input type="checkbox" id="spiceFilthy" checked> Filthy</label>
           <small>Filters apply to questions and forfeits.</small>
         </div>
 
-        <div class="control-block">
-          <h4>External actions</h4>
-          <label class="switch">
-            <input type="checkbox" id="allowExternal" checked>
-            <span class="slider"></span>
-          </label>
-          <small>Includes cards that suggest messaging, social posts or photos.</small>
-        </div>
-
-        <div class="control-block">
-          <h4>Sound</h4>
-          <label class="switch">
-            <input type="checkbox" id="soundEnabled" checked>
-            <span class="slider"></span>
-          </label>
-          <small>Play soft clicks for card draws.</small>
-        </div>
-
-        <a href="#" id="tutorialLink">How to play</a>
+        <a href="#" id="tutorialLink" class="howto">How to play</a>
       </div>
     </div>
   </div>
 
-  <!-- Couple / Friends Setup -->
+  <!-- Couple / Friends setup -->
   <div id="coupleSetupContainer" class="setup-container card-surface">
-    <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" id="logo-small" />
+    <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell" id="logo-small" />
     <p id="instructionTextCouple">Enter names and select roles.</p>
 
     <div class="input-group">
@@ -93,7 +76,6 @@
           <option value="sub">Sub</option>
         </select>
       </div>
-
       <div class="form-row">
         <label for="player2">Player 2</label>
         <input type="text" id="player2" placeholder="Name" />
@@ -114,9 +96,9 @@
     </div>
   </div>
 
-  <!-- Group Setup -->
+  <!-- Group setup -->
   <div id="groupSetupContainer" class="setup-container card-surface">
-    <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell Logo" id="logo-small" />
+    <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell" id="logo-small" />
     <p id="instructionTextGroup">Add players to the group.</p>
 
     <div class="input-group">
@@ -133,7 +115,7 @@
     </div>
   </div>
 
-  <!-- Game Screen -->
+  <!-- Game screen -->
   <div id="gameContainer" class="card-surface">
     <a href="#" id="homeLogoLink" title="Save and exit">
       <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Home" id="persistentLogo" />
@@ -166,13 +148,12 @@
       <button id="forfeitButton" class="accent" title="Take a forfeit">Forfeit</button>
       <button id="nextButton" class="primary" title="Next question">Next</button>
       <button id="newGameButton" class="ghost" title="New game">New game</button>
-      <button id="muteButton" class="ghost" title="Toggle sound">🔊</button>
     </div>
 
     <div id="swipeHint">Swipe right for Next, up for Forfeit</div>
   </div>
 
-  <!-- Interstitial Screen -->
+  <!-- Interstitial -->
   <div id="interstitialContainer" class="card-surface" hidden>
     <h3 id="interstitialMessage">Pass the device</h3>
     <p>You're asking the next question.</p>
@@ -187,7 +168,7 @@
   <dialog id="tutorialModal">
     <h3>How to play</h3>
     <ol>
-      <li>Pick a mode and set spiciness and external actions.</li>
+      <li>Pick a mode and set spiciness.</li>
       <li>Enter names, then pass the device between players.</li>
       <li>Draw questions, take forfeits, add your own cards if you like.</li>
     </ol>
@@ -223,11 +204,6 @@
       </select>
     </label>
 
-    <label class="row">
-      <span>External action</span>
-      <input type="checkbox" id="customExternal" />
-    </label>
-
     <label>
       <span>Text</span>
       <textarea id="customText" rows="4" placeholder="Write your card text..."></textarea>
@@ -250,6 +226,7 @@
     </div>
   </dialog>
 
+  <!-- Use the simplified JS you downloaded; rename to script.js or update this path -->
   <script src="script.js" defer></script>
 </body>
 </html>
