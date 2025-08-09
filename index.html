@@ -23,162 +23,164 @@
   </div>
 
   <!-- Welcome -->
-  <div id="welcomeContainer" class="card-surface">
+  <main id="welcomeContainer" class="shell card">
     <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell" id="logo" />
-    <p id="instructionText">Choose your adventure...</p>
 
-    <div class="welcome-row">
-      <div class="mode-selection">
-        <button id="groupModeBtn" class="mode-btn" data-mode="group">
-          <h3>Group</h3>
-          <p>Kinky secrets and devious tasks for a group of friends.</p>
+    <h1 class="page-title">Choose your adventure...</h1>
+
+    <section class="welcome-grid">
+      <div class="mode-selection stack-lg">
+        <button id="groupModeBtn" class="mode-btn">
+          <div class="mode-btn__title">Group</div>
+          <div class="mode-btn__copy">Kinky secrets and devious tasks for a group of friends.</div>
         </button>
-        <button id="coupleModeBtn" class="mode-btn" data-mode="couple">
-          <h3>Couple</h3>
-          <p>Designed for ENM and kink couples, with role-aware prompts.</p>
+        <button id="coupleModeBtn" class="mode-btn">
+          <div class="mode-btn__title">Couple</div>
+          <div class="mode-btn__copy">Designed for ENM and kink couples, with role-aware prompts.</div>
         </button>
-        <button id="friendsModeBtn" class="mode-btn" data-mode="friends">
-          <h3>Friends</h3>
-          <p>Honest revelations and sex-positive chats for two friends.</p>
+        <button id="friendsModeBtn" class="mode-btn">
+          <div class="mode-btn__title">Friends</div>
+          <div class="mode-btn__copy">Honest revelations and sex-positive chats for two friends.</div>
         </button>
       </div>
 
-      <div class="welcome-controls">
-        <div class="control-block" id="spiceBlock">
-          <h4>Spiciness</h4>
-          <!-- JS will replace these simple checkboxes with pill buttons -->
+      <aside class="welcome-controls stack-lg">
+        <div class="panel stack-sm">
+          <h2 class="panel-title">Spiciness</h2>
+          <p class="panel-help">Filters apply to questions and forfeits.</p>
+          <!-- JS will inject pill buttons here and hide these checkboxes -->
           <label class="toggle"><input type="checkbox" id="spiceTame" checked> Tame</label>
           <label class="toggle"><input type="checkbox" id="spiceSpicy" checked> Spicy</label>
           <label class="toggle"><input type="checkbox" id="spiceFilthy" checked> Filthy</label>
-          <small>Filters apply to questions and forfeits.</small>
+          <div id="spicePills" class="pills" aria-label="Spiciness"></div>
         </div>
 
-        <a href="#" id="tutorialLink" class="howto">How to play</a>
-      </div>
-    </div>
-  </div>
+        <a href="#" id="tutorialLink" class="link-cta">How to play</a>
+      </aside>
+    </section>
+  </main>
 
   <!-- Couple / Friends setup -->
-  <div id="coupleSetupContainer" class="setup-container card-surface">
+  <section id="coupleSetupContainer" class="shell card" hidden>
     <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell" id="logo-small" />
-    <p id="instructionTextCouple">Enter names and select roles.</p>
+    <h2 class="section-title">Enter names and select roles</h2>
 
-    <div class="input-group">
-      <div class="form-row">
-        <label for="player1">Player 1</label>
+    <div class="input-grid">
+      <label class="field">
+        <span>Player 1</span>
         <input type="text" id="player1" placeholder="Name" />
-      </div>
-      <div class="form-row" id="player1RoleRow">
-        <label for="player1Role">Role</label>
+      </label>
+      <label class="field" id="player1RoleRow">
+        <span>Role</span>
         <select id="player1Role">
           <option value="switch">Switch</option>
           <option value="Dom">Dom</option>
           <option value="sub">Sub</option>
         </select>
-      </div>
-      <div class="form-row">
-        <label for="player2">Player 2</label>
+      </label>
+
+      <label class="field">
+        <span>Player 2</span>
         <input type="text" id="player2" placeholder="Name" />
-      </div>
-      <div class="form-row" id="player2RoleRow">
-        <label for="player2Role">Role</label>
+      </label>
+      <label class="field" id="player2RoleRow">
+        <span>Role</span>
         <select id="player2Role">
           <option value="switch">Switch</option>
           <option value="Dom">Dom</option>
           <option value="sub">Sub</option>
         </select>
-      </div>
+      </label>
     </div>
 
-    <div class="inline-controls">
-      <button id="addCustomBtn" class="ghost">Add custom card</button>
-      <button id="startCoupleGameButton" class="primary">Start game</button>
+    <div class="actions end">
+      <button id="addCustomBtn" class="btn ghost">Add custom card</button>
+      <button id="startCoupleGameButton" class="btn primary">Start game</button>
     </div>
-  </div>
+  </section>
 
   <!-- Group setup -->
-  <div id="groupSetupContainer" class="setup-container card-surface">
+  <section id="groupSetupContainer" class="shell card" hidden>
     <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Kink and Tell" id="logo-small" />
-    <p id="instructionTextGroup">Add players to the group.</p>
+    <h2 class="section-title">Add players to the group</h2>
 
-    <div class="input-group">
-      <div class="add-player-form">
-        <input type="text" id="newPlayerName" placeholder="Enter player name..." />
-        <button id="addPlayerBtn" title="Add">+</button>
-      </div>
-      <ul id="playerList"></ul>
+    <div class="add-player">
+      <input type="text" id="newPlayerName" placeholder="Enter player name..." />
+      <button id="addPlayerBtn" title="Add" class="btn primary plus">+</button>
     </div>
 
-    <div class="inline-controls">
-      <button id="addCustomBtnGroup" class="ghost">Add custom card</button>
-      <button id="startGroupGameButton" class="primary">Start game</button>
+    <ul id="playerList" class="list"></ul>
+
+    <div class="actions end">
+      <button id="addCustomBtnGroup" class="btn ghost">Add custom card</button>
+      <button id="startGroupGameButton" class="btn primary">Start game</button>
     </div>
-  </div>
+  </section>
 
   <!-- Game screen -->
-  <div id="gameContainer" class="card-surface">
-    <a href="#" id="homeLogoLink" title="Save and exit">
+  <section id="gameContainer" class="shell card" hidden>
+    <a href="#" id="homeLogoLink" title="Save and exit" class="home-link">
       <img src="https://raw.githubusercontent.com/reyewon/cards/refs/heads/main/KNT2.png" alt="Home" id="persistentLogo" />
     </a>
 
-    <div class="game-header">
-      <span id="modeBadge" class="mode-badge">Mode</span>
-      <span id="turnIndicator"></span>
-      <span id="progressBadge" class="progress-badge" title="Cards used in this deck">0 used</span>
-    </div>
+    <header class="game-header">
+      <span id="modeBadge" class="badge mode">Mode</span>
+      <span id="turnIndicator" class="turn"></span>
+      <span id="progressBadge" class="badge subtle" title="Cards used in this deck">0 used</span>
+    </header>
 
-    <div id="cardMeta">
+    <div class="meta">
       <span id="cardTypeLabel" class="chip">—</span>
       <span id="repeatNotice" class="chip warn" hidden>Deck exhausted, repeats may appear</span>
     </div>
 
-    <div id="questionCard" class="content-card" aria-live="polite">Tap Next to begin.</div>
-    <div id="forfeitCard" class="content-card forfeit" hidden></div>
+    <div id="questionCard" class="card-content" aria-live="polite">Tap Next to begin.</div>
+    <div id="forfeitCard" class="card-content forfeit" hidden></div>
 
     <div id="timerBar" class="timer" hidden>
       <span id="timerDisplay">00:00</span>
-      <button id="timerStart" class="timer-btn">Start</button>
-      <button id="timerPause" class="timer-btn">Pause</button>
-      <button id="timerReset" class="timer-btn">Reset</button>
+      <button id="timerStart" class="btn tone">Start</button>
+      <button id="timerPause" class="btn tone">Pause</button>
+      <button id="timerReset" class="btn tone">Reset</button>
     </div>
 
-    <div class="sticky-controls">
-      <button id="undoButton" class="secondary" title="Undo last">Undo</button>
-      <button id="skipButton" class="secondary" title="Skip this card">Skip</button>
-      <button id="forfeitButton" class="accent" title="Take a forfeit">Forfeit</button>
-      <button id="nextButton" class="primary" title="Next question">Next</button>
-      <button id="newGameButton" class="ghost" title="New game">New game</button>
-    </div>
+    <nav class="sticky">
+      <button id="undoButton" class="btn tone" title="Undo last">Undo</button>
+      <button id="skipButton" class="btn tone" title="Skip this card">Skip</button>
+      <button id="forfeitButton" class="btn accent" title="Take a forfeit">Forfeit</button>
+      <button id="nextButton" class="btn primary" title="Next question">Next</button>
+      <button id="newGameButton" class="btn ghost" title="New game">New game</button>
+    </nav>
 
-    <div id="swipeHint">Swipe right for Next, up for Forfeit</div>
-  </div>
+    <p id="swipeHint" class="hint">Swipe right for Next, up for Forfeit</p>
+  </section>
 
   <!-- Interstitial -->
-  <div id="interstitialContainer" class="card-surface" hidden>
+  <section id="interstitialContainer" class="shell card" hidden>
     <h3 id="interstitialMessage">Pass the device</h3>
     <p>You're asking the next question.</p>
-    <button id="readyButton" class="primary">Ready</button>
-  </div>
+    <button id="readyButton" class="btn primary">Ready</button>
+  </section>
 
-  <footer>
+  <footer class="site-footer">
     <span>Created by <a href="https://www.instagram.com/rystadom" target="_blank" rel="noopener">Rysta</a></span>
   </footer>
 
   <!-- Tutorial Modal -->
-  <dialog id="tutorialModal">
+  <dialog id="tutorialModal" class="dialog">
     <h3>How to play</h3>
-    <ol>
+    <ol class="stack-sm">
       <li>Pick a mode and set spiciness.</li>
       <li>Enter names, then pass the device between players.</li>
       <li>Draw questions, take forfeits, add your own cards if you like.</li>
     </ol>
-    <button id="closeTutorial" class="primary">Close</button>
+    <button id="closeTutorial" class="btn primary">Close</button>
   </dialog>
 
   <!-- Custom Card Modal -->
-  <dialog id="customModal">
+  <dialog id="customModal" class="dialog">
     <h3>Add a custom card</h3>
-    <label>
+    <label class="field">
       <span>Card type</span>
       <select id="customKind">
         <option value="question">Question</option>
@@ -186,7 +188,7 @@
       </select>
     </label>
 
-    <label id="customSubtypeWrap">
+    <label id="customSubtypeWrap" class="field">
       <span>Subtype (Couple mode only)</span>
       <select id="customSubtype">
         <option value="neutral">Neutral</option>
@@ -195,7 +197,7 @@
       </select>
     </label>
 
-    <label>
+    <label class="field">
       <span>Spiciness</span>
       <select id="customSpice">
         <option value="tame">Tame</option>
@@ -204,29 +206,28 @@
       </select>
     </label>
 
-    <label>
+    <label class="field">
       <span>Text</span>
       <textarea id="customText" rows="4" placeholder="Write your card text..."></textarea>
     </label>
 
-    <div class="inline-controls">
-      <button id="cancelCustom" class="ghost">Cancel</button>
-      <button id="saveCustom" class="primary">Save</button>
+    <div class="actions end">
+      <button id="cancelCustom" class="btn ghost">Cancel</button>
+      <button id="saveCustom" class="btn primary">Save</button>
     </div>
   </dialog>
 
   <!-- Reset Modal -->
-  <dialog id="resetModal">
+  <dialog id="resetModal" class="dialog">
     <h3>New game</h3>
     <p>Do you want to save and exit, or hard reset everything?</p>
-    <div class="inline-controls">
-      <button id="resetCancel" class="ghost">Cancel</button>
-      <button id="saveExit" class="secondary">Save and exit</button>
-      <button id="hardReset" class="primary">Hard reset</button>
+    <div class="actions end">
+      <button id="resetCancel" class="btn ghost">Cancel</button>
+      <button id="saveExit" class="btn tone">Save and exit</button>
+      <button id="hardReset" class="btn primary">Hard reset</button>
     </div>
   </dialog>
 
-  <!-- Use the simplified JS you downloaded; rename to script.js or update this path -->
   <script src="script.js" defer></script>
 </body>
 </html>
