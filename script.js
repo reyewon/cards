@@ -1,22 +1,23 @@
-/* Kink and Tell vNext (JS only)
- * Implements: spiciness filters, local save/resume, new game button,
- * repeat notice, skip/undo, mode badge, type label, fair targeting,
- * on-card timer (manual start), custom cards, soft SFX with mute,
- * swipe gestures, sticky controls, save and exit modal, content tidy,
- * debounce to prevent double taps, external actions toggle, visual polish.
+/* Kink & Tell — Simplified JS (UI tidy + functional tweaks)
+ * - Timer only on time-limited forfeits
+ * - External Actions toggle removed (always included)
+ * - Sound button/setting removed
+ * - Spiciness buttons (pills) instead of checkboxes
+ * - Emphasised Next/Forfeit; de-emphasised skip/undo
+ * - Full content arrays embedded as provided
  */
 
-/* === Full content decks (as supplied) === */
+/* === Full content (from original) === */
 const coupleQuestions = [
     // --- Neutral Questions (Suitable for most dynamics) ---
     { text: "Have you ever wanted to explore a kink or fetish with me but haven't yet?", type: "neutral" },
-    { text: "When was the last time you felt jealous in our ENM dynamic, and how did you handle it?", type: "neutral" },
+    { text: "When was the last time you felt jealous in our ENM dynamic, && how did you handle it?", type: "neutral" },
     { text: "What’s one thing you wish I understood better about your sexual or ENM needs?", type: "neutral" },
-    { text: "How do you balance your emotional connections with me and other partners?", type: "neutral" },
+    { text: "How do you balance your emotional connections with me && other partners?", type: "neutral" },
     { text: "Have you ever had a kink experience go wrong?", type: "neutral" },
-    { text: "How has exploring ENM changed the way you view love and commitment between us?", type: "neutral" },
+    { text: "How has exploring ENM changed the way you view love && commitment between us?", type: "neutral" },
     { text: "What’s something you've learned about yourself through sexual play with me?", type: "neutral" },
-    { text: "How do you manage the emotional highs and lows of engaging with me and multiple partners?", type: "neutral" },
+    { text: "How do you manage the emotional highs && lows of engaging with me && multiple partners?", type: "neutral" },
     { text: "How do you feel when I get closer to someone else in our ENM dynamic?", type: "neutral" },
     { text: "What’s one thing you wish people outside of our relationship understood about us?", type: "neutral" },
     { text: "How do you establish trust when getting to know new partners?", type: "neutral" },
@@ -26,37 +27,37 @@ const coupleQuestions = [
     { text: "What’s one fear you have in exploring new kinks, or meeting new partners?", type: "neutral" },
     { text: "What’s your favourite type of roleplay?", type: "neutral" },
     { text: "Have you ever had a threesome or group play that didn’t go as planned? What happened?", type: "neutral" },
-    { text: "What’s the naughtiest location you’ve had sex, and would you do it again?", type: "neutral" },
+    { text: "What’s the naughtiest location you’ve had sex, && would you do it again?", type: "neutral" },
     { text: "Have you ever fantasised about me with one of my other partners?", type: "neutral" },
     { text: "Have you ever kept something from me in ENM to keep the peace?", type: "neutral" },
     { text: "What’s something you've done in a kink scene that surprised even you?", type: "neutral" },
-    { text: "If you could play with anyone outside of our relationship, who would it be and why?", type: "neutral" },
-    { text: "What’s the longest you’ve gone without sex, and why?", type: "neutral" },
+    { text: "If you could play with anyone outside of our relationship, who would it be && why?", type: "neutral" },
+    { text: "What’s the longest you’ve gone without sex, && why?", type: "neutral" },
     { text: "What’s one kink you’d never try with me, even if I asked?", type: "neutral" },
     { text: "If you could only have me as your partner for the next year, how would you feel?", type: "neutral" },
     { text: "Have you ever experienced compersion when watching me with someone else? What was it like?", type: "neutral" },
     { text: "What’s a scene or experience that left a lasting impact on your sexuality?", type: "neutral" },
     { text: "How do you feel about using toys with me? Which one is your favourite?", type: "neutral" },
-    { text: "What’s the most extreme form of sensation play we’ve tried, and how did it feel?", type: "neutral" },
-    { text: "If we could take a kink vacation together, where would you want to go and what would we do?", type: "neutral" },
+    { text: "What’s the most extreme form of sensation play we’ve tried, && how did it feel?", type: "neutral" },
+    { text: "If we could take a kink vacation together, where would you want to go && what would we do?", type: "neutral" },
     { text: "Has there been a partner I've had, that you would have liked to have shared with me?", type: "neutral" },
-    { text: "Have you ever been involved in a taboo scenario? What was it, and did it turn you on?", type: "neutral" },
-    { text: "If we could bring a trans celebrity into our dynamic for one night, who would it be and why?", type: "neutral" },
+    { text: "Have you ever been involved in a taboo scenario? What was it, && did it turn you on?", type: "neutral" },
+    { text: "If we could bring a trans celebrity into our dynamic for one night, who would it be && why?", type: "neutral" },
     { text: "What’s the one kink that you think best defines our sexual relationship?", type: "neutral" },
-    { text: "Have you ever tried double penetration (or want to), and how was it?", type: "neutral" },
+    { text: "Have you ever tried double penetration (or want to), && how was it?", type: "neutral" },
     { text: "What’s your biggest turn-on if you watch me with someone else?", type: "neutral" },
     { text: "What’s one fantasy we’ve fulfilled that you wish we could experience for the first time again?", type: "neutral" },
-    { text: "How do you feel about breath play with me, and have we tried it?", type: "neutral" },
+    { text: "How do you feel about breath play with me, && have we tried it?", type: "neutral" },
     { text: "What’s your favourite spot for me to kiss, lick, or tease?", type: "neutral" },
     { text: "Have we ever been caught in the act by someone? How did you react?", type: "neutral" },
     { text: "What’s your favourite form of foreplay with me?", type: "neutral" },
-    { text: "If we could roleplay as any fictional characters from movies, books or TV, who would we be and why?", type: "neutral" },
+    { text: "If we could roleplay as any fictional characters from movies, books or TV, who would we be && why?", type: "neutral" },
     { text: "Would you ever use food in a scene with me?", type: "neutral" },
-    { text: "What’s your favourite part of my body to tease, and why?", type: "neutral" },
+    { text: "What’s your favourite part of my body to tease, && why?", type: "neutral" },
     { text: "Have you ever gotten off to anything I've created with someone else?", type: "neutral" },
     { text: "What’s the naughtiest fantasy we’ve yet to act out?", type: "neutral" },
     { text: "What’s a kink you thought you’d never try with me but ended up loving?", type: "neutral" },
-    { text: "Do you prefer solo play or group play with me, and why?", type: "neutral" },
+    { text: "Do you prefer solo play or group play with me, && why?", type: "neutral" },
     { text: "What was the moment you realised we'd be good in this type of dynamic together?", type: "neutral" },
     { text: "If you could change one thing about our current dynamic, what would it be?", type: "neutral" },
     { text: "What’s your biggest fear when it comes to exploring kink or ENM dynamics with me?", type: "neutral" },
@@ -66,7 +67,7 @@ const coupleQuestions = [
     { text: "Have we ever experimented with extreme pain play? What’s your favorite type?", type: "neutral" },
     { text: "What’s one piece of equipment you’ve never used with me but would love to try?", type: "neutral" },
     { text: "Have we ever tried sensory deprivation (e.g., blindfolds)? How did it feel for you?", type: "neutral" },
-    { text: "Do you prefer leather or latex, and why?", type: "neutral" },
+    { text: "Do you prefer leather or latex, && why?", type: "neutral" },
     { text: "Which would be your choice of roleplay for us: teacher/student, patient/nurse, or jailer/inmate?", type: "neutral" },
     { text: "Which sexual activity are any future partners totally not ready for from me?", type: "neutral" },
     { text: "What’s the kinkiest request you’ve ever received?", type: "neutral" },
@@ -74,7 +75,7 @@ const coupleQuestions = [
     { text: "If you could only indulge in oral, vaginal or anal sex for the rest of your life, which would it be?", type: "neutral" },
     { text: "If we could star in a BDSM-themed movie or show, what would it be called?", type: "neutral" },
     { text: "How do you feel about sharing my body with someone else during a group play session?", type: "neutral" },
-    { text: "What’s your favourite way for us to explore anal play, and why?", type: "neutral" },
+    { text: "What’s your favourite way for us to explore anal play, && why?", type: "neutral" },
     { text: "How do you feel when you see me playing with someone else at an event?", type: "neutral" },
     { text: "Would you want us to explore group play more often? Why or why not?", type: "neutral" },
     { text: "How would you feel about us participating in a public kink scene with an audience at an event?", type: "neutral" },
@@ -83,9 +84,9 @@ const coupleQuestions = [
     { text: "Have you ever been nervous to engage in public play with me? What made you feel that way?", type: "neutral" },
     { text: "How do you feel about the idea of us playing completely separately with others at events or parties?", type: "neutral" },
     { text: "Is there anyone we’ve engaged with in the past that you’d like to invite for a group session?", type: "neutral" },
-    { text: "How would you feel if I organised a private session with someone else and invited you to watch?", type: "neutral" },
+    { text: "How would you feel if I organised a private session with someone else && invited you to watch?", type: "neutral" },
     { text: "How would you feel about us performing a kink demonstration together at a public event?", type: "neutral" },
-    { text: "Pick two celebrities, one male and one female, to join us for a hot and steamy evening together", type: "neutral" },
+    { text: "Pick two celebrities, one male && one female, to join us for a hot && steamy evening together", type: "neutral" },
     { text: "Would you describe me as a good kisser? Just good, or great?", type: "neutral" },
     { text: "If we played separately at an event, how would you want us to reconnect afterward?", type: "neutral" },
     { text: "Name a sexual activity that someone else does notably better than I do", type: "neutral" },
@@ -95,8 +96,8 @@ const coupleQuestions = [
     { text: "How would you rate the most recent play you had with someone else, out of 10?", type: "neutral" },
     { text: "In your opinion, which is more important? Length or girth? (Can be for a toy or penis)", type: "neutral" },
     { text: "Which every day outfit do you find me most attractive in?", type: "neutral" },
-    { text: "Do you want me to send you pics and videos from scenes with other people?", type: "neutral" },
-    { text: "What household item would you least want to be tied up with, and why?", type: "neutral" },
+    { text: "Do you want me to send you pics && videos from scenes with other people?", type: "neutral" },
+    { text: "What household item would you least want to be tied up with, && why?", type: "neutral" },
     { text: "If our sex life was a cocktail, what ingredients would it have?", type: "neutral" },
     { text: "What ridiculous safe word would you actually use in an emergency?", type: "neutral" },
     { text: "What's the worst possible music to have sex to?", type: "neutral" },
@@ -140,7 +141,7 @@ const coupleQuestions = [
     { text: "If our dynamic was a pizza topping combination, what would it be?", type: "neutral" },
     { text: "What completely non-sexual app deserves a XXX version?", type: "neutral" },
     { text: "If we opened a kinky food truck, what would our special be called?", type: "neutral" },
-    { text: "What's your ultimate free-use fantasy scenario involving me and someone else?", type: "neutral" },
+    { text: "What's your ultimate free-use fantasy scenario involving me && someone else?", type: "neutral" },
     { text: "Describe your ideal scenario of being shared at a kink event - who watches? Who participates?", type: "neutral" },
     { text: "What's the most intense CNC (consensual non-consent) scenario you've fantasised about?", type: "neutral" },
     { text: "How would you feel about us livestreaming our play session?", type: "neutral" },
@@ -149,31 +150,31 @@ const coupleQuestions = [
     { text: "How would you feel about me negotiating your limits with a new play partner?", type: "neutral" },
     { text: "What's your ultimate orgasm torture scenario? Edging duration? Overstim methods?", type: "neutral" },
     { text: "How should we memorialise your best kink moments? Tattoos? Photo wall? Trophy case?", type: "neutral" },
-    { text: "Which previous partner had the most memorable oral technique and what made it special?", type: "neutral" },
+    { text: "Which previous partner had the most memorable oral technique && what made it special?", type: "neutral" },
     { text: "What's something you learned from a past lover that you now use in our play?", type: "neutral" },
     { text: "Describe the most skilled handjob/fingering technique you've ever received from someone else", type: "neutral" },
-    { text: "Which ex had the best stamina and how did that impact your sessions?", type: "neutral" },
+    { text: "Which ex had the best stamina && how did that impact your sessions?", type: "neutral" },
     { text: "What's the most impressive physical attribute a past partner had that you still think about?", type: "neutral" },
     { text: "Which former flame had the dirtiest mouth during sex? Describe their best line", type: "neutral" },
     { text: "What's one move from a previous partner's repertoire you wish I'd adopt?", type: "neutral" },
-    { text: "Who gave you your most intense orgasm before me, and what were they doing?", type: "neutral" },
+    { text: "Who gave you your most intense orgasm before me, && what were they doing?", type: "neutral" },
     { text: "Describe the most creative use of furniture you've experienced with someone else", type: "neutral" },
-    { text: "Which past partner had the best aftercare routine and what made it exceptional?", type: "neutral" },
+    { text: "Which past partner had the best aftercare routine && what made it exceptional?", type: "neutral" },
     { text: "If you could choose one real person (not a celebrity) to watch me have sex with, who would it be?", type: "neutral" },
     { text: "What's a specific way you feel compersion for me when I'm with another partner?", type: "neutral" },
     { text: "Describe a time you felt 'new relationship energy' (NRE) with someone else. How did you navigate it with me?", type: "neutral" },
     { text: "What's one aspect of our ENM agreement you'd like to renegotiate or clarify?", type: "neutral" },
-    { text: "How do you handle scheduling conflicts or time management between me and other partners?", type: "neutral" },
+    { text: "How do you handle scheduling conflicts or time management between me && other partners?", type: "neutral" },
     { text: "What's your ideal level of communication about my other relationships? Too much detail? Not enough?", type: "neutral" },
-    { text: "Describe a fantasy involving me, you, and one (or more) of your other partners.", type: "neutral" },
+    { text: "Describe a fantasy involving me, you, && one (or more) of your other partners.", type: "neutral" },
     { text: "What's the most challenging aspect of being my primary partner (if applicable) in an ENM structure?", type: "neutral" },
     { text: "How do you feel about fluid bonding or safer sex practices within our network?", type: "neutral" },
     { text: "What's a kink you're curious about but hesitant to bring up?", type: "neutral" },
-    { text: "How do you differentiate between jealousy and envy in our dynamic?", type: "neutral" },
+    { text: "How do you differentiate between jealousy && envy in our dynamic?", type: "neutral" },
     { text: "If we were to introduce a new long-term partner into our dynamic, what qualities would be most important?", type: "neutral" },
     { text: "What's the most unexpected thing you've enjoyed about ENM?", type: "neutral" },
     { text: "How do you feel about discussing our ENM dynamic with friends or family?", type: "neutral" },
-    { text: "Describe a time you felt particularly secure and loved within our non-monogamous relationship.", type: "neutral" },
+    { text: "Describe a time you felt particularly secure && loved within our non-monogamous relationship.", type: "neutral" },
     { text: "What's your favourite way to incorporate impact play (spanking, flogging, etc.)?", type: "neutral" },
     { text: "How do you feel about age play dynamics?", type: "neutral" },
     { text: "What's your opinion on incorporating elements of humiliation or degradation?", type: "neutral" },
@@ -200,9 +201,9 @@ const coupleQuestions = [
     { text: "How do you feel about incorporating food play (excluding standard aphrodisiacs)?", type: "neutral" },
 
      // --- Dom asks sub Questions (D_asks_S) ---
-    { text: "What’s the most vulnerable you’ve felt during a scene with me, and why?", type: "D_asks_S" },
+    { text: "What’s the most vulnerable you’ve felt during a scene with me, && why?", type: "D_asks_S" },
     { text: "What does aftercare usually look like for you? How can I best provide it?", type: "D_asks_S" },
-    { text: "What’s the most intense impact play moment we’ve tried, and did you enjoy it?", type: "D_asks_S" },
+    { text: "What’s the most intense impact play moment we’ve tried, && did you enjoy it?", type: "D_asks_S" },
     { text: "What would be the perfect safeword for us to use that also turns you on?", type: "D_asks_S" },
     { text: "Would you prefer for me to punish you for bad behavior or reward you for being good?", type: "D_asks_S" },
     { text: "What non-sexual act turns you on the most when we’re in a kink scene?", type: "D_asks_S" },
@@ -212,10 +213,10 @@ const coupleQuestions = [
     { text: "How often do you experience sub-drop after a scene with me?", type: "D_asks_S" },
     { text: "Do you prefer silent obedience or verbal interaction with me during a scene?", type: "D_asks_S" },
     { text: "Is there a phrase I could say that would instantly turn you on?", type: "D_asks_S" },
-    { text: "What’s your favourite type of edging play with me, and how long do you think you could last?", type: "D_asks_S" },
+    { text: "What’s your favourite type of edging play with me, && how long do you think you could last?", type: "D_asks_S" },
     { text: "Would you rather be made to orgasm on command or be denied by me completely for a night?", type: "D_asks_S" },
     { text: "What’s the most challenging position I’ve ever restrained you in?", type: "D_asks_S" },
-    { text: "What’s the most intense form of humiliation you've experienced and enjoyed?", type: "D_asks_S" },
+    { text: "What’s the most intense form of humiliation you've experienced && enjoyed?", type: "D_asks_S" },
     { text: "Describe in detail how you'd want me to watch you service another partner", type: "D_asks_S" },
     { text: "How would you want me to mark you before sending you to play with someone else?", type: "D_asks_S" },
     { text: "How should I punish you if you cum without permission while with someone else?", type: "D_asks_S" },
@@ -230,7 +231,7 @@ const coupleQuestions = [
     { text: "What kind of praise motivates you the most during a scene?", type: "D_asks_S" },
     { text: "How can I make you feel safer when we explore intense kinks?", type: "D_asks_S" },
     { text: "Describe your ideal servitude task.", type: "D_asks_S" },
-    { text: "What's the threshold between challenging pain and a hard limit for you?", type: "D_asks_S" },
+    { text: "What's the threshold between challenging pain && a hard limit for you?", type: "D_asks_S" },
 
     // --- sub asks Dom Questions (S_asks_D) ---
     { text: "What does aftercare usually look like for you? How can I best provide it?", type: "S_asks_D" },
@@ -241,7 +242,7 @@ const coupleQuestions = [
     { text: "What’s the worst possible pet name for a Dom?", type: "S_asks_D" },
     { text: "What mundane task would you make a sub do as punishment?", type: "S_asks_D" },
     { text: "What role do you see yourself taking in a group scene? Dominant, submissive, or switch?", type: "S_asks_D" },
-    { text: "What's a specific insecurity that ENM brings up for you, and how can I support you with it?", type: "S_asks_D" },
+    { text: "What's a specific insecurity that ENM brings up for you, && how can I support you with it?", type: "S_asks_D" },
     { text: "Describe a time you felt 'domspace'. What did it feel like?", type: "S_asks_D" },
     { text: "What's your favourite type of verbal interaction during a scene (praise, degradation, commands, silence)?", type: "S_asks_D" },
     { text: "What qualities do you look for in a submissive partner?", type: "S_asks_D" },
@@ -251,7 +252,7 @@ const coupleQuestions = [
     { text: "What kind of feedback do you appreciate after a scene?", type: "S_asks_D" },
     { text: "Is there a particular type of scene or dynamic you'd like to explore more with me?", type: "S_asks_D" },
     { text: "What’s your favorite way to tease me until I beg?", type: "S_asks_D" },
-    { text: "When was the last time you pushed a boundary with me, and how did it feel afterward?", type: "S_asks_D" },
+    { text: "When was the last time you pushed a boundary with me, && how did it feel afterward?", type: "S_asks_D" },
     { text: "What’s your favourite name to call me during a scene?", type: "S_asks_D" },
     { text: "Would it excite you to watch me being dominated by someone in a public or group setting?", type: "S_asks_D" },
     { text: "What's one thing you wish I did more of during our kink encounters?", type: "S_asks_D" },
@@ -263,7 +264,7 @@ const coupleQuestions = [
     { text: "How do you prefer to initiate a scene or signal that you want to play?", type: "S_asks_D" },
     { text: "Is there a fantasy scenario where you are dominant that you'd like to explore?", type: "S_asks_D" },
     { text: "What does 'success' look like for you at the end of a scene where you've been dominant?", type: "S_asks_D" },
-    { text: "How do you balance control with ensuring my pleasure and well-being during a scene?", type: "S_asks_D" },
+    { text: "How do you balance control with ensuring my pleasure && well-being during a scene?", type: "S_asks_D" },
     { text: "Are there any specific dominant figures (real or fictional) who inspire your style?", type: "S_asks_D" },
     { text: "What's something you appreciate about my submission that I might not be aware of?", type: "S_asks_D" },
     { text: "How important is verbal affirmation or praise *from* me *to* you during or after a scene?", type: "S_asks_D" },
@@ -273,7 +274,7 @@ const coupleQuestions = [
 ];
 
 const coupleForfeits = [
-    "You must head to the bathroom, take a naughty photo and send it to the other player",
+    "You must head to the bathroom, take a naughty photo && send it to the other player",
     "You must remove one item of clothing",
     "You must kiss the other player's neck for 10 seconds",
     "You must take 5 spanks",
@@ -283,19 +284,19 @@ const coupleForfeits = [
     "You must remove two items of clothing",
     "You must be in a doggy receiving position for the next 4 questions",
     "You must down your drink. If you don't have one, the other player can make you one.",
-    "You must slide a hand into the other person's pants, and have a good feel for 10 seconds",
+    "You must slide a hand into the other person's pants, && have a good feel for 10 seconds",
     "You must allow the other player to call you 'slut' for the remainder of the game",
     "You must perform your best slut drop",
     "You must enthusiastically mime what you most enjoy doing with/to your partner's private parts",
-    "You must let your partner go and choose a sex toy to use on you for at least 20 seconds",
+    "You must let your partner go && choose a sex toy to use on you for at least 20 seconds",
     "You must do a mating ritual dance for your partner",
     "You must seductively eat something phallic shaped. Bonus points if you put on Marvin Gaye's 'Let's Get It On' in the background",
     "You must show your partner the latest porn video you watched",
     "You must lick your partner's elbow or knee (your choice) until they answer their next question",
     "Your partner has 10 seconds to choose any forfeit for you",
     "You must act out your favourite porn genre in a charades style for your partner to guess",
-    "Choose someone to message that has a partner, and tell them you think their partner is attractive",
-    "Tease your own bare nipples and say 'These make milk like moo moo cows'",
+    "Choose someone to message that has a partner, && tell them you think their partner is attractive",
+    "Tease your own bare nipples && say 'These make milk like moo moo cows'",
     "You must post to a social media of your choice, saying how needy you feel tonight, with a devil emoji",
     "Send a flirty voice note to the 4th person in your Insta DMs",
     "Wear a vibrating toy for the next 3 questions",
@@ -306,16 +307,16 @@ const coupleForfeits = [
     "Practice your best 'good boy/girl' voice for 1 minute",
     "Demonstrate your favourite restraint technique",
     "Let your partner attach clothespins or similar to 5 body parts",
-    "Find something food-based and turn it sexual",
+    "Find something food-based && turn it sexual",
     "Give the other player a 60-second foot massage.",
     "Blindfold yourself for the next two questions.",
     "Let the other player write a temporary 'property of' mark on you (visible only to them).",
     "Describe your partner's best physical feature in explicit detail.",
-    "Confess the last time you masturbated and what you thought about.",
+    "Confess the last time you masturbated && what you thought about.",
     "Let the other player choose a song for you to strip tease (partially or fully) to.",
     "Whisper three dirty things you want to do to the other player.",
     "Wear an ice cube somewhere sensitive until it melts.",
-    "Let the other player apply lipstick to you (regardless of gender) and wear it for 10 minutes.",
+    "Let the other player apply lipstick to you (regardless of gender) && wear it for 10 minutes.",
     "Perform 10 push-ups or sit-ups while complimenting the other player.",
     "Send a suggestive text to the other player right now.",
     "Let the other player choose one part of your body to kiss for 30 seconds.",
@@ -324,7 +325,7 @@ const coupleForfeits = [
     "Let the other player drip candle wax (safely, from a low temp candle) on a non-sensitive part of your body.",
     "Recite a nursery rhyme in your sexiest voice.",
     "Let the other player lightly spank you 10 times with their hand or a chosen implement.",
-    "Describe your ideal threesome scenario involving the two of you and a specific type of person.",
+    "Describe your ideal threesome scenario involving the two of you && a specific type of person.",
     "Swap one item of clothing with the other player for the next 15 minutes.",
     "Let the other player tie one of your wrists to your ankle for 5 minutes.",
     "Lick whipped cream (or similar) off a chosen part of the other player's body.",
@@ -337,7 +338,7 @@ const coupleForfeits = [
     "Make orgasm noises on command for 15 seconds.",
     "Tell the other player exactly how you want them to touch you right now.",
     "Let the other player choose a safe word for you to use (just for fun) for the next 5 minutes.",
-    "Blindfold the other player and feed them a small piece of food.",
+    "Blindfold the other player && feed them a small piece of food.",
     "Confess the kinkiest thing you've ever searched for online.",
     "Let the other player put clothespins on your nipples or earlobes (gently!) for one minute.",
     "Do your best impression of the other player having an orgasm.",
@@ -365,7 +366,7 @@ const friendsQuestions = [
     "What's a misconception you think I might have about your sex life?",
     "Have you ever had a sexual experience that made you see yourself differently?",
     "What's one thing you wish more people understood about sex or sexuality?",
-    "Describe a time you felt really confident and sex-positive.",
+    "Describe a time you felt really confident && sex-positive.",
     "What's the best or worst piece of sex advice you've ever received?",
     "Is there a sexual topic you've always been curious about but never researched?",
     "What's your opinion on the way sex is portrayed in movies versus reality?",
@@ -391,14 +392,14 @@ const friendsQuestions = [
     "What's your honest, unfiltered opinion on anal sex, giving or receiving?",
     "If you had to be restrained, what would be your weapon of choice: ropes, cuffs, or something more creative?",
     "What's a fetish you find fascinating, even if you're not sure you'd try it?",
-    "Describe a time you felt powerful and dominant sexually.",
+    "Describe a time you felt powerful && dominant sexually.",
     "What's the most 'out-there' thing on your sexual bucket list?",
     "Have you ever had a fantasy about being with more than one person at once? Describe it.",
-    "What's the difference between a 'kink' and a 'deal-breaker' for you?",
+    "What's the difference between a 'kink' && a 'deal-breaker' for you?",
     "If you were to explore impact play, would you rather be the one giving or receiving the spanks?",
     "What's a non-sexual scenario that you find incredibly arousing (e.g., watching someone cook, fix something)?",
     "Have you ever fantasised about being with someone of a different gender than you usually go for?",
-    "What's your favourite type of porn to watch, and what do you like about it?",
+    "What's your favourite type of porn to watch, && what do you like about it?",
     "Describe your ideal 'dirty weekend' away.",
     "What's a sexual skill you're proud of?",
     "What's the kinkiest thing you've ever done in a public or semi-public place?",
@@ -428,7 +429,7 @@ const friendsForfeits = [
     "Let the other player choose a song for you to do a 30-second seductive dance to.",
     "Whisper your darkest sexual secret in the other player's ear.",
     "For the next three rounds, you must start every sentence with 'Listen, you sexy thing...'",
-    "Take a suggestive selfie and send it to the other player.",
+    "Take a suggestive selfie && send it to the other player.",
     "Truth or Dare: let the other player choose. The dare must be kinky.",
     "Blindfold yourself for the next two rounds.",
     "Describe, in detail, what you would do to the other player if you were going to hook up right now.",
@@ -447,11 +448,11 @@ const friendsForfeits = [
 const groupQuestions = [
     // Original, tamer questions (converted to new format)
     { text: "Who in this group do you think has the wildest, unspoken fantasy?", type: 'target' },
-    { text: "If you had to trust one person here with a kinky secret, who would it be and why?", type: 'target' },
+    { text: "If you had to trust one person here with a kinky secret, who would it be && why?", type: 'target' },
     { text: "Point to the person you think gives the best hugs. That person must now give a hug to the person on their left.", type: 'target' },
     { text: "Who here do you think would be most likely to survive a zombie apocalypse? Why?", type: 'target' },
     { text: "Ask a question to the person you know the least in this group.", type: 'target' },
-    { text: "If you could pair up any two people in this room for a devious prank, who would they be and what's the prank?", type: 'target' },
+    { text: "If you could pair up any two people in this room for a devious prank, who would they be && what's the prank?", type: 'target' },
     { text: "Who in the group do you think has the most embarrassing 'guilty pleasure' song?", type: 'target' },
     { text: "What is your first impression of the person sitting opposite you?", type: 'target' },
     { text: "Who here would be the most likely to get away with a crime? What would the crime be?", type: 'target' },
@@ -467,11 +468,11 @@ const groupQuestions = [
     { text: "Who in the group would you want to be your 'phone a friend' in a pub quiz?", type: 'target' },
     { text: "What's a rumour you could start about the person to your left?", type: 'target' },
     { text: "Who here do you think has the most tattoos (or hidden ones)?", type: 'target' },
-    { text: "If you were to cast everyone in this room in a movie, what genre would it be and what roles would they play?", type: 'group' },
+    { text: "If you were to cast everyone in this room in a movie, what genre would it be && what roles would they play?", type: 'group' },
     { text: "Who in the group seems the most innocent, but you suspect is the wildest?", type: 'target' },
     // New, kinkier questions
     { text: "Who in this room do you think has the most experience with anal play?", type: 'target' },
-    { text: "If you had to restrain one person in this room, who would it be and what would you use?", type: 'target' },
+    { text: "If you had to restrain one person in this room, who would it be && what would you use?", type: 'target' },
     { text: "If you had to make out with one person in this room right now, who would it be?", type: 'target' },
     { text: "Who in the group do you think has the kinkiest search history?", type: 'target' },
     { text: "Who here looks like they'd enjoy being (consensually) degraded?", type: 'target' },
@@ -500,18 +501,18 @@ const groupQuestions = [
     { text: "Point to the person with the sexiest lips.", type: 'target' },
     { text: "Who here do you think would be the best at roleplaying?", type: 'target' },
     { text: "If you could only use your mouth on one person in this room for 10 minutes, who would you choose?", type: 'target' },
-    { text: "Who here looks like they'd be into being praised and called a 'good girl/boy'?", type: 'target' },
+    { text: "Who here looks like they'd be into being praised && called a 'good girl/boy'?", type: 'target' },
     { text: "Point to the person you think has the best ass in the room.", type: 'target' },
     { text: "Who in the group would you want to be your 'sub' for an evening?", type: 'target' },
     { text: "If you had to watch porn with one person in this room, who would it be?", type: 'target' },
     { text: "Point to the person you'd most like to bite (gently!).", type: 'target' },
-    { text: "Everyone goes around the circle and says who in the group they'd most like to kiss.", type: 'group' },
+    { text: "Everyone goes around the circle && says who in the group they'd most like to kiss.", type: 'group' },
     { text: "Everyone reveals their biggest sexual turn-on.", type: 'group' },
     { text: "The group must decide on one person to take a forfeit. That person takes the next forfeit card.", type: 'group' },
     { text: "Everyone removes one item of clothing.", type: 'group' },
     { text: "Go around the circle. Each person describes their 'type' in three words.", type: 'group' },
     { text: "The group must invent a new, kinky rule that applies for the next 5 rounds.", type: 'group' },
-    { text: "Everyone writes down a secret fantasy on a piece of paper. Shuffle them, and read them aloud. The group has to guess who wrote which fantasy.", type: 'group' },
+    { text: "Everyone writes down a secret fantasy on a piece of paper. Shuffle them, && read them aloud. The group has to guess who wrote which fantasy.", type: 'group' },
 ];
 
 const groupForfeits = [
@@ -522,7 +523,7 @@ const groupForfeits = [
     "Whisper a dirty secret into the ear of the person on your left.",
     "Let the person opposite you write a word on your body with their finger. You have to guess the word.",
     "You must refer to the person who asked the question as 'Master' or 'Mistress' for the next three rounds.",
-    "Take an ice cube and slowly run it along the arm of the person to your right.",
+    "Take an ice cube && slowly run it along the arm of the person to your right.",
     "The group votes on who you have to spank. You must give them 3 firm spanks.",
     "Choose someone in the group. You must kiss them on the neck for 10 seconds.",
     "Let the group choose a song for you to strip-tease to for 30 seconds. You must remove at least one item.",
@@ -536,7 +537,7 @@ const groupForfeits = [
     "Let the group choose a body part (e.g., neck, shoulder, arm) for the person to your right to kiss.",
     "You must show the group the last saved photo on your phone, no matter what it is.",
     "Choose two people in the group to kiss each other (on the cheek or lips, their choice).",
-    "You must get on all fours and act like a pet for the person of your choice for one round.",
+    "You must get on all fours && act like a pet for the person of your choice for one round.",
     "Let the group apply lipstick to you (badly). You must wear it for three rounds.",
     "You must give a foot massage to the person with the nicest shoes for 60 seconds.",
     "Post 'feeling needy tonight' with a devil emoji to a social media story of your choice.",
@@ -548,74 +549,12 @@ const groupForfeits = [
     "Send a text to the 3rd person in your contacts list saying 'thinking of you'.",
     "You must perform your best slut drop.",
     "Let the group choose an object in the room. You must describe, in detail, how you would use it sexually.",
-    "You must take a body shot off a person of your choice (if applicable and consensual).",
+    "You must take a body shot off a person of your choice (if applicable && consensual).",
     "For the next 3 rounds, you must address everyone with a kinky title (e.g., 'Yes, Sir', 'Of course, Mistress').",
     "EASTER EGG: Message Rysta, the game creator, on Fetlife (RYSTA) or Instagram (@rystadom). Your message must be a confession of the naughtiest thing you've thought about doing with someone in this room. Be creative."
 ];
 
-/* === Additional cards appended for spiciness balance === */
-const extraCards = {
-  couple: {
-    tame: [
-      { text: "What non-sexual thing do I do that makes you feel desired?", type: "neutral" },
-      { text: "What song always puts you in the mood with me?", type: "neutral" },
-    ],
-    spicy: [
-      { text: "Describe exactly how you'd want our next makeout to start.", type: "neutral" },
-      { text: "What praise from me hits the hardest?", type: "S_asks_D" },
-    ],
-    filthy: [
-      { text: "Describe the dirtiest thing you want me to whisper before you cum.", type: "D_asks_S" },
-      { text: "What would our most intense threesome look like?", type: "neutral" },
-    ],
-    forfeits: {
-      tame: [ "Massage the other player's shoulders for one minute." ],
-      spicy: [ "Whisper three filthy promises in the other player's ear." ],
-      filthy: [ "Make orgasm noises on command for 15 seconds." ],
-      externalTame: [ "Let your partner choose your outfit for tomorrow." ],
-      externalSpicy: [ "Send a flirty voice note to the other player." ],
-      externalFilthy: [ "Take a naughty selfie and show only to the other player." ],
-    },
-  },
-  friends: {
-    tame: [
-      { text: "What's a film that shaped your idea of romance?" },
-      { text: "What outfit makes you feel most confident?" },
-    ],
-    spicy: [
-      { text: "If we experimented, what's the first thing you'd want to try?" },
-      { text: "What kind of kiss do you think I'd give?" },
-    ],
-    filthy: [
-      { text: "Tell me one fantasy involving the two of us, no holding back." },
-      { text: "Would you rather pin me down or be pinned?" },
-    ],
-    forfeits: {
-      tame: [ "Give a genuine flirty compliment." ],
-      spicy: [ "Describe, in detail, how you'd undress the other player." ],
-      filthy: [ "Mimic your best 'I'm about to cum' face." ],
-      externalTame: [ "Send a cute emoji-only text to the other player." ],
-      externalSpicy: [ "Send a flirty text to the other player as if seducing them." ],
-      externalFilthy: [ "Record a 5 second naughty whisper and send it to the other player." ],
-    },
-  },
-  group: {
-    tame: [
-      { text: "Who here has the best laugh? Make them prove it.", type: "target" },
-      { text: "If this group was a band, who plays what?", type: "group" },
-    ],
-    spicy: [
-      { text: "Point to the person you think gives the best kiss.", type: "target" },
-      { text: "Everyone says one flirty compliment to the person on their right.", type: "group" },
-    ],
-    filthy: [
-      { text: "If you had to give a lap dance to one person here, who is it?", type: "target" },
-      { text: "Who here would you most like to watch during sex?", type: "target" },
-    ],
-  },
-};
-
-/* === DOM === */
+/* === DOM handles === */
 const els = {
   welcome: document.getElementById('welcomeContainer'),
   coupleSetup: document.getElementById('coupleSetupContainer'),
@@ -666,6 +605,13 @@ const els = {
   timerPause: document.getElementById('timerPause'),
   timerReset: document.getElementById('timerReset'),
 
+  // welcome controls
+  spiceTame: document.getElementById('spiceTame'),
+  spiceSpicy: document.getElementById('spiceSpicy'),
+  spiceFilthy: document.getElementById('spiceFilthy'),
+  allowExternal: document.getElementById('allowExternal'),
+  soundEnabled: document.getElementById('soundEnabled'),
+
   tutorialLink: document.getElementById('tutorialLink'),
   tutorialModal: document.getElementById('tutorialModal'),
   closeTutorial: document.getElementById('closeTutorial'),
@@ -686,45 +632,39 @@ const els = {
   resetCancel: document.getElementById('resetCancel'),
   saveExit: document.getElementById('saveExit'),
   hardReset: document.getElementById('hardReset'),
-
-  spiceTame: document.getElementById('spiceTame'),
-  spiceSpicy: document.getElementById('spiceSpicy'),
-  spiceFilthy: document.getElementById('spiceFilthy'),
-  allowExternal: document.getElementById('allowExternal'),
-  soundEnabled: document.getElementById('soundEnabled'),
 };
 
-/* === Audio (soft click) === */
-let audioCtx;
-function playClick() {
-  if (!state.sound) return;
-  try {
-    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    const o = audioCtx.createOscillator();
-    const g = audioCtx.createGain();
-    o.type = 'triangle'; o.frequency.value = 880; g.gain.value = 0.03;
-    o.connect(g); g.connect(audioCtx.destination);
-    o.start(); setTimeout(() => o.stop(), 60);
-  } catch {}
-}
-
-/* === Util === */
-const LSK = 'kinkandtell_v2_state';
-const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
-const debounce = (fn, ms = 400) => { let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); }; };
+/* === Utilities === */
+const LSK = 'kinkandtell_simplified_state';
 const rand = (n) => Math.floor(Math.random() * n);
 function shuffle(arr) { const a = arr.slice(); for (let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];} return a; }
-function classifySpice(text) {
-  const t = text.toLowerCase();
-  const filthy = /(cum|orgasm|watersport|knife|cnc|degradation|deepthroat|anal|double penetration|dp|fuck|cock|pussy|slut|choke|gag|vibrator|vibrating|collar|spank|whip|lap dance|threesome|sex club)/;
+function normaliseQuestion(item, fallbackType='neutral'){ return typeof item==='string' ? {text:item, type:fallbackType} : {text:item.text, type:item.type||fallbackType}; }
+function normaliseForfeit(item){ return typeof item==='string' ? {text:item} : {text:item.text}; }
+function classifySpice(text){
+  const t = (text||'').toLowerCase();
+  const filthy = /(cum|orgasm|watersport|knife|cnc|degradation|deepthroat|anal|double penetration|dp|fuck|cock|pussy|slut|choke|gag|vibrator|collar|spank|whip|lap dance|threesome|sex club)/;
   const spicy = /(kiss|makeout|undress|nipple|toy|roleplay|edge|deny|praise|porn|public|bondage|rope|cuffs|wax|mouth|strip|dirty talk|good boy|good girl)/;
   if (filthy.test(t)) return 'filthy';
   if (spicy.test(t)) return 'spicy';
   return 'tame';
 }
-function normaliseQuestion(item, fallbackType = 'neutral') { return typeof item === 'string' ? ({ text: item, type: fallbackType }) : ({ text: item.text, type: item.type || fallbackType }); }
-function normaliseForfeit(item) { return typeof item === 'string' ? ({ text: item }) : ({ text: item.text }); }
-function isExternalForfeit(text) { const t = text.toLowerCase(); return /(message|dm|instagram|fetlife|post|social|selfie|photo|send|voice note)/.test(t); }
+function hasTimeLimit(text){
+  if (!text) return false;
+  const t = text.toLowerCase();
+  if (/(\\b\\d+[-\\s]?(sec|secs|second|seconds|min|mins|minute|minutes|hr|hrs|hour|hours)\\b)/.test(t)) return true;
+  if (/for\\s+\\d+\\s+(seconds?|mins?|minutes?|hours?)/.test(t)) return true;
+  if (/for\\s+(one|two|three|four|five)\\s+(seconds?|minutes?|hours?)/.test(t)) return true;
+  if (/until it melts/.test(t)) return true;
+  return false;
+}
+function typeLabel(t){
+  if (!t) return 'Question';
+  if (t==='group') return 'Group';
+  if (t==='target') return 'Targeted';
+  if (t==='D_asks_S') return 'Dom asks Sub';
+  if (t==='S_asks_D') return 'Sub asks Dom';
+  return 'Question';
+}
 
 /* === State === */
 const state = {
@@ -736,325 +676,286 @@ const state = {
   history: [],
   deck: { questions: [], forfeits: [] },
   spice: { tame: true, spicy: true, filthy: true },
-  allowExternal: true,
-  sound: true,
   repeatsShown: false,
   timer: { start: 0, ms: 0, running: false, int: null },
 };
 
-// Fix Pythonic literals to JS later
-
 /* === Persistence === */
-function saveState() {
-  try {
-    const serialisable = {
-      ...state,
-      used: { questions: Array.from(state.used.questions), forfeits: Array.from(state.used.forfeits) },
-      history: state.history.slice(-20),
-      deck: undefined,
-    };
-    localStorage.setItem(LSK, JSON.stringify(serialisable));
-  } catch {}
+function saveState(){
+  try{
+    const s = { ...state, used: { questions:[...state.used.questions], forfeits:[...state.used.forfeits] }, history: state.history.slice(-20), deck: undefined };
+    localStorage.setItem(LSK, JSON.stringify(s));
+  }catch{}
 }
-function loadState() {
-  try {
-    const raw = localStorage.getItem(LSK);
-    if (!raw) return false;
+function loadState(){
+  try{
+    const raw = localStorage.getItem(LSK); if (!raw) return false;
     const s = JSON.parse(raw);
     Object.assign(state, s);
-    state.used.questions = new Set(s.used?.questions || []);
-    state.used.forfeits = new Set(s.used?.forfeits || []);
+    state.used.questions = new Set(s.used?.questions||[]);
+    state.used.forfeits = new Set(s.used?.forfeits||[]);
     return true;
-  } catch { return false; }
+  }catch{ return false; }
 }
-function clearState() { localStorage.removeItem(LSK); }
+function clearState(){ localStorage.removeItem(LSK); }
 
 /* === Deck building === */
-function buildDecks() {
-  // Normalise original content
-  const CQ = (window.coupleQuestions || coupleQuestions).map(q => normaliseQuestion(q, 'neutral'));
-  const CF = (window.coupleForfeits || coupleForfeits).map(normaliseForfeit);
-  const FQ = (window.friendsQuestions || friendsQuestions).map(q => normaliseQuestion(q, 'neutral'));
-  const FF = (window.friendsForfeits || friendsForfeits).map(normaliseForfeit);
-  const GQ = (window.groupQuestions || groupQuestions).map(q => normaliseQuestion(q, 'target'));
-  const GF = (window.groupForfeits || groupForfeits).map(normaliseForfeit);
+function buildDecks(){
+  const CQ = (window.coupleQuestions||[]).map(q=>normaliseQuestion(q,'neutral'));
+  const CF = (window.coupleForfeits||[]).map(normaliseForfeit);
+  const FQ = (window.friendsQuestions||[]).map(q=>normaliseQuestion(q,'neutral'));
+  const FF = (window.friendsForfeits||[]).map(normaliseForfeit);
+  const GQ = (window.groupQuestions||[]).map(q=>normaliseQuestion(q,'target'));
 
-  // Append extras
-  function addExtras() {
-    // Couple: q
-    CQ.push(...extraCards.couple.tame.map(q => ({ ...q, extra: true })),
-            ...extraCards.couple.spicy.map(q => ({ ...q, extra: true })),
-            ...extraCards.couple.filthy.map(q => ({ ...q, extra: true })));
-    // Couple: forfeits
-    CF.push(...extraCards.couple.forfeits.tame.map(text => ({ text, extra: true })),
-            ...extraCards.couple.forfeits.spicy.map(text => ({ text, extra: true })),
-            ...extraCards.couple.forfeits.filthy.map(text => ({ text, extra: true })),
-            ...extraCards.couple.forfeits.externalTame.map(text => ({ text, extra: true })),
-            ...extraCards.couple.forfeits.externalSpicy.map(text => ({ text, extra: true })),
-            ...extraCards.couple.forfeits.externalFilthy.map(text => ({ text, extra: true })));
-    // Friends
-    FQ.push(...extraCards.friends.tame.map(q => ({ ...q, extra: true })),
-            ...extraCards.friends.spicy.map(q => ({ ...q, extra: true })),
-            ...extraCards.friends.filthy.map(q => ({ ...q, extra: true })));
-    FF.push(...extraCards.friends.forfeits.tame.map(text => ({ text, extra: true })),
-            ...extraCards.friends.forfeits.spicy.map(text => ({ text, extra: true })),
-            ...extraCards.friends.forfeits.filthy.map(text => ({ text, extra: true })),
-            ...extraCards.friends.forfeits.externalTame.map(text => ({ text, extra: true })),
-            ...extraCards.friends.forfeits.externalSpicy.map(text => ({ text, extra: true })),
-            ...extraCards.friends.forfeits.externalFilthy.map(text => ({ text, extra: true })));
-    // Group (questions only have extras)
-    GQ.push(...extraCards.group.tame.map(q => ({ ...q, extra: true })),
-            ...extraCards.group.spicy.map(q => ({ ...q, extra: true })),
-            ...extraCards.group.filthy.map(q => ({ ...q, extra: true })));
-  }
-  addExtras();
+  let qDeckRaw=[], fDeckRaw=[];
+  if (state.mode==='couple'){ qDeckRaw=CQ; fDeckRaw=CF; }
+  if (state.mode==='friends'){ qDeckRaw=FQ; fDeckRaw=FF; }
+  if (state.mode==='group'){ qDeckRaw=GQ; fDeckRaw=[]; }
 
-  // Build by mode
-  let qDeckRaw = [], fDeckRaw = [];
-  if (state.mode === 'couple') { qDeckRaw = CQ; fDeckRaw = CF; }
-  if (state.mode === 'friends') { qDeckRaw = FQ; fDeckRaw = FF; }
-  if (state.mode === 'group') { qDeckRaw = GQ; fDeckRaw = GF; }
+  const qDeck = qDeckRaw.map(q=>({ ...q, spice: q.spice||classifySpice(q.text) }));
+  const fDeck = fDeckRaw.map(f=>({ ...f, spice: f.spice||classifySpice(f.text) }));
 
-  // Annotate spice & external flags
-  const qDeck = qDeckRaw.map(q => ({ ...normaliseQuestion(q, 'neutral'), spice: q.spice || classifySpice(q.text) }));
-  const fDeck = fDeckRaw.map(f => ({ ...normaliseForfeit(f), spice: f.spice || classifySpice(f.text), external: isExternalForfeit(f.text) }));
-
-  // Apply filters
-  const allowedSpice = new Set([ state.spice.tame ? 'tame' : null, state.spice.spicy ? 'spicy' : null, state.spice.filthy ? 'filthy' : null ].filter(Boolean));
-  const filteredQ = qDeck.filter(q => allowedSpice.has(q.spice));
-  const filteredF = fDeck.filter(f => allowedSpice.has(f.spice) && (state.allowExternal || !f.external));
-
-  state.deck.questions = shuffle(filteredQ);
-  state.deck.forfeits = shuffle(filteredF);
-  state.used.questions.clear();
-  state.used.forfeits.clear();
-  state.repeatsShown = false;
+  const allowed = new Set([ state.spice.tame?'tame':null, state.spice.spicy?'spicy':null, state.spice.filthy?'filthy':null ].filter(Boolean));
+  state.deck.questions = shuffle(qDeck.filter(q=>allowed.has(q.spice)));
+  state.deck.forfeits = shuffle(fDeck.filter(f=>allowed.has(f.spice)));
+  state.used.questions.clear(); state.used.forfeits.clear();
+  state.repeatsShown=false;
   updateProgress();
 }
 
 /* === UI helpers === */
-function setScreen(screen) {
-  els.welcome.style.display = screen === 'welcome' ? 'block' : 'none';
-  els.coupleSetup.style.display = screen === 'coupleSetup' ? 'block' : 'none';
-  els.groupSetup.style.display = screen === 'groupSetup' ? 'block' : 'none';
-  els.game.style.display = screen === 'game' ? 'block' : 'none';
-  els.interstitial.hidden = screen !== 'interstitial';
+function setScreen(screen){
+  els.welcome.style.display = screen==='welcome'?'block':'none';
+  els.coupleSetup.style.display = screen==='coupleSetup'?'block':'none';
+  els.groupSetup.style.display = screen==='groupSetup'?'block':'none';
+  els.game.style.display = screen==='game'?'block':'none';
+  els.interstitial.hidden = screen!=='interstitial';
 }
-function updateModeBadge() {
-  els.modeBadge.textContent = state.mode ? state.mode[0].toUpperCase() + state.mode.slice(1) : 'Mode';
+function updateModeBadge(){
+  const t = state.mode? (state.mode[0].toUpperCase()+state.mode.slice(1)) : 'Mode';
+  document.getElementById('modeBadge').textContent = t;
   document.body.classList.remove('mode-couple','mode-friends','mode-group');
   if (state.mode) document.body.classList.add(`mode-${state.mode}`);
 }
-function updateTurnIndicator() {
-  if (state.mode === 'group') {
+function updateTurnIndicator(){
+  if (state.mode==='group'){
     const asker = state.players[state.askerIndex]?.name || 'Player';
     els.turnIndicator.textContent = `${asker}, you are asking`;
   } else {
-    const p1 = state.players[0]?.name || 'Player 1';
-    const p2 = state.players[1]?.name || 'Player 2';
-    els.turnIndicator.textContent = `${p1} and ${p2}`;
+    const p1=state.players[0]?.name||'Player 1';
+    const p2=state.players[1]?.name||'Player 2';
+    els.turnIndicator.textContent = `${p1} && ${p2}`;
   }
 }
-function updateProgress() { els.progressBadge.textContent = `${state.used.questions.size} used`; }
-function showRepeatNoticeIfNeeded(kind) {
-  const deck = state.deck[kind]; const used = state.used[kind];
-  if (!state.repeatsShown && used.size >= deck.length) {
-    state.repeatsShown = true; els.repeatNotice.hidden = false; setTimeout(() => { els.repeatNotice.hidden = true; }, 5000);
-  }
+function updateProgress(){ els.progressBadge.textContent = `${state.used.questions.size} used`; }
+function showRepeatNoticeIfNeeded(kind){
+  const deck = state.deck[kind], used = state.used[kind];
+  if (!state.repeatsShown && used.size >= deck.length){ state.repeatsShown = true; els.repeatNotice.hidden=false; setTimeout(()=>els.repeatNotice.hidden=true, 4000); }
 }
 
-/* === Fair rotation (group) === */
-function nextAskerIndex() {
-  if (state.mode !== 'group') return state.askerIndex;
-  const counts = state.askCounts;
-  const min = Math.min(...counts);
-  const candidates = counts.map((c, i) => ({ c, i })).filter(o => o.c == min).map(o => o.i);
-  let chosen = candidates[Math.floor(Math.random() * candidates.length)];
-  if (chosen === state.askerIndex && candidates.length > 1) {
-    chosen = candidates[(candidates.indexOf(chosen) + 1) % candidates.length];
-  }
-  state.askerIndex = chosen;
-  state.askCounts[chosen] = (state.askCounts[chosen] || 0) + 1;
+/* === Group rotation === */
+function nextAskerIndex(){
+  if (state.mode!=='group') return state.askerIndex;
+  const min = Math.min(...state.askCounts);
+  const cand = state.askCounts.map((c,i)=>({c,i})).filter(o=>o.c===min).map(o=>o.i);
+  let chosen = cand[rand(cand.length)];
+  if (chosen===state.askerIndex && cand.length>1){ chosen = cand[(cand.indexOf(chosen)+1)%cand.length]; }
+  state.askerIndex=chosen; state.askCounts[chosen]=(state.askCounts[chosen]||0)+1;
   return chosen;
 }
 
 /* === Draws === */
-let drawLock = false;
-function guarded(fn) { if (drawLock) return; drawLock = true; fn(); setTimeout(() => { drawLock = false; }, 380); }
+let drawLock=false;
+function guarded(fn){ if(drawLock) return; drawLock=true; fn(); setTimeout(()=>drawLock=false, 320); }
 
-function drawQuestion() {
-  guarded(() => {
-    playClick();
+function drawQuestion(){
+  guarded(()=>{
     const deck = state.deck.questions;
-    if (deck.length === 0) { els.questionCard.textContent = 'No questions available with the current filters.'; return; }
-    let idx = Math.floor(Math.random() * deck.length);
-    let tries = 0;
-    while (state.used.questions.has(idx) && tries < deck.length) { idx = (idx + 1) % deck.length; tries++; }
+    if (!deck.length){ els.questionCard.textContent='No questions available with the current filters.'; return; }
+    let idx=rand(deck.length), tries=0;
+    while(state.used.questions.has(idx) && tries<deck.length){ idx=(idx+1)%deck.length; tries++; }
     const item = deck[idx];
     els.cardTypeLabel.textContent = typeLabel(item.type);
     els.questionCard.textContent = item.text;
-    els.forfeitCard.hidden = true; els.timerBar.hidden = true;
-    state.history.push({ kind: 'questions', index: idx, text: item.text, type: item.type });
+    els.forfeitCard.hidden = true;
+    els.timerBar.hidden = true; // ensure timer OFF for questions
+
+    state.history.push({ kind:'questions', index:idx, text:item.text, type:item.type });
     state.used.questions.add(idx);
     showRepeatNoticeIfNeeded('questions'); updateProgress(); saveState();
-    if (state.mode === 'group') {
+
+    if (state.mode==='group'){
       setScreen('interstitial');
-      const nextIndex = nextAskerIndex();
-      const who = state.players[nextIndex]?.name || 'Player';
-      els.interstitialMessage.textContent = `${who}, your turn to ask`;
+      const nextIdx = nextAskerIndex();
+      els.interstitialMessage.textContent = `${state.players[nextIdx]?.name || 'Player'}, your turn to ask`;
     }
   });
 }
 
-function drawForfeit() {
-  guarded(() => {
-    playClick();
+function drawForfeit(){
+  guarded(()=>{
     const deck = state.deck.forfeits;
-    if (deck.length === 0) { els.forfeitCard.textContent = 'No forfeits available with the current filters.'; els.forfeitCard.hidden = false; return; }
-    let idx = Math.floor(Math.random() * deck.length);
-    let tries = 0;
-    while (state.used.forfeits.has(idx) && tries < deck.length) { idx = (idx + 1) % deck.length; tries++; }
+    if (!deck.length){ els.forfeitCard.textContent='No forfeits available with the current filters.'; els.forfeitCard.hidden=false; els.timerBar.hidden=true; return; }
+    let idx=rand(deck.length), tries=0;
+    while(state.used.forfeits.has(idx) && tries<deck.length){ idx=(idx+1)%deck.length; tries++; }
     const item = deck[idx];
-    els.cardTypeLabel.textContent = 'Forfeit';
-    els.forfeitCard.textContent = item.text;
-    els.forfeitCard.hidden = false; els.timerBar.hidden = false;
-    state.history.push({ kind: 'forfeits', index: idx, text: item.text, type: 'forfeit' });
+    els.cardTypeLabel.textContent='Forfeit';
+    els.forfeitCard.textContent=item.text;
+    els.forfeitCard.hidden=false;
+
+    // Timer only for time-limited forfeits
+    els.timerBar.hidden = !hasTimeLimit(item.text);
+
+    state.history.push({ kind:'forfeits', index:idx, text:item.text, type:'forfeit' });
     state.used.forfeits.add(idx);
     showRepeatNoticeIfNeeded('forfeits'); saveState();
   });
 }
 
-function typeLabel(t) {
-  if (!t) return 'Question';
-  if (t === 'group') return 'Group';
-  if (t === 'target') return 'Targeted';
-  if (t === 'D_asks_S') return 'Dom asks Sub';
-  if (t === 'S_asks_D') return 'Sub asks Dom';
-  return 'Question';
-}
-
-function skipCard() { if (state.history.length === 0) return; drawQuestion(); }
-function undoLast() {
-  const last = state.history.pop(); if (!last) return;
-  const usedSet = state.used[last.kind]; if (usedSet && usedSet.has(last.index)) usedSet.delete(last.index);
-  if (last.kind === 'questions') { els.questionCard.textContent = 'Undone. Tap Next to continue.'; }
-  else { els.forfeitCard.hidden = true; }
+function skipCard(){ if(!state.history.length) return; drawQuestion(); }
+function undoLast(){
+  const last = state.history.pop(); if(!last) return;
+  const usedSet = state.used[last.kind]; if (usedSet) usedSet.delete(last.index);
+  if (last.kind==='questions'){ els.questionCard.textContent='Undone. Tap Next to continue.'; } else { els.forfeitCard.hidden=true; els.timerBar.hidden=true; }
   updateProgress(); saveState();
 }
 
-/* === Timer === */
-function formatMs(ms) { const total = Math.max(0, Math.floor(ms / 1000)); const m = String(Math.floor(total / 60)).padStart(2,'0'); const s = String(total % 60).padStart(2,'0'); return `${m}:${s}`; }
-function timerTick() { els.timerDisplay.textContent = formatMs(state.timer.ms + (Date.now() - state.timer.start)); }
-function timerStart() { if (state.timer.running) return; state.timer.running = true; state.timer.start = Date.now(); state.timer.int = setInterval(timerTick, 200); }
-function timerPause() { if (!state.timer.running) return; state.timer.ms += Date.now() - state.timer.start; state.timer.running = false; clearInterval(state.timer.int); state.timer.int = null; timerTick(); }
-function timerReset() { state.timer.ms = 0; state.timer.start = Date.now(); if (!state.timer.running) state.timer.start = Date.now(); els.timerDisplay.textContent = '00:00'; }
+/* === Timer controls (manual) === */
+function formatMs(ms){ const total=Math.max(0,Math.floor(ms/1000)); const m=String(Math.floor(total/60)).padStart(2,'0'); const s=String(total%60).padStart(2,'0'); return `${m}:${s}`; }
+function timerTick(){ els.timerDisplay.textContent = formatMs(state.timer.ms + (Date.now()-state.timer.start)); }
+function timerStart(){ if(state.timer.running) return; state.timer.running=true; state.timer.start=Date.now(); state.timer.int=setInterval(timerTick,200); }
+function timerPause(){ if(!state.timer.running) return; state.timer.ms += Date.now()-state.timer.start; state.timer.running=false; clearInterval(state.timer.int); state.timer.int=null; timerTick(); }
+function timerReset(){ state.timer.ms=0; els.timerDisplay.textContent='00:00'; }
 
 /* === Setup flows === */
-function openSetup(mode) {
+function openSetup(mode){
   state.mode = mode; updateModeBadge();
-  state.spice.tame = els.spiceTame.checked;
-  state.spice.spicy = els.spiceSpicy.checked;
-  state.spice.filthy = els.spiceFilthy.checked;
-  state.allowExternal = els.allowExternal.checked;
-  state.sound = els.soundEnabled.checked;
-  if (mode === 'group') {
-    state.players = []; els.playerList.innerHTML = ''; setScreen('groupSetup');
+  const friends = mode==='friends';
+  if (mode==='group'){
+    state.players=[]; els.playerList.innerHTML=''; setScreen('groupSetup');
   } else {
-    const friends = mode === 'friends';
-    els.player1.value = ''; els.player2.value = '';
-    els.player1RoleRow.style.display = friends ? 'none' : 'grid';
-    els.player2RoleRow.style.display = friends ? 'none' : 'grid';
-    setScreen('coupleSetup');
+    els.player1.value=''; els.player2.value=''; els.player1RoleRow.style.display = friends?'none':'grid'; els.player2RoleRow.style.display = friends?'none':'grid'; setScreen('coupleSetup');
   }
 }
-function startCoupleOrFriends() {
-  const p1 = els.player1.value.trim() || 'Player 1';
-  const p2 = els.player2.value.trim() || 'Player 2';
-  const friends = state.mode === 'friends';
-  const r1 = friends ? 'switch' : els.player1Role.value;
-  const r2 = friends ? 'switch' : els.player2Role.value;
-  state.players = [ { name: p1, role: r1 }, { name: p2, role: r2 } ];
-  state.askerIndex = 0; state.askCounts = [0,0];
-  buildDecks(); updateModeBadge(); updateTurnIndicator(); setScreen('game'); saveState();
+function startCoupleOrFriends(){
+  const p1=els.player1.value.trim()||'Player 1'; const p2=els.player2.value.trim()||'Player 2';
+  const friends = state.mode==='friends';
+  const r1 = friends?'switch':els.player1Role.value; const r2 = friends?'switch':els.player2Role.value;
+  state.players=[{name:p1, role:r1},{name:p2, role:r2}];
+  state.askerIndex=0; state.askCounts=[0,0];
+  buildDecks(); updateTurnIndicator(); setScreen('game'); saveState();
 }
-function addGroupPlayer() { const name = els.newPlayerName.value.trim(); if (!name) return; state.players.push({ name, role: 'switch' }); els.newPlayerName.value=''; renderGroupList(); }
-function removeGroupPlayer(i) { state.players.splice(i,1); renderGroupList(); }
-function renderGroupList() {
-  els.playerList.innerHTML = '';
-  state.players.forEach((p,i) => {
-    const li = document.createElement('li');
-    li.innerHTML = `<span>${p.name}</span><button class="remove-player-btn" title="Remove">×</button>`;
-    li.querySelector('button').addEventListener('click', () => removeGroupPlayer(i));
+function addGroupPlayer(){ const name=els.newPlayerName.value.trim(); if(!name) return; state.players.push({name,role:'switch'}); els.newPlayerName.value=''; renderGroupList(); }
+function removeGroupPlayer(i){ state.players.splice(i,1); renderGroupList(); }
+function renderGroupList(){
+  els.playerList.innerHTML='';
+  state.players.forEach((p,i)=>{
+    const li=document.createElement('li');
+    li.innerHTML=`<span>${p.name}</span><button class="remove-player-btn" title="Remove">×</button>`;
+    li.querySelector('button').addEventListener('click',()=>removeGroupPlayer(i));
     els.playerList.appendChild(li);
   });
 }
-function startGroup() {
-  if (state.players.length < 3) { state.players = state.players.length ? state.players : [ {name:'A'}, {name:'B'}, {name:'C'} ]; }
-  state.askerIndex = 0; state.askCounts = new Array(state.players.length).fill(0);
-  buildDecks(); updateModeBadge(); updateTurnIndicator(); setScreen('game'); saveState();
+function startGroup(){
+  if (state.players.length<3){ state.players = state.players.length? state.players : [{name:'A'},{name:'B'},{name:'C'}]; }
+  state.askerIndex=0; state.askCounts=new Array(state.players.length).fill(0);
+  buildDecks(); updateTurnIndicator(); setScreen('game'); saveState();
 }
 
 /* === Custom cards === */
-function openCustomModal() {
-  els.customSubtypeWrap.style.display = state.mode === 'couple' && els.customKind.value === 'question' ? 'grid' : 'none';
-  els.customText.value = ''; els.customExternal.checked = false; els.customSpice.value = 'tame'; els.customModal.showModal();
+function openCustomModal(){
+  document.getElementById('customSubtypeWrap').style.display = state.mode==='couple' && els.customKind.value==='question' ? 'grid':'none';
+  els.customText.value=''; document.getElementById('customExternal').checked=false; els.customSpice.value='tame'; els.customModal.showModal();
 }
-function saveCustomCard() {
-  const kind = els.customKind.value;
-  const text = els.customText.value.trim(); if (!text) return;
-  const spice = els.customSpice.value;
-  if (state.mode === 'couple' && kind === 'question') { const type = els.customSubtype.value; coupleQuestions.push({ text, type, spice }); }
-  else if (state.mode === 'friends' && kind === 'question') { friendsQuestions.push({ text, spice }); }
-  else if (state.mode === 'group' && kind === 'question') { groupQuestions.push({ text, type: 'target', spice }); }
-  else {
-    const external = els.customExternal.checked; const obj = { text, spice, external };
-    if (state.mode === 'couple') coupleForfeits.push(obj);
-    if (state.mode === 'friends') friendsForfeits.push(obj);
-    if (state.mode === 'group') groupForfeits.push(obj);
+function saveCustomCard(){
+  const kind=els.customKind.value; const text=els.customText.value.trim(); if(!text) return; const spice=els.customSpice.value;
+  if (state.mode==='couple' && kind==='question'){ const type=els.customSubtype.value; coupleQuestions.push({text, type, spice}); }
+  else if (state.mode==='friends' && kind==='question'){ friendsQuestions.push({text, spice}); }
+  else if (state.mode==='group' && kind==='question'){ groupQuestions.push({text, type:'target', spice}); }
+  else { // forfeit
+    const obj={text, spice}; // no external toggle any more
+    if (state.mode==='couple') coupleForfeits.push(obj);
+    if (state.mode==='friends') friendsForfeits.push(obj);
   }
   els.customModal.close(); buildDecks(); saveState();
 }
 
 /* === Reset / Save & exit === */
-function openResetModal() { els.resetModal.showModal(); }
-function doSaveAndExit() { saveState(); setScreen('welcome'); els.resetModal.close(); }
-function doHardReset() {
-  clearState();
-  state.mode = null; state.players = []; state.askCounts = [];
-  state.used.questions.clear(); state.used.forfeits.clear();
-  state.history = []; state.deck.questions = []; state.deck.forfeits = [];
-  state.repeatsShown = false;
-  els.questionCard.textContent = 'Tap Next to begin.'; els.forfeitCard.hidden = true; els.timerBar.hidden = true;
-  setScreen('welcome'); els.resetModal.close();
-}
-
-/* === Gestures === */
-let touchStart = null;
-function onTouchStart(e){ touchStart = e.changedTouches[0]; }
-function onTouchEnd(e){
-  if (!touchStart) return;
-  const end = e.changedTouches[0];
-  const dx = end.clientX - touchStart.clientX;
-  const dy = end.clientY - touchStart.clientY;
-  const ax = Math.abs(dx), ay = Math.abs(dy);
-  if (ax > 60 && ax > ay) { if (dx > 0) drawQuestion(); }
-  else if (ay > 60 && ay > ax) { if (dy < 0) drawForfeit(); }
-  touchStart = null;
+function openResetModal(){ document.getElementById('resetModal').showModal(); }
+function doSaveAndExit(){ saveState(); setScreen('welcome'); document.getElementById('resetModal').close(); }
+function doHardReset(){
+  clearState(); state.mode=null; state.players=[]; state.askCounts=[]; state.used.questions.clear(); state.used.forfeits.clear(); state.history=[]; state.deck.questions=[]; state.deck.forfeits=[]; state.repeatsShown=false;
+  els.questionCard.textContent='Tap Next to begin.'; els.forfeitCard.hidden=true; els.timerBar.hidden=true; setScreen('welcome'); document.getElementById('resetModal').close();
 }
 
 /* === Interstitial === */
-els.readyButton.addEventListener('click', () => setScreen('game'));
+els.readyButton.addEventListener('click',()=>setScreen('game'));
 
-/* === Wiring === */
-els.groupModeBtn.addEventListener('click', () => openSetup('group'));
-els.coupleModeBtn.addEventListener('click', () => openSetup('couple'));
-els.friendsModeBtn.addEventListener('click', () => openSetup('friends'));
+/* === Spiciness buttons (replace checkboxes) === */
+function buildSpiceChips(){
+  const tame = els.spiceTame, spicy = els.spiceSpicy, filthy = els.spiceFilthy;
+  const block = tame?.closest('.control-block');
+  if (!block) return;
+  // Hide original toggles
+  block.querySelectorAll('.toggle').forEach(el=> el.style.display='none');
+  // Build pill buttons
+  const wrap = document.createElement('div');
+  wrap.id = 'spicePills';
+  wrap.style.display='flex'; wrap.style.gap='8px'; wrap.style.flexWrap='wrap';
+
+  const mk = (label, key) => {
+    const b = document.createElement('button');
+    b.type='button';
+    b.textContent = label;
+    b.className = 'secondary';
+    b.style.minWidth='88px';
+    b.style.borderRadius='999px';
+    b.style.padding='10px 14px';
+    function paint(){
+      const on = state.spice[key];
+      b.style.background = on ? 'var(--primary)' : 'var(--surface-2)';
+      b.style.color = on ? '#0d0d0f' : 'var(--text)';
+      b.style.border = '1px solid var(--line)';
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+    b.addEventListener('click', ()=>{
+      state.spice[key] = !state.spice[key];
+      // Keep at least one level on
+      if (!state.spice.tame && !state.spice.spicy && !state.spice.filthy){ state.spice[key] = true; }
+      paint();
+      if (state.mode){ buildDecks(); saveState(); }
+    });
+    paint();
+    return b;
+  };
+
+  wrap.appendChild(mk('Tame','tame'));
+  wrap.appendChild(mk('Spicy','spicy'));
+  wrap.appendChild(mk('Filthy','filthy'));
+  block.appendChild(wrap);
+}
+
+/* === Emphasise primary actions; deemphasise secondary === */
+function emphasiseControls(){
+  // Make Next/Forfeit larger
+  if (els.nextButton){ els.nextButton.style.padding='16px 18px'; els.nextButton.style.fontSize='16px'; }
+  if (els.forfeitButton){ els.forfeitButton.style.padding='16px 18px'; els.forfeitButton.style.fontSize='16px'; }
+  // Tone down skip/undo/new
+  [els.skipButton, els.undoButton, els.newGameButton].forEach(btn => {
+    if (!btn) return; btn.style.opacity='0.9'; btn.style.fontWeight='600'; btn.style.padding='10px 12px'; btn.style.fontSize='13px';
+  });
+}
+
+/* === Event wiring === */
+els.groupModeBtn.addEventListener('click', ()=>openSetup('group'));
+els.coupleModeBtn.addEventListener('click', ()=>openSetup('couple'));
+els.friendsModeBtn.addEventListener('click', ()=>openSetup('friends'));
 
 els.startCouple.addEventListener('click', startCoupleOrFriends);
 els.startGroup.addEventListener('click', startGroup);
 
 els.addPlayerBtn.addEventListener('click', addGroupPlayer);
-els.newPlayerName.addEventListener('keydown', (e) => { if (e.key === 'Enter') addGroupPlayer(); });
+els.newPlayerName.addEventListener('keydown', e=>{ if(e.key==='Enter') addGroupPlayer(); });
 
 els.nextButton.addEventListener('click', drawQuestion);
 els.forfeitButton.addEventListener('click', drawForfeit);
@@ -1065,41 +966,58 @@ els.timerStart.addEventListener('click', timerStart);
 els.timerPause.addEventListener('click', timerPause);
 els.timerReset.addEventListener('click', timerReset);
 
-els.homeLogoLink.addEventListener('click', (e) => { e.preventDefault(); openResetModal(); });
+els.homeLogoLink.addEventListener('click', e=>{ e.preventDefault(); openResetModal(); });
 els.newGameButton.addEventListener('click', openResetModal);
 
-els.muteButton.addEventListener('click', () => { state.sound = !state.sound; els.muteButton.textContent = state.sound ? '🔊' : '🔈'; saveState(); });
-
-els.tutorialLink.addEventListener('click', (e) => { e.preventDefault(); els.tutorialModal.showModal(); });
-els.closeTutorial.addEventListener('click', () => els.tutorialModal.close());
+els.tutorialLink.addEventListener('click', e=>{ e.preventDefault(); els.tutorialModal.showModal(); });
+els.closeTutorial.addEventListener('click', ()=> els.tutorialModal.close());
 
 els.addCustomBtn.addEventListener('click', openCustomModal);
 els.addCustomBtnGroup.addEventListener('click', openCustomModal);
-els.customKind.addEventListener('change', () => { els.customSubtypeWrap.style.display = state.mode === 'couple' && els.customKind.value === 'question' ? 'grid' : 'none'; });
+els.customKind.addEventListener('change', ()=> { els.customSubtypeWrap.style.display = state.mode==='couple' && els.customKind.value==='question' ? 'grid' : 'none'; });
 els.saveCustom.addEventListener('click', saveCustomCard);
-els.cancelCustom.addEventListener('click', () => els.customModal.close());
+els.cancelCustom.addEventListener('click', ()=> els.customModal.close());
 
-els.resetCancel.addEventListener('click', () => els.resetModal.close());
+els.resetCancel.addEventListener('click', ()=> els.resetModal.close());
 els.saveExit.addEventListener('click', doSaveAndExit);
 els.hardReset.addEventListener('click', doHardReset);
 
-['questionCard','forfeitCard'].forEach(id => {
-  const el = document.getElementById(id);
-  el.addEventListener('touchstart', onTouchStart, { passive: true });
-  el.addEventListener('touchend', onTouchEnd, { passive: true });
+/* Touch gestures for quick play */
+['questionCard','forfeitCard'].forEach(id=>{
+  const el=document.getElementById(id);
+  el.addEventListener('touchstart', e=> window._ts = e.changedTouches[0], {passive:true});
+  el.addEventListener('touchend', e=>{
+    const s = window._ts; if(!s) return; const end=e.changedTouches[0];
+    const dx=end.clientX - s.clientX, dy=end.clientY - s.clientY;
+    if (Math.abs(dx)>60 && Math.abs(dx)>Math.abs(dy)) { if (dx>0) drawQuestion(); }
+    else if (Math.abs(dy)>60 && Math.abs(dy)>Math.abs(dx)) { if (dy<0) drawForfeit(); }
+    window._ts=null;
+  }, {passive:true});
 });
 
 /* === Init === */
-(function init() {
-  els.soundEnabled.checked = state.sound;
-  if (loadState() && state.mode) {
+(function init(){
+  // Build pill buttons for spice && hide unwanted controls
+  try {
+    buildSpiceChips();
+    // Hide External Actions block && Sound block if present
+    els.allowExternal?.closest('.control-block')?.style && (els.allowExternal.closest('.control-block').style.display='none');
+    els.soundEnabled?.closest('.control-block')?.style && (els.soundEnabled.closest('.control-block').style.display='none');
+    // Hide mute button if present
+    els.muteButton && (els.muteButton.style.display='none');
+    // Hide 'External action' row in custom modal
+    document.getElementById('customExternal')?.closest('.row')?.style && (document.getElementById('customExternal').closest('.row').style.display='none');
+  } catch {}
+
+  emphasiseControls();
+
+  if (loadState() && state.mode){
     updateModeBadge(); buildDecks(); updateTurnIndicator(); setScreen('game');
-    els.muteButton.textContent = state.sound ? '🔊' : '🔈';
-    if (state.history.length) {
-      const last = state.history[state.history.length - 1];
+    if (state.history.length){
+      const last = state.history[state.history.length-1];
       els.cardTypeLabel.textContent = typeLabel(last.type);
-      if (last.kind === 'forfeits') { els.forfeitCard.textContent = last.text; els.forfeitCard.hidden = false; els.timerBar.hidden = false; }
-      else { els.questionCard.textContent = last.text; els.forfeitCard.hidden = true; els.timerBar.hidden = true; }
+      if (last.kind==='forfeits'){ els.forfeitCard.textContent=last.text; els.forfeitCard.hidden=false; els.timerBar.hidden = !hasTimeLimit(last.text); }
+      else { els.questionCard.textContent=last.text; els.forfeitCard.hidden=true; els.timerBar.hidden=true; }
       updateProgress();
     }
   } else {
