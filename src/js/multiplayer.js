@@ -5,7 +5,7 @@
  */
 import PartySocket from 'partysocket';
 
-const PARTYKIT_HOST = 'kink-and-tell.reyewon.partykit.app';
+const PARTYKIT_HOST = 'kink-and-tell.reyewon.partykit.dev';
 
 export class MultiplayerClient {
   constructor(roomCode, playerName) {
