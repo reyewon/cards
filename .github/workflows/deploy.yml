@@ -39,3 +39,8 @@ jobs:
           publish_dir: ./dist
           force_orphan: true
           cname: game.rysta.co.uk
+
+      - name: Deploy PartyKit server
+        run: npx partykit deploy
+        env:
+          PARTYKIT_TOKEN: ${{ secrets.PARTYKIT_TOKEN }}
