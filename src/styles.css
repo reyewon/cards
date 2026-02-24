@@ -754,6 +754,19 @@ body {
   .card { font-size: 1.1rem; }
 }
 
+/* --- Desktop: centre content vertically on large screens --- */
+@media (min-width: 600px) {
+  .screen {
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+  /* Game screen keeps top-align so the card area fills the space naturally */
+  #screen-game {
+    justify-content: flex-start;
+  }
+}
+
 /* --- Focus visible for keyboard nav --- */
 :focus-visible {
   outline: 2px solid var(--pink);
