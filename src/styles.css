@@ -754,6 +754,30 @@ body {
   .card { font-size: 1.1rem; }
 }
 
+/* --- Awaiting turn (remote mode: other player's turn) --- */
+.awaiting-turn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex: 1;
+  padding: 32px 20px;
+  gap: 16px;
+}
+
+.awaiting-message {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--cyan);
+  line-height: 1.3;
+}
+
+.awaiting-sub {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
 /* --- Desktop: centre content vertically on large screens --- */
 @media (min-width: 600px) {
   .screen {
@@ -761,9 +785,9 @@ body {
     padding-top: 40px;
     padding-bottom: 40px;
   }
-  /* Game screen keeps top-align so the card area fills the space naturally */
-  #screen-game {
-    justify-content: flex-start;
+  /* Game screen: don't let card-container grow — let the parent center naturally */
+  #screen-game .card-container {
+    flex: none;
   }
 }
 

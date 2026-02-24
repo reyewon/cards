@@ -260,15 +260,16 @@
       <div id="forfeit-card" class="card card--forfeit hidden" role="region" aria-label="Forfeit card" aria-live="polite"></div>
     </div>
 
+    <!-- Awaiting turn view: shown to the answerer in remote mode -->
+    <div id="awaiting-turn" class="awaiting-turn hidden" aria-live="polite">
+      <p id="awaiting-message" class="awaiting-message">It's their turn</p>
+      <p class="awaiting-sub">Sit back and answer honestly!</p>
+    </div>
+
     <!-- Forfeit timer (shown when forfeit is active) -->
     <div id="timer-zone" class="timer-zone hidden">
       <div id="timer-display" class="timer-display" aria-live="polite">60</div>
       <button id="btn-timer" class="btn btn--timer">Start Timer ⏱</button>
-    </div>
-
-    <!-- Guest view badge (non-hosts see this, buttons hidden) -->
-    <div id="guest-controls" class="guest-controls hidden">
-      <p class="guest-label">You're a guest — <strong id="host-name-label"></strong> is controlling the game</p>
     </div>
 
     <div id="host-controls" class="button-group">

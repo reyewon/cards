@@ -274,14 +274,38 @@ function renderTurnIndicator(label) {
 }
 
 function setHostView(isHost) {
+  // Controls are always shown initially; updateTurnView handles remote-mode switching
+  $('host-controls').classList.toggle('hidden', !isHost);
+}
+
+// ============================================================
+// Remote turn view — show asker their question; answerer waits
+// ============================================================
+function updateTurnView(currentPlayerIndex, players) {
+  if (!state.isRemote) return; // Local mode: always show everything
+
+  // Host = players[0], guest = players[1] (2-player couple/friends)
+  const myIndex = state.isHost ? 0 : 1;
+  const isMyTurn = currentPlayerIndex === myIndex;
+  const askerName = players?.[currentPlayerIndex]?.name || 'Partner';
+
+  const awaitingDiv = $('awaiting-turn');
+  const cardContainer = document.querySelector('.card-container');
+  const timerZone = $('timer-zone');
   const hostControls = $('host-controls');
-  const guestControls = $('guest-controls');
-  if (isHost) {
+
+  if (isMyTurn) {
+    // My turn: I'm asking — show card and controls
+    awaitingDiv.classList.add('hidden');
+    cardContainer.classList.remove('hidden');
     hostControls.classList.remove('hidden');
-    guestControls.classList.add('hidden');
   } else {
+    // Their turn: I'm answering — hide card/controls, show waiting message
+    awaitingDiv.classList.remove('hidden');
+    cardContainer.classList.add('hidden');
+    timerZone.classList.add('hidden');
     hostControls.classList.add('hidden');
-    guestControls.classList.remove('hidden');
+    $('awaiting-message').textContent = `It's ${askerName}'s turn`;
   }
 }
 
@@ -325,6 +349,7 @@ function doNextQuestion() {
 
   renderCard({ type: 'question', text: q.text ?? q });
   renderTurnIndicator(label);
+  updateTurnView(state.currentPlayerIndex, state.players);
 }
 
 function doGroupReveal() {
@@ -389,6 +414,7 @@ function doSkip() {
 
   renderCard({ type: 'question', text: q.text ?? q });
   renderTurnIndicator(label);
+  updateTurnView(state.currentPlayerIndex, state.players);
 }
 
 // ============================================================
@@ -471,12 +497,16 @@ $('btn-join-submit').addEventListener('click', async () => {
       // Only transition to game screen if we're not already on it
       if (!screens.game.classList.contains('active')) {
         showGameScreen(false);
-        $('host-name-label').textContent = remoteState.players.find(p => p.isHost)?.name || 'Host';
       }
-      // Always update card + turn indicator when there's a card
+      // Update turn view: show card+controls if it's my turn, waiting message if not
+      updateTurnView(remoteState.currentPlayerIndex, remoteState.players);
+      // Only render card/indicator when it's my turn (asker sees the question)
       if (remoteState.currentCard) {
-        renderCard(remoteState.currentCard);
-        renderTurnIndicator(buildTurnLabelFromRemote(remoteState));
+        const myIndex = state.isHost ? 0 : 1;
+        if (remoteState.currentPlayerIndex === myIndex) {
+          renderCard(remoteState.currentCard);
+          renderTurnIndicator(buildTurnLabelFromRemote(remoteState));
+        }
       }
     }
   });
@@ -630,7 +660,12 @@ async function startRemoteSession() {
   // Init multiplayer as host
   mp = new MultiplayerClient(state.roomCode, state.players[0].name);
   mp.on('STATE_SYNC', (remoteState) => {
-    // Use pendingPlayers (lobby registrations) to show who's joined
+    if (remoteState.phase === 'game') {
+      // Game is live — update turn view based on who's currently asking
+      updateTurnView(remoteState.currentPlayerIndex, state.players);
+      return;
+    }
+    // Lobby phase: update player list and start button
     const pending = remoteState.pendingPlayers || [];
     if (pending.length) {
       renderRoomPlayers(pending);
@@ -703,6 +738,7 @@ function startLocalGame() {
   const label = buildTurnLabel(targetIdx);
   renderCard({ type: 'question', text: q.text ?? q });
   renderTurnIndicator(label);
+  updateTurnView(state.currentPlayerIndex, state.players);
   saveSession();
 }
 
