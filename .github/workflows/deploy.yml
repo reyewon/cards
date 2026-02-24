@@ -41,6 +41,7 @@ jobs:
           cname: game.rysta.co.uk
 
       - name: Deploy PartyKit server
-        run: npx partykit deploy
-        env:
-          PARTYKIT_TOKEN: ${{ secrets.PARTYKIT_TOKEN }}
+        run: |
+          mkdir -p ~/.partykit
+          echo '${{ secrets.PARTYKIT_CONFIG }}' > ~/.partykit/config.json
+          npx partykit deploy
