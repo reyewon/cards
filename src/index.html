@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Kink and Tell - The Game by Rysta</title>
+  <meta name="description" content="The card game for ENM couples, groups of friends, and adventurous duos. Play online or across a distance with a room code.">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://game.rysta.co.uk/">
+  <meta property="og:title" content="Kink and Tell by Rysta">
+  <meta property="og:description" content="The card game for ENM couples, groups, and adventurous friends. Spicy questions, devious forfeits, real talk.">
+  <meta property="og:image" content="https://game.rysta.co.uk/preview.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://game.rysta.co.uk/preview.jpg">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#ff0080">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="/KNT2.png">
+  <link rel="icon" type="image/png" href="/KNT2.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EMK8Q5QN8S"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-EMK8Q5QN8S');
+  </script>
+
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+
+  <!-- Particle canvas background -->
+  <canvas id="bgCanvas" aria-hidden="true"></canvas>
+
+  <!-- ============================================================
+       SCREEN: Welcome / Mode Selection
+  ============================================================ -->
+  <div id="screen-welcome" class="screen active" role="main">
+    <img src="/KNT2.png" alt="Kink and Tell Logo" class="logo logo--large">
+    <p class="tagline">Choose your adventure...</p>
+
+    <div class="mode-grid">
+      <button id="btn-mode-couple" class="mode-card" aria-label="Couple mode">
+        <span class="mode-icon">💑</span>
+        <h3>Couple</h3>
+        <p>The original game for ENM and kink couples.</p>
+      </button>
+      <button id="btn-mode-friends" class="mode-card" aria-label="Friends mode">
+        <span class="mode-icon">💬</span>
+        <h3>Friends</h3>
+        <p>Honest revelations and sex-positive chats for two friends.</p>
+      </button>
+      <button id="btn-mode-group" class="mode-card" aria-label="Group mode">
+        <span class="mode-icon">🎉</span>
+        <h3>Group</h3>
+        <p>Kinky secrets and devious tasks for a group of friends.</p>
+      </button>
+    </div>
+
+    <div class="divider-or"><span>or</span></div>
+
+    <button id="btn-join-room" class="btn btn--secondary btn--full join-btn" aria-label="Join an existing game remotely">
+      🔗 Join a Remote Game
+    </button>
+  </div>
+
+  <!-- ============================================================
+       SCREEN: Join Remote Game
+  ============================================================ -->
+  <div id="screen-join" class="screen" role="main">
+    <img src="/KNT2.png" alt="Kink and Tell Logo" class="logo logo--small">
+    <h2 class="screen-title">Join a Game</h2>
+    <p class="screen-subtitle">Enter the room code your partner shared with you.</p>
+    <div class="form-group">
+      <input type="text" id="join-code-input" class="room-code-input" placeholder="e.g. K4NT2X" maxlength="6" autocomplete="off" spellcheck="false" inputmode="text">
+    </div>
+    <div class="form-group">
+      <label for="join-name-input" class="form-label">Your name</label>
+      <input type="text" id="join-name-input" class="text-input" placeholder="Enter your name">
+    </div>
+    <button id="btn-join-submit" class="btn btn--primary btn--full">Join Game</button>
+    <button id="btn-join-back" class="btn btn--ghost btn--full">Back</button>
+  </div>
+
+  <!-- ============================================================
+       SCREEN: Setup — Couple / Friends
+  ============================================================ -->
+  <div id="screen-setup-two" class="screen" role="main">
+    <img src="/KNT2.png" alt="Kink and Tell Logo" class="logo logo--small">
+    <h2 id="setup-two-title" class="screen-title">Enter names and select roles!</h2>
+
+    <div class="form-card">
+      <div class="form-group">
+        <label for="p1-name" class="form-label">Player 1</label>
+        <input type="text" id="p1-name" class="text-input" placeholder="Name">
+      </div>
+      <div id="p1-role-row" class="form-group role-row">
+        <label for="p1-role" class="form-label">Role</label>
+        <select id="p1-role" class="select-input" aria-label="Player 1 role">
+          <option value="switch">Switch</option>
+          <option value="Dom">Dom</option>
+          <option value="sub">sub</option>
+        </select>
+      </div>
+
+      <hr class="form-divider">
+
+      <div class="form-group">
+        <label for="p2-name" class="form-label">Player 2</label>
+        <input type="text" id="p2-name" class="text-input" placeholder="Name">
+      </div>
+      <div id="p2-role-row" class="form-group role-row">
+        <label for="p2-role" class="form-label">Role</label>
+        <select id="p2-role" class="select-input" aria-label="Player 2 role">
+          <option value="switch">Switch</option>
+          <option value="Dom">Dom</option>
+          <option value="sub">sub</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="intensity-picker">
+      <p class="form-label">Intensity</p>
+      <div class="intensity-options" role="radiogroup" aria-label="Question intensity">
+        <label class="intensity-option">
+          <input type="radio" name="intensity" value="tame">
+          <span>😇 Tame</span>
+        </label>
+        <label class="intensity-option">
+          <input type="radio" name="intensity" value="spicy" checked>
+          <span>🌶️ Spicy</span>
+        </label>
+        <label class="intensity-option">
+          <input type="radio" name="intensity" value="wild">
+          <span>🔥 Wild</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="multiplayer-toggle">
+      <label class="toggle-label">
+        <input type="checkbox" id="enable-remote" class="toggle-checkbox">
+        <span class="toggle-slider"></span>
+        <span class="toggle-text">Play remotely (different devices)</span>
+      </label>
+    </div>
+
+    <button id="btn-start-two" class="btn btn--primary btn--full">Start Game</button>
+    <button id="btn-back-two" class="btn btn--ghost btn--full">Back</button>
+  </div>
+
+  <!-- ============================================================
+       SCREEN: Setup — Group
+  ============================================================ -->
+  <div id="screen-setup-group" class="screen" role="main">
+    <img src="/KNT2.png" alt="Kink and Tell Logo" class="logo logo--small">
+    <h2 class="screen-title">Add players to the group!</h2>
+
+    <div class="form-card">
+      <div class="add-player-row">
+        <input type="text" id="new-player-name" class="text-input" placeholder="Player name..." maxlength="20" aria-label="New player name">
+        <button id="btn-add-player" class="btn btn--add" aria-label="Add player">+</button>
+      </div>
+      <ul id="player-list" class="player-list" aria-label="Players in game" aria-live="polite"></ul>
+    </div>
+
+    <div class="intensity-picker">
+      <p class="form-label">Intensity</p>
+      <div class="intensity-options" role="radiogroup">
+        <label class="intensity-option">
+          <input type="radio" name="group-intensity" value="tame">
+          <span>😇 Tame</span>
+        </label>
+        <label class="intensity-option">
+          <input type="radio" name="group-intensity" value="spicy" checked>
+          <span>🌶️ Spicy</span>
+        </label>
+        <label class="intensity-option">
+          <input type="radio" name="group-intensity" value="wild">
+          <span>🔥 Wild</span>
+        </label>
+      </div>
+    </div>
+
+    <button id="btn-start-group" class="btn btn--primary btn--full">Start Game</button>
+    <button id="btn-back-group" class="btn btn--ghost btn--full">Back</button>
+  </div>
+
+  <!-- ============================================================
+       SCREEN: Remote Room — Host sees room code, waits for join
+  ============================================================ -->
+  <div id="screen-room-lobby" class="screen" role="main">
+    <img src="/KNT2.png" alt="Kink and Tell Logo" class="logo logo--small">
+    <h2 class="screen-title">Share this code</h2>
+    <p class="screen-subtitle">Ask your partner to open <strong>game.rysta.co.uk</strong> and enter:</p>
+    <div id="room-code-display" class="room-code-display" aria-label="Room code" aria-live="polite"></div>
+    <p class="room-hint">Or share this link:</p>
+    <div class="share-link-row">
+      <input type="text" id="share-link" class="share-link-input" readonly aria-label="Share link">
+      <button id="btn-copy-link" class="btn btn--secondary btn--icon" aria-label="Copy link">📋</button>
+    </div>
+    <div id="room-players-list" class="room-players" aria-live="polite"></div>
+    <button id="btn-start-remote" class="btn btn--primary btn--full" disabled>Waiting for players...</button>
+    <button id="btn-cancel-room" class="btn btn--ghost btn--full">Cancel</button>
+  </div>
+
+  <!-- ============================================================
+       SCREEN: Interstitial — Pass the device (Group mode)
+  ============================================================ -->
+  <div id="screen-interstitial" class="screen" role="main">
+    <img src="/KNT2.png" alt="Kink and Tell Logo" class="logo logo--small">
+    <h2 id="interstitial-message" class="interstitial-message" aria-live="polite"></h2>
+    <p class="interstitial-sub">You're answering the next question!</p>
+    <button id="btn-ready" class="btn btn--primary btn--full">Ready! 👊</button>
+  </div>
+
+  <!-- ============================================================
+       SCREEN: Main Game
+  ============================================================ -->
+  <div id="screen-game" class="screen" role="main">
+    <header class="game-header">
+      <button id="btn-home" class="home-btn" aria-label="Return to main menu" title="Return to menu">
+        <img src="/KNT2.png" alt="Home">
+      </button>
+      <div id="remote-badge" class="remote-badge hidden" aria-label="Remote game active">
+        🔗 <span id="remote-room-label"></span>
+      </div>
+    </header>
+
+    <div id="turn-indicator" class="turn-indicator" aria-live="polite" aria-label="Whose turn it is"></div>
+
+    <!-- Card container: shows question OR forfeit, not both -->
+    <div class="card-container">
+      <div id="question-card" class="card card--question" role="region" aria-label="Question card" aria-live="polite">
+        Tap "Next Question" to begin!
+      </div>
+      <div id="forfeit-card" class="card card--forfeit hidden" role="region" aria-label="Forfeit card" aria-live="polite"></div>
+    </div>
+
+    <!-- Forfeit timer (shown when forfeit is active) -->
+    <div id="timer-zone" class="timer-zone hidden">
+      <div id="timer-display" class="timer-display" aria-live="polite">60</div>
+      <button id="btn-timer" class="btn btn--timer">Start Timer ⏱</button>
+    </div>
+
+    <!-- Guest view badge (non-hosts see this, buttons hidden) -->
+    <div id="guest-controls" class="guest-controls hidden">
+      <p class="guest-label">You're a guest — <strong id="host-name-label"></strong> is controlling the game</p>
+    </div>
+
+    <div id="host-controls" class="button-group">
+      <button id="btn-next" class="btn btn--next">Next Question</button>
+      <button id="btn-forfeit" class="btn btn--forfeit">Take a Forfeit</button>
+      <button id="btn-skip" class="btn btn--skip">Skip</button>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    Created by <a href="https://www.instagram.com/rystadom" target="_blank" rel="noopener">Rysta</a>
+  </footer>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "kink-and-tell",
+  "version": "2.0.0",
+  "description": "Kink and Tell - the interactive card game by Rysta",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "party:dev": "npx partykit dev",
+    "party:deploy": "npx partykit deploy",
+    "deploy": "npm run build && node scripts/deploy.mjs"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0"
+  },
+  "dependencies": {
+    "partysocket": "^1.0.2"
+  }
+}

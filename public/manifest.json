@@ -1,0 +1,22 @@
+{
+  "name": "Kink and Tell",
+  "short_name": "Kink & Tell",
+  "description": "The interactive card game for couples and groups, by Rysta",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1a2e",
+  "theme_color": "#ff0080",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/KNT2.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/KNT2.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
