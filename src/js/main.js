@@ -186,6 +186,7 @@ const screens = {
   setupTwo: $('screen-setup-two'),
   setupGroup: $('screen-setup-group'),
   roomLobby: $('screen-room-lobby'),
+  guestLobby: $('screen-guest-lobby'),
   interstitial: $('screen-interstitial'),
   game: $('screen-game'),
 };
@@ -451,33 +452,48 @@ $('btn-join-submit').addEventListener('click', async () => {
   mp = new MultiplayerClient(code, name);
 
   mp.on('STATE_SYNC', (remoteState) => {
-    // Guest: just render whatever the host sends
-    if (remoteState.currentCard) {
-      renderCard(remoteState.currentCard);
-    }
-    if (remoteState.players?.length) {
-      const turnLabel = buildTurnLabelFromRemote(remoteState);
-      renderTurnIndicator(turnLabel);
-    }
-    if (remoteState.phase === 'game') {
-      showGameScreen(false);
-      $('host-name-label').textContent = remoteState.players.find(p => p.isHost)?.name || 'Host';
+    if (remoteState.phase === 'lobby') {
+      // Still waiting — update the player list in the guest lobby
+      const pending = remoteState.pendingPlayers || [];
+      $('guest-players-list').innerHTML = pending.map(p =>
+        `<span class="room-player-chip ${p.isHost ? 'is-host' : ''}">
+          ${p.isHost ? '👑' : '👤'} ${p.name}
+        </span>`
+      ).join('');
+      $('guest-lobby-status').textContent = pending.length
+        ? `${pending.length} player${pending.length !== 1 ? 's' : ''} in the room — waiting for host to start...`
+        : 'Connecting...';
+    } else if (remoteState.phase === 'game') {
+      // Sync local state from server
+      state.mode = remoteState.mode;
+      state.players = remoteState.players;
+      state.intensity = remoteState.intensity;
+      // Only transition to game screen if we're not already on it
+      if (!screens.game.classList.contains('active')) {
+        showGameScreen(false);
+        $('host-name-label').textContent = remoteState.players.find(p => p.isHost)?.name || 'Host';
+      }
+      // Always update card + turn indicator when there's a card
+      if (remoteState.currentCard) {
+        renderCard(remoteState.currentCard);
+        renderTurnIndicator(buildTurnLabelFromRemote(remoteState));
+      }
     }
   });
 
   mp.on('HOST_CHANGED', () => {
     // If we become the new host, enable controls
-    if (mp.isHost) {
-      state.isHost = true;
-      setHostView(true);
-    }
+    state.isHost = true;
+    setHostView(true);
   });
 
   await mp.connect();
-  mp.send({ type: 'HOST_INIT' });
+  // Register as a guest player in the lobby (NOT host init)
+  mp.send({ type: 'PLAYER_JOIN', name });
 
   $('join-code-input').value = '';
-  showGameScreen(false);
+  // Show guest lobby (waiting screen) — NOT the game screen
+  showScreen('guestLobby');
 });
 
 function buildTurnLabelFromRemote(remoteState) {
@@ -614,18 +630,23 @@ async function startRemoteSession() {
   // Init multiplayer as host
   mp = new MultiplayerClient(state.roomCode, state.players[0].name);
   mp.on('STATE_SYNC', (remoteState) => {
-    if (remoteState.connectedIds) {
-      renderRoomPlayers(remoteState.players || [{ name: state.players[0].name, isHost: true }]);
-      const otherCount = remoteState.connectedIds.length;
-      $('btn-start-remote').disabled = otherCount < 2;
-      $('btn-start-remote').textContent = otherCount >= 2
-        ? `Start Game (${otherCount} players) 🎮`
-        : `Waiting for players... (${otherCount} connected)`;
+    // Use pendingPlayers (lobby registrations) to show who's joined
+    const pending = remoteState.pendingPlayers || [];
+    if (pending.length) {
+      renderRoomPlayers(pending);
+    } else {
+      renderRoomPlayers([{ name: state.players[0].name, isHost: true }]);
     }
+    const count = pending.length;
+    $('btn-start-remote').disabled = count < 2;
+    $('btn-start-remote').textContent = count >= 2
+      ? `Start Game (${count} players) 🎮`
+      : `Waiting for players... (${count} in room)`;
   });
 
   await mp.connect();
-  mp.send({ type: 'HOST_INIT' });
+  // Register host in server lobby with their name and role
+  mp.send({ type: 'HOST_INIT', name: state.players[0].name, role: state.players[0].role || null });
 }
 
 function renderRoomPlayers(players) {

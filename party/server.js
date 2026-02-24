@@ -9,9 +9,10 @@ export default class KinkAndTellServer {
     this.party = party;
     // Room state - shared across all connected clients
     this.state = {
-      phase: 'lobby',         // lobby | setup | game | interstitial
+      phase: 'lobby',         // lobby | game
       mode: null,             // couple | friends | group
-      players: [],            // [{ name, role, isHost }]
+      players: [],            // [{ name, role, isHost }] — set when game starts
+      pendingPlayers: [],     // [{ name, role, isHost, connId }] — players in lobby
       currentPlayerIndex: 0,
       currentTargetIndex: null,
       currentCard: null,      // { type: 'question'|'forfeit', text, turnLabel }
@@ -27,16 +28,23 @@ export default class KinkAndTellServer {
     this.state.connectedIds.push(conn.id);
     // Send current state to the newly connected client
     conn.send(JSON.stringify({ type: 'STATE_SYNC', state: this.state }));
+    // Also broadcast to all OTHER clients so they know someone connected
+    this.party.broadcast(JSON.stringify({ type: 'STATE_SYNC', state: this.state }), [conn.id]);
   }
 
   onClose(conn) {
     this.state.connectedIds = this.state.connectedIds.filter(id => id !== conn.id);
+    // Remove from pending players
+    this.state.pendingPlayers = this.state.pendingPlayers.filter(p => p.connId !== conn.id);
     // If host disconnects, promote next connected client
     if (this.state.hostId === conn.id && this.state.connectedIds.length > 0) {
       this.state.hostId = this.state.connectedIds[0];
+      // Promote in pendingPlayers too
+      const newHost = this.state.pendingPlayers.find(p => p.connId === this.state.hostId);
+      if (newHost) newHost.isHost = true;
       this.broadcast({ type: 'HOST_CHANGED', newHostId: this.state.hostId });
     }
-    this.broadcast({ type: 'STATE_SYNC', state: this.state });
+    this.broadcastState();
   }
 
   onMessage(message, sender) {
@@ -49,15 +57,39 @@ export default class KinkAndTellServer {
 
     switch (msg.type) {
       case 'HOST_INIT': {
-        // First player sets themselves as host and configures the game
+        // First player sets themselves as host
         if (!this.state.hostId) {
           this.state.hostId = sender.id;
         }
+        // Register host in pending players with their name
+        if (!this.state.pendingPlayers.find(p => p.connId === sender.id)) {
+          this.state.pendingPlayers.push({
+            name: msg.name || 'Host',
+            role: msg.role || null,
+            isHost: true,
+            connId: sender.id,
+          });
+        }
+        this.broadcastState();
+        break;
+      }
+
+      case 'PLAYER_JOIN': {
+        // Guest registers their name in the lobby
+        if (!this.state.pendingPlayers.find(p => p.connId === sender.id)) {
+          this.state.pendingPlayers.push({
+            name: msg.name || 'Guest',
+            role: msg.role || null,
+            isHost: false,
+            connId: sender.id,
+          });
+        }
+        this.broadcastState();
         break;
       }
 
       case 'GAME_CONFIG': {
-        // Host sends game config (mode, players, intensity)
+        // Host sends game config (mode, players, intensity) to start the game
         if (sender.id !== this.state.hostId) return;
         this.state.mode = msg.mode;
         this.state.players = msg.players;
@@ -100,6 +132,7 @@ export default class KinkAndTellServer {
         this.state.phase = 'lobby';
         this.state.mode = null;
         this.state.players = [];
+        this.state.pendingPlayers = [];
         this.state.currentCard = null;
         this.state.usedQuestions = [];
         this.state.usedForfeits = [];
