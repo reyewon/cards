@@ -4,8 +4,8 @@
   "description": "The interactive card game for couples and groups, by Rysta",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#1a1a2e",
-  "theme_color": "#ff0080",
+  "background_color": "#200d18",
+  "theme_color": "#200d18",
   "orientation": "portrait-primary",
   "icons": [
     {

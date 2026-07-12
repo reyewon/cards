@@ -3,7 +3,6 @@
  * Vanilla JS with ES modules. No framework.
  */
 
-import { initParticles } from './particles.js';
 import { MultiplayerClient } from './multiplayer.js';
 
 // ============================================================
@@ -47,6 +46,10 @@ function esc(s) {
     { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
   ));
 }
+
+// Small inline icons for player chips (crown = host)
+const ICON_CROWN = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><use href="#icon-crown" stroke="currentColor"/></svg>';
+const ICON_PERSON = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><use href="#icon-person" stroke="currentColor"/></svg>';
 
 // localStorage persistence keys
 const LS = {
@@ -221,51 +224,58 @@ function showScreen(name) {
 }
 
 // ============================================================
-// Canvas particles
-// ============================================================
-initParticles($('bgCanvas'));
-
-// ============================================================
 // Multiplayer
 // ============================================================
 let mp = null;
 
 // ============================================================
-// Timer
+// Timer (ring countdown)
 // ============================================================
+const TIMER_TOTAL = 60;
+const RING_CIRCUMFERENCE = 169.65; // 2 * PI * r27, matches the SVG
 let timerInterval = null;
-let timerSeconds = 60;
+let timerSeconds = TIMER_TOTAL;
+
+function updateTimerRing() {
+  const ring = $('timer-ring-progress');
+  ring.style.strokeDashoffset = RING_CIRCUMFERENCE * (1 - timerSeconds / TIMER_TOTAL);
+  ring.classList.toggle('warning', timerSeconds <= 10);
+}
 
 function resetTimer() {
   clearInterval(timerInterval);
   timerInterval = null;
-  timerSeconds = 60;
-  $('timer-display').textContent = '60';
+  timerSeconds = TIMER_TOTAL;
+  $('timer-display').textContent = String(TIMER_TOTAL);
   $('timer-display').classList.remove('warning');
-  $('btn-timer').textContent = 'Start Timer ⏱';
+  updateTimerRing();
+  $('btn-timer').textContent = 'Start timer';
 }
 
 function startTimer() {
   if (timerInterval) {
     clearInterval(timerInterval);
     timerInterval = null;
-    $('btn-timer').textContent = 'Start Timer ⏱';
+    $('btn-timer').textContent = 'Start timer';
     return;
   }
-  timerSeconds = 60;
-  $('timer-display').textContent = '60';
+  timerSeconds = TIMER_TOTAL;
+  $('timer-display').textContent = String(TIMER_TOTAL);
   $('timer-display').classList.remove('warning');
-  $('btn-timer').textContent = 'Stop ⏹';
+  updateTimerRing();
+  $('btn-timer').textContent = 'Stop';
 
   timerInterval = setInterval(() => {
     timerSeconds--;
-    $('timer-display').textContent = timerSeconds;
+    $('timer-display').textContent = String(Math.max(timerSeconds, 0));
+    updateTimerRing();
     if (timerSeconds <= 10) $('timer-display').classList.add('warning');
     if (timerSeconds <= 0) {
       clearInterval(timerInterval);
       timerInterval = null;
-      $('timer-display').textContent = '⏰';
-      $('btn-timer').textContent = 'Start Timer ⏱';
+      $('timer-display').textContent = 'Up!';
+      $('btn-timer').textContent = 'Start timer';
+      if (navigator.vibrate) navigator.vibrate([160, 90, 160]);
     }
   }, 1000);
 }
@@ -273,25 +283,45 @@ function startTimer() {
 // ============================================================
 // Game UI rendering
 // ============================================================
+function dealAnimation(el, className) {
+  el.classList.remove('deal', 'slap');
+  void el.offsetWidth; // restart the animation
+  el.classList.add(className);
+}
+
+function updateRoundChip() {
+  const chip = $('round-chip');
+  const n = state.usedQuestions.length;
+  if (n > 0) {
+    chip.textContent = `Card ${n}`;
+    chip.classList.remove('hidden');
+  } else {
+    chip.classList.add('hidden');
+  }
+}
+
 function renderCard(card) {
   const qEl = $('question-card');
   const fEl = $('forfeit-card');
   const timerZone = $('timer-zone');
   resetTimer();
 
-  const badge = card.isNew ? '<span class="new-badge">✨ New</span>' : '';
+  const badge = card.isNew ? '<span class="new-badge">New</span>' : '';
 
   if (card.type === 'forfeit') {
     qEl.classList.add('hidden');
     fEl.classList.remove('hidden');
-    fEl.innerHTML = `${badge}<span class="forfeit-title">${esc(card.performer)}'s Forfeit</span><span class="forfeit-text">${esc(card.text)}</span>`;
+    fEl.innerHTML = `${badge}<span class="forfeit-title">${esc(card.performer)}'s forfeit</span><span class="forfeit-text">${esc(card.text)}</span>`;
     timerZone.classList.remove('hidden');
+    dealAnimation(fEl, 'slap');
   } else {
     fEl.classList.add('hidden');
     timerZone.classList.add('hidden');
     qEl.classList.remove('hidden');
     qEl.innerHTML = `${badge}${esc(card.text)}`;
+    dealAnimation(qEl, 'deal');
   }
+  updateRoundChip();
 }
 
 function renderTurnIndicator(label) {
@@ -340,7 +370,7 @@ function showGameScreen(isHost = true) {
 
   if (state.isRemote && state.roomCode) {
     $('remote-badge').classList.remove('hidden');
-    $('remote-room-label').textContent = state.roomCode;
+    $('remote-room-label').textContent = `Room ${state.roomCode}`;
   } else {
     $('remote-badge').classList.add('hidden');
   }
@@ -516,7 +546,7 @@ $('btn-join-submit').addEventListener('click', async () => {
       const pending = remoteState.pendingPlayers || [];
       $('guest-players-list').innerHTML = pending.map(p =>
         `<span class="room-player-chip ${p.isHost ? 'is-host' : ''}">
-          ${p.isHost ? '👑' : '👤'} ${esc(p.name)}
+          ${p.isHost ? ICON_CROWN : ICON_PERSON} ${esc(p.name)}
         </span>`
       ).join('');
       $('guest-lobby-status').textContent = pending.length
@@ -720,7 +750,7 @@ async function startRemoteSession() {
 function renderRoomPlayers(players) {
   $('room-players-list').innerHTML = players.map(p =>
     `<span class="room-player-chip ${p.isHost ? 'is-host' : ''}">
-      ${p.isHost ? '👑' : '👤'} ${esc(p.name)}
+      ${p.isHost ? ICON_CROWN : ICON_PERSON} ${esc(p.name)}
     </span>`
   ).join('');
 }
@@ -728,8 +758,8 @@ function renderRoomPlayers(players) {
 $('btn-copy-link').addEventListener('click', () => {
   const link = $('share-link').value;
   navigator.clipboard.writeText(link).then(() => {
-    $('btn-copy-link').textContent = '✅';
-    setTimeout(() => { $('btn-copy-link').textContent = '📋'; }, 2000);
+    $('btn-copy-link').textContent = 'Copied';
+    setTimeout(() => { $('btn-copy-link').textContent = 'Copy'; }, 2000);
   });
 });
 
@@ -800,10 +830,11 @@ function resetGame() {
     usedQuestions: [], usedForfeits: [], isRemote: false, isHost: false, roomCode: null,
   });
   resetTimer();
-  $('question-card').textContent = "Tap 'Next Question' to begin!";
+  $('question-card').textContent = 'Tap "Next question" to begin!';
   $('question-card').classList.remove('hidden');
   $('forfeit-card').classList.add('hidden');
   $('timer-zone').classList.add('hidden');
+  $('round-chip').classList.add('hidden');
   showScreen('welcome');
 }
 
