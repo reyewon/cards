@@ -656,6 +656,24 @@ body {
   justify-content: center;
   min-height: 140px;
   border-left: 4px solid transparent;
+  position: relative;
+}
+
+/* "New" pill on cards from the latest content batch */
+.new-badge {
+  position: absolute;
+  top: -10px;
+  right: 14px;
+  background: var(--pink);
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 20px;
+  box-shadow: 0 0 12px rgba(255, 0, 128, 0.5);
+  line-height: 1.4;
 }
 
 .card--question {

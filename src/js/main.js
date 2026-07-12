@@ -37,7 +37,16 @@ const state = {
   isRemote: false,
   isHost: false,
   roomCode: null,
+  currentCard: null,
+  turnLabel: '',
 };
+
+// Escape user-supplied strings (player names etc.) before injecting into HTML
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
 
 // localStorage persistence keys
 const LS = {
@@ -51,8 +60,11 @@ function saveSession() {
       players: state.players,
       intensity: state.intensity,
       currentPlayerIndex: state.currentPlayerIndex,
+      currentTargetIndex: state.currentTargetIndex,
       usedQuestions: state.usedQuestions,
       usedForfeits: state.usedForfeits,
+      currentCard: state.currentCard,
+      turnLabel: state.turnLabel,
     }));
   } catch (_) {}
 }
@@ -78,71 +90,77 @@ function clearSession() {
 // ============================================================
 // Question/Forfeit Picking Logic
 // ============================================================
-function getIntensityFilter(questionObj) {
-  const { intensity } = state;
-  if (!questionObj || typeof questionObj !== 'object') return true;
-  const type = questionObj.type || 'neutral';
-  if (intensity === 'tame') return type === 'neutral';
-  if (intensity === 'spicy') return type === 'neutral' || type === 'D_asks_S' || type === 'S_asks_D' || type === 'target';
-  return true; // wild = all
+// Items may carry an optional `intensity` tag ('tame'|'spicy'|'wild').
+// Untagged (legacy) items are eligible at every intensity. Tagged items
+// only appear at their level or above (tame < spicy < wild).
+const INTENSITY_RANK = { tame: 1, spicy: 2, wild: 3 };
+
+function intensityAllows(item) {
+  if (!item || typeof item !== 'object' || !item.intensity) return true;
+  return (INTENSITY_RANK[item.intensity] || 2) <= (INTENSITY_RANK[state.intensity] || 3);
 }
 
 function pickRandom(pool) {
   return pool[Math.floor(Math.random() * pool.length)];
 }
 
+// Items may carry an optional `batch` number (legacy items = batch 1).
+// The newest batch in the pool is always drawn from first, randomly,
+// so fresh content surfaces before older cards. Once the newest batch
+// is used up the pool falls back to older batches automatically.
+function pickPrioritisingNew(pool) {
+  if (!pool.length) return undefined;
+  const maxBatch = Math.max(...pool.map(item => item.batch || 1));
+  return pickRandom(pool.filter(item => (item.batch || 1) === maxBatch));
+}
+
+function isNewItem(item, source) {
+  if (!item || typeof item !== 'object' || !item.batch) return false;
+  const maxBatch = Math.max(...source.map(i => i.batch || 1));
+  return maxBatch > 1 && item.batch === maxBatch;
+}
+
+function questionSource() {
+  return state.mode === 'couple' ? DATA.couple_questions :
+         state.mode === 'group' ? DATA.group_questions : DATA.friends_questions;
+}
+
 function getNextQuestion() {
-  let pool;
+  const source = questionSource();
+  let eligible = () => true;
 
   if (state.mode === 'couple') {
     const askerRole = state.players[state.currentPlayerIndex].role;
     const answererRole = state.players[(state.currentPlayerIndex + 1) % 2].role;
-    let allowedTypes = ['neutral'];
+    const allowedTypes = ['neutral'];
     if (askerRole === 'Dom' && (answererRole === 'sub' || answererRole === 'switch')) allowedTypes.push('D_asks_S');
     else if ((askerRole === 'sub' || askerRole === 'switch') && answererRole === 'Dom') allowedTypes.push('S_asks_D');
     else if (askerRole === 'switch' && answererRole === 'sub') allowedTypes.push('D_asks_S');
     else if (askerRole === 'sub' && answererRole === 'switch') allowedTypes.push('S_asks_D');
-
-    pool = DATA.couple_questions.filter((q, i) =>
-      !state.usedQuestions.includes(i) && allowedTypes.includes(q.type)
-    );
-    // Fallback: relax role filter
-    if (!pool.length) {
-      pool = DATA.couple_questions.filter((q, i) =>
-        !state.usedQuestions.includes(i) && q.type === 'neutral'
-      );
-    }
-    // Fallback: reset cycle
-    if (!pool.length) {
-      state.usedQuestions = [];
-      pool = DATA.couple_questions.filter(q => allowedTypes.includes(q.type));
-    }
-
-  } else if (state.mode === 'group') {
-    const allGroupQ = DATA.group_questions;
-    pool = allGroupQ.filter((q, i) =>
-      !state.usedQuestions.includes(i) && getIntensityFilter(q)
-    );
-    if (!pool.length) {
-      state.usedQuestions = [];
-      pool = allGroupQ.filter(q => getIntensityFilter(q));
-    }
-
-  } else {
-    // friends
-    const allFriendsQ = DATA.friends_questions;
-    pool = allFriendsQ.filter((q, i) => !state.usedQuestions.includes(i));
-    if (!pool.length) {
-      state.usedQuestions = [];
-      pool = [...allFriendsQ];
-    }
+    eligible = q => allowedTypes.includes(q.type);
   }
 
-  const picked = pickRandom(pool);
+  let pool = source.filter((q, i) =>
+    !state.usedQuestions.includes(i) && eligible(q) && intensityAllows(q)
+  );
+  // Fallback: relax the intensity filter rather than dead-ending
+  if (!pool.length) {
+    pool = source.filter((q, i) => !state.usedQuestions.includes(i) && eligible(q));
+  }
+  // Fallback (couple): relax the role filter to neutrals
+  if (!pool.length && state.mode === 'couple') {
+    pool = source.filter((q, i) => !state.usedQuestions.includes(i) && q.type === 'neutral');
+  }
+  // Fallback: reset the cycle
+  if (!pool.length) {
+    state.usedQuestions = [];
+    pool = source.filter(q => eligible(q) && intensityAllows(q));
+    if (!pool.length) pool = source.filter(q => eligible(q));
+  }
+
+  const picked = pickPrioritisingNew(pool);
   if (!picked) return { text: 'No questions available. Reset and try again!', type: 'neutral' };
 
-  const source = state.mode === 'couple' ? DATA.couple_questions :
-                 state.mode === 'group' ? DATA.group_questions : DATA.friends_questions;
   const idx = source.indexOf(picked);
   if (idx >= 0 && !state.usedQuestions.includes(idx)) state.usedQuestions.push(idx);
 
@@ -153,10 +171,15 @@ function getNextForfeit() {
   const bank = state.mode === 'couple' ? DATA.couple_forfeits :
                state.mode === 'group' ? DATA.group_forfeits : DATA.friends_forfeits;
 
-  let pool = bank.filter((_, i) => !state.usedForfeits.includes(i));
-  if (!pool.length) { state.usedForfeits = []; pool = [...bank]; }
+  let pool = bank.filter((f, i) => !state.usedForfeits.includes(i) && intensityAllows(f));
+  if (!pool.length) pool = bank.filter((f, i) => !state.usedForfeits.includes(i));
+  if (!pool.length) {
+    state.usedForfeits = [];
+    pool = bank.filter(f => intensityAllows(f));
+    if (!pool.length) pool = [...bank];
+  }
 
-  const picked = pickRandom(pool);
+  const picked = pickPrioritisingNew(pool);
   const idx = bank.indexOf(picked);
   if (idx >= 0) state.usedForfeits.push(idx);
 
@@ -256,16 +279,18 @@ function renderCard(card) {
   const timerZone = $('timer-zone');
   resetTimer();
 
+  const badge = card.isNew ? '<span class="new-badge">✨ New</span>' : '';
+
   if (card.type === 'forfeit') {
     qEl.classList.add('hidden');
     fEl.classList.remove('hidden');
-    fEl.innerHTML = `<span class="forfeit-title">${card.performer}'s Forfeit</span><span class="forfeit-text">${card.text}</span>`;
+    fEl.innerHTML = `${badge}<span class="forfeit-title">${esc(card.performer)}'s Forfeit</span><span class="forfeit-text">${esc(card.text)}</span>`;
     timerZone.classList.remove('hidden');
   } else {
     fEl.classList.add('hidden');
     timerZone.classList.add('hidden');
     qEl.classList.remove('hidden');
-    qEl.textContent = card.text;
+    qEl.innerHTML = `${badge}${esc(card.text)}`;
   }
 }
 
@@ -324,6 +349,11 @@ function showGameScreen(isHost = true) {
 // ============================================================
 // Core game actions
 // ============================================================
+function drawQuestionCard() {
+  const q = getNextQuestion();
+  return { type: 'question', text: q.text ?? q, isNew: isNewItem(q, questionSource()) };
+}
+
 function doNextQuestion() {
   state.currentPlayerIndex = (state.currentPlayerIndex + 1) % state.players.length;
 
@@ -334,42 +364,40 @@ function doNextQuestion() {
     return;
   }
 
-  const q = getNextQuestion();
+  const card = drawQuestionCard();
   const label = buildTurnLabel();
-
-  if (state.mode === 'group') {
-    state.currentTargetIndex = pickGroupTarget();
-  }
-
+  state.currentCard = card;
+  state.turnLabel = label;
   saveSession();
 
   if (state.isRemote && mp && state.isHost) {
-    mp.send({ type: 'NEXT_QUESTION', card: { type: 'question', text: q.text ?? q }, targetIndex: state.currentTargetIndex });
+    mp.send({ type: 'NEXT_QUESTION', card, targetIndex: state.currentTargetIndex });
   }
 
-  renderCard({ type: 'question', text: q.text ?? q });
+  renderCard(card);
   renderTurnIndicator(label);
   updateTurnView(state.currentPlayerIndex, state.players);
 }
 
 function doGroupReveal() {
   const q = getNextQuestion();
-  let targetIdx = null;
 
-  if (q.type === 'target' || q.type === 'group') {
-    if (q.type === 'target') {
-      let t;
-      do { t = Math.floor(Math.random() * state.players.length); }
-      while (t === state.currentPlayerIndex && state.players.length > 1);
-      targetIdx = t;
-      state.currentTargetIndex = t;
-    }
+  // Clear any target from the previous round, then pick one if needed
+  state.currentTargetIndex = null;
+  if (q.type === 'target') {
+    let t;
+    do { t = Math.floor(Math.random() * state.players.length); }
+    while (t === state.currentPlayerIndex && state.players.length > 1);
+    state.currentTargetIndex = t;
   }
 
-  const label = buildTurnLabel(targetIdx);
+  const card = { type: 'question', text: q.text, isNew: isNewItem(q, DATA.group_questions) };
+  const label = buildTurnLabel();
+  state.currentCard = card;
+  state.turnLabel = label;
   saveSession();
 
-  renderCard({ type: 'question', text: q.text });
+  renderCard(card);
   renderTurnIndicator(label);
 }
 
@@ -384,7 +412,10 @@ function doForfeit() {
     performer = state.players[(state.currentPlayerIndex + 1) % 2].name;
   }
 
-  const card = { type: 'forfeit', text: f.text ?? f, performer };
+  const bank = state.mode === 'couple' ? DATA.couple_forfeits :
+               state.mode === 'group' ? DATA.group_forfeits : DATA.friends_forfeits;
+  const card = { type: 'forfeit', text: f.text ?? f, performer, isNew: isNewItem(f, bank) };
+  state.currentCard = card;
   saveSession();
 
   if (state.isRemote && mp && state.isHost) {
@@ -404,15 +435,17 @@ function doSkip() {
     return;
   }
 
-  const q = getNextQuestion();
+  const card = drawQuestionCard();
   const label = buildTurnLabel();
+  state.currentCard = card;
+  state.turnLabel = label;
   saveSession();
 
   if (state.isRemote && mp && state.isHost) {
-    mp.send({ type: 'SKIP_QUESTION', card: { type: 'question', text: q.text ?? q } });
+    mp.send({ type: 'SKIP_QUESTION', card });
   }
 
-  renderCard({ type: 'question', text: q.text ?? q });
+  renderCard(card);
   renderTurnIndicator(label);
   updateTurnView(state.currentPlayerIndex, state.players);
 }
@@ -483,7 +516,7 @@ $('btn-join-submit').addEventListener('click', async () => {
       const pending = remoteState.pendingPlayers || [];
       $('guest-players-list').innerHTML = pending.map(p =>
         `<span class="room-player-chip ${p.isHost ? 'is-host' : ''}">
-          ${p.isHost ? '👑' : '👤'} ${p.name}
+          ${p.isHost ? '👑' : '👤'} ${esc(p.name)}
         </span>`
       ).join('');
       $('guest-lobby-status').textContent = pending.length
@@ -587,8 +620,8 @@ function renderPlayerList(players) {
   const ul = $('player-list');
   ul.innerHTML = players.map((p, i) => `
     <li>
-      <span>${p.name}</span>
-      <button class="remove-player-btn" data-idx="${i}" aria-label="Remove ${p.name}">×</button>
+      <span>${esc(p.name)}</span>
+      <button class="remove-player-btn" data-idx="${i}" aria-label="Remove ${esc(p.name)}">×</button>
     </li>
   `).join('');
   ul.querySelectorAll('.remove-player-btn').forEach(btn => {
@@ -687,7 +720,7 @@ async function startRemoteSession() {
 function renderRoomPlayers(players) {
   $('room-players-list').innerHTML = players.map(p =>
     `<span class="room-player-chip ${p.isHost ? 'is-host' : ''}">
-      ${p.isHost ? '👑' : '👤'} ${p.name}
+      ${p.isHost ? '👑' : '👤'} ${esc(p.name)}
     </span>`
   ).join('');
 }
@@ -722,21 +755,14 @@ $('btn-start-remote').addEventListener('click', () => {
 // Start local game
 // ============================================================
 function startLocalGame() {
+  // Couple/friends only — group mode starts via the interstitial + doGroupReveal
   showGameScreen(true);
   // Show the first question immediately
-  const q = getNextQuestion();
-
-  let targetIdx = null;
-  if (state.mode === 'group') {
-    let t;
-    do { t = Math.floor(Math.random() * state.players.length); }
-    while (t === state.currentPlayerIndex && state.players.length > 1);
-    targetIdx = t;
-    state.currentTargetIndex = t;
-  }
-
-  const label = buildTurnLabel(targetIdx);
-  renderCard({ type: 'question', text: q.text ?? q });
+  const card = drawQuestionCard();
+  const label = buildTurnLabel();
+  state.currentCard = card;
+  state.turnLabel = label;
+  renderCard(card);
   renderTurnIndicator(label);
   updateTurnView(state.currentPlayerIndex, state.players);
   saveSession();
@@ -806,7 +832,13 @@ if ('serviceWorker' in navigator) {
 // Boot
 // ============================================================
 (async () => {
-  await loadData();
+  try {
+    await loadData();
+  } catch (err) {
+    console.error('Failed to load game data:', err);
+    alert('Could not load the question decks. Check your connection and refresh.');
+    return;
+  }
   checkUrlParams();
 
   // Resume session if one exists and no URL room param
@@ -815,17 +847,21 @@ if ('serviceWorker' in navigator) {
     showScreen('game');
     setHostView(true);
 
-    const q = getNextQuestion();
-    let targetIdx = null;
-    if (state.mode === 'group') {
-      let t;
-      do { t = Math.floor(Math.random() * state.players.length); }
-      while (t === state.currentPlayerIndex && state.players.length > 1);
-      targetIdx = t;
-      state.currentTargetIndex = t;
+    // Restore the card that was on screen; only draw fresh if none was saved
+    if (state.currentCard) {
+      renderCard(state.currentCard);
+      renderTurnIndicator(state.turnLabel || buildTurnLabel());
+    } else if (state.mode === 'group') {
+      doGroupReveal();
+    } else {
+      const card = drawQuestionCard();
+      const label = buildTurnLabel();
+      state.currentCard = card;
+      state.turnLabel = label;
+      saveSession();
+      renderCard(card);
+      renderTurnIndicator(label);
     }
-    renderCard({ type: 'question', text: q.text ?? q });
-    renderTurnIndicator(buildTurnLabel(targetIdx));
   } else if (!params.get('room')) {
     showScreen('welcome');
   }

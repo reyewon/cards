@@ -1027,7 +1027,6 @@
     "text": "How do you feel about negotiating scenes beforehand versus more spontaneous play?",
     "type": "S_asks_D"
   },
-
   {
     "text": "Describe your ideal 24-hour play session with me from the moment I arrive to the end of aftercare — every detail.",
     "type": "neutral"
@@ -1228,7 +1227,6 @@
     "text": "What would you want your play or sex partner to know about you after just one session together?",
     "type": "neutral"
   },
-
   {
     "text": "If I ordered you not to touch yourself for a week, how confident are you that you'd actually last?",
     "type": "D_asks_S"
@@ -1309,7 +1307,6 @@
     "text": "When I'm done with you at the end of a scene, what do you need most that you rarely ask for?",
     "type": "D_asks_S"
   },
-
   {
     "text": "What's the most powerful you've felt during a scene with me?",
     "type": "S_asks_D"
@@ -1390,7 +1387,6 @@
     "text": "What's the most dominant thing you've done to someone that still makes you feel genuinely satisfied when you think about it?",
     "type": "S_asks_D"
   },
-
   {
     "text": "Describe in explicit detail exactly how you want to be used orally right now — what you want, what pace, what you'd want said while it's happening, and how you want it to end.",
     "type": "wild"
@@ -1430,5 +1426,485 @@
   {
     "text": "What's the sluttiest version of yourself that's ever come out during sex or a scene — what brought it out, and what did it look like?",
     "type": "wild"
+  },
+  {
+    "text": "If we opened a kinky little shop together, what would we sell and what would it be called?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "What's the most ridiculous thing that's ever made you fancy me more?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "If our sex life had a film title and an age rating, what would they be?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Which fictional couple do you secretly think we out-kink?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "If I could read your mind for one minute right now, would you be relieved or mortified?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "What's a completely non-sexual thing I do that you find weirdly attractive?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "If we had a safeword for arguments about the washing up, what would it be?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "What song would play every time I walked into the room if you were in charge of my soundtrack?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Describe our dynamic using only the names of three household appliances.",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "If you had to explain our relationship to an alien using no rude words, how would you do it?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "What's the silliest thing you've ever done to try to impress me?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "If we won the lottery tomorrow, what's the first indulgent, naughty thing you'd book for us?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Which of my facial expressions can you read instantly, and what does it say?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "What's one date we've had that you'd relive exactly as it was?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "What's one thing I wear that you'd happily peel off me right now?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Tell me about the last time you thought about me at a completely inappropriate moment.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "If you could bottle one sound I make, which one would you keep?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's a fantasy you've had about us in public that you've never confessed?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Where on your body do you most want my mouth right now?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's the naughtiest photo of me you've kept, and when did you last look at it?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "If tonight had no rules and no consequences, how would it start?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's one thing you want me to do more of, slower, and with more eye contact?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Describe the exact moment you last felt completely desired by me.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Which piece of furniture in this home deserves a blue plaque, and why?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's a compliment about your body you'd secretly love to hear from me more often?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "If I sent you one text tomorrow at 2pm that would ruin your concentration for the day, what should it say?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What do you think about when you want to get in the mood and I'm not there?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's one thing we did early on that you wish we still did more often?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Whisper to me the first thing you noticed about my body.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "If we had one hour, no phones and a locked door, walk me through your ideal use of it.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's the most turned on you've ever been in a completely public place with me?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Which of my habits in bed would you never want me to change?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's a new place in this house we haven't christened yet, and should we fix that?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "If you could choose exactly what I wear to bed tonight, describe it.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Describe, in as much detail as you dare, the filthiest dream you've ever had about me.",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "What's a kink you've researched in private but never said out loud to me?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "If we filmed ourselves just once, what would you want the highlight to be?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "What's the roughest you'd honestly want me to be with you, if you knew I'd love it too?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "Is there a toy you've secretly wanted us to buy? Describe it and what we'd do with it.",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "What's one word you'd love to hear me moan, and in what situation?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "Tell me your honest reaction if I woke you at 3am because I couldn't wait until morning.",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "What's an edge you'd like us to explore together that we've never gone near?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "If you could watch me with someone else just once, what would you want to see, and would you join in?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "What's the longest you think you could last if I was deliberately trying to break your composure?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "Describe the exact scene you'd set if you wanted to absolutely ruin me tonight.",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "What's something filthy you've wanted to say during sex but swallowed at the last second?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "If we played a game where you weren't allowed to touch me for an hour while I teased you, how would it end?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "What part of your body do you want me to spend more time worshipping, no rushing allowed?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "If I gave you one full day of service to me, how would you want to spend it?",
+    "type": "D_asks_S",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's a rule you'd secretly love me to set for you this week?",
+    "type": "D_asks_S",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "When you're being bratty, what are you actually hoping I'll do about it?",
+    "type": "D_asks_S",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's the most useful thing I could say to get you into subspace quickly?",
+    "type": "D_asks_S",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "If I told you to pick your own punishment for next time, what would you choose and why?",
+    "type": "D_asks_S",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Which do you crave more right now: my praise or my control? Explain yourself.",
+    "type": "D_asks_S",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What task could I set you tomorrow that would keep me in your head all day?",
+    "type": "D_asks_S",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "If you had to wear a discreet reminder of who you belong to, what would you pick?",
+    "type": "D_asks_S",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Tell me honestly: when do you find it hardest to obey me?",
+    "type": "D_asks_S",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's the sternest thing I've ever said to you that you still think about?",
+    "type": "D_asks_S",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "If your obedience earned tokens you could spend on rewards, what would be top of the menu?",
+    "type": "D_asks_S",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's one thing I do that instantly makes you feel small in the best way?",
+    "type": "D_asks_S",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "If I edged you every night this week and only let you finish on Sunday, how would you behave by Friday?",
+    "type": "D_asks_S",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "Describe how you'd like to be woken up if I were in charge of your alarm.",
+    "type": "D_asks_S",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "What's a position or place you find genuinely humbling to be put in, and do you love or hate that?",
+    "type": "D_asks_S",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "If I let you beg for one thing right now, what would you beg for?",
+    "type": "D_asks_S",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "What's your favourite small act of service I do that you've never mentioned?",
+    "type": "S_asks_D",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "When I'm being good, what goes through your head that you don't say out loud?",
+    "type": "S_asks_D",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's the hardest you've ever had to work to keep a straight face while dominating me?",
+    "type": "S_asks_D",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "If you could add one ritual to our dynamic, something we do every single day, what would it be?",
+    "type": "S_asks_D",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What do you find most beautiful about my submission?",
+    "type": "S_asks_D",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Is there a moment you felt prouder of me than you let on?",
+    "type": "S_asks_D",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "What's a scene you've planned in your head but haven't run yet because the timing hasn't been right?",
+    "type": "S_asks_D",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "When did you last feel truly powerful with me, and what did I do to cause it?",
+    "type": "S_asks_D",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's one way I could serve you better that you've been too polite to ask for?",
+    "type": "S_asks_D",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Do you ever want to drop the reins and just be soft with me? When?",
+    "type": "S_asks_D",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "What does my safeword mean to you in the moment I use it?",
+    "type": "S_asks_D",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "What's the most devious idea you've had while watching me do something completely ordinary?",
+    "type": "S_asks_D",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "If you caught me breaking a rule right now, what would happen next?",
+    "type": "S_asks_D",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's your favourite sound I make when you push me right to my limit?",
+    "type": "S_asks_D",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "If I gave you complete creative control over one entire weekend, what's on the itinerary?",
+    "type": "S_asks_D",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "Which of my limits do you most respect, and which do you secretly hope I'll one day want to move?",
+    "type": "S_asks_D",
+    "intensity": "wild",
+    "batch": 2
   }
 ]

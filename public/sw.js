@@ -1,5 +1,5 @@
 // Kink and Tell - Service Worker
-const CACHE = 'knt-v2';
+const CACHE = 'knt-v3';
 const PRECACHE = ['/', '/index.html', '/KNT2.png', '/KNT.svg', '/manifest.json'];
 
 self.addEventListener('install', e => {
@@ -15,14 +15,32 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('fetch', e => {
-  // Network-first for data files, cache-first for static assets
-  if (e.request.url.includes('/data/')) {
+  const req = e.request;
+
+  // Network-first for page navigations so a new deploy is picked up
+  // immediately (hashed asset names change every build - a stale cached
+  // index.html would point at assets that no longer exist).
+  if (req.mode === 'navigate') {
     e.respondWith(
-      fetch(e.request).catch(() => caches.match(e.request))
+      fetch(req).then(res => {
+        const copy = res.clone();
+        caches.open(CACHE).then(c => c.put('/index.html', copy));
+        return res;
+      }).catch(() => caches.match('/index.html'))
     );
-  } else {
-    e.respondWith(
-      caches.match(e.request).then(cached => cached || fetch(e.request))
-    );
+    return;
   }
+
+  // Network-first for data files so new questions appear straight away
+  if (req.url.includes('/data/')) {
+    e.respondWith(
+      fetch(req).catch(() => caches.match(req))
+    );
+    return;
+  }
+
+  // Cache-first for everything else (hashed assets, images, fonts)
+  e.respondWith(
+    caches.match(req).then(cached => cached || fetch(req))
+  );
 });

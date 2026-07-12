@@ -218,5 +218,245 @@
   {
     "text": "If we were to experiment sexually, what's the first thing you'd want to try?",
     "type": "neutral"
+  },
+  {
+    "text": "What's the weirdest place you've ever woken up after a night out, and was it worth it?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Rate your own flirting out of ten, then defend that score with evidence.",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "What's a compliment a stranger gave you that you still think about?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "If your love life were a reality show, what would this season's cliffhanger be?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "What's the most chaotic thing on your bucket list that you're actually serious about?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Which fictional character was your sexual awakening? Be honest.",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "What's your most controversial opinion about dating apps?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "If you had to describe your type using only three emojis, which three?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "What's the best chat-up line ever used on you, and did it work?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "What's a green flag that instantly makes someone more attractive to you?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "What's the pettiest reason you've ever turned someone down?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Which of my exes (or situationships) did you least approve of, and why?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Who was your worst kiss ever, and what made it so terrible?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "If you wrote an anonymous confession to a magazine about your love life, what would the headline be?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "What do you think people get wrong about you before they've slept with you?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's your honest body count reaction: proud, indifferent, or 'depends who's asking'?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Have you ever fancied someone completely inappropriate? How badly did it go?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's the most spontaneous hook-up decision you've ever made?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Talk me through your pre-date ritual, including the bits you'd never admit publicly.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Have you ever sent a risky text and instantly regretted it? What did it say?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's your favourite thing anyone has ever said about you in bed?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "If you could anonymously find out one thing about anyone's sex life, whose and what?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's a kink you 'discovered' completely by accident?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Describe your ideal one-night stand from door to door.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's the closest you've come to hooking up with a friend, and what stopped you?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Do you flirt with me? Be careful, I'll know if you're lying.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's the first thing you noticed about me, physically?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "If we matched on a dating app, what would your opening message to me be?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's your most reliable move, the one that basically always works?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's the most scandalous secret you're carrying for someone else right now? No names needed.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's your honest opinion on friends with benefits: genius or grenade?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "If we had to fake being a couple for a month for some contrived film-plot reason, what would be the hardest part?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What's the most embarrassing thing in your camera roll right now? Descriptions accepted in place of evidence.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "When did you last feel properly desired, and what did it do to your week?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "What would you guess I'm like in bed? Show your working.",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "Have you ever thought about me while... distracted? You can just answer yes or no.",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "What's a boundary you'd want us to agree on if we ever did cross a line?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "What's the naughtiest thing you've done in the place you currently live?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "What's something sexual you're curious about but would only try with someone you completely trust?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "If tonight went completely off the rails, in the best way, what would tomorrow's debrief sound like?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 2
   }
 ]

@@ -343,5 +343,230 @@
   },
   {
     "text": "Your partner whispers in your ear exactly what they want to do to you right now. You must sit completely still for the whole thing and say nothing."
+  },
+  {
+    "text": "Serenade the other player with a made-up love song about their bum. Minimum 20 seconds.",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Do your most seductive walk across the room. If the other player laughs, do it again slower.",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Speak in your best posh accent for the next three rounds, no matter what you're saying.",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Let the other player rename your phone's contact entry for them. No changing it for a month.",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Recreate the other player's 'concentrating face' until they admit it's accurate.",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Eat something the other player picks from the kitchen in the most seductive way you can manage.",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Give a dramatic, Oscar-worthy reading of the last text message you sent them.",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Attempt a 20-second interpretive dance titled 'Our First Date'.",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Let the other player restyle your hair however they like. Keep it until the game ends.",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Answer the next question as the other player, in their voice, while they mark you out of ten for accuracy.",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Describe your first kiss together from the other player's point of view, in first person.",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Hold eye contact with the other player for a full minute. No talking, no laughing. Every failure adds 10 seconds.",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Kiss the other player anywhere except the lips. Take your time choosing.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Whisper exactly what you'd like to do to them later. One sentence, then leave it there.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Slow dance together to one song of their choosing. Hands wherever they direct.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Give the other player a shoulder and neck massage for two minutes, no shortcuts.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Trace one finger anywhere along the other player's skin for 60 seconds. They stay silent; you watch their face.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Sit on the other player's lap for the next two questions, facing them.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Text them something filthy right now, even though they're sitting opposite. They may not react.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Undo one button, zip or strap of the other player's clothing, slowly, then go back to the game like nothing happened.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Describe the other player's body for 30 seconds. Only compliments. Only detail.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Kiss the other player's hand, then wrist, then inner elbow. Stop there, and apologise for nothing.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Breathe one sentence against the other player's ear, too quiet for anyone else to ever hear.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Let the other player position you however they like for the next question. You stay put.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Feed the other player something sweet, and don't let them use their hands.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Stand behind the other player and read their next question over their shoulder, hands on their hips.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Choose: remove an item of clothing, or answer the question you just refused. Decide out loud, slowly.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Give the other player one genuine, specific compliment about how they've made you feel this week, then kiss them like you mean it.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "You're on a talking ban for the next two rounds. You may only communicate with your eyes and hands.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Describe, out loud and in full detail, what you were thinking the last time you bit your lip looking at them.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Let the other player write one word anywhere on your body in pen. You don't get to see it until the game ends.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "The other player chooses: you lose an item of clothing, or they gain the right to interrupt you with a kiss at any moment for the rest of the game.",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Take off one item of the other player's clothing using only your teeth. 60-second limit.",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "Let the other player leave one gentle mark anywhere they choose. A kiss, a bite or lipstick, their call.",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "The other player sets you one dare to be completed before bed tonight. Non-negotiable, within your limits.",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "Let the other player set an alarm on your phone for a random time tomorrow, labelled with an instruction. When it goes off, you do what it says.",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "Remove two items of clothing, or let the other player choose which two. Their version is always worse.",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "The other player may touch you anywhere for 30 seconds while you read the next question aloud without stopping.",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "Let the other player blindfold you for the next three rounds. They read your questions to you.",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "Kneel in front of the other player and let them decide what happens for the next 60 seconds.",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "The other player picks a spot. You kiss it for a full 30 seconds. Use the timer.",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "For the rest of the game, the other player controls when you're allowed to cross or uncross your legs.",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "You owe the other player one 'yes' to be redeemed at any point in the next 24 hours. Within limits, no take-backs.",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "Sit back to back for one round and describe to each other exactly what you're going to do when the game ends.",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "Put your hands behind your back. They stay there until your next turn, whatever happens in between.",
+    "intensity": "wild",
+    "batch": 2
   }
 ]

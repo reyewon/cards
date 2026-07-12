@@ -258,5 +258,275 @@
   {
     "text": "Everyone writes down a secret fantasy on a piece of paper. Shuffle them, and read them aloud. The group has to guess who wrote which fantasy.",
     "type": "group"
+  },
+  {
+    "text": "Who here would survive longest in a silent retreat, and who'd be thrown out on day one?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Which two people in this room would make the most chaotic couple?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Who in this group gives the best hugs, and who is due to receive one right now?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "If this group formed a band, who's the diva, who's the drummer, and who gets kicked out first?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Who here is most likely to accidentally text something scandalous to the family group chat?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Point to the person most likely to become mysteriously rich with no explanation.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Who in this room would you trust to plan your stag or hen do, and who would you ban from it?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Point to the person you'd most want beside you in a zombie apocalypse, then the person you'd trip to escape.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Who in this group is hiding a secret talent, and what do you think it is?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Who in this room would you let read your diary, if you absolutely had to pick someone?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Who here do you think gives the best compliments, and can they prove it right now, about you?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Who in this group is most likely to cry at a wedding, and who's most likely to cause a scene at one?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "If someone here wrote a tell-all memoir, whose would you pre-order?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Who in this room would run the best 'how to flirt' masterclass, and who needs to attend it twice?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Who here would you nominate to give a toast at your wedding with zero preparation?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Who in this group would be the first to break in a 'quiet game', and what would break them?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "If one person in this room challenged you to a dance-off right now, who do you hope it is?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Who here has the most suspicious 'recently deleted' folder?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Who in this group flirts the most without realising they're doing it?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Which person here would have the most interesting search history?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Who in this room do you think is the best kisser? Educated guesses welcome.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Point to the person whose voice you'd most like narrating an audiobook... and the one you'd allow to read you something filthier.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Who here would be first to suggest skinny dipping, and who'd already be in the water?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "If you had to be handcuffed to one person here for 24 hours, who, and why them?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Point to the person most likely to have a kink nobody here could guess.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Who here would you most want to see in charge for an evening, fully in charge?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Which person in this room would you most like to swap bodies with for a day, and what's the first thing you'd do?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Point to the person whose 'work voice' you'd most like to hear in a very different context.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Point to the person you'd most like to be stuck in a lift with for an hour. Explain the hour.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Who here has the most dangerous smile, the one that gets people into trouble?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "If you had to whisper one secret to someone in this room right now, who would you choose?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Point to the person most likely to say something absolutely feral in the next hour.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Which person in this room would you most trust with a secret that could ruin you?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Who here do you think has said your name most recently when you weren't in the room, and was it good or bad?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "If you could pause time and rearrange where everyone in this room is sitting, what would you change?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Who in this room do you think would be the most generous lover, purely from vibes?",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "Point to the person whose hands you've noticed. Don't explain. Let it sit.",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "Who here would you most like to receive a voice note from at midnight, and what do you hope it says?",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 2
+  },
+  {
+    "text": "Everyone points, on the count of three, at the person most likely to end up famous. Majority wins; they must give an acceptance speech.",
+    "type": "group",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Go around the circle: everyone shares the most British thing that's ever happened to them.",
+    "type": "group",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "In turn, everyone gives the person on their left a compliment that starts with the first letter of that person's name.",
+    "type": "group",
+    "intensity": "tame",
+    "batch": 2
+  },
+  {
+    "text": "Everyone puts their phone face-up on the table for one round. First person to grab theirs takes a forfeit.",
+    "type": "group",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Everyone writes down their guess for who in the room has kissed the most people here. Reveal together.",
+    "type": "group",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "On the count of three, everyone points at the person they'd most want on their team in a flirting competition. Whoever gets the most votes must demonstrate.",
+    "type": "group",
+    "intensity": "spicy",
+    "batch": 2
+  },
+  {
+    "text": "Everyone closes their eyes. The asker taps one person, who must give their most convincing fake moan. Eyes open: guess who it was.",
+    "type": "group",
+    "intensity": "wild",
+    "batch": 2
   }
 ]
