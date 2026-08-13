@@ -1,165 +1,302 @@
 [
   {
-    "text": "Describe your ideal dirty talk to the other player."
+    "text": "Describe your ideal dirty talk to the other player.",
+    "id": "frf-da05b2b3"
   },
   {
-    "text": "Show the other player your 'O' face."
+    "text": "Show the other player your 'O' face.",
+    "id": "frf-ea0d7a31"
   },
   {
-    "text": "Send a flirty text to the other player right now, as if you were trying to seduce them."
+    "text": "Send a flirty text to the other player right now, as if you were trying to seduce them.",
+    "id": "frf-ea3f05ea"
   },
   {
-    "text": "Remove one item of clothing."
+    "text": "Remove one item of clothing.",
+    "id": "frf-d8f35768"
   },
   {
-    "text": "Let the other player choose a song for you to do a 30-second seductive dance to."
+    "text": "Let the other player choose a song for you to do a 30-second seductive dance to.",
+    "id": "frf-2543823a"
   },
   {
-    "text": "Whisper your darkest sexual secret in the other player's ear."
+    "text": "Whisper your darkest sexual secret in the other player's ear.",
+    "id": "frf-505005be"
   },
   {
-    "text": "For the next three rounds, you must start every sentence with 'Listen, you sexy thing...'"
+    "text": "For the next three rounds, you must start every sentence with 'Listen, you sexy thing...'",
+    "id": "frf-6b9fef4d"
   },
   {
-    "text": "Take a suggestive selfie and send it to the other player."
+    "text": "Take a suggestive selfie and send it to the other player.",
+    "id": "frf-3f23f641"
   },
   {
-    "text": "Truth or Dare: let the other player choose. The dare must be kinky."
+    "text": "Truth or Dare: let the other player choose. The dare must be kinky.",
+    "id": "frf-614b63f3"
   },
   {
-    "text": "Blindfold yourself for the next two rounds."
+    "text": "Blindfold yourself for the next two rounds.",
+    "id": "frf-e48f1600"
   },
   {
-    "text": "Describe, in detail, what you would do to the other player if you were going to hook up right now."
+    "text": "Describe, in detail, what you would do to the other player if you were going to hook up right now.",
+    "id": "frf-c6ed36d3"
   },
   {
-    "text": "Let the other player lightly trace a word on your back with their finger. You have to guess the word. The word must be naughty."
+    "text": "Let the other player lightly trace a word on your back with their finger. You have to guess the word. The word must be naughty.",
+    "id": "frf-a41369d7"
   },
   {
-    "text": "Give the other player a genuine, flirty compliment about a physical feature."
+    "text": "Give the other player a genuine, flirty compliment about a physical feature.",
+    "id": "frf-12528da1"
   },
   {
-    "text": "You must sit on the floor at the other player's feet until your next turn."
+    "text": "You must sit on the floor at the other player's feet until your next turn.",
+    "id": "frf-df407667"
   },
   {
-    "text": "Show the other player the kinkiest thing you have saved on your phone (meme, photo, video)."
+    "text": "Show the other player the kinkiest thing you have saved on your phone (meme, photo, video).",
+    "id": "frf-4cbb90d7"
   },
   {
-    "text": "Write the other player's name somewhere on your body (e.g., arm, leg) with a pen."
+    "text": "Write the other player's name somewhere on your body (e.g., arm, leg) with a pen.",
+    "id": "frf-5cad2b11"
   },
   {
-    "text": "Enthusiastically mime your favourite sexual position."
+    "text": "Enthusiastically mime your favourite sexual position.",
+    "id": "frf-de17dda0"
   },
   {
-    "text": "Let the other player choose a new, kinky nickname for you for the rest of the game."
+    "text": "Let the other player choose a new, kinky nickname for you for the rest of the game.",
+    "id": "frf-ce631709"
   },
   {
-    "text": "Confess the last thing you masturbated to."
+    "text": "Confess the last thing you masturbated to.",
+    "id": "frf-ef16d3eb"
   },
   {
-    "text": "Hold intense, seductive eye contact with the other player for 60 seconds without breaking it."
+    "text": "Hold intense, seductive eye contact with the other player for 60 seconds without breaking it.",
+    "id": "frf-6779665e"
   },
   {
-    "text": "EASTER EGG: Message Rysta, the game creator, on Fetlife (RYSTA) or Instagram (@rystadom). Your message must be a confession of the naughtiest thing you've thought about doing with your friend here. Be creative."
-  },
-  {
-    "text": "Read out your three most recent emojis and let the other player invent the story behind them.",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Do your best impression of the other player flirting. Commit to it.",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Show the other player your most-played song this month and defend yourself.",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Let the other player write your dating app bio. You must keep a straight face while they read it aloud.",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Demonstrate your go-to dance floor move at full commitment, no music allowed.",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Rank your top three celebrity crushes out loud, with justifications.",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Tell the other player about your most recent crush using no names and no lies.",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Confess the last lie you told, and who you told it to.",
-    "intensity": "spicy",
-    "batch": 2
+    "text": "EASTER EGG: Message Rysta, the game creator, on Fetlife (RYSTA) or Instagram (@rystadom). Your message must be a confession of the naughtiest thing you've thought about doing with your friend here. Be creative.",
+    "id": "frf-2f2a4810"
   },
   {
     "text": "Reveal the initials of the last person you had a properly filthy dream about.",
     "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "frf-f4ec08a7"
   },
   {
     "text": "Describe the other player's best physical feature for a full 30 seconds without laughing.",
     "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "frf-40c0b809"
   },
   {
     "text": "Let the other player pose you for a 'thirst trap' photo on your own phone. Posting optional, keeping mandatory.",
     "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "frf-3bfaf8f4"
   },
   {
     "text": "Say the alphabet in your sexiest voice until the other player tells you to stop. They won't stop you quickly.",
     "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Confess something you've never told the other player. Tonight's the night.",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Give the other player a 30-second hand massage while maintaining unbroken eye contact.",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Sit knee to knee with the other player and hold eye contact in silence for 60 seconds. Feelings may occur.",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Whisper your honest first impression of the other player into their ear, the unedited version.",
-    "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "frf-d56de126"
   },
   {
     "text": "Let the other player scroll your camera roll for 20 seconds. No touching the screen.",
     "intensity": "wild",
-    "batch": 2
+    "batch": 2,
+    "id": "frf-3533ac01"
   },
   {
     "text": "Reveal the most recent search in your browser history, or take two more forfeits. Choose fast.",
     "intensity": "wild",
-    "batch": 2
+    "batch": 2,
+    "id": "frf-82730b03"
   },
   {
     "text": "Describe your ideal kiss in detail, then rate how likely the other player is to deliver it.",
     "intensity": "wild",
-    "batch": 2
+    "batch": 2,
+    "id": "frf-bf49b29c"
   },
   {
     "text": "Let the other player ask you one completely unfiltered question. You must answer in full.",
     "intensity": "wild",
-    "batch": 2
+    "batch": 2,
+    "id": "frf-9b8468f3"
+  },
+  {
+    "text": "Two minutes, no notes: talk the other player through the worst sexual decision you've ever made, what you actually did, and how it ended.",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frf-67024a56"
+  },
+  {
+    "text": "Open your phone and read out the filthiest message you've ever actually sent, word for word. Never sent one? Read the filthiest one you've ever received. Names can come out, nothing else does.",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frf-46ed78a5"
+  },
+  {
+    "text": "Pick the item of furniture in this room you'd most like to be bent over. Get into that position on it, and hold it while you talk the other player through exactly what happens next, and who's behind you.",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frf-3029bd00"
+  },
+  {
+    "text": "Talk the other player through exactly how you'd get them out of what they're wearing, step by step, from the first button to the last thing left on. Then they name one item of yours, and it comes off and stays off.",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frf-ee6342ed"
+  },
+  {
+    "text": "If you're willing, put your wrist into the other player's hand and tell them exactly how hard you want to be held. Adjust them until it's right, then name the other place on you you'd want gripped like that. They let go when you tell them to.",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frf-9933f5dc"
+  },
+  {
+    "text": "Name the three things you'd want the other player to do to you tonight, in the order you'd want them. They answer each one with yes, no, or not tonight, and you take the answers without arguing.",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frf-e071f684"
+  },
+  {
+    "text": "Choose one item of the other player's clothing and ask for it out loud, in the filthiest way you can manage. They decide whether it comes off. If it does, it stays off, and they get to take one of yours in return.",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frf-19a92457"
+  },
+  {
+    "text": "The other player picks a title for you to call them by. Use it every time you speak to them until you next draw a card, and the first time you use it, say out loud what being made to say it does to you.",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frf-145f638c"
+  },
+  {
+    "text": "Sit close and give the other player thirty seconds of the exact praise you'd want said to you in bed, aimed at them, in the second person. Then tell them honestly whether saying it out loud did anything to you.",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frf-65959c52"
+  },
+  {
+    "text": "Say out loud the one instruction you'd most want to be given tonight. Then hand the other player the right to give you that exact instruction once, at a moment of their choosing, before the game ends.",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frf-164e6d5c"
+  },
+  {
+    "text": "Take the other player's hand, if they'll give it, and use it to show them the route you'd want them to take over your clothes. Three stops, no more, and say out loud what happens at each one.",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frf-8d473f18"
+  },
+  {
+    "text": "Say out loud the three filthiest things you've ever been talked into, worst to best. Then tell the other player which of the three you'd let them talk you into again tonight, and exactly what they'd have to say to get you there.",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frf-7be6f40e"
+  },
+  {
+    "text": "Ask the other player for permission to do one thing for them tonight, and ask in the filthiest words you can manage. They set the job: it happens in this room, it takes under five minutes, and it stops the second either of you says so. Before they answer, tell them what having to ask out loud has already done to you.",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frf-b96e3c2b"
+  },
+  {
+    "text": "Sit down shoulder to shoulder with the other player, close enough that you're touching, and take turns naming what you need from somebody once the sex is finished and the adrenaline has gone. Two each, said plainly.",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frf-23d147c4"
+  },
+  {
+    "text": "The other player gives you one standing instruction now, out loud. It can only be one of three things: an item of clothing that stays off, a posture you hold, or where your hands stay on your own body. You obey it for the next three rounds, then it lifts.",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frf-fed6d4da"
+  },
+  {
+    "text": "Say 'I want you to ______ me' to the other player and fill the blank with the filthiest thing you actually want. Eye contact the whole way through. Then put your hand where you want them to start, and leave it there while they tell you whether they would.",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frf-29d186db"
+  },
+  {
+    "text": "Name the place on your own body where you'd most want the other player's mouth. Bare it, and tell them in detail what you'd want their mouth doing there. Then offer it. If they want it, they take it for a slow count of ten, and they can pass without explaining.",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frf-36d68300"
+  },
+  {
+    "text": "You get three instructions to spend on the other player: where their hands go, how they sit, and one item that comes off. Give all three now. They can decline any without explaining, and they hold whatever they accept while you tell them why you picked it.",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frf-baf27ea1"
+  },
+  {
+    "text": "Kneel in front of the other player with your hands behind your back and tell them from down there exactly what you'd want to be told to do. They let you up once you've finished.",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frf-78b4a388"
+  },
+  {
+    "text": "Lift your top to the ribs, take the other player's hand if they'll give it, and press it flat against your bare skin. Keep it there while you describe the last time somebody made you beg. You decide where their hand rests, they decide whether it's there at all.",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frf-847582ea"
+  },
+  {
+    "text": "Offer yourself for one open-handed smack from the other player. You name where it lands, nothing above the neck, and you name how hard. They can say no. If they do it, you count it out loud and thank them for it.",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frf-68d33ff6"
+  },
+  {
+    "text": "Blindfold yourself with something from this room and put your hands behind your back. The other player may then touch you in up to three places, one at a time, and you name each place out loud as it happens. Say stop whenever you want. The blindfold comes off after the third.",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frf-1fddcb78"
+  },
+  {
+    "text": "Go and get a toy, yours or whatever this house can offer, and put it in the other player's hand. Tell them the setting, the speed, and the exact spot on you it works best. If they're willing, they hold it there over your clothes for a slow count of fifteen while you say out loud what it's doing to you. You call time whenever you want.",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frf-69f5fdfb"
+  },
+  {
+    "text": "Sit in the other player's lap facing them, if they'll have you there. While you're on them, they ask you two questions about how you like to be held and what you like said to you, and you answer both properly. You get up once the second answer is finished.",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frf-b1c0ea48"
+  },
+  {
+    "text": "Give the other player control of your next orgasm. From now until you go to sleep tonight, you don't finish without their say so, and they have to give it or refuse it before you go to bed. Say to their face, right now, what you'd have been doing tonight if this card hadn't come up.",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frf-909289af"
+  },
+  {
+    "text": "Say the filthiest thing you'd want to be called in bed, out loud, in your normal voice. Then ask the other player to say it back to your face. They can refuse. If they do it, neither of you laughs it off.",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frf-a1dacb17"
+  },
+  {
+    "text": "Find something in this room that could tie a wrist: a belt, a scarf, a dressing gown cord. Put it in the other player's hands, tell them which wrist you want it on and how tight, and if you both want it there they put it on you. It comes off the moment you say so.",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frf-7d6ff3f7"
+  },
+  {
+    "text": "Stand up and let the other player put you exactly how they want you: which way you face, where your hands go, how far apart your feet are. They may move you by hand if you're happy to be moved, otherwise you follow their words. They get one adjustment after they've looked at you, and you hold it while they say what the pose makes them think of.",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frf-4d249678"
   }
 ]

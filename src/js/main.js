@@ -18,7 +18,12 @@ async function loadData() {
   ];
   await Promise.all(files.map(async name => {
     const res = await fetch(`/data/${name}.json`);
-    DATA[name.replace(/-/g, '_')] = await res.json();
+    const items = await res.json();
+    // Cards are tracked by stable id, not array index, so the decks can be
+    // edited without disturbing anyone's in-progress game. Backfill any card
+    // that shipped without one.
+    items.forEach((item, i) => { if (!item.id) item.id = `${name}-${i}`; });
+    DATA[name.replace(/-/g, '_')] = items;
   }));
 }
 
@@ -80,6 +85,11 @@ function loadSession() {
     // Only restore if there's meaningful progress
     if (!saved.mode || !saved.players?.length) return false;
     Object.assign(state, saved);
+    // Sessions saved before cards had stable ids stored array indices. Those
+    // numbers point at different cards once the decks change, so drop them and
+    // keep the rest of the game. Worst case the player sees one repeat.
+    if (state.usedQuestions.some(v => typeof v !== 'string')) state.usedQuestions = [];
+    if (state.usedForfeits.some(v => typeof v !== 'string')) state.usedForfeits = [];
     return true;
   } catch (_) {
     return false;
@@ -143,16 +153,16 @@ function getNextQuestion() {
     eligible = q => allowedTypes.includes(q.type);
   }
 
-  let pool = source.filter((q, i) =>
-    !state.usedQuestions.includes(i) && eligible(q) && intensityAllows(q)
-  );
+  const unused = q => !state.usedQuestions.includes(q.id);
+
+  let pool = source.filter(q => unused(q) && eligible(q) && intensityAllows(q));
   // Fallback: relax the intensity filter rather than dead-ending
   if (!pool.length) {
-    pool = source.filter((q, i) => !state.usedQuestions.includes(i) && eligible(q));
+    pool = source.filter(q => unused(q) && eligible(q));
   }
   // Fallback (couple): relax the role filter to neutrals
   if (!pool.length && state.mode === 'couple') {
-    pool = source.filter((q, i) => !state.usedQuestions.includes(i) && q.type === 'neutral');
+    pool = source.filter(q => unused(q) && q.type === 'neutral');
   }
   // Fallback: reset the cycle
   if (!pool.length) {
@@ -164,8 +174,7 @@ function getNextQuestion() {
   const picked = pickPrioritisingNew(pool);
   if (!picked) return { text: 'No questions available. Reset and try again!', type: 'neutral' };
 
-  const idx = source.indexOf(picked);
-  if (idx >= 0 && !state.usedQuestions.includes(idx)) state.usedQuestions.push(idx);
+  if (!state.usedQuestions.includes(picked.id)) state.usedQuestions.push(picked.id);
 
   return picked;
 }
@@ -173,9 +182,10 @@ function getNextQuestion() {
 function getNextForfeit() {
   const bank = state.mode === 'couple' ? DATA.couple_forfeits :
                state.mode === 'group' ? DATA.group_forfeits : DATA.friends_forfeits;
+  const unused = f => !state.usedForfeits.includes(f.id);
 
-  let pool = bank.filter((f, i) => !state.usedForfeits.includes(i) && intensityAllows(f));
-  if (!pool.length) pool = bank.filter((f, i) => !state.usedForfeits.includes(i));
+  let pool = bank.filter(f => unused(f) && intensityAllows(f));
+  if (!pool.length) pool = bank.filter(unused);
   if (!pool.length) {
     state.usedForfeits = [];
     pool = bank.filter(f => intensityAllows(f));
@@ -183,8 +193,7 @@ function getNextForfeit() {
   }
 
   const picked = pickPrioritisingNew(pool);
-  const idx = bank.indexOf(picked);
-  if (idx >= 0) state.usedForfeits.push(idx);
+  if (picked && !state.usedForfeits.includes(picked.id)) state.usedForfeits.push(picked.id);
 
   return picked;
 }

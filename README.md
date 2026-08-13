@@ -24,21 +24,72 @@ Question `type` values: `neutral`, `D_asks_S`, `S_asks_D` (couple role filtering
 
 ## Content rules (IMPORTANT when adding new cards)
 
-Every item supports two optional fields on top of `text`/`type`:
+Every item carries `text`, an `id`, and optionally `type`:
 
+- **`id`** (string, required): a stable identifier. The picker tracks which cards
+  a player has seen **by id, not by array position**, so cards can be added,
+  edited or deleted freely without disturbing anyone's in-progress game. Generate
+  it as `<deck-initials><q|f>-<first 8 chars of the sha1 of the text>`, e.g.
+  `coq-1a2b3c4d`. Change the text, change the id.
 - **`batch`** (integer): the content drop it arrived in. Legacy items have no
-  `batch` field and count as batch 1. The current newest batch is **2**.
+  `batch` field and count as batch 1. The current newest batch is **3**.
   **The rule: whenever you add new content, give every new item the next batch
-  number (3, then 4, and so on).** The picker always draws randomly from the
+  number (4, then 5, and so on).** The picker always draws randomly from the
   newest unused batch first, so returning players see fresh cards straight away.
-  Cards from the newest batch get a "✨ New" pill in the UI automatically.
+  Cards from the newest batch get a "New" sticker in the UI automatically.
 - **`intensity`** (`"tame"` | `"spicy"` | `"wild"`): the heat level of the card.
   Tagged cards only appear at that level or above (tame < spicy < wild).
   Untagged legacy items appear at every intensity. Tag all new content.
 
-Append new items to the END of each JSON array. Never reorder or delete existing
-entries mid-array: used-card tracking stores array indices in players' saved
-sessions.
+## The bar for new cards
 
-House style for card text: British English, no em or en dashes, straight
-apostrophes, cheeky but consent-forward.
+This game is deliberately filthier than anything sold on a high street. That is
+the product. The failure mode to avoid is a card that lets a player be witty,
+romantic or embarrassed while staying erotically unexposed.
+
+**The compulsory erotic payload test.** It must be impossible to complete a card
+honestly without naming or performing at least one of: a sexual act, a kink, a
+turn-on, a fantasy, a boundary, a role, a body preference, sexual history,
+explicit desire involving someone present, or erotic physical interaction. If the
+card could be played unchanged at a work social, it does not belong here.
+
+The tiers are all adult. **tame** means no contact and no undressing, but the
+answer still has to disclose something explicitly sexual; it never means "generic
+party game". **spicy** adds contact, undressing, positioning or a concrete
+proposition aimed at another player. **wild** means surrender, performance,
+sustained control, public selection, or a card that changes how the night ends.
+A talk-only card is at most spicy however filthy its subject: contact,
+performance or surrender is what lifts a tier.
+
+Good cards are specific (they name the act, the kit, the body part, the count),
+implicate someone present, hand an important variable to another player, and
+leave residue that persists past the turn. A twenty-second performance that ends
+cleanly and resets the room is a weak card.
+
+## Safety line for forfeits
+
+These make the game better rather than tamer, and are not negotiable:
+
+- Everything stays between the consenting adults actually playing. Never involve
+  someone who is not in the game.
+- Kinks with real injury risk (anything restricting airway or breathing) may be
+  discussed in a question but never instructed as a forfeit.
+- A forfeit acting on another player's body needs an explicit willingness clause,
+  and the binding instruction falls on the person whose body it is, never on the
+  person being asked to touch.
+- Physical counts are capped at a fixed number, never scaled by how many people
+  are in the room.
+- No blank cheques: every transfer of control needs a stated ceiling and a stated
+  end point.
+- Never gate a player's movement, toilet access or drink, and never make
+  declining a card cost the person who declined.
+
+## House style
+
+British English, no em or en dashes, straight apostrophes. Cheeky, direct and
+confident; never coy or clinical. Forfeits are imperatives. A question card may
+be phrased as an imperative ending in a full stop ("Name the order you'd obey
+instantly.") where that reads better than forcing a question mark; both forms are
+correct.
+
+Append new items to the END of each JSON array.

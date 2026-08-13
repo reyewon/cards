@@ -1,532 +1,740 @@
 [
   {
     "text": "Who in this group do you think has the wildest, unspoken fantasy?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-a905f559"
   },
   {
     "text": "If you had to trust one person here with a kinky secret, who would it be and why?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-09c3aa2e"
   },
   {
     "text": "Point to the person you think gives the best hugs. That person must now give a hug to the person on their left.",
-    "type": "target"
+    "type": "target",
+    "id": "grq-586ac53a"
   },
   {
     "text": "Who here do you think would be most likely to survive a zombie apocalypse? Why?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-11736150"
   },
   {
     "text": "Ask a question to the person you know the least in this group.",
-    "type": "target"
+    "type": "target",
+    "id": "grq-14d62cd6"
   },
   {
     "text": "If you could pair up any two people in this room for a devious prank, who would they be and what's the prank?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-26e2dc3b"
   },
   {
     "text": "Who in the group do you think has the most embarrassing 'guilty pleasure' song?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-09fb48db"
   },
   {
     "text": "What is your first impression of the person sitting opposite you?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-8ec3c7d2"
   },
   {
     "text": "Who here would be the most likely to get away with a crime? What would the crime be?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-4ba507c7"
   },
   {
     "text": "If this group was a band, who would play which instrument?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-6fda98bb"
   },
   {
     "text": "What's a secret skill you have that would surprise everyone here?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-9cfc8398"
   },
   {
     "text": "Who in the group do you think has the best 'poker face'?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-67be6419"
   },
   {
     "text": "Who here do you think has been in the most fist-fights?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-723bef0b"
   },
   {
     "text": "If you could trade lives with someone in this group for a day, who would it be?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-b59b34e1"
   },
   {
     "text": "Who do you think has the dirtiest laugh? Make them laugh to prove it.",
-    "type": "target"
+    "type": "target",
+    "id": "grq-e0c4ef43"
   },
   {
     "text": "What's one thing you think everyone in this group has in common?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-5f3bd9dc"
   },
   {
     "text": "Who here is most likely to talk their way out of a speeding ticket?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-75b4d4f4"
   },
   {
     "text": "If the group had to create a secret handshake right now, what would be the first move?",
-    "type": "group"
+    "type": "group",
+    "id": "grq-9225b268"
   },
   {
     "text": "Who in the group would you want to be your 'phone a friend' in a pub quiz?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-dcd63820"
   },
   {
     "text": "What's a rumour you could start about the person to your left?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-0f637070"
   },
   {
     "text": "Who here do you think has the most tattoos (or hidden ones)?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-989a8a78"
   },
   {
     "text": "If you were to cast everyone in this room in a movie, what genre would it be and what roles would they play?",
-    "type": "group"
+    "type": "group",
+    "id": "grq-506062c1"
   },
   {
     "text": "Who in the group seems the most innocent, but you suspect is the wildest?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-e2172b0c"
   },
   {
     "text": "Who in this room do you think has the most experience with anal play?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-f891b3c4"
   },
   {
     "text": "If you had to restrain one person in this room, who would it be and what would you use?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-cf1e77e0"
   },
   {
     "text": "If you had to make out with one person in this room right now, who would it be?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-6c45d61f"
   },
   {
     "text": "Who in the group do you think has the kinkiest search history?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-ef080c1f"
   },
   {
     "text": "Who here looks like they'd enjoy being (consensually) degraded?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-caa8f5bf"
   },
   {
     "text": "If you could watch any two people in this room hook up, who would you pick?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-12a09ee9"
   },
   {
     "text": "Who do you think has the best 'O' face? That person must now demonstrate it.",
-    "type": "target"
+    "type": "target",
+    "id": "grq-7393915d"
   },
   {
     "text": "Point to the person you think would be the best at dirty talk.",
-    "type": "target"
+    "type": "target",
+    "id": "grq-e2a98f2e"
   },
   {
     "text": "If you had to choose one person to share a partner with for a night, who would it be?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-bc8e7d19"
   },
   {
     "text": "Point to the person you think would be the most fun at a sex party.",
-    "type": "target"
+    "type": "target",
+    "id": "grq-f8c97dc5"
   },
   {
     "text": "Who here do you think has the most sex toys?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-906ee21b"
   },
   {
     "text": "If you had to give someone here a lap dance, who would you choose?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-011b4c34"
   },
   {
     "text": "If you had 'one free pass' to sleep with someone in this room, who would you pick?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-40e93969"
   },
   {
     "text": "Point to the person you'd most like to spank.",
-    "type": "target"
+    "type": "target",
+    "id": "grq-bb309d1d"
   },
   {
     "text": "If you had to be handcuffed to one person in this room for 24 hours, who would you choose?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-982ef8b8"
   },
   {
     "text": "Who here seems like they would be into some form of impact play (spanking, flogging, etc)?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-9efe6580"
   },
   {
     "text": "If you could have a threesome with any two people in this room, who would they be?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-c42d5507"
   },
   {
     "text": "Who here do you think has the weirdest turn-on?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-dfb427b3"
   },
   {
     "text": "Who in the group would you want to be your 'Dom' for an evening?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-9de9ec8d"
   },
   {
     "text": "Who here would you most like to see strip?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-86762dbb"
   },
   {
     "text": "Point to the person you think would be the most adventurous in bed.",
-    "type": "target"
+    "type": "target",
+    "id": "grq-a3ecf384"
   },
   {
     "text": "Who in the group do you think has a secret fetish no one knows about?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-e55cc961"
   },
   {
     "text": "If you had to lick food off one person's body, who would you choose?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-454b34f0"
   },
   {
     "text": "Which person in the room do you think would be the most demanding in bed?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-64e5bae7"
   },
   {
     "text": "Point to the person you think has the sexiest voice.",
-    "type": "target"
+    "type": "target",
+    "id": "grq-dc40f713"
   },
   {
     "text": "If you had to go down on one person in this room, who would it be?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-ddc2733c"
   },
   {
     "text": "Who in this room would you let tie you up?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-26cbf1f5"
   },
   {
     "text": "Point to the person with the sexiest lips.",
-    "type": "target"
+    "type": "target",
+    "id": "grq-2934b6d9"
   },
   {
     "text": "Who here do you think would be the best at roleplaying?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-37453495"
   },
   {
     "text": "If you could only use your mouth on one person in this room for 10 minutes, who would you choose?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-f1ea46ec"
   },
   {
     "text": "Who here looks like they'd be into being praised and called a 'good girl/boy'?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-2ab09273"
   },
   {
     "text": "Point to the person you think has the best ass in the room.",
-    "type": "target"
+    "type": "target",
+    "id": "grq-3913739a"
   },
   {
     "text": "Who in the group would you want to be your 'sub' for an evening?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-19a6761b"
   },
   {
     "text": "If you had to watch porn with one person in this room, who would it be?",
-    "type": "target"
+    "type": "target",
+    "id": "grq-2c2a2753"
   },
   {
     "text": "Point to the person you'd most like to bite (gently!).",
-    "type": "target"
+    "type": "target",
+    "id": "grq-f190cdf2"
   },
   {
     "text": "Everyone goes around the circle and says who in the group they'd most like to kiss.",
-    "type": "group"
+    "type": "group",
+    "id": "grq-453a9c0d"
   },
   {
     "text": "Everyone reveals their biggest sexual turn-on.",
-    "type": "group"
+    "type": "group",
+    "id": "grq-6078bb46"
   },
   {
     "text": "The group must decide on one person to take a forfeit. That person takes the next forfeit card.",
-    "type": "group"
+    "type": "group",
+    "id": "grq-77a47d6f"
   },
   {
     "text": "Everyone removes one item of clothing.",
-    "type": "group"
+    "type": "group",
+    "id": "grq-7a40a09e"
   },
   {
     "text": "Go around the circle. Each person describes their 'type' in three words.",
-    "type": "group"
+    "type": "group",
+    "id": "grq-5b981596"
   },
   {
     "text": "The group must invent a new, kinky rule that applies for the next 5 rounds.",
-    "type": "group"
+    "type": "group",
+    "id": "grq-49c55e54"
   },
   {
     "text": "Everyone writes down a secret fantasy on a piece of paper. Shuffle them, and read them aloud. The group has to guess who wrote which fantasy.",
-    "type": "group"
-  },
-  {
-    "text": "Who here would survive longest in a silent retreat, and who'd be thrown out on day one?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Which two people in this room would make the most chaotic couple?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Who in this group gives the best hugs, and who is due to receive one right now?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "If this group formed a band, who's the diva, who's the drummer, and who gets kicked out first?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Who here is most likely to accidentally text something scandalous to the family group chat?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Point to the person most likely to become mysteriously rich with no explanation.",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Who in this room would you trust to plan your stag or hen do, and who would you ban from it?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Point to the person you'd most want beside you in a zombie apocalypse, then the person you'd trip to escape.",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Who in this group is hiding a secret talent, and what do you think it is?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Who in this room would you let read your diary, if you absolutely had to pick someone?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Who here do you think gives the best compliments, and can they prove it right now, about you?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Who in this group is most likely to cry at a wedding, and who's most likely to cause a scene at one?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "If someone here wrote a tell-all memoir, whose would you pre-order?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Who in this room would run the best 'how to flirt' masterclass, and who needs to attend it twice?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Who here would you nominate to give a toast at your wedding with zero preparation?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Who in this group would be the first to break in a 'quiet game', and what would break them?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "If one person in this room challenged you to a dance-off right now, who do you hope it is?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 2
+    "type": "group",
+    "id": "grq-2374078f"
   },
   {
     "text": "Who here has the most suspicious 'recently deleted' folder?",
     "type": "target",
     "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Who in this group flirts the most without realising they're doing it?",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Which person here would have the most interesting search history?",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Who in this room do you think is the best kisser? Educated guesses welcome.",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "grq-1ef452ae"
   },
   {
     "text": "Point to the person whose voice you'd most like narrating an audiobook... and the one you'd allow to read you something filthier.",
     "type": "target",
     "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Who here would be first to suggest skinny dipping, and who'd already be in the water?",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "grq-43240469"
   },
   {
     "text": "If you had to be handcuffed to one person here for 24 hours, who, and why them?",
     "type": "target",
     "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "grq-8bdd1331"
   },
   {
     "text": "Point to the person most likely to have a kink nobody here could guess.",
     "type": "target",
     "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Who here would you most want to see in charge for an evening, fully in charge?",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Which person in this room would you most like to swap bodies with for a day, and what's the first thing you'd do?",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Point to the person whose 'work voice' you'd most like to hear in a very different context.",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Point to the person you'd most like to be stuck in a lift with for an hour. Explain the hour.",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Who here has the most dangerous smile, the one that gets people into trouble?",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "If you had to whisper one secret to someone in this room right now, who would you choose?",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Point to the person most likely to say something absolutely feral in the next hour.",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Which person in this room would you most trust with a secret that could ruin you?",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Who here do you think has said your name most recently when you weren't in the room, and was it good or bad?",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "If you could pause time and rearrange where everyone in this room is sitting, what would you change?",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "grq-43ff2249"
   },
   {
     "text": "Who in this room do you think would be the most generous lover, purely from vibes?",
     "type": "target",
     "intensity": "wild",
-    "batch": 2
-  },
-  {
-    "text": "Point to the person whose hands you've noticed. Don't explain. Let it sit.",
-    "type": "target",
-    "intensity": "wild",
-    "batch": 2
+    "batch": 2,
+    "id": "grq-0fde480e"
   },
   {
     "text": "Who here would you most like to receive a voice note from at midnight, and what do you hope it says?",
     "type": "target",
     "intensity": "wild",
-    "batch": 2
-  },
-  {
-    "text": "Everyone points, on the count of three, at the person most likely to end up famous. Majority wins; they must give an acceptance speech.",
-    "type": "group",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Go around the circle: everyone shares the most British thing that's ever happened to them.",
-    "type": "group",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "In turn, everyone gives the person on their left a compliment that starts with the first letter of that person's name.",
-    "type": "group",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Everyone puts their phone face-up on the table for one round. First person to grab theirs takes a forfeit.",
-    "type": "group",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Everyone writes down their guess for who in the room has kissed the most people here. Reveal together.",
-    "type": "group",
-    "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "grq-88bc2b01"
   },
   {
     "text": "On the count of three, everyone points at the person they'd most want on their team in a flirting competition. Whoever gets the most votes must demonstrate.",
     "type": "group",
     "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "grq-01259041"
   },
   {
     "text": "Everyone closes their eyes. The asker taps one person, who must give their most convincing fake moan. Eyes open: guess who it was.",
     "type": "group",
     "intensity": "wild",
-    "batch": 2
+    "batch": 2,
+    "id": "grq-f9641d37"
+  },
+  {
+    "text": "Ask the player opposite you what they sound like when they come, then tell them whether you would book the room next door or the one at the far end of the corridor.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-d5871912"
+  },
+  {
+    "text": "Write down your guess for how many times the player opposite you has faked it. They write down the real number and what they were faking it for. Reveal both at once.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-586e840e"
+  },
+  {
+    "text": "Somebody here has definitely had sex in a car park. Name your suspect, and describe the position.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-79d85538"
+  },
+  {
+    "text": "Round the circle, everybody names the body part they most want somebody's mouth on and the exact thing they want done to it once it is there. Then the room decides who sold it hardest, and that player takes the next card.",
+    "type": "group",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-2e6d7c30"
+  },
+  {
+    "text": "Ask the player opposite you what they would want done to them first, and where on them it lands.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-42f137e2"
+  },
+  {
+    "text": "Who here would you let watch, and who would you want holding the camera?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-8408c61c"
+  },
+  {
+    "text": "What did you clock on the player to your left within ten seconds of walking in, and what did you picture doing with it? Say it to them, not to the room.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-c212f847"
+  },
+  {
+    "text": "If you had to teach one person here exactly how you like being touched, who gets the lesson and how long does it take?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-7e8a1fce"
+  },
+  {
+    "text": "The room picks two players. Say which of the pair you would rather have begging you, what filthy thing they are begging for, and what they have to do before they get it.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-124c6d0d"
+  },
+  {
+    "text": "Tell the player on your right exactly how you want your hair pulled, and how hard.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-05a16736"
+  },
+  {
+    "text": "The player on your left gets three guesses at where on your body you want a hand right now. Each guess out loud and specific, and you tell them warmer or colder until they land on it.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-61c3d0c2"
+  },
+  {
+    "text": "Of everyone in this room, whose knees would you most like to see the carpet marks on?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-dc3f945c"
+  },
+  {
+    "text": "Tell the player to your left the one filthy word you would want them saying into your ear, and say it to them at the volume you would want it.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-5e08d776"
+  },
+  {
+    "text": "Say you were wearing a vibrator tonight and both the players either side of you wanted the remote. Pick which one gets it, tell them the setting they are not allowed to touch, and let the other one say what they would have done with it instead.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-71a4b780"
+  },
+  {
+    "text": "Tell the player on your right what is in the message on your phone that would end you if the wrong person read it, word for word.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-b2b5e7a6"
+  },
+  {
+    "text": "You are letting one person here mark you somewhere only you would see for a week. Who is it, and where?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-b62d18b7"
+  },
+  {
+    "text": "The player on your left is dressing you for a night out you cannot get out of. Tell them the one thing you would want left off you, then let them overrule it.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-e5a8c7b6"
+  },
+  {
+    "text": "Pick someone here and tell them exactly how you would have them: position, place, and how long you would take over it.",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-90543719"
+  },
+  {
+    "text": "You get eight minutes in the next room with one person here and the door locked. Who, and what is happening at minute seven?",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-1d504c47"
+  },
+  {
+    "text": "Who in this room would you most want to be told no by, over and over, until they decided you had earned it?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-af392cb8"
+  },
+  {
+    "text": "Which person here would you let clamp a hand over your mouth, and which one would you want to negotiate something rougher with first?",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-a04c42b4"
+  },
+  {
+    "text": "What is the exact sentence you would want the player to your right saying while they got you off? Say it out loud, to them.",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-e45a35f2"
+  },
+  {
+    "text": "If the group could make one person here do one filthy thing to you tonight, who do you pick and what are they doing?",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-ce472457"
+  },
+  {
+    "text": "Everybody get up and form a line in order of how long it has been since you last had sex, longest at one end. Sort it out by talking, no phones, then the two at the long end each name the act they have been going without and who here they would ask for it. Sit back down in that order.",
+    "type": "group",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-2d3b36b2"
+  },
+  {
+    "text": "On three, everyone points at whoever they think has had sex somewhere they could have been arrested. Most fingers tells the room the story, then names who here they would risk it with next.",
+    "type": "group",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-9b453ba6"
+  },
+  {
+    "text": "One at a time, everyone confesses the last time they got themselves off thinking about somebody in this room. If you have never done it, say so, and that counts. Only one lie is allowed the whole way round, and the room has to work out who told it.",
+    "type": "group",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-54347f9a"
+  },
+  {
+    "text": "Limits round. Going clockwise, every player names one act that is off the table for them tonight, and one act they are quietly hoping somebody suggests. No explanations owed either way, and the room is expected to remember both.",
+    "type": "group",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-9325897c"
+  },
+  {
+    "text": "On three, with nobody looking around first, everybody says out loud a kink they have never done and would try tonight if the room said yes. Talk over each other, then work out between you which two of you came closest to matching.",
+    "type": "group",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-a25a8072"
+  },
+  {
+    "text": "Ranking round. Between you, put every player in order, most likely to give an order in bed down to most likely to follow one. Nobody may rank themselves, and once the order is settled the two at either end say what they actually do.",
+    "type": "group",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-70f8ec0a"
+  },
+  {
+    "text": "Hands up all at once, no counting, no looking round first: who here has shared a partner, watched one get fucked, or been the one on show? Every hand that goes up owes the room a sentence on how it actually went.",
+    "type": "group",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-5eeb32f1"
+  },
+  {
+    "text": "Pick one player without telling them why. The rest of the room then guesses out loud, in detail, what that person wants done to them and how rough they want it. They sit through all of it in silence, then tell you who got closest and where you were all wrong.",
+    "type": "group",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-7188c831"
+  },
+  {
+    "text": "Everybody writes down the name of one person in this room they would fuck tonight, or writes nobody, folds it, and drops it in the middle. Read the lot out. Any pair who named each other have to decide, in front of everyone, whether anything happens about it.",
+    "type": "group",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-fdb6ea75"
+  },
+  {
+    "text": "You and the player opposite both write down the kink you have wanted for years and never once asked anybody for. Swap, read the other one out loud, and each say what has stopped you asking.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-256d6427"
+  },
+  {
+    "text": "Put this to the player on your left, then answer it yourself: watching your partner get fucked by somebody else, or hearing every filthy detail afterwards with nothing left out, which one actually does it for you?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-66a127b5"
+  },
+  {
+    "text": "Rope, a blindfold, or a hand in your hair. Make the player on your right pick one, then describe what they want done to them with it.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-29e53513"
+  },
+  {
+    "text": "Put it to the player two seats to your left: for the five minutes straight after they come, what state are they in and what do they need from whoever is nearest?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-e99b4fd1"
+  },
+  {
+    "text": "You and the player opposite, on three, both say collar or lead. If you have picked the same one, sort out between you who is taking the other, and whoever ends up holding the lead gives their first order out loud.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-82560699"
+  },
+  {
+    "text": "The player opposite you is opening their relationship tomorrow. What is the one rule they would insist on, and which of their rules would you be first to break?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-3b3fc442"
+  },
+  {
+    "text": "Pick two players. Tell the room which of that pair would have their mouth on the other first, and where, then let the two of them say whether you had it the right way round.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-006c5595"
+  },
+  {
+    "text": "Somebody here is getting pegged and somebody here is doing the pegging. Name both, then say which of the two jobs you would take if the room insisted.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-007741b8"
+  },
+  {
+    "text": "Ask the player on your right whether they have ever fucked somebody while a partner watched or listened from the next room. If they have not, they name who here they would want standing in the doorway for it.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-40cd56bb"
+  },
+  {
+    "text": "Guess out loud how the player on your left likes being finished off, in proper detail, then sit there while they correct every part you got wrong.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-3deaa498"
+  },
+  {
+    "text": "A week with no coming at all, or a week where somebody else decides when you do. Put it to the player opposite, make them choose, and make them say which day they would crack.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-ff39a340"
+  },
+  {
+    "text": "Name the two people here you would want either side of you in a bed, then say which one is on their knees and which one is behind you. Both of them get right of reply.",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-e55aa9e5"
+  },
+  {
+    "text": "Ask the player on your left to describe what they taste like, in their own words, then name who in this room they would most want finding out for themselves.",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-047f7c47"
+  },
+  {
+    "text": "Get an answer out of the player opposite you: watched, or doing the watching, which one gets them off quicker? Then tell them which of the two you would want them doing while you had a hand down your own trousers.",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-d7f88d55"
+  },
+  {
+    "text": "Ask the player on your right who here they would want as a third, and who they would want holding their hand through it. Both people named have to say out loud whether they are up for it.",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-d78d0f68"
+  },
+  {
+    "text": "Praise or filth, which one actually gets you there? Say the exact sentence you would want said to you at the moment you come, in the voice you want it said in, then name the person here you would most want saying it.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-f325c9f1"
+  },
+  {
+    "text": "Put it to the player opposite: what is the one thing they would happily do for somebody all night, on their knees and asking for nothing back? Then tell them whether you would rather be handed that job or be the one handing it out, and what your version of it looks like.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-5837419e"
+  },
+  {
+    "text": "Wrists, ankles, or your eyes covered: which one would undo you fastest? Say which, say what you would want done to you while you were like that, and name the one person here you would trust to take it off you.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-5963a316"
+  },
+  {
+    "text": "There is a word you want growled at you mid-fuck that you would deck somebody for using anywhere else. Say the word, say who here you would let use it, and say what they have to be doing to you at the time.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-da86485f"
   }
 ]

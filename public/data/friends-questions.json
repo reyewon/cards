@@ -1,462 +1,655 @@
 [
   {
     "text": "What's a misconception you think I might have about your sex life?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-7400cfed"
   },
   {
     "text": "Have you ever had a sexual experience that made you see yourself differently?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-8b3749a2"
   },
   {
     "text": "What's one thing you wish more people understood about sex or sexuality?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-22366b84"
   },
   {
     "text": "Describe a time you felt really confident and sex-positive.",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-2b66965e"
   },
   {
     "text": "What's the best or worst piece of sex advice you've ever received?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-3d9ae43c"
   },
   {
     "text": "Is there a sexual topic you've always been curious about but never researched?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-23c40285"
   },
   {
     "text": "What's your opinion on the way sex is portrayed in movies versus reality?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-a67c9cdd"
   },
   {
     "text": "What's a boundary you're proud of setting in a past relationship (romantic or sexual)?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-bfc74c96"
   },
   {
     "text": "If you could give your younger self one piece of advice about sex, what would it be?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-a68089e6"
   },
   {
     "text": "What does 'good sex' mean to you, beyond the physical act?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-c1e645de"
   },
   {
     "text": "Have you ever been surprised by something that turned you on?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-322ef8d0"
   },
   {
     "text": "What's one thing you've learned about consent that you think is really important?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-246522d0"
   },
   {
     "text": "How has your taste in partners (or play partners) changed over the years?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-3ef1d50d"
   },
   {
     "text": "What's a non-sexual activity that you find surprisingly intimate?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-a7ec0e61"
   },
   {
     "text": "What's the funniest thing that's ever happened to you during a sexual encounter?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-b28b8fe0"
   },
   {
     "text": "Do you think emotional connection is necessary for good sex? Why or why not?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-38c1a15d"
   },
   {
     "text": "What's a quality you really admire in a partner?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-b1eef33f"
   },
   {
     "text": "Have you ever faked an orgasm? If you're comfortable sharing, why?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-cb7c0677"
   },
   {
     "text": "What's something you find attractive that most people might not?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-90c2d60f"
   },
   {
     "text": "How important is communication about sex in a relationship to you?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-97335a97"
   },
   {
     "text": "What's a piece of media (book, movie, show) that shaped your view on love or sex?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-51e36404"
   },
   {
     "text": "What's a deal-breaker for you in any kind of relationship?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-17defd50"
   },
   {
     "text": "What's a fear you have about dating or relationships in general?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-b64c74c5"
   },
   {
     "text": "What's a sexual 'milestone' you think is overrated?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-2d7a5664"
   },
   {
     "text": "What's a green flag you look for in people?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-f73b2019"
   },
   {
     "text": "What's your honest, unfiltered opinion on anal sex, giving or receiving?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-6de9f7fd"
   },
   {
     "text": "If you had to be restrained, what would be your weapon of choice: ropes, cuffs, or something more creative?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-7e042456"
   },
   {
     "text": "What's a fetish you find fascinating, even if you're not sure you'd try it?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-468bba40"
   },
   {
     "text": "Describe a time you felt powerful and dominant sexually.",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-4eb23fa8"
   },
   {
     "text": "What's the most 'out-there' thing on your sexual bucket list?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-f028c5e9"
   },
   {
     "text": "Have you ever had a fantasy about being with more than one person at once? Describe it.",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-6a663334"
   },
   {
     "text": "What's the difference between a 'kink' and a 'deal-breaker' for you?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-623c053c"
   },
   {
     "text": "If you were to explore impact play, would you rather be the one giving or receiving the spanks?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-d0979aa1"
   },
   {
     "text": "What's a non-sexual scenario that you find incredibly arousing (e.g., watching someone cook, fix something)?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-c181c9fc"
   },
   {
     "text": "Have you ever fantasised about being with someone of a different gender than you usually go for?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-43019bc4"
   },
   {
     "text": "What's your favourite type of porn to watch, and what do you like about it?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-b11cdb51"
   },
   {
     "text": "Describe your ideal 'dirty weekend' away.",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-f6b90e84"
   },
   {
     "text": "What's a sexual skill you're proud of?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-123798a0"
   },
   {
     "text": "What's the kinkiest thing you've ever done in a public or semi-public place?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-ee7ce18f"
   },
   {
     "text": "How do you feel about praise or degradation during sex?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-f4887d90"
   },
   {
     "text": "What's the most surprising thing that's ever turned you on?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-a14e227d"
   },
   {
     "text": "If you could design a sex toy, what would it do?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-2ea471ea"
   },
   {
     "text": "What's your view on using food during sex?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-c449e66e"
   },
   {
     "text": "Have you ever had a sexual dream about me? You don't have to share details unless you want to.",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-3dfe904f"
   },
   {
     "text": "What's a piece of kinky gear you've always wanted to own?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-4fd5281f"
   },
   {
     "text": "What's your favourite body part on a potential partner to focus on?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-fb922301"
   },
   {
     "text": "Would you rather have incredibly passionate, rough sex or slow, sensual, intimate sex?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-4f4d49ae"
   },
   {
     "text": "What's a secret turn-on you've never told anyone before?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-20bbcfd4"
   },
   {
     "text": "Have you ever considered going to a sex club or a kink event?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-652e84d5"
   },
   {
     "text": "What's an assumption people might make about your sex life that's completely wrong?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-25d8205a"
   },
   {
     "text": "If you had a 'free pass' to do one kinky thing with no judgment, what would it be?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-4f934cea"
   },
   {
     "text": "What's your favourite outfit to feel sexy in?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-e1e9e86f"
   },
   {
     "text": "What's the hottest piece of media (book, movie, show) you've consumed recently?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-69730928"
   },
   {
     "text": "Do you prefer giving or receiving oral sex?",
-    "type": "neutral"
+    "type": "neutral",
+    "id": "frq-7f2e0ca9"
   },
   {
     "text": "If we were to experiment sexually, what's the first thing you'd want to try?",
-    "type": "neutral"
-  },
-  {
-    "text": "What's the weirdest place you've ever woken up after a night out, and was it worth it?",
     "type": "neutral",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Rate your own flirting out of ten, then defend that score with evidence.",
-    "type": "neutral",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "What's a compliment a stranger gave you that you still think about?",
-    "type": "neutral",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "If your love life were a reality show, what would this season's cliffhanger be?",
-    "type": "neutral",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "What's the most chaotic thing on your bucket list that you're actually serious about?",
-    "type": "neutral",
-    "intensity": "tame",
-    "batch": 2
+    "id": "frq-9712dc77"
   },
   {
     "text": "Which fictional character was your sexual awakening? Be honest.",
     "type": "neutral",
     "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "What's your most controversial opinion about dating apps?",
-    "type": "neutral",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "If you had to describe your type using only three emojis, which three?",
-    "type": "neutral",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "What's the best chat-up line ever used on you, and did it work?",
-    "type": "neutral",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "What's a green flag that instantly makes someone more attractive to you?",
-    "type": "neutral",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "What's the pettiest reason you've ever turned someone down?",
-    "type": "neutral",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Which of my exes (or situationships) did you least approve of, and why?",
-    "type": "neutral",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "Who was your worst kiss ever, and what made it so terrible?",
-    "type": "neutral",
-    "intensity": "tame",
-    "batch": 2
-  },
-  {
-    "text": "If you wrote an anonymous confession to a magazine about your love life, what would the headline be?",
-    "type": "neutral",
-    "intensity": "tame",
-    "batch": 2
+    "batch": 2,
+    "id": "frq-f0a50f30"
   },
   {
     "text": "What do you think people get wrong about you before they've slept with you?",
     "type": "neutral",
     "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "What's your honest body count reaction: proud, indifferent, or 'depends who's asking'?",
-    "type": "neutral",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Have you ever fancied someone completely inappropriate? How badly did it go?",
-    "type": "neutral",
-    "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "frq-1f6527c9"
   },
   {
     "text": "What's the most spontaneous hook-up decision you've ever made?",
     "type": "neutral",
     "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Talk me through your pre-date ritual, including the bits you'd never admit publicly.",
-    "type": "neutral",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Have you ever sent a risky text and instantly regretted it? What did it say?",
-    "type": "neutral",
-    "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "frq-73fa546b"
   },
   {
     "text": "What's your favourite thing anyone has ever said about you in bed?",
     "type": "neutral",
     "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "frq-da12f711"
   },
   {
     "text": "If you could anonymously find out one thing about anyone's sex life, whose and what?",
     "type": "neutral",
     "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "frq-3319a5ee"
   },
   {
     "text": "What's a kink you 'discovered' completely by accident?",
     "type": "neutral",
     "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "frq-27cdfd31"
   },
   {
     "text": "Describe your ideal one-night stand from door to door.",
     "type": "neutral",
     "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "frq-a7e56580"
   },
   {
     "text": "What's the closest you've come to hooking up with a friend, and what stopped you?",
     "type": "neutral",
     "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "Do you flirt with me? Be careful, I'll know if you're lying.",
-    "type": "neutral",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "What's the first thing you noticed about me, physically?",
-    "type": "neutral",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "If we matched on a dating app, what would your opening message to me be?",
-    "type": "neutral",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "What's your most reliable move, the one that basically always works?",
-    "type": "neutral",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "What's the most scandalous secret you're carrying for someone else right now? No names needed.",
-    "type": "neutral",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "What's your honest opinion on friends with benefits: genius or grenade?",
-    "type": "neutral",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "If we had to fake being a couple for a month for some contrived film-plot reason, what would be the hardest part?",
-    "type": "neutral",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "What's the most embarrassing thing in your camera roll right now? Descriptions accepted in place of evidence.",
-    "type": "neutral",
-    "intensity": "spicy",
-    "batch": 2
-  },
-  {
-    "text": "When did you last feel properly desired, and what did it do to your week?",
-    "type": "neutral",
-    "intensity": "spicy",
-    "batch": 2
+    "batch": 2,
+    "id": "frq-c750cfce"
   },
   {
     "text": "What would you guess I'm like in bed? Show your working.",
     "type": "neutral",
     "intensity": "wild",
-    "batch": 2
+    "batch": 2,
+    "id": "frq-e4cdd3da"
   },
   {
     "text": "Have you ever thought about me while... distracted? You can just answer yes or no.",
     "type": "neutral",
     "intensity": "wild",
-    "batch": 2
-  },
-  {
-    "text": "What's a boundary you'd want us to agree on if we ever did cross a line?",
-    "type": "neutral",
-    "intensity": "wild",
-    "batch": 2
+    "batch": 2,
+    "id": "frq-35133624"
   },
   {
     "text": "What's the naughtiest thing you've done in the place you currently live?",
     "type": "neutral",
     "intensity": "wild",
-    "batch": 2
+    "batch": 2,
+    "id": "frq-f222df15"
   },
   {
     "text": "What's something sexual you're curious about but would only try with someone you completely trust?",
     "type": "neutral",
     "intensity": "wild",
-    "batch": 2
+    "batch": 2,
+    "id": "frq-d113d50b"
   },
   {
-    "text": "If tonight went completely off the rails, in the best way, what would tomorrow's debrief sound like?",
+    "text": "What have your neighbours heard you doing through the wall?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-c867e1b7"
+  },
+  {
+    "text": "What set you off the last time you got obviously turned on in public?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-0f1ba178"
+  },
+  {
+    "text": "What lives in your bedside drawer? Go through it item by item, toys included.",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-92e16103"
+  },
+  {
+    "text": "How loud are you in bed, out of ten, and what was being done to you the last time you hit that number?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-16923008"
+  },
+  {
+    "text": "What got done to you, or by you, in the item of clothing you had to bin afterwards?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-2e980691"
+  },
+  {
+    "text": "How many people are walking around with a photo of you that you'd rather they deleted, and what exactly is in the one you'd most want back?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-f821f645"
+  },
+  {
+    "text": "Where's the strangest place you've had to sort yourself out quietly?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-463a7142"
+  },
+  {
+    "text": "Who in your life would be most horrified by what you're actually into, and which detail would finish them off?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-6274e8c6"
+  },
+  {
+    "text": "What position do you actually want instead of the one you fake enthusiasm for?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-6e7299bc"
+  },
+  {
+    "text": "What's the fantasy that keeps coming back uninvited every few months? Who's in it, and what happens?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-4bc4d82e"
+  },
+  {
+    "text": "Who have you swapped somebody for in your head during sex?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-7aeeae3e"
+  },
+  {
+    "text": "What's the closest you've come to properly begging in bed, and what were you begging for?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-b6675bdf"
+  },
+  {
+    "text": "Who last used you in bed exactly the way you like being used, and what did it involve?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-c30ff605"
+  },
+  {
+    "text": "What have you always wanted done to you but been too polite to ask for? Ask me for it now, in the words you'd actually use.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frq-8626aefe"
+  },
+  {
+    "text": "Which part of my body would you start with, and what would you do once you got there?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frq-c705f598"
+  },
+  {
+    "text": "Can you describe what you'd want my mouth doing to you without breaking eye contact once? Go on then.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frq-d26927bc"
+  },
+  {
+    "text": "When did you last want me to shut up and put my mouth on you?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frq-6ddd9e4f"
+  },
+  {
+    "text": "What would you let me get away with tonight that you wouldn't let anyone else get away with? Name the act, not the vibe.",
     "type": "neutral",
     "intensity": "wild",
-    "batch": 2
+    "batch": 3,
+    "id": "frq-ad61744e"
+  },
+  {
+    "text": "My mouth or my hands? Pick one out loud, then say exactly what you'd have it doing.",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frq-3e05acbf"
+  },
+  {
+    "text": "What have you done in bed that proves whether you're a dom, a sub or a switch?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-fcc8d4fe"
+  },
+  {
+    "text": "Sting, thud, or marks you can still feel sitting down the next day? Name your level, the implement, and exactly where on you it lands.",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-e2fbf0a5"
+  },
+  {
+    "text": "Some people come apart from being told they're good. Which sentence would do that to you, word for word, and what would you have to be doing at the time?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-092f8093"
+  },
+  {
+    "text": "Say out loud the exact words you'd want to have to use before you're allowed to touch someone, in the voice you'd have to say them in. Then say what you'd be asking permission to do to them.",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-c402a4ec"
+  },
+  {
+    "text": "Feet, latex, uniforms, spit, being watched, hair pulling: which one is genuinely yours? Name it, then talk us through the last time you actually got it, or the scene you'd want if you never have.",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-ac084127"
+  },
+  {
+    "text": "What arrangement would you actually want, monogamous or otherwise, if nobody was judging you? Say who'd be in it, what you'd be allowed to do with them, and the one act you'd keep for one person only.",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-fcadea4a"
+  },
+  {
+    "text": "What are the rules you'd want set if you were somebody's third tonight?",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-e908ce0f"
+  },
+  {
+    "text": "What's the longest you've been kept waiting before you were allowed to come? Say who was holding the permission, what they had you doing while you waited, and what you said to try to get it.",
+    "type": "neutral",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "frq-58339ad0"
+  },
+  {
+    "text": "Have you ever safeworded, or wanted to and talked yourself out of it? Say what was being done to you at the time, then give me the word you'd use with me.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frq-d632737d"
+  },
+  {
+    "text": "Say you got a hall pass tomorrow, properly signed off, no fallout. Am I on the shortlist, and what specifically would I be on it for?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frq-b49fef4d"
+  },
+  {
+    "text": "Would you rather I put my hand round the back of your neck, or flat across your arse? Choose one, say how hard, and say what you'd want said to you while it happened.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frq-987b0748"
+  },
+  {
+    "text": "If the two of us ended up in bed, which one of us is giving the orders? Answer, then say how long you'd let me have it before you took it off me.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frq-77f8394c"
+  },
+  {
+    "text": "What's one of my kinks? Guess out loud, then say what gave it away, and what you'd do about it if you're right.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frq-8d2c05eb"
+  },
+  {
+    "text": "What limit of mine would you most want to test first hand?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frq-7a75dbe9"
+  },
+  {
+    "text": "What would the sex have to be like before you'd agree to be my dirty secret?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frq-4fd2d099"
+  },
+  {
+    "text": "What do the first ten minutes look like if you get to be used, worshipped, or in charge of me tonight?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frq-cf2a8423"
+  },
+  {
+    "text": "If I had the say over when you're allowed to come, how long would you last before you started begging me for it? Say the number, then say the words you'd beg with, out loud.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frq-196036c5"
+  },
+  {
+    "text": "Where does doing things for somebody stop being a chore and start being a turn-on for you? Name the job you'd genuinely want to be given, then tell me what you'd want said to you while you did it, and what you'd be hoping it earned you off me afterwards.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frq-5d8dd0ed"
+  },
+  {
+    "text": "If I had rope on me tonight, where would you want it: wrists, thighs, chest, or your hands pinned behind your back? Pick one, then say what you'd want me doing to you while you couldn't move.",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frq-e6a2c4ef"
+  },
+  {
+    "text": "Can we negotiate this properly, right now, out loud: your three hard limits, the one thing you'd want most, and what never leaves this room?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frq-eac7c609"
+  },
+  {
+    "text": "Where would you let me leave a mark on you tonight that you'd have to explain to somebody tomorrow?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frq-7b149aed"
+  },
+  {
+    "text": "On your knees in front of me, in your head: do you want me quiet or talking the whole way through, and what are the first three words you want to hear?",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frq-fc6ad072"
+  },
+  {
+    "text": "How long have you been sitting on the thing you want to do to me? Say how long first, then say what it is, start to finish.",
+    "type": "neutral",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "frq-ebaa2995"
   }
 ]
