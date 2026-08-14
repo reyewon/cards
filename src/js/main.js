@@ -166,15 +166,6 @@ function pickFrom(pool, deck, deckSize) {
   return pickRandom(pool.filter(item => (item.batch || 1) === maxBatch));
 }
 
-// The "New" sticker marks latest-batch content. It only means something to
-// someone who has seen the older cards, so it rides on the same check.
-function isNewItem(item, source, deck) {
-  if (!item || typeof item !== 'object' || !item.batch) return false;
-  if (!isRegularPlayer(deck, source.length)) return false;
-  const maxBatch = Math.max(...source.map(i => i.batch || 1));
-  return maxBatch > 1 && item.batch === maxBatch;
-}
-
 function questionSource() {
   return state.mode === 'couple' ? DATA.couple_questions :
          state.mode === 'group' ? DATA.group_questions : DATA.friends_questions;
@@ -364,19 +355,17 @@ function renderCard(card) {
   const timerZone = $('timer-zone');
   resetTimer();
 
-  const badge = card.isNew ? '<span class="new-badge">New</span>' : '';
-
   if (card.type === 'forfeit') {
     qEl.classList.add('hidden');
     fEl.classList.remove('hidden');
-    fEl.innerHTML = `${badge}<span class="forfeit-title">${esc(card.performer)}'s forfeit</span><span class="forfeit-text">${esc(card.text)}</span>`;
+    fEl.innerHTML = `<span class="forfeit-title">${esc(card.performer)}'s forfeit</span><span class="forfeit-text">${esc(card.text)}</span>`;
     timerZone.classList.remove('hidden');
     dealAnimation(fEl, 'slap');
   } else {
     fEl.classList.add('hidden');
     timerZone.classList.add('hidden');
     qEl.classList.remove('hidden');
-    qEl.innerHTML = `${badge}${esc(card.text)}`;
+    qEl.textContent = card.text;
     dealAnimation(qEl, 'deal');
   }
   updateRoundChip();
@@ -439,7 +428,7 @@ function showGameScreen(isHost = true) {
 // ============================================================
 function drawQuestionCard() {
   const q = getNextQuestion();
-  return { type: 'question', text: q.text ?? q, isNew: isNewItem(q, questionSource(), questionDeck()) };
+  return { type: 'question', text: q.text ?? q };
 }
 
 function doNextQuestion() {
@@ -479,7 +468,7 @@ function doGroupReveal() {
     state.currentTargetIndex = t;
   }
 
-  const card = { type: 'question', text: q.text, isNew: isNewItem(q, DATA.group_questions, questionDeck()) };
+  const card = { type: 'question', text: q.text };
   const label = buildTurnLabel();
   state.currentCard = card;
   state.turnLabel = label;
@@ -502,7 +491,7 @@ function doForfeit() {
 
   const bank = state.mode === 'couple' ? DATA.couple_forfeits :
                state.mode === 'group' ? DATA.group_forfeits : DATA.friends_forfeits;
-  const card = { type: 'forfeit', text: f.text ?? f, performer, isNew: isNewItem(f, bank, forfeitDeck()) };
+  const card = { type: 'forfeit', text: f.text ?? f, performer };
   state.currentCard = card;
   saveSession();
 

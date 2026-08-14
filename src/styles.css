@@ -38,7 +38,6 @@
 
   --z-deck: 0;
   --z-card: 1;
-  --z-sticker: 2;
   --z-grain: 5;
 
   --safe-bottom: env(safe-area-inset-bottom, 0px);
@@ -873,25 +872,6 @@ body::after {
   0% { transform: translateY(-34px) scale(1.08) rotate(-2.5deg); opacity: 0; }
   55% { transform: scale(1.015) rotate(0.4deg); opacity: 1; }
   100% { transform: none; }
-}
-
-/* "New" sticker: gold foil, slightly askew */
-.new-badge {
-  position: absolute;
-  top: -10px;
-  right: 14px;
-  z-index: var(--z-sticker);
-  transform: rotate(-6deg);
-  background: var(--gold);
-  color: var(--card-ink);
-  font-family: var(--font-ui);
-  font-size: 0.66rem;
-  font-weight: 800;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  padding: 4px 11px;
-  border-radius: 999px;
-  box-shadow: 0 2px 8px oklch(0.08 0.03 350 / 0.5);
 }
 
 /* --- Timer ring --- */

@@ -37,12 +37,12 @@ Every item carries `text`, an `id`, and optionally `type`:
   number (4, then 5, and so on).**
 
   **Who gets newest-first.** Batch priority is not on for everybody. A player who
-  has barely played gets the whole deck shuffled flat, because "new" means
-  nothing to them and the newest cards are usually the ones that reach furthest,
-  so leading with them reads oddly. Once someone has drawn either 40% of a deck
-  or 75 cards from it, whichever comes first, the picker switches to drawing from
-  the newest batch first, and the "New" sticker starts appearing. That threshold
-  is roughly three or four proper sessions.
+  has barely played gets the whole deck shuffled flat, because the newest cards
+  are usually the ones that reach furthest, so leading with them makes the game's
+  opening hand its vaguest. Once someone has drawn either 40% of a deck or 75
+  cards from it, whichever comes first, the picker switches to drawing from the
+  newest batch first. That threshold is roughly three or four proper sessions.
+  Nothing in the UI labels a card as new; it just comes up sooner.
 
   Lifetime draws are recorded per deck in `localStorage` under `knt_seen_v1`,
   separately from the in-progress game, so it survives finishing a game and
