@@ -592,52 +592,52 @@
     "id": "cof-443e6155"
   },
   {
-    "text": "Own up: how many of your answers tonight were the cleaner version of the truth? Pick the dirtiest one and tell it properly now.",
+    "text": "Pick an answer you cleaned up tonight and tell it again filthy: whose hands, which hole, what noise you made.",
     "intensity": "tame",
     "batch": 3,
-    "id": "cof-3f73bef6"
+    "id": "cof-5e3d02c1"
   },
   {
-    "text": "List every place in this building you'd have the other player, in order of preference. 'The bed' does not count and you know it.",
+    "text": "Name every room in this place you'd have the other player, best first. The bed doesn't count.",
     "intensity": "tame",
     "batch": 3,
-    "id": "cof-93a05252"
+    "id": "cof-e2fcbbf2"
   },
   {
-    "text": "Read out tonight's plans for your own body in the most bored admin voice you can manage. Keep going, in detail, until the other player cracks, or two minutes, whichever comes first.",
+    "text": "In your flattest admin voice, talk them through what's happening to your body tonight. Keep going until they crack, or two minutes.",
     "intensity": "tame",
     "batch": 3,
-    "id": "cof-882a07fb"
+    "id": "cof-3c797836"
   },
   {
-    "text": "The other player names a body part. Describe out loud exactly what your mouth would do to it, in three stages: how you'd start, what you'd do once they stopped being polite about it, and how you'd finish.",
+    "text": "They name a body part. Describe exactly what your mouth would do to it, start to finish.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-a42df792"
+    "id": "cof-d54a3036"
   },
   {
-    "text": "Ask the other player for their hand and put it exactly where you want it. If they're happy there, they leave it there for a full minute while you both carry on talking normally.",
+    "text": "Take the other player's hand and put it exactly where you want it. If they're up for it, it stays a minute.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-301f1734"
+    "id": "cof-9d3318cf"
   },
   {
-    "text": "Lower one strap or undo one button every time the other player answers a question, for the next three questions. Wearing neither, take something off instead. They can call a stop sooner than that. You can't.",
+    "text": "Undo a button or drop a strap every time they answer, for the next three questions. They can call a stop; you can't.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-de5f0c58"
+    "id": "cof-ddfc96ec"
   },
   {
-    "text": "If they want it, kiss the other player until they have unlocked their phone and started a timer. They can be very slow about it, but it ends at one minute either way.",
+    "text": "If they're up for it, kiss them for one minute, hands behind your back. They call time.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-af0cce3c"
+    "id": "cof-ed3d6781"
   },
   {
-    "text": "Sit on your hands and offer the other player 60 seconds with the side of your neck and your ears. Tell them where to start. If they want it, you are not allowed to help.",
+    "text": "Sit on your hands. If they're up for it, they get 60 seconds with your neck and ears. Tell them where to start.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-bc3dc407"
+    "id": "cof-7457e8f2"
   },
   {
     "text": "For the next three questions you may only speak with your mouth on the other player's skin, anywhere they're happy to have it.",
@@ -646,22 +646,22 @@
     "id": "cof-799d5531"
   },
   {
-    "text": "Let the other player name three filthy things they want to hear you say tonight. Say all three now, in the tone they choose, and once more before the game ends, whenever they ask.",
+    "text": "They name three filthy things they want to hear you say. Say all three now, in the tone they pick.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-7ae1025e"
+    "id": "cof-4fcf30ac"
   },
   {
-    "text": "Ask for two of the other player's fingers and, if they offer them, put them in your mouth and hold their eye contact for 20 seconds. No laughing.",
+    "text": "If they offer them, take two of their fingers in your mouth and hold eye contact for 20 seconds.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-20ed9fbd"
+    "id": "cof-61a38bd5"
   },
   {
-    "text": "Kneel at the other player's feet and ask properly for a job to do for them. They name one thing, it happens in this room, it takes under five minutes, and it stops the second either of you says so. You stay on your knees for it and thank them for the use when it's done.",
+    "text": "Kneel and ask properly for a job to do for them. Five minutes, in this room, and you thank them after.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-b135e257"
+    "id": "cof-72e2efc2"
   },
   {
     "text": "Kneel, hands behind your head, and let the other player undress you from the waist up at whatever pace amuses them.",
@@ -670,201 +670,201 @@
     "id": "cof-95cafe7d"
   },
   {
-    "text": "Get into the position you'd most like to be found in, and hold it while the other player walks round you and adjusts you into the version they'd rather find.",
+    "text": "Get into the position you'd most like to be found in. Hold it while they walk round and rearrange you.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-b7beb669"
+    "id": "cof-e9477b47"
   },
   {
-    "text": "You belong to the other player for the next 15 minutes. In that time they may set you three rules about how you sit, speak and touch them, and those three stand until the 15 minutes are up.",
+    "text": "You belong to the other player for 15 minutes. They set you three rules about how you sit, speak and touch them.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-445febb1"
+    "id": "cof-ecd16850"
   },
   {
-    "text": "You are furniture for the next two minutes: footstool, armrest or table, their choice. Hold it, and while you're holding it, tell them one thing they'd be welcome to do to you while you're being used like this.",
+    "text": "Be their furniture for two minutes: footstool, armrest or table, their choice. Tell them what you'd let them do while they use you.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-75575284"
+    "id": "cof-14322bea"
   },
   {
-    "text": "Beg out loud for one specific thing you want done to you tonight. Keep going until they grant it or tell you to stop. There is no time limit and no dignity available.",
+    "text": "Beg out loud for one specific thing you want done to you tonight. Keep begging until they grant it or tell you to stop.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-3e6e9f66"
+    "id": "cof-854847ec"
   },
   {
-    "text": "Ask the other player to bring you right to the edge and stop. Twice, if they're willing. Then the game carries on and you don't mention it again.",
+    "text": "If they're willing, ask them to bring you right to the edge and stop. Twice. Then carry on like nothing happened.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-c82f48bd"
+    "id": "cof-23bd0f5d"
   },
   {
-    "text": "Ask the other player to let you undress them completely, one item at a time, kissing whatever you uncover. They say when each kiss ends and they can stop the whole thing whenever they like. You stay fully dressed throughout.",
+    "text": "If they'll let you, undress them one item at a time, kissing whatever you uncover. You stay fully dressed.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-149ac67c"
+    "id": "cof-5a5559f7"
   },
   {
-    "text": "Lie face down across the other player's knees with your trousers or skirt down. Eight with the flat of their hand, at their pace, and you thank them properly at the end of it.",
+    "text": "Over their knees, trousers or skirt down. Eight with the flat of their hand, then thank them properly.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-24b2ff92"
+    "id": "cof-e7eeae5f"
   },
   {
-    "text": "Kneel on the sofa with your forearms over the back of it. The other player picks a hairbrush, a wooden spoon or a folded belt and gives you ten, arse and upper thighs only. You may ask for a different implement, but you have to say out loud why you want that one.",
+    "text": "Kneel on the sofa, forearms over the back. Ten with a hairbrush or a folded belt, arse and thighs only.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-bdebebad"
+    "id": "cof-4a57a217"
   },
   {
-    "text": "Sit down, open your legs and put your hands behind your head. The other player gives you five stinging slaps to the inside of each thigh, and after every single one you name somewhere else on your body you'd rather they had hit.",
+    "text": "Legs open, hands behind your head. Five stinging slaps to the inside of each thigh, and you name where you'd rather have them.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-93e00a5f"
+    "id": "cof-92c78104"
   },
   {
-    "text": "Put your wrists together and let the other player bind them with a belt, a scarf or a dressing gown cord. While they're tying, tell them one thing you'd have no chance of refusing once your hands are out of action.",
+    "text": "Let them tie your wrists with a belt for ten minutes, or until you say stop. Name one thing you couldn't refuse like that.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-1cb1e051"
+    "id": "cof-f9297fc1"
   },
   {
-    "text": "Lie back and let the other player tie one of your wrists to something solid with something that pulls loose in one tug. That arm is theirs, the other stays yours. If you want it, they then spend three minutes with their mouth on you, and you have to name out loud where it goes.",
+    "text": "Let them tie one wrist to something solid. If you want it, they then spend three minutes with their mouth wherever you name.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-8a269fc8"
+    "id": "cof-4733722e"
   },
   {
-    "text": "Blindfold yourself and name the zone you're handing over: arms, neck, shoulders, back or thighs. The other player presses three things against your bare skin inside that zone, one at a time, and at least one of them is a part of them. Name each one out loud. Every wrong guess and they choose where inside that zone the next one lands.",
+    "text": "Blindfold on. They press three things against your bare skin, one at a time. One is part of their body. Name each.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-6065998c"
+    "id": "cof-56a61565"
   },
   {
-    "text": "Blindfold on, hands out. The other player takes your hand and puts it somewhere on their own body. Before they'll move it, say what you're touching and exactly what you want to do to it.",
+    "text": "Blindfolded, they put your hand somewhere on their body. Before it moves, say what you're touching and what you want to do to it.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-7964bb45"
+    "id": "cof-e329779d"
   },
   {
-    "text": "Bring back the toy you'd least like used on you tonight but would still say yes to. Hand it over and explain out loud what it is about that one that gets to you. No toys in the house, name the act you'd least like done to you but would still say yes to.",
+    "text": "Fetch the toy you'd least like used on you tonight but would still say yes to. Hand it over and say why.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-29ee565c"
+    "id": "cof-fd646cf5"
   },
   {
-    "text": "Leave the room, take your underwear off and come back with it in your hand. Give it to the other player. They pocket it and hand it back at the bedroom door.",
+    "text": "Take your underwear off and hand it to the other player. They keep it until the bedroom door.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-00acf163"
+    "id": "cof-4f9d0937"
   },
   {
-    "text": "Go into another room on your own, get yourself close for two minutes without finishing, then come back and describe what your hands were doing and who you were picturing. Then carry on as though nothing happened.",
+    "text": "Go to another room and get yourself close for two minutes. No finishing. Come back and describe what your hands were doing.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-e97931e0"
+    "id": "cof-05557c98"
   },
   {
-    "text": "Take the smallest insertable toy you own, yours or whatever this house can offer, into the other room, put it in, and come back. It stays in for 15 minutes.",
+    "text": "Take your smallest insertable toy into the other room, put it in, and come back. It stays in for 15 minutes.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-c07b44b3"
+    "id": "cof-bd77ce5a"
   },
   {
-    "text": "Tell the other player exactly how you'd fuck them if you were the one wearing the strap-on tonight: the position, the pace, and what you'd want them saying while you did it. Then tell them which part of that is actually happening later.",
+    "text": "Tell them exactly how you'd fuck them wearing the strap-on tonight: the position, the pace, and what you'd want them saying.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-8811da7e"
+    "id": "cof-0969854d"
   },
   {
-    "text": "Swap. Whoever normally gives the orders kneels and asks permission to speak, and the other one takes over. Three orders maximum, nothing open-ended, and it ends when the third one is done.",
+    "text": "Swap. Whoever normally gives the orders kneels and asks permission to speak. The other one gets three orders, then it's over.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-e0b04092"
+    "id": "cof-2ed53633"
   },
   {
-    "text": "Get down on all fours. Collar and lead on if you own them. Stay down there for five minutes: crawl where you're sent, take a drink from a bowl on the floor if you want one, and make only the noises your pet would make. Tap the floor twice when you want up.",
+    "text": "On all fours for five minutes. Collar and lead if you own them. Crawl where you're sent, and make only pet noises.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-aa8dd1d5"
+    "id": "cof-4146a381"
   },
   {
-    "text": "Get your nails on the other player's back and drag them slowly from shoulders to waist, four passes, nothing hard enough to break skin. Only if they want it: they say out loud how hard before you start, they call the stop, and the last pass lands wherever they choose.",
+    "text": "If they're up for it, drag your nails down their back, shoulders to waist, four passes. No broken skin.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-7b931892"
+    "id": "cof-81c42fdc"
   },
   {
-    "text": "Leave the room. Come back in as a stranger who has already decided they're taking the other player home tonight, and work on them for two minutes without once breaking character. Finish by telling them, still in character, exactly what happens when you get there.",
+    "text": "Leave the room. Come back as a stranger who's already decided they're taking the other player home, and work them for two minutes.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-ef6b2164"
+    "id": "cof-2096be85"
   },
   {
-    "text": "Go and put on the filthiest or most expensive thing you own: latex, leather, a corset, stockings, boots, whatever this house can offer. Wear it for the rest of the game, and tell the other player what goes through you the second it goes on.",
+    "text": "Go and put on the filthiest thing you own: latex, leather, a corset, boots. Wear it for the rest of the game.",
     "intensity": "tame",
     "batch": 3,
-    "id": "cof-eff5fb16"
+    "id": "cof-2888e578"
   },
   {
-    "text": "Kneel and worship the other player's boots or shoes properly, hands and mouth, for 60 seconds. Only if they want them worshipped: they say when you start and they can take their foot away at any point. When you're done, say out loud what you'd rather have been doing that to.",
+    "text": "If they want it, kneel and worship their boots, hands and mouth, for 60 seconds. Then say what you'd rather be doing that to.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-be7b2bec"
+    "id": "cof-37635872"
   },
   {
-    "text": "Bare your back, chest or thighs and hand the other player a low temperature candle. Eight drips, nowhere near your face or your genitals and nothing on broken skin. Count them out loud, and name the spot you want the last one. No low temperature candle in the house? Swap to ice and take eight slow passes over the same skin instead.",
+    "text": "Bare your back or thighs for eight drips from a low temperature candle. Count them aloud, and name where the last one lands.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-de6d9a05"
+    "id": "cof-8b805318"
   },
   {
-    "text": "Offer up your arms. The other player wraps them from wrist to elbow in cling film or bondage tape, and you stay wrapped for ten minutes with your hands in your lap. While the film goes on, say out loud what the tightness is doing to you, and when the ten minutes are up name the first thing you want done to you the second your arms are free. Say the word and they cut you out early.",
+    "text": "Let them wrap your arms wrist to elbow in cling film. Hands in your lap for ten minutes, or until you say the word.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-5b0d75af"
+    "id": "cof-a80f8c23"
   },
   {
-    "text": "Bare your chest or back and let the other player lay rope across it, or a dressing gown cord and a couple of scarves if there's no rope in the house. Snug enough to mark, loose enough to slide two fingers under, nothing near your throat. It stays on for 15 minutes, and when it comes off they get to study the lines and say out loud what that pattern makes them want to do to you.",
+    "text": "Let them lay rope across your bare chest, snug enough to mark, nothing near your throat. It stays on for 15 minutes.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-9ee3f06a"
+    "id": "cof-6cd6bfc1"
   },
   {
-    "text": "Lie back with your arms above your head and offer up your chest. Twenty slaps across the breasts or pecs from the other player, starting at nothing and building. After every fifth you say either 'harder' or 'that's my limit', and 'that's my limit' ends it on the spot.",
+    "text": "Lie back and offer up your chest. Twenty slaps, building from nothing. Every fifth you say 'harder' or 'that's my limit', which ends it.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-f88eead4"
+    "id": "cof-bbe46c01"
   },
   {
-    "text": "Put on a pair of the other player's knickers, or the laciest thing in this house that fits you. They stay on for the rest of the game, and every time you answer a question you thank the other player out loud for dressing you.",
+    "text": "Put on a pair of the other player's knickers. They stay on for the rest of the game. Thank them for dressing you.",
     "intensity": "spicy",
     "batch": 3,
-    "id": "cof-1f47d730"
+    "id": "cof-d3413562"
   },
   {
-    "text": "Hand the other player your phone. State your limits out loud, then let them take three photographs of you, posed however they like inside those limits. Look at all three together, say out loud which one is worth keeping, and delete the other two before the game moves on.",
+    "text": "Hand over your phone. They take three photographs of you, posed however they like. Keep the best one, delete the other two.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-98761194"
+    "id": "cof-aa9b1a46"
   },
   {
-    "text": "Agree a safeword and two rules: nothing breakable, no stairs. Then take a thirty second head start and let the other player hunt you through the house. When you're caught, stop fighting: they get 60 seconds to do whatever the pair of you have already agreed is on the table.",
+    "text": "Take a thirty second head start and let them hunt you through the house, no stairs. When you're caught, they get 60 seconds.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-31adf81a"
+    "id": "cof-2a892e45"
   },
   {
-    "text": "For the next 15 minutes you keep your eyes down, you speak only when you're given permission, and you use whatever title the other player picks right now. Drinks and the bathroom are never on the list. The first thing you ask permission for has to be something you genuinely want done to you tonight.",
+    "text": "For 15 minutes: eyes down, speak only when given permission, and use whatever title they pick. Drinks and the bathroom never need asking.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-c67bdae2"
+    "id": "cof-f04023ee"
   },
   {
-    "text": "Strip completely while the other player stays fully dressed. Stand where they put you for five minutes and answer whatever they ask. They don't touch you at all, they just look and say what they think, and you don't get to cover anything up.",
+    "text": "Strip completely while they stay fully dressed. Stand where they put you for five minutes. They don't touch, they just look and comment.",
     "intensity": "wild",
     "batch": 3,
-    "id": "cof-2b31283d"
+    "id": "cof-784fbabf"
   }
 ]

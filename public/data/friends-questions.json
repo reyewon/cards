@@ -380,25 +380,25 @@
     "id": "frq-92e16103"
   },
   {
-    "text": "How loud are you in bed, out of ten, and what was being done to you the last time you hit that number?",
+    "text": "Out of ten, how loud are you in bed? What was being done to you last time you hit it?",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-16923008"
+    "id": "frq-972b90fa"
   },
   {
-    "text": "What got done to you, or by you, in the item of clothing you had to bin afterwards?",
+    "text": "What was being done to you in the clothes you had to bin, and what got on them?",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-2e980691"
+    "id": "frq-2e4a2c30"
   },
   {
-    "text": "How many people are walking around with a photo of you that you'd rather they deleted, and what exactly is in the one you'd most want back?",
+    "text": "What's in the photo of you that you'd most want deleted, and who's still got it?",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-f821f645"
+    "id": "frq-37a41a5a"
   },
   {
     "text": "Where's the strangest place you've had to sort yourself out quietly?",
@@ -408,11 +408,11 @@
     "id": "frq-463a7142"
   },
   {
-    "text": "Who in your life would be most horrified by what you're actually into, and which detail would finish them off?",
+    "text": "Who in your life would be most horrified by what you're into, and which detail finishes them off?",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-6274e8c6"
+    "id": "frq-09a739de"
   },
   {
     "text": "What position do you actually want instead of the one you fake enthusiasm for?",
@@ -422,11 +422,11 @@
     "id": "frq-6e7299bc"
   },
   {
-    "text": "What's the fantasy that keeps coming back uninvited every few months? Who's in it, and what happens?",
+    "text": "What's the fantasy that keeps coming back uninvited? Who's in it, and what happens?",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-4bc4d82e"
+    "id": "frq-440c0ba3"
   },
   {
     "text": "Who have you swapped somebody for in your head during sex?",
@@ -443,32 +443,32 @@
     "id": "frq-b6675bdf"
   },
   {
-    "text": "Who last used you in bed exactly the way you like being used, and what did it involve?",
+    "text": "Who last used you in bed exactly how you like it, and what did they do?",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-c30ff605"
+    "id": "frq-be8bf74c"
   },
   {
-    "text": "What have you always wanted done to you but been too polite to ask for? Ask me for it now, in the words you'd actually use.",
+    "text": "What have you always been too polite to ask for? Ask me for it now, in your own words.",
     "type": "neutral",
     "intensity": "spicy",
     "batch": 3,
-    "id": "frq-8626aefe"
+    "id": "frq-6197f1eb"
   },
   {
-    "text": "Which part of my body would you start with, and what would you do once you got there?",
+    "text": "Which bit of me does your mouth get to first, and where are your hands while it happens?",
     "type": "neutral",
     "intensity": "spicy",
     "batch": 3,
-    "id": "frq-c705f598"
+    "id": "frq-27737943"
   },
   {
-    "text": "Can you describe what you'd want my mouth doing to you without breaking eye contact once? Go on then.",
+    "text": "Tell me what you'd want my mouth doing to you, without breaking eye contact.",
     "type": "neutral",
     "intensity": "spicy",
     "batch": 3,
-    "id": "frq-d26927bc"
+    "id": "frq-cf1c5c30"
   },
   {
     "text": "When did you last want me to shut up and put my mouth on you?",
@@ -478,18 +478,18 @@
     "id": "frq-6ddd9e4f"
   },
   {
-    "text": "What would you let me get away with tonight that you wouldn't let anyone else get away with? Name the act, not the vibe.",
+    "text": "What would you let me get away with tonight that nobody else would? Name the act.",
     "type": "neutral",
     "intensity": "wild",
     "batch": 3,
-    "id": "frq-ad61744e"
+    "id": "frq-29e23515"
   },
   {
-    "text": "My mouth or my hands? Pick one out loud, then say exactly what you'd have it doing.",
+    "text": "My mouth or my hands? Pick, then say exactly what you'd have it doing.",
     "type": "neutral",
     "intensity": "wild",
     "batch": 3,
-    "id": "frq-3e05acbf"
+    "id": "frq-9c9d317e"
   },
   {
     "text": "What have you done in bed that proves whether you're a dom, a sub or a switch?",
@@ -499,39 +499,39 @@
     "id": "frq-fcc8d4fe"
   },
   {
-    "text": "Sting, thud, or marks you can still feel sitting down the next day? Name your level, the implement, and exactly where on you it lands.",
+    "text": "Sting, thud, or marks you still feel the next day? Name what you want and where it lands.",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-e2fbf0a5"
+    "id": "frq-c6e4e0ae"
   },
   {
-    "text": "Some people come apart from being told they're good. Which sentence would do that to you, word for word, and what would you have to be doing at the time?",
+    "text": "Which sentence of praise would undo you in bed? Word for word, out loud.",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-092f8093"
+    "id": "frq-bf0c3126"
   },
   {
-    "text": "Say out loud the exact words you'd want to have to use before you're allowed to touch someone, in the voice you'd have to say them in. Then say what you'd be asking permission to do to them.",
+    "text": "Ask me for permission to touch me, out loud, in the words you'd have to use.",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-c402a4ec"
+    "id": "frq-afc78743"
   },
   {
-    "text": "Feet, latex, uniforms, spit, being watched, hair pulling: which one is genuinely yours? Name it, then talk us through the last time you actually got it, or the scene you'd want if you never have.",
+    "text": "Feet, latex, spit, being watched, hair pulling: which one's genuinely yours? Talk us through the last time.",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-ac084127"
+    "id": "frq-f0766a54"
   },
   {
-    "text": "What arrangement would you actually want, monogamous or otherwise, if nobody was judging you? Say who'd be in it, what you'd be allowed to do with them, and the one act you'd keep for one person only.",
+    "text": "If nobody was judging, who'd you actually want in your bed, and which act would you keep for one person?",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-fcadea4a"
+    "id": "frq-ec7123b3"
   },
   {
     "text": "What are the rules you'd want set if you were somebody's third tonight?",
@@ -541,46 +541,46 @@
     "id": "frq-e908ce0f"
   },
   {
-    "text": "What's the longest you've been kept waiting before you were allowed to come? Say who was holding the permission, what they had you doing while you waited, and what you said to try to get it.",
+    "text": "What's the longest you've been made to wait before you were allowed to come, and what did you say to get it?",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-58339ad0"
+    "id": "frq-15b70caa"
   },
   {
-    "text": "Have you ever safeworded, or wanted to and talked yourself out of it? Say what was being done to you at the time, then give me the word you'd use with me.",
+    "text": "Have you ever safeworded, or wanted to and didn't? What was being done to you?",
     "type": "neutral",
     "intensity": "spicy",
     "batch": 3,
-    "id": "frq-d632737d"
+    "id": "frq-245210f7"
   },
   {
-    "text": "Say you got a hall pass tomorrow, properly signed off, no fallout. Am I on the shortlist, and what specifically would I be on it for?",
+    "text": "Hall pass tomorrow, no fallout. Am I on your shortlist, and what for?",
     "type": "neutral",
     "intensity": "spicy",
     "batch": 3,
-    "id": "frq-b49fef4d"
+    "id": "frq-b9290b74"
   },
   {
-    "text": "Would you rather I put my hand round the back of your neck, or flat across your arse? Choose one, say how hard, and say what you'd want said to you while it happened.",
+    "text": "My hand round the back of your neck, or flat across your arse? Pick one, and say how hard.",
     "type": "neutral",
     "intensity": "spicy",
     "batch": 3,
-    "id": "frq-987b0748"
+    "id": "frq-ee80a70c"
   },
   {
-    "text": "If the two of us ended up in bed, which one of us is giving the orders? Answer, then say how long you'd let me have it before you took it off me.",
+    "text": "If we ended up in bed, which of us gives the orders, and how long would I keep it?",
     "type": "neutral",
     "intensity": "spicy",
     "batch": 3,
-    "id": "frq-77f8394c"
+    "id": "frq-bb8d7339"
   },
   {
-    "text": "What's one of my kinks? Guess out loud, then say what gave it away, and what you'd do about it if you're right.",
+    "text": "Guess one of my kinks out loud, then say what gave it away.",
     "type": "neutral",
     "intensity": "spicy",
     "batch": 3,
-    "id": "frq-8d2c05eb"
+    "id": "frq-6f55941d"
   },
   {
     "text": "What limit of mine would you most want to test first hand?",
@@ -597,39 +597,39 @@
     "id": "frq-4fd2d099"
   },
   {
-    "text": "What do the first ten minutes look like if you get to be used, worshipped, or in charge of me tonight?",
+    "text": "Used, worshipped, or in charge of me tonight: pick one, and describe the first ten minutes.",
     "type": "neutral",
     "intensity": "spicy",
     "batch": 3,
-    "id": "frq-cf2a8423"
+    "id": "frq-af06d454"
   },
   {
-    "text": "If I had the say over when you're allowed to come, how long would you last before you started begging me for it? Say the number, then say the words you'd beg with, out loud.",
+    "text": "If I had the say over when you come, how long before you'd beg? Beg for it now, out loud.",
     "type": "neutral",
     "intensity": "spicy",
     "batch": 3,
-    "id": "frq-196036c5"
+    "id": "frq-8a121c3a"
   },
   {
-    "text": "Where does doing things for somebody stop being a chore and start being a turn-on for you? Name the job you'd genuinely want to be given, then tell me what you'd want said to you while you did it, and what you'd be hoping it earned you off me afterwards.",
+    "text": "Name the job you'd want me to give you, on your knees, and what you'd hope it earned you.",
     "type": "neutral",
     "intensity": "spicy",
     "batch": 3,
-    "id": "frq-5d8dd0ed"
+    "id": "frq-da7938b8"
   },
   {
-    "text": "If I had rope on me tonight, where would you want it: wrists, thighs, chest, or your hands pinned behind your back? Pick one, then say what you'd want me doing to you while you couldn't move.",
+    "text": "If I had rope tonight, where would you want it, and what would I do once you couldn't move?",
     "type": "neutral",
     "intensity": "wild",
     "batch": 3,
-    "id": "frq-e6a2c4ef"
+    "id": "frq-2989f92f"
   },
   {
-    "text": "Can we negotiate this properly, right now, out loud: your three hard limits, the one thing you'd want most, and what never leaves this room?",
+    "text": "Negotiate with me now, out loud: two hard limits, and the one thing you'd want most.",
     "type": "neutral",
     "intensity": "wild",
     "batch": 3,
-    "id": "frq-eac7c609"
+    "id": "frq-b32f64a6"
   },
   {
     "text": "Where would you let me leave a mark on you tonight that you'd have to explain to somebody tomorrow?",
@@ -639,87 +639,94 @@
     "id": "frq-7b149aed"
   },
   {
-    "text": "On your knees in front of me, in your head: do you want me quiet or talking the whole way through, and what are the first three words you want to hear?",
+    "text": "On your knees in front of me: do you want me quiet or talking? Give me the first three words.",
     "type": "neutral",
     "intensity": "wild",
     "batch": 3,
-    "id": "frq-fc6ad072"
+    "id": "frq-2710a187"
   },
   {
-    "text": "How long have you been sitting on the thing you want to do to me? Say how long first, then say what it is, start to finish.",
+    "text": "How long have you been sitting on the thing you want to do to me? Say it, start to finish.",
     "type": "neutral",
     "intensity": "wild",
     "batch": 3,
-    "id": "frq-ebaa2995"
+    "id": "frq-1636b05f"
   },
   {
-    "text": "Puppy, kitten, pony or piggy: if you were on all fours in a collar for somebody, which one are you? Say who's holding the lead, what you'd want them making you do down there, and whether you'd bark, purr or stay silent.",
+    "text": "Puppy, kitten or pony: on all fours in a collar, which one are you, and who's holding the lead?",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-4718b6b6"
+    "id": "frq-4bc1640a"
   },
   {
-    "text": "There's a kink you'd admit to me and never to somebody you were actually sleeping with. Being wrapped in tape until you can't move a thing, a hood over your head, calling someone Sir, wanting to be laughed at while you're naked. Name yours, and say what you think a partner would do with it if you handed it over.",
+    "text": "Tape, a hood, calling someone Sir, being laughed at naked: what's the kink you'd admit to me and never to a partner?",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-f59ad1b8"
+    "id": "frq-fad2029e"
   },
   {
-    "text": "Cast us both in a scene: military interrogation, priest and confession, a pro domme on the clock, or capes and a villain's chair. Pick one, say which of us is tied to that chair, and say what the one asking the questions is allowed to do to get an answer out of the other.",
+    "text": "Interrogation, confession, or a pro domme on the clock: pick a scene for us, and say who's tied to the chair.",
     "type": "neutral",
     "intensity": "spicy",
     "batch": 3,
-    "id": "frq-d77aad33"
+    "id": "frq-6ff7cce5"
   },
   {
-    "text": "Age play, properly: handing over every decision for an evening, being told when to eat and when to sleep, being praised out loud for doing as you're told, calling somebody Daddy or Mummy and meaning it. Which side of that would you want, and what is the actual appeal of not being the adult in charge for once?",
+    "text": "Age play: handing over every decision, calling somebody Daddy or Mummy and meaning it. Which side would you want, and why?",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-daee037a"
+    "id": "frq-860cc97b"
   },
   {
-    "text": "Nipple clamps: worn them, want them, or hard no? Say how long you reckon you'd last with them on, what you'd want done to you while they're there, and who you'd trust to take them off slowly rather than fast.",
+    "text": "Nipple clamps: worn them, want them, or hard no? How long do you reckon you'd last with them on?",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-d75cc82b"
+    "id": "frq-35a112ca"
   },
   {
-    "text": "Some people want to be chased properly, and to fight back on the way down. Talk me through your version: how far you get, how hard you struggle, what gets said to you once you're caught, and what happens to you on the floor. Then tell me whether you'd want it to be me doing the catching.",
+    "text": "If I chased you and you fought back on the way down, what happens to you once I've caught you?",
     "type": "neutral",
     "intensity": "spicy",
     "batch": 3,
-    "id": "frq-574ac701"
+    "id": "frq-226cff44"
   },
   {
-    "text": "Sissy panties, being dressed and made up by somebody else, walked up and down in heels until you get it right: fantasy, hard no, or something you've read about at 2am and then closed the tab on? Say which, then say who you'd want holding the lipstick.",
+    "text": "Sissy panties, heels, made up by somebody else: fantasy, hard no, or a tab you closed at 2am?",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-5856e6e7"
+    "id": "frq-c6154ab3"
   },
   {
-    "text": "If I got a camera out tonight, what would you actually let me take? Say what comes off, what stays on, which bit of you you'd want shot properly, and which of those photos you'd be keeping for yourself.",
+    "text": "If I got a camera out tonight, what comes off, what stays on, and which bit gets shot properly?",
     "type": "neutral",
     "intensity": "spicy",
     "batch": 3,
-    "id": "frq-54481794"
+    "id": "frq-502563a6"
   },
   {
-    "text": "Kept naked while everybody else in the room stays fully dressed, used as furniture, talked about in the third person like you aren't sat right there: which one of those does something to you, and what would you want said about you while it was happening?",
+    "text": "Kept naked in a room of dressed people, used as furniture, talked about like you're not there: which one gets you?",
     "type": "neutral",
     "intensity": "tame",
     "batch": 3,
-    "id": "frq-aba49fb1"
+    "id": "frq-fbb2801c"
   },
   {
-    "text": "Three rules I could put on you: eyes down unless you're spoken to, ask out loud before you touch me, kneel when you come back into the room. Say which one would get under your skin fastest and why. Then take that one and live by it for the next ten minutes, starting now.",
+    "text": "Eyes down, ask before you touch me, kneel when you enter: pick the one that gets you, and live by it for ten minutes.",
     "type": "neutral",
     "intensity": "spicy",
     "batch": 3,
-    "id": "frq-d1eaf247"
+    "id": "frq-451082af"
+  },
+  {
+    "text": "What's the safeword you'd use with me, and what would make you use it?",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "frq-f82bd919"
   }
 ]

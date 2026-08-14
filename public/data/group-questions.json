@@ -381,18 +381,18 @@
     "id": "grq-f9641d37"
   },
   {
-    "text": "Ask the player opposite you what they sound like when they come, then tell them whether you would book the room next door or the one at the far end of the corridor.",
+    "text": "Ask the player opposite what they sound like when they come. Then say if you'd book the room next door.",
     "type": "target",
     "intensity": "tame",
     "batch": 3,
-    "id": "grq-d5871912"
+    "id": "grq-c6bf7a05"
   },
   {
-    "text": "Write down your guess for how many times the player opposite you has faked it. They write down the real number and what they were faking it for. Reveal both at once.",
+    "text": "Guess how many times the player opposite has faked it. They tell you the real number.",
     "type": "target",
     "intensity": "tame",
     "batch": 3,
-    "id": "grq-586e840e"
+    "id": "grq-b6f676fe"
   },
   {
     "text": "Somebody here has definitely had sex in a car park. Name your suspect, and describe the position.",
@@ -402,18 +402,18 @@
     "id": "grq-79d85538"
   },
   {
-    "text": "Round the circle, everybody names the body part they most want somebody's mouth on and the exact thing they want done to it once it is there. Then the room decides who sold it hardest, and that player takes the next card.",
+    "text": "Round the circle, everyone names where they want a mouth on them and exactly what it should do there.",
     "type": "group",
     "intensity": "tame",
     "batch": 3,
-    "id": "grq-2e6d7c30"
+    "id": "grq-5e536432"
   },
   {
-    "text": "Ask the player opposite you what they would want done to them first, and where on them it lands.",
+    "text": "Ask the player opposite what they'd want done to them first, and where on them it lands.",
     "type": "target",
     "intensity": "spicy",
     "batch": 3,
-    "id": "grq-42f137e2"
+    "id": "grq-186a4543"
   },
   {
     "text": "Who here would you let watch, and who would you want holding the camera?",
@@ -423,25 +423,25 @@
     "id": "grq-8408c61c"
   },
   {
-    "text": "What did you clock on the player to your left within ten seconds of walking in, and what did you picture doing with it? Say it to them, not to the room.",
+    "text": "Tell the player on your left what you clocked on them first, and what you pictured doing with it.",
     "type": "target",
     "intensity": "spicy",
     "batch": 3,
-    "id": "grq-c212f847"
+    "id": "grq-48ee3d78"
   },
   {
-    "text": "If you had to teach one person here exactly how you like being touched, who gets the lesson and how long does it take?",
+    "text": "Who here gets the lesson in exactly how you like being touched, and how long does it take?",
     "type": "target",
     "intensity": "spicy",
     "batch": 3,
-    "id": "grq-7e8a1fce"
+    "id": "grq-2850f169"
   },
   {
-    "text": "The room picks two players. Say which of the pair you would rather have begging you, what filthy thing they are begging for, and what they have to do before they get it.",
+    "text": "The room picks two players. Say which one you'd rather have begging you, and what they're begging for.",
     "type": "target",
     "intensity": "spicy",
     "batch": 3,
-    "id": "grq-124c6d0d"
+    "id": "grq-006200bd"
   },
   {
     "text": "Tell the player on your right exactly how you want your hair pulled, and how hard.",
@@ -451,11 +451,11 @@
     "id": "grq-05a16736"
   },
   {
-    "text": "The player on your left gets three guesses at where on your body you want a hand right now. Each guess out loud and specific, and you tell them warmer or colder until they land on it.",
+    "text": "The player on your left gets three guesses at where you want a hand right now. Warmer or colder only.",
     "type": "target",
     "intensity": "spicy",
     "batch": 3,
-    "id": "grq-61c3d0c2"
+    "id": "grq-83a6edb3"
   },
   {
     "text": "Of everyone in this room, whose knees would you most like to see the carpet marks on?",
@@ -465,346 +465,353 @@
     "id": "grq-dc3f945c"
   },
   {
-    "text": "Tell the player to your left the one filthy word you would want them saying into your ear, and say it to them at the volume you would want it.",
+    "text": "Say the one filthy word you want the player on your left growling in your ear. Say it to them.",
     "type": "target",
     "intensity": "spicy",
     "batch": 3,
-    "id": "grq-5e08d776"
+    "id": "grq-04a8e1b8"
   },
   {
-    "text": "Say you were wearing a vibrator tonight and both the players either side of you wanted the remote. Pick which one gets it, tell them the setting they are not allowed to touch, and let the other one say what they would have done with it instead.",
+    "text": "You're wearing a vibrator and both players either side want the remote. Pick one, and name the setting they can't touch.",
     "type": "target",
     "intensity": "spicy",
     "batch": 3,
-    "id": "grq-71a4b780"
+    "id": "grq-154bbfe2"
   },
   {
-    "text": "Tell the player on your right what is in the message on your phone that would end you if the wrong person read it, word for word.",
+    "text": "Tell the player on your right, word for word, the message on your phone that would end you.",
     "type": "target",
     "intensity": "spicy",
     "batch": 3,
-    "id": "grq-b2b5e7a6"
+    "id": "grq-86c21138"
   },
   {
-    "text": "You are letting one person here mark you somewhere only you would see for a week. Who is it, and where?",
+    "text": "One person here gets to mark you for a week, somewhere only you'd see it. Who, and where?",
     "type": "target",
     "intensity": "spicy",
     "batch": 3,
-    "id": "grq-b62d18b7"
+    "id": "grq-ec1d3743"
   },
   {
-    "text": "The player on your left is dressing you for a night out you cannot get out of. Tell them the one thing you would want left off you, then let them overrule it.",
+    "text": "The player on your left is dressing you tonight. Name the one thing you want left off, then let them overrule you.",
     "type": "target",
     "intensity": "spicy",
     "batch": 3,
-    "id": "grq-e5a8c7b6"
+    "id": "grq-d9dfeb41"
   },
   {
-    "text": "Pick someone here and tell them exactly how you would have them: position, place, and how long you would take over it.",
+    "text": "Pick someone here and tell them exactly how you'd have them: position, place, and how long you'd take.",
     "type": "target",
     "intensity": "wild",
     "batch": 3,
-    "id": "grq-90543719"
+    "id": "grq-77494e29"
   },
   {
-    "text": "You get eight minutes in the next room with one person here and the door locked. Who, and what is happening at minute seven?",
+    "text": "Eight minutes locked in the next room with one person here. Who, and what's happening at minute seven?",
     "type": "target",
     "intensity": "wild",
     "batch": 3,
-    "id": "grq-1d504c47"
+    "id": "grq-b615f5ca"
   },
   {
-    "text": "Who in this room would you most want to be told no by, over and over, until they decided you had earned it?",
+    "text": "Who here would you most want telling you no, over and over, until they decided you'd earned it?",
     "type": "target",
     "intensity": "spicy",
     "batch": 3,
-    "id": "grq-af392cb8"
+    "id": "grq-481de1be"
   },
   {
-    "text": "Which person here would you let clamp a hand over your mouth, and which one would you want to negotiate something rougher with first?",
+    "text": "Who here would you let clamp a hand over your mouth, and who would you negotiate something rougher with?",
     "type": "target",
     "intensity": "spicy",
     "batch": 3,
-    "id": "grq-a04c42b4"
+    "id": "grq-83ffe332"
   },
   {
-    "text": "What is the exact sentence you would want the player to your right saying while they got you off? Say it out loud, to them.",
+    "text": "Say out loud to the player on your right the exact sentence you'd want them saying while they got you off.",
     "type": "target",
     "intensity": "wild",
     "batch": 3,
-    "id": "grq-e45a35f2"
+    "id": "grq-3ec23c20"
   },
   {
-    "text": "If the group could make one person here do one filthy thing to you tonight, who do you pick and what are they doing?",
+    "text": "The group can make one person here do one filthy thing to you tonight. Who, and what are they doing?",
     "type": "target",
     "intensity": "wild",
     "batch": 3,
-    "id": "grq-ce472457"
+    "id": "grq-8c1fe0e8"
   },
   {
-    "text": "Everybody get up and form a line in order of how long it has been since you last had sex, longest at one end. Sort it out by talking, no phones, then the two at the long end each name the act they have been going without and who here they would ask for it. Sit back down in that order.",
+    "text": "Line up in order of how long since you last got fucked. The longest names the exact act they've been aching for.",
     "type": "group",
     "intensity": "tame",
     "batch": 3,
-    "id": "grq-2d3b36b2"
+    "id": "grq-6b6d3812"
   },
   {
-    "text": "On three, everyone points at whoever they think has had sex somewhere they could have been arrested. Most fingers tells the room the story, then names who here they would risk it with next.",
+    "text": "On three, point at whoever's had sex somewhere they could have been arrested. Whoever gets the most fingers tells the story.",
     "type": "group",
     "intensity": "spicy",
     "batch": 3,
-    "id": "grq-9b453ba6"
+    "id": "grq-15bc8a30"
   },
   {
-    "text": "One at a time, everyone confesses the last time they got themselves off thinking about somebody in this room. If you have never done it, say so, and that counts. Only one lie is allowed the whole way round, and the room has to work out who told it.",
-    "type": "group",
-    "intensity": "wild",
-    "batch": 3,
-    "id": "grq-54347f9a"
-  },
-  {
-    "text": "Limits round. Going clockwise, every player names one act that is off the table for them tonight, and one act they are quietly hoping somebody suggests. No explanations owed either way, and the room is expected to remember both.",
-    "type": "group",
-    "intensity": "tame",
-    "batch": 3,
-    "id": "grq-9325897c"
-  },
-  {
-    "text": "On three, with nobody looking around first, everybody says out loud a kink they have never done and would try tonight if the room said yes. Talk over each other, then work out between you which two of you came closest to matching.",
-    "type": "group",
-    "intensity": "tame",
-    "batch": 3,
-    "id": "grq-a25a8072"
-  },
-  {
-    "text": "Ranking round. Between you, put every player in order, most likely to give an order in bed down to most likely to follow one. Nobody may rank themselves, and once the order is settled the two at either end say what they actually do.",
-    "type": "group",
-    "intensity": "spicy",
-    "batch": 3,
-    "id": "grq-70f8ec0a"
-  },
-  {
-    "text": "Hands up all at once, no counting, no looking round first: who here has shared a partner, watched one get fucked, or been the one on show? Every hand that goes up owes the room a sentence on how it actually went.",
-    "type": "group",
-    "intensity": "spicy",
-    "batch": 3,
-    "id": "grq-5eeb32f1"
-  },
-  {
-    "text": "Pick one player without telling them why. The rest of the room then guesses out loud, in detail, what that person wants done to them and how rough they want it. They sit through all of it in silence, then tell you who got closest and where you were all wrong.",
+    "text": "One at a time, everyone owns up to the last time they got themselves off thinking about somebody here.",
     "type": "group",
     "intensity": "wild",
     "batch": 3,
-    "id": "grq-7188c831"
+    "id": "grq-90183c99"
   },
   {
-    "text": "Everybody writes down the name of one person in this room they would fuck tonight, or writes nobody, folds it, and drops it in the middle. Read the lot out. Any pair who named each other have to decide, in front of everyone, whether anything happens about it.",
-    "type": "group",
-    "intensity": "wild",
-    "batch": 3,
-    "id": "grq-fdb6ea75"
-  },
-  {
-    "text": "You and the player opposite both write down the kink you have wanted for years and never once asked anybody for. Swap, read the other one out loud, and each say what has stopped you asking.",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 3,
-    "id": "grq-256d6427"
-  },
-  {
-    "text": "Put this to the player on your left, then answer it yourself: watching your partner get fucked by somebody else, or hearing every filthy detail afterwards with nothing left out, which one actually does it for you?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 3,
-    "id": "grq-66a127b5"
-  },
-  {
-    "text": "Rope, a blindfold, or a hand in your hair. Make the player on your right pick one, then describe what they want done to them with it.",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 3,
-    "id": "grq-29e53513"
-  },
-  {
-    "text": "Put it to the player two seats to your left: for the five minutes straight after they come, what state are they in and what do they need from whoever is nearest?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 3,
-    "id": "grq-e99b4fd1"
-  },
-  {
-    "text": "You and the player opposite, on three, both say collar or lead. If you have picked the same one, sort out between you who is taking the other, and whoever ends up holding the lead gives their first order out loud.",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 3,
-    "id": "grq-82560699"
-  },
-  {
-    "text": "The player opposite you is opening their relationship tomorrow. What is the one rule they would insist on, and which of their rules would you be first to break?",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 3,
-    "id": "grq-3b3fc442"
-  },
-  {
-    "text": "Pick two players. Tell the room which of that pair would have their mouth on the other first, and where, then let the two of them say whether you had it the right way round.",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 3,
-    "id": "grq-006c5595"
-  },
-  {
-    "text": "Somebody here is getting pegged and somebody here is doing the pegging. Name both, then say which of the two jobs you would take if the room insisted.",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 3,
-    "id": "grq-007741b8"
-  },
-  {
-    "text": "Ask the player on your right whether they have ever fucked somebody while a partner watched or listened from the next room. If they have not, they name who here they would want standing in the doorway for it.",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 3,
-    "id": "grq-40cd56bb"
-  },
-  {
-    "text": "Guess out loud how the player on your left likes being finished off, in proper detail, then sit there while they correct every part you got wrong.",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 3,
-    "id": "grq-3deaa498"
-  },
-  {
-    "text": "A week with no coming at all, or a week where somebody else decides when you do. Put it to the player opposite, make them choose, and make them say which day they would crack.",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 3,
-    "id": "grq-ff39a340"
-  },
-  {
-    "text": "Name the two people here you would want either side of you in a bed, then say which one is on their knees and which one is behind you. Both of them get right of reply.",
-    "type": "target",
-    "intensity": "wild",
-    "batch": 3,
-    "id": "grq-e55aa9e5"
-  },
-  {
-    "text": "Ask the player on your left to describe what they taste like, in their own words, then name who in this room they would most want finding out for themselves.",
-    "type": "target",
-    "intensity": "wild",
-    "batch": 3,
-    "id": "grq-047f7c47"
-  },
-  {
-    "text": "Get an answer out of the player opposite you: watched, or doing the watching, which one gets them off quicker? Then tell them which of the two you would want them doing while you had a hand down your own trousers.",
-    "type": "target",
-    "intensity": "wild",
-    "batch": 3,
-    "id": "grq-d7f88d55"
-  },
-  {
-    "text": "Ask the player on your right who here they would want as a third, and who they would want holding their hand through it. Both people named have to say out loud whether they are up for it.",
-    "type": "target",
-    "intensity": "wild",
-    "batch": 3,
-    "id": "grq-d78d0f68"
-  },
-  {
-    "text": "Praise or filth, which one actually gets you there? Say the exact sentence you would want said to you at the moment you come, in the voice you want it said in, then name the person here you would most want saying it.",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 3,
-    "id": "grq-f325c9f1"
-  },
-  {
-    "text": "Put it to the player opposite: what is the one thing they would happily do for somebody all night, on their knees and asking for nothing back? Then tell them whether you would rather be handed that job or be the one handing it out, and what your version of it looks like.",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 3,
-    "id": "grq-5837419e"
-  },
-  {
-    "text": "Wrists, ankles, or your eyes covered: which one would undo you fastest? Say which, say what you would want done to you while you were like that, and name the one person here you would trust to take it off you.",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 3,
-    "id": "grq-5963a316"
-  },
-  {
-    "text": "There is a word you want growled at you mid-fuck that you would deck somebody for using anywhere else. Say the word, say who here you would let use it, and say what they have to be doing to you at the time.",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 3,
-    "id": "grq-da86485f"
-  },
-  {
-    "text": "Interrogation with a locked door, a confessional with a screen between you, or a mask and a cape. Pick the one you would actually play out, pick who here is opposite you in it, and say what they get out of you by the end.",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 3,
-    "id": "grq-fe43a37e"
-  },
-  {
-    "text": "Puppy, kitten or pony: decide out loud which one the player opposite you would go under as, then let them tell you what gets them into that headspace, whether there is a tail involved, and who here they would let hold the lead.",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 3,
-    "id": "grq-7e3f7079"
-  },
-  {
-    "text": "Under whatever the rest of us can see, what has the player on your right actually got on tonight: fabric, colour, and who they picked it for. Get a straight answer and what they were hoping that person would do about it, then tell them what you had been assuming it was.",
-    "type": "target",
-    "intensity": "tame",
-    "batch": 3,
-    "id": "grq-57fd3d1a"
-  },
-  {
-    "text": "On three, no looking round first, everybody names the material they want against their own skin and the one they would want somebody else laced or zipped into. Latex, leather, rubber, fur, velvet, silk, take your pick. Then work out between you which two of you just described each other.",
+    "text": "Limits round. Clockwise, everyone names one act that's off the table tonight and one they're quietly hoping somebody suggests.",
     "type": "group",
     "intensity": "tame",
     "batch": 3,
-    "id": "grq-776a4002"
+    "id": "grq-4db6b210"
   },
   {
-    "text": "Knickers that are not yours, a full face of makeup, and a name picked for you by somebody else. Ask the player opposite whether that is a hard no, a quiet curiosity, or something they have already done, and do not let them off with a one word answer.",
-    "type": "target",
+    "text": "On three, everyone shouts a kink they've never done and would try tonight. Then work out which two of you matched.",
+    "type": "group",
     "intensity": "tame",
     "batch": 3,
-    "id": "grq-51120276"
+    "id": "grq-903750f6"
   },
   {
-    "text": "Being used as a piece of furniture and thanked for nothing, or being told exactly what you are out loud in front of people who know you. Make the player opposite pick one, then have them name who here they would want doing it and what they would want called while it happened.",
-    "type": "target",
+    "text": "Rank the room out loud, most likely to give an order in bed down to most likely to follow one. Put yourself in it.",
+    "type": "group",
     "intensity": "spicy",
     "batch": 3,
-    "id": "grq-436368d4"
+    "id": "grq-48ccdd72"
   },
   {
-    "text": "Cane, flogger, riding crop, or a bare hand with you over their knee. Ask the player opposite which one they want and how many, then tell them which of the four you would reach for if they left the choice to you tonight.",
-    "type": "target",
+    "text": "Hands up, all at once: who here has watched a partner get fucked or been the one on show? Explain yourself.",
+    "type": "group",
     "intensity": "spicy",
     "batch": 3,
-    "id": "grq-93ece103"
+    "id": "grq-805d9cbb"
   },
   {
-    "text": "Tell the player on your left how far you would make them chase you before you let yourself get caught, what you would want done the second they had hold of you, and whether you would fight properly on the way down. Then ask them straight out if they fancy it.",
-    "type": "target",
-    "intensity": "spicy",
-    "batch": 3,
-    "id": "grq-b6e6e802"
-  },
-  {
-    "text": "What photo of yourself would you let one person in this room keep on their phone, what is in the frame, and which of us gets to take it? Then get into that pose and hold it for a slow count of fifteen while the room decides whether they would want the picture. Nobody's phone comes out.",
-    "type": "target",
-    "intensity": "wild",
-    "batch": 3,
-    "id": "grq-2022b95a"
-  },
-  {
-    "text": "Room vote, out loud, one label at a time: the brat, the rope top, the service sub, the sadist, and the one who is a caregiver in disguise. Anybody named twice gets into the position their label puts them in and holds it for a slow count of ten while the rest of you decide whether it suits them.",
+    "text": "Pick one player. The rest of the room guesses out loud what that person wants done to them, and how rough.",
     "type": "group",
     "intensity": "wild",
     "batch": 3,
-    "id": "grq-58f87318"
+    "id": "grq-7184bead"
+  },
+  {
+    "text": "Everyone writes down one person here they'd fuck tonight, or nobody. One reader takes the slips and names the matches only.",
+    "type": "group",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-dee65550"
+  },
+  {
+    "text": "You and the player opposite each write down the kink you've never asked anybody for. Swap and read them out.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-39ff08a8"
+  },
+  {
+    "text": "Ask the player on your left, then answer it yourself: watching your partner get fucked, or hearing every filthy detail after?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-0b45628d"
+  },
+  {
+    "text": "Rope, blindfold, or a hand in your hair. The player on your right picks one and says what they want done with it.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-417aa243"
+  },
+  {
+    "text": "Ask the player on your left what state they're in for five minutes after they come, and what they need.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-534ac62d"
+  },
+  {
+    "text": "You and the player opposite, on three: collar or lead. Match, and they take the lead. Whoever holds it gives the first order.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-bf77246a"
+  },
+  {
+    "text": "The player opposite is opening their relationship tomorrow. What's the one rule, and would you be first to break it?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-594e5a42"
+  },
+  {
+    "text": "Pick two players. Say which one gets their mouth on the other first, and where. They tell you if you're right.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-915051b2"
+  },
+  {
+    "text": "Somebody here is getting pegged and somebody here is doing the pegging. Name both, then say which job you'd take.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-365289ca"
+  },
+  {
+    "text": "Ask the player on your right if they've ever fucked somebody while a partner watched from the next room.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-106d09ac"
+  },
+  {
+    "text": "Guess out loud how the player on your left likes being finished off. They correct every part you got wrong.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-9aac86ff"
+  },
+  {
+    "text": "A week with no coming, or a week where somebody else decides when you do. Make the player opposite choose.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-b1b438a0"
+  },
+  {
+    "text": "Name the two people here you'd want either side of you in bed, and say which one's on their knees.",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-dd38e9a7"
+  },
+  {
+    "text": "Ask the player on your left what they taste like, then who here they'd most want finding out.",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-40fe3c11"
+  },
+  {
+    "text": "Ask the player opposite: watching, or being watched, which gets them off quicker? Then say which one you'd rather they did.",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-61074a6d"
+  },
+  {
+    "text": "Ask the player on your right who here they'd want as a third. That person says whether they're up for it.",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-b9ac77e6"
+  },
+  {
+    "text": "Praise or filth, which one actually gets you there? Say the exact words you'd want in your ear as you come.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-a1f21ed0"
+  },
+  {
+    "text": "Ask the player opposite what they'd happily do for somebody all night, on their knees, asking for nothing back.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-5c4a2a94"
+  },
+  {
+    "text": "Wrists, ankles, or your eyes covered: which undoes you fastest, and what do you want done to you like that?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-de88cdf0"
+  },
+  {
+    "text": "Say the word you want growled at you mid-fuck that you'd deck anybody for using otherwise. Who here gets to use it?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-ad08b579"
+  },
+  {
+    "text": "Interrogation, confessional, or captured hero stripped of their powers. Which would you actually go through with, and who's in it?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-1b14b7c0"
+  },
+  {
+    "text": "Puppy, kitten or pony: say which one the player opposite would go under as. They tell you if there's a tail.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-25bb0d92"
+  },
+  {
+    "text": "Ask the player on your right what they've actually got on under there, and who they picked it for.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-b80408d4"
+  },
+  {
+    "text": "On three, everyone names the material they want against their own skin, and the one they'd want somebody else laced into.",
+    "type": "group",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-94c37a5e"
+  },
+  {
+    "text": "Knickers, a full face of makeup, and a name somebody else picked. Ask the player opposite: hard no, or already done?",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-c791ee73"
+  },
+  {
+    "text": "Used as furniture and thanked for nothing, or told exactly what you are in front of people. Make the player opposite pick.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-7381cbd5"
+  },
+  {
+    "text": "Cane, flogger, crop, or a bare hand over the knee. Ask the player opposite which one, and how many.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-e99535df"
+  },
+  {
+    "text": "Tell the player on your left how far you'd make them chase you, and what happens the second they catch you.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-09757f80"
+  },
+  {
+    "text": "What photo would you let one person here keep on their phone, and which of us gets to take it?",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-ec6f003b"
+  },
+  {
+    "text": "Room vote, out loud: who's the brat, the rope top, the service sub, the sadist? Anybody named twice answers for it.",
+    "type": "group",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-55662c4e"
+  },
+  {
+    "text": "Get into the pose you'd want photographed and hold it for a slow count of ten. No phones out.",
+    "type": "neutral",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-744b2313"
   }
 ]
