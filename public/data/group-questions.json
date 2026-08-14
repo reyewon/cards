@@ -736,5 +736,75 @@
     "intensity": "tame",
     "batch": 3,
     "id": "grq-da86485f"
+  },
+  {
+    "text": "Interrogation with a locked door, a confessional with a screen between you, or a mask and a cape. Pick the one you would actually play out, pick who here is opposite you in it, and say what they get out of you by the end.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-fe43a37e"
+  },
+  {
+    "text": "Puppy, kitten or pony: decide out loud which one the player opposite you would go under as, then let them tell you what gets them into that headspace, whether there is a tail involved, and who here they would let hold the lead.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-7e3f7079"
+  },
+  {
+    "text": "Under whatever the rest of us can see, what has the player on your right actually got on tonight: fabric, colour, and who they picked it for. Get a straight answer and what they were hoping that person would do about it, then tell them what you had been assuming it was.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-57fd3d1a"
+  },
+  {
+    "text": "On three, no looking round first, everybody names the material they want against their own skin and the one they would want somebody else laced or zipped into. Latex, leather, rubber, fur, velvet, silk, take your pick. Then work out between you which two of you just described each other.",
+    "type": "group",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-776a4002"
+  },
+  {
+    "text": "Knickers that are not yours, a full face of makeup, and a name picked for you by somebody else. Ask the player opposite whether that is a hard no, a quiet curiosity, or something they have already done, and do not let them off with a one word answer.",
+    "type": "target",
+    "intensity": "tame",
+    "batch": 3,
+    "id": "grq-51120276"
+  },
+  {
+    "text": "Being used as a piece of furniture and thanked for nothing, or being told exactly what you are out loud in front of people who know you. Make the player opposite pick one, then have them name who here they would want doing it and what they would want called while it happened.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-436368d4"
+  },
+  {
+    "text": "Cane, flogger, riding crop, or a bare hand with you over their knee. Ask the player opposite which one they want and how many, then tell them which of the four you would reach for if they left the choice to you tonight.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-93ece103"
+  },
+  {
+    "text": "Tell the player on your left how far you would make them chase you before you let yourself get caught, what you would want done the second they had hold of you, and whether you would fight properly on the way down. Then ask them straight out if they fancy it.",
+    "type": "target",
+    "intensity": "spicy",
+    "batch": 3,
+    "id": "grq-b6e6e802"
+  },
+  {
+    "text": "What photo of yourself would you let one person in this room keep on their phone, what is in the frame, and which of us gets to take it? Then get into that pose and hold it for a slow count of fifteen while the room decides whether they would want the picture. Nobody's phone comes out.",
+    "type": "target",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-2022b95a"
+  },
+  {
+    "text": "Room vote, out loud, one label at a time: the brat, the rope top, the service sub, the sadist, and the one who is a caregiver in disguise. Anybody named twice gets into the position their label puts them in and holds it for a slow count of ten while the rest of you decide whether it suits them.",
+    "type": "group",
+    "intensity": "wild",
+    "batch": 3,
+    "id": "grq-58f87318"
   }
 ]
