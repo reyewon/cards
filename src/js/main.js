@@ -59,7 +59,45 @@ const ICON_PERSON = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden
 // localStorage persistence keys
 const LS = {
   SESSION: 'knt_session_v2',
+  SEEN: 'knt_seen_v1',
 };
+
+// ============================================================
+// Lifetime play history
+// ============================================================
+// A record of every card this device has ever drawn, per deck, kept across
+// games. It exists to tell a first-time player from a regular: a newcomer
+// should get the whole deck shuffled, because "new" means nothing to them and
+// the newest cards are the ones that reach furthest. Only once someone has
+// played enough to have seen a good slice of the deck does surfacing fresh
+// content early become the point.
+let seen = {};
+
+function loadSeen() {
+  try {
+    const s = JSON.parse(localStorage.getItem(LS.SEEN));
+    seen = (s && typeof s === 'object') ? s : {};
+  } catch (_) {
+    seen = {};
+  }
+}
+
+function recordSeen(deck, id) {
+  if (!deck || !id) return;
+  const list = seen[deck] || (seen[deck] = []);
+  if (list.includes(id)) return;
+  list.push(id);
+  if (list.length > 600) list.splice(0, list.length - 600);
+  try { localStorage.setItem(LS.SEEN, JSON.stringify(seen)); } catch (_) {}
+}
+
+// Regular player: has drawn either 40% of this deck, or 75 cards from it,
+// whichever comes first. 75 is roughly three or four proper sessions, and the
+// percentage keeps the bar sensible on the smaller decks.
+function isRegularPlayer(deck, deckSize) {
+  const n = (seen[deck] || []).length;
+  return n >= Math.min(75, Math.round(deckSize * 0.4));
+}
 
 function saveSession() {
   try {
@@ -118,17 +156,21 @@ function pickRandom(pool) {
 }
 
 // Items may carry an optional `batch` number (legacy items = batch 1).
-// The newest batch in the pool is always drawn from first, randomly,
-// so fresh content surfaces before older cards. Once the newest batch
-// is used up the pool falls back to older batches automatically.
-function pickPrioritisingNew(pool) {
+// For a regular player the newest batch is drawn from first, so returning
+// players notice fresh content. For everyone else the whole deck is shuffled
+// flat: see isRegularPlayer above for why.
+function pickFrom(pool, deck, deckSize) {
   if (!pool.length) return undefined;
+  if (!isRegularPlayer(deck, deckSize)) return pickRandom(pool);
   const maxBatch = Math.max(...pool.map(item => item.batch || 1));
   return pickRandom(pool.filter(item => (item.batch || 1) === maxBatch));
 }
 
-function isNewItem(item, source) {
+// The "New" sticker marks latest-batch content. It only means something to
+// someone who has seen the older cards, so it rides on the same check.
+function isNewItem(item, source, deck) {
   if (!item || typeof item !== 'object' || !item.batch) return false;
+  if (!isRegularPlayer(deck, source.length)) return false;
   const maxBatch = Math.max(...source.map(i => i.batch || 1));
   return maxBatch > 1 && item.batch === maxBatch;
 }
@@ -137,6 +179,9 @@ function questionSource() {
   return state.mode === 'couple' ? DATA.couple_questions :
          state.mode === 'group' ? DATA.group_questions : DATA.friends_questions;
 }
+
+function questionDeck() { return `${state.mode}_questions`; }
+function forfeitDeck() { return `${state.mode}_forfeits`; }
 
 function getNextQuestion() {
   const source = questionSource();
@@ -171,10 +216,11 @@ function getNextQuestion() {
     if (!pool.length) pool = source.filter(q => eligible(q));
   }
 
-  const picked = pickPrioritisingNew(pool);
+  const picked = pickFrom(pool, questionDeck(), source.length);
   if (!picked) return { text: 'No questions available. Reset and try again!', type: 'neutral' };
 
   if (!state.usedQuestions.includes(picked.id)) state.usedQuestions.push(picked.id);
+  recordSeen(questionDeck(), picked.id);
 
   return picked;
 }
@@ -192,8 +238,11 @@ function getNextForfeit() {
     if (!pool.length) pool = [...bank];
   }
 
-  const picked = pickPrioritisingNew(pool);
-  if (picked && !state.usedForfeits.includes(picked.id)) state.usedForfeits.push(picked.id);
+  const picked = pickFrom(pool, forfeitDeck(), bank.length);
+  if (picked && !state.usedForfeits.includes(picked.id)) {
+    state.usedForfeits.push(picked.id);
+    recordSeen(forfeitDeck(), picked.id);
+  }
 
   return picked;
 }
@@ -390,7 +439,7 @@ function showGameScreen(isHost = true) {
 // ============================================================
 function drawQuestionCard() {
   const q = getNextQuestion();
-  return { type: 'question', text: q.text ?? q, isNew: isNewItem(q, questionSource()) };
+  return { type: 'question', text: q.text ?? q, isNew: isNewItem(q, questionSource(), questionDeck()) };
 }
 
 function doNextQuestion() {
@@ -430,7 +479,7 @@ function doGroupReveal() {
     state.currentTargetIndex = t;
   }
 
-  const card = { type: 'question', text: q.text, isNew: isNewItem(q, DATA.group_questions) };
+  const card = { type: 'question', text: q.text, isNew: isNewItem(q, DATA.group_questions, questionDeck()) };
   const label = buildTurnLabel();
   state.currentCard = card;
   state.turnLabel = label;
@@ -453,7 +502,7 @@ function doForfeit() {
 
   const bank = state.mode === 'couple' ? DATA.couple_forfeits :
                state.mode === 'group' ? DATA.group_forfeits : DATA.friends_forfeits;
-  const card = { type: 'forfeit', text: f.text ?? f, performer, isNew: isNewItem(f, bank) };
+  const card = { type: 'forfeit', text: f.text ?? f, performer, isNew: isNewItem(f, bank, forfeitDeck()) };
   state.currentCard = card;
   saveSession();
 
@@ -874,6 +923,7 @@ if ('serviceWorker' in navigator) {
 (async () => {
   try {
     await loadData();
+    loadSeen();
   } catch (err) {
     console.error('Failed to load game data:', err);
     alert('Could not load the question decks. Check your connection and refresh.');

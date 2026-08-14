@@ -34,9 +34,19 @@ Every item carries `text`, an `id`, and optionally `type`:
 - **`batch`** (integer): the content drop it arrived in. Legacy items have no
   `batch` field and count as batch 1. The current newest batch is **3**.
   **The rule: whenever you add new content, give every new item the next batch
-  number (4, then 5, and so on).** The picker always draws randomly from the
-  newest unused batch first, so returning players see fresh cards straight away.
-  Cards from the newest batch get a "New" sticker in the UI automatically.
+  number (4, then 5, and so on).**
+
+  **Who gets newest-first.** Batch priority is not on for everybody. A player who
+  has barely played gets the whole deck shuffled flat, because "new" means
+  nothing to them and the newest cards are usually the ones that reach furthest,
+  so leading with them reads oddly. Once someone has drawn either 40% of a deck
+  or 75 cards from it, whichever comes first, the picker switches to drawing from
+  the newest batch first, and the "New" sticker starts appearing. That threshold
+  is roughly three or four proper sessions.
+
+  Lifetime draws are recorded per deck in `localStorage` under `knt_seen_v1`,
+  separately from the in-progress game, so it survives finishing a game and
+  starting another. See `isRegularPlayer` in `src/js/main.js`.
 - **`intensity`** (`"tame"` | `"spicy"` | `"wild"`): the heat level of the card.
   Tagged cards only appear at that level or above (tame < spicy < wild).
   Untagged legacy items appear at every intensity. Tag all new content.
